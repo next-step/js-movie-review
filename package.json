@@ -1,0 +1,33 @@
+{
+  "name": "js-movie-review",
+  "version": "1.0.0",
+  "description": "영화 리뷰 홈페이지 만들기",
+  "main": "index.js",
+  "scripts": {
+    "watch": "webpack --watch",
+    "dev": "webpack serve",
+    "build": "webpack --config webpack.config.js",
+    "cypress": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/next-step/js-movie-review.git"
+  },
+  "keywords": [
+    "영화리뷰",
+    "비동기"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/next-step/js-movie-review/issues"
+  },
+  "homepage": "https://github.com/next-step/js-movie-review#readme",
+  "devDependencies": {
+    "cypress": "^12.17.4",
+    "dotenv-webpack": "^8.0.1",
+    "html-webpack-plugin": "^5.5.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
+}
