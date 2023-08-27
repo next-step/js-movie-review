@@ -1,29 +1,7 @@
 import Component from '../../core/component.js';
-import Star from '../../../public/star_filled.png';
-import { getMovies } from '../../api/getMovies.js';
+import Star from '../../../../public/star_filled.png';
 
 class MovieList extends Component {
-  setup() {
-    this.setState({
-      page: 0,
-      movies: [],
-    });
-    this.addEvent('click', '.btn', () => {
-      this.addMovies();
-    });
-    this.addMovies();
-  }
-
-  async addMovies() {
-    this.setState({
-      page: this.$state.page + 1,
-    });
-    const { data } = await getMovies(this.$state.page);
-    this.setState({
-      movies: [...this.$state.movies, ...data.results],
-    });
-  }
-
   template() {
     return /*html*/ `
       <div class="item-view">
@@ -31,7 +9,7 @@ class MovieList extends Component {
           ${this.$props.title}
         </h2>
         <ul class="item-list">
-          ${this.$state.movies
+          ${this.$props.movies
             .map((movie) => {
               return /*html*/ `
                 <a href="#">
@@ -49,8 +27,30 @@ class MovieList extends Component {
               `;
             })
             .join('')}
+            ${
+              this.$props.isLoading
+                ? /*html*/ `
+                <li>
+                  <a href="#">
+                    <div class="item-card">
+                      <div class="item-thumbnail skeleton"></div>
+                      <div class="item-title skeleton"></div>
+                      <div class="item-score skeleton"></div>
+                    </div>
+                  </a>
+                </li>`.repeat(20)
+                : ''
+            }
+            ${
+              this.$props.isError
+                ? /*html*/ `
+                <div>
+                  서버 통신중 문제가 발생하였습니다.
+                </div>
+              `
+                : ''
+            }
         </ul>
-        <button class="btn primary full-width">더 보기</button>
       </div>
     `;
   }

@@ -21,6 +21,10 @@ ul {
   padding: 0;
 }
 
+li {
+  list-style: none;
+}
+
 #app {
   padding-bottom: 48px;
 }
