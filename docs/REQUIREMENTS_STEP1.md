@@ -51,7 +51,7 @@ class Fetcher {
 
 - [ ] 유저의 이벤트 및 설정(action)을 감지하여 MovieService에 전달한다.
 - [ ] 유저의 이벤트 및 설정에 맞는 결과(Movie[])를 MovieService로부터 전달받아 반환한다.
-- [ ] MovieService에 요청을 보내기 전, endpoint와 유저의 설정을 조합하여 완성된 endpoint를 MovieService에 전달한다.
+- [x] MovieService에 요청을 보내기 전, endpoint와 유저의 설정을 조합하여 완성된 endpoint를 MovieService에 전달한다.
 
 ### MovieService
 
