@@ -4,6 +4,7 @@
   "description": "영화 리뷰 홈페이지 만들기",
   "main": "index.js",
   "scripts": {
+    "doc": "jsdoc -c jsdoc.json",
     "watch": "webpack --watch",
     "dev": "webpack serve",
     "build": "webpack --config webpack.config.js",
@@ -31,5 +32,8 @@
     "style-loader": "^3.3.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "jsdoc": "^4.0.2"
   }
 }
