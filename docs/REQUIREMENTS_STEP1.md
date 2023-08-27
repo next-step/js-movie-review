@@ -21,9 +21,29 @@
 
 ## 객체
 
-### Axios
+### Fetcher
+
+협력관계 : MovieService
 
 비동기 통신을 담당하는 객체.
+
+```js
+class Fetcher {
+  #baseUrl;
+
+  constuctor(baseUrl) {
+    this.#baseUrl = baseUrl;
+  }
+
+  async get(endpoint) {
+    const response = await fetch(`${this.#baseUrl}${endpoint}`);
+
+    if (!response.ok) throw new Error('errorMessage');
+
+    return response.json();
+  }
+}
+```
 
 ### MovieController
 
@@ -35,12 +55,16 @@
 
 ### MovieService
 
-협력 관계 : MovieController, Axios
-주어진 설정을 endpoint에 추가한 뒤, 조건에 따른 영화들을 반환하는 객체.
+협력 관계 : MovieController, Fetcher
 
-- 요청을 보낼
-- [ ]
+- endpoint를 전달받아 Movie 객체들을 반환하는 역할.
+  MovieController에서 전달받은 Endpoint에 따라 원하는 추상화 과정을 거친 뒤(인기순, 추천순, 조회수 순 등) Fetcher를 사용해 Movie 객체에 대한 비즈니스 로직을 담당하는 객체.
 
 ---
 
-- 비동기 통신을 위해 Axios 객체를 사용한다.
+### 구현 목록
+
+- [ ] App이 실행될 때, 영화 20개를 받아와 컴포넌트를 렌더링 한다.
+  - [ ] App이 실행될 때, 영화를 받아온다.
+  - [ ] 영화를 받아올 때, 스켈레톤 로딩을 적용한다.
+  - [ ] 데이터를 받아왔다면, 화면에 데이터를 렌더링한다.
