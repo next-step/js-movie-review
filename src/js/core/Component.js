@@ -8,7 +8,7 @@ export default class Component {
   /**
    * 타겟이 될 HTML 요소와 부여받을 props를 입력합니다.
    * @param {HTMLElement} $target
-   * @param {Object.<string, *>} [$props]
+   * @param {Object.<string, *>} $props
    */
   constructor($target, $props) {
     this.$target = $target;
@@ -50,7 +50,7 @@ export default class Component {
 
   /**
    * 컴포넌트의 상태를 갱신합니다.
-   * @param {Object.<string, *>} newState
+   * @param {object} newState
    */
   setState(newState) {
     this.$state = { ...this.$state, ...newState };
@@ -58,10 +58,10 @@ export default class Component {
   }
 
   /**
-   * 컴포넌트 내에 selector에 eventType이 일어날시 callback을 실행합니다.
-   * @param {Event} eventType
+   * 컴포넌트 내에 selector에 eventType이 일어날시 callback을 실행
+   * @param {string} eventType
    * @param {string} selector
-   * @param {() => void} callback
+   * @param {function} callback
    */
   addEvent(eventType, selector, callback) {
     this.$target.addEventListener(eventType, (event) => {

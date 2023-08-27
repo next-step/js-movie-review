@@ -1,16 +1,16 @@
-import movieStore from './api/MovieStore.js';
 import { getPopularMovies } from './api/movies.js';
 import Header from './components/common/Header.js';
 import MovieList from './components/movie/MovieList.js';
 import Component from './core/component.js';
+import { movieStore } from './stores.js';
 
 class App extends Component {
   setup() {
     this.$state = {
-      page: 0,
+      page: 1,
     };
     movieStore.subscribe(this);
-    this.getNextPage();
+    movieStore.refetch(() => getPopularMovies(this.$state.page));
     this.addEvent('click', '.btn', () => this.getNextPage());
   }
 
@@ -26,13 +26,14 @@ class App extends Component {
   }
 
   mounted() {
-    const { data: movies, isLoading, isError } = this.$state[movieStore.key];
+    const { data: movies, isLoading, isError, error } = this.$state[movieStore.key];
     new Header(this.$target.querySelector('header'));
     new MovieList(this.$target.querySelector('.popular-movies'), {
       title: '지금 인기있는 영화',
       movies,
       isLoading,
       isError,
+      error,
     });
   }
 

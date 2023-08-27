@@ -5,7 +5,6 @@ const API_URL = process.env.TMDB_API_URL;
  * API 요청을 보내는 함수입니다.
  * @param {string} url
  * @param {RequestInit} options
- * @returns
  */
 const request = async (url, options) => {
   try {
