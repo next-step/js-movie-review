@@ -1,5 +1,5 @@
 import movieStore from './api/MovieStore.js';
-import { getMovies } from './api/movies.js';
+import { getPopularMovies } from './api/movies.js';
 import Header from './components/common/Header.js';
 import MovieList from './components/movie/MovieList.js';
 import Component from './core/component.js';
@@ -16,7 +16,7 @@ class App extends Component {
 
   getNextPage() {
     this.increasePage();
-    movieStore.accumulateData(() => getMovies(this.$state.page));
+    movieStore.accumulateData(() => getPopularMovies(this.$state.page));
   }
 
   increasePage() {

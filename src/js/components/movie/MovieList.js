@@ -1,5 +1,6 @@
 import Component from '../../core/component.js';
 import Star from '../../../../public/star_filled.png';
+import '../../types.js';
 
 class MovieList extends Component {
   template() {
@@ -10,8 +11,12 @@ class MovieList extends Component {
         </h2>
         <ul class="item-list">
           ${this.$props.movies
-            .map((movie) => {
-              return /*html*/ `
+            .map(
+              /**
+               * @param {Movie} movie
+               */
+              (movie) => {
+                return /*html*/ `
                 <a href="#">
                   <div class="item-card">
                     <img
@@ -25,7 +30,8 @@ class MovieList extends Component {
                   </div>
                 </a>
               `;
-            })
+              }
+            )
             .join('')}
             ${
               this.$props.isLoading
