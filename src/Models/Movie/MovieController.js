@@ -1,5 +1,5 @@
 import { MovieService } from './MovieService';
-import { MOVIE_API } from '../../constants';
+import { MOVIE_API, PROMISE_STATE } from '../../constants';
 
 export class MovieController {
   #service = new MovieService();
@@ -21,7 +21,7 @@ export class MovieController {
 
   #extractFulfilledResults(results) {
     return results
-      .filter(({ status }) => status === 'fulfilled')
+      .filter(({ status }) => status === PROMISE_STATE.FULFILLED)
       .map(({ value }) => value);
   }
 }

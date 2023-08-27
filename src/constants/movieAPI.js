@@ -21,3 +21,7 @@ const TMDB = Object.freeze({
 export const MOVIE_API = Object.freeze({
   TMDB,
 });
+
+export const PROMISE_STATE = Object.freeze({
+  FULFILLED: 'fulfilled',
+});

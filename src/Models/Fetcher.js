@@ -1,3 +1,5 @@
+import { ERROR } from '../constants';
+
 export const Fetcher = {
   async get(endpoint, config = {}) {
     const { method, headers } = config;
@@ -6,7 +8,7 @@ export const Fetcher = {
       headers,
     });
 
-    if (!response.ok) throw new Error(`HTTP Error | Status ${response.status}`);
+    if (!response.ok) throw new Error(ERROR.HTTP(response.status));
 
     return await response.json();
   },
