@@ -17,6 +17,10 @@ button {
   cursor: pointer;
 }
 
+ul {
+  padding: 0;
+}
+
 #app {
   padding-bottom: 48px;
 }
