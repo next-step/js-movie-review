@@ -17,16 +17,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Setup .env
-        run: echo "TMDB_API_ACCESS_TOKEN=${{secrets.TMDB_API_ACCESS_TOKEN}}" > .env
-          echo "TMDB_API_KEY=${{secrets.TMDB_API_KEY}}" > .env
-          echo "TMDB_API_URL=${{secrets.TMDB_API_URL}}" > .env
-
-      - name: Check Environment Variable
-        run: echo "${{secrets.TMDB_API_ACCESS_TOKEN}}"
-
       - run: npm ci --legacy-peer-deps
+      - name: Setup .env
+        env:
+          TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
+          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
+          TMDB_API_URL: ${{ secrets.TMDB_API_URL }}
       - run: npm run build
         env:
           CI: false
