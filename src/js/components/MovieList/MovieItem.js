@@ -3,7 +3,7 @@ import Star from '../../../../public/star_filled.png';
 /**
  * @param {Movie} movie
  */
-const MovieItem = (movie) => /*html*/ `
+export const MovieItem = (movie) => /* html */ `
 <a href="#">
   <div class="item-card" data-cy="movie-item">
     <img
@@ -17,5 +17,3 @@ const MovieItem = (movie) => /*html*/ `
   </div>
 </a>
 `;
-
-export default MovieItem;

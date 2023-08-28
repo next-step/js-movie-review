@@ -1,9 +1,9 @@
-import Component from '../../core/Component.js';
+import { Component } from '../../core/index.js';
 import logo from '../../../../public/logo.png';
 
-class Header extends Component {
+export class Header extends Component {
   template() {
-    return /*html*/ `
+    return /* html */ `
       <h1>
         <img src=${logo} alt="MovieList 로고" class="logo"/>
       </h1>
@@ -14,5 +14,3 @@ class Header extends Component {
     `;
   }
 }
-
-export default Header;

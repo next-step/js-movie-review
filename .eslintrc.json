@@ -1,0 +1,26 @@
+{
+  "env": {
+    "browser": true,
+    "cypress/globals": true
+  },
+  "extends": ["airbnb", "plugin:cypress/recommended"],
+  "plugins": ["cypress"],
+  "rules": {
+    "no-new": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "consistent-return": "off",
+    "class-methods-use-this": "off",
+    "implicit-arrow-linebreak": "off",
+    "react/no-unused-class-component-methods": "off",
+    "react/no-unused-state": "off",
+    "object-curly-newline": "off",
+
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error"
+  }
+}

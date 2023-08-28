@@ -1,7 +1,6 @@
 import { getPopularMovies } from './api/movies.js';
-import Header from './components/common/Header.js';
-import MovieList from './components/movie/MovieList.js';
-import Component from './core/Component.js';
+import { MovieList, Header } from './components/index.js';
+import { Component } from './core/index.js';
 import { movieStore } from './stores.js';
 
 class App extends Component {
@@ -38,7 +37,7 @@ class App extends Component {
   }
 
   template() {
-    return /*html*/ `
+    return /* html */ `
       <header>
       </header>
       <main>

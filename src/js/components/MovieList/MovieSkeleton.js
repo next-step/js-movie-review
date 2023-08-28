@@ -2,8 +2,8 @@
  * @param {number} [count]
  * @returns {MovieSkeleton}
  */
-const MovieSkeleton = (count = 1) => {
-  return /*html*/ `
+export const MovieSkeleton = (count = 1) =>
+  /* html */ `
     <li>
       <a href="#">
         <div class="item-card" data-cy="movie-skeleton">
@@ -14,6 +14,3 @@ const MovieSkeleton = (count = 1) => {
       </a>
     </li>
   `.repeat(count);
-};
-
-export default MovieSkeleton;

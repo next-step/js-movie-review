@@ -1,6 +1,6 @@
-import Component from './Component.js';
+import { Component } from './Component.js';
 
-class Store {
+export class Store {
   state = {
     data: null,
   };
@@ -79,5 +79,3 @@ class Store {
     this.observers.clear();
   }
 }
-
-export default Store;

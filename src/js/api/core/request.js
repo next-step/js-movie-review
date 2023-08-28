@@ -20,10 +20,10 @@ const request = async (url, options) => {
     if (response.ok) {
       const data = await response.json();
       return data;
-    } else {
-      const parsedResponse = await response.json();
-      throw new Error(parsedResponse.message);
     }
+
+    const parsedResponse = await response.json();
+    throw new Error(parsedResponse.message);
   } catch (err) {
     console.error(`Request Error : ${err}`);
   }

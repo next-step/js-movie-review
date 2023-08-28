@@ -1,12 +1,12 @@
-import Component from '../../core/Component.js';
+import { Component } from '../../core/index.js';
 import '../../types.js';
-import Error from '../common/Error.js';
-import MovieItem from './MovieItem.js';
-import MovieSkeleton from './MovieSkeleton.js';
+import { Error } from '../common/Error.js';
+import { MovieItem } from './MovieItem.js';
+import { MovieSkeleton } from './MovieSkeleton.js';
 
-class MovieList extends Component {
+export class MovieList extends Component {
   template() {
-    return /*html*/ `
+    return /* html */ `
       <div class="item-view">
         <h2>
           ${this.$props.title}
@@ -20,5 +20,3 @@ class MovieList extends Component {
     `;
   }
 }
-
-export default MovieList;

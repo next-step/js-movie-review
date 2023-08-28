@@ -1,6 +1,6 @@
-import Store from './Store.js';
+import { Store } from './Store.js';
 
-class APIStore extends Store {
+export class APIStore extends Store {
   static stores = new Map();
 
   /**
@@ -37,7 +37,7 @@ class APIStore extends Store {
       this.state.data = data;
       this.completeFetching();
     } catch (err) {
-      this.occurError();
+      this.occurError(err);
     }
   }
 
@@ -96,5 +96,3 @@ class APIStore extends Store {
     this.notify();
   }
 }
-
-export default APIStore;
