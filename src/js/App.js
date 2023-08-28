@@ -1,7 +1,7 @@
 import { getPopularMovies } from './api/movies.js';
 import Header from './components/common/Header.js';
 import MovieList from './components/movie/MovieList.js';
-import Component from './core/component.js';
+import Component from './core/Component.js';
 import { movieStore } from './stores.js';
 
 class App extends Component {
