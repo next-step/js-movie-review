@@ -14,8 +14,8 @@ export class MovieList extends Component {
         <ul class="item-list">
           ${this.$props.movies ? this.$props.movies.map(MovieItem).join('') : ''}
           ${this.$props.isLoading ? MovieSkeleton(20) : ''}
-          ${this.$props.isError ? Error(this.$props.error) : ''}
         </ul>
+        ${this.$props.isError ? Error(this.$props.error) : ''}
         ${!this.$props.isLoading ? '<button class="btn primary full-width">더 보기</button>' : ''}
       </div>
     `;

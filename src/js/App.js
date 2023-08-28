@@ -13,14 +13,22 @@ class App extends Component {
     this.addEvent('click', '.btn', () => this.getNextPage());
   }
 
-  getNextPage() {
-    this.increasePage();
+  /**
+   * 다음 페이지를 불러옵니다
+   * @param {number} [increase]
+   */
+  getNextPage(increase = 1) {
+    this.increasePage(increase);
     movieStore.accumulateData(() => getPopularMovies(this.$state.page));
   }
 
-  increasePage() {
+  /**
+   * 페이지를 증가시킵니다.
+   * @param {number} [increase]
+   */
+  increasePage(increase = 1) {
     this.setState({
-      page: this.$state.page + 1,
+      page: this.$state.page + increase,
     });
   }
 

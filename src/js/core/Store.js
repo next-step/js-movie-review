@@ -5,9 +5,9 @@ export class Store {
     data: null,
   };
 
-  key;
+  #key;
 
-  observers = new Set();
+  #observers = new Set();
 
   /**
    * 초기 데이터와 전역 상태 키를 입력합니다.
@@ -16,7 +16,7 @@ export class Store {
    */
   constructor(initData, key) {
     this.state.data = initData;
-    this.key = key;
+    this.#key = key;
   }
 
   /**
@@ -39,9 +39,9 @@ export class Store {
    * 구독된 옵저버들에게 상태 변화를 알립니다.
    */
   notify() {
-    this.observers.forEach((observer) => {
+    this.#observers.forEach((observer) => {
       observer.setState({
-        [this.key]: this.state,
+        [this.#key]: this.state,
       });
     });
   }
@@ -51,9 +51,9 @@ export class Store {
    * @param {Component} observer
    */
   subscribe(observer) {
-    this.observers.add(observer);
+    this.#observers.add(observer);
     const globalState = {
-      [this.key]: this.state,
+      [this.#key]: this.state,
     };
     observer.setState(globalState);
   }
@@ -63,7 +63,7 @@ export class Store {
    * @param {object} observer
    */
   unsubscribe(observer) {
-    this.observers.delete(observer);
+    this.#observers.delete(observer);
     Object.keys(this.state).forEach((key) => {
       delete observer.$state[key];
     });
@@ -73,9 +73,9 @@ export class Store {
    * 옵저버를 초기화합니다.
    */
   resetSubscribe() {
-    this.observers.forEach((observer) => {
+    this.#observers.forEach((observer) => {
       this.unsubscribe(observer);
     });
-    this.observers.clear();
+    this.#observers.clear();
   }
 }

@@ -29,7 +29,7 @@ export class APIStore extends Store {
 
   /**
    * 상태를 업데이트 합니다.
-   * @param {function} fetchFunc
+   * @param {() => Promise<any>} fetchFunc
    */
   async refetch(fetchFunc) {
     try {
@@ -41,6 +41,10 @@ export class APIStore extends Store {
     }
   }
 
+  /**
+   * 상태를 누적하여 업데이트 합니다.
+   * @param {() => Promise<any>} fetchFunc
+   */
   async accumulateData(fetchFunc) {
     this.startFetching();
     try {

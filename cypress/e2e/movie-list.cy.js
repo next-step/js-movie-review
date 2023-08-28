@@ -24,18 +24,14 @@ describe('영화 목록 불러오기', () => {
   });
 
   it('더 보기를 누를시 다음 페이지가 나타난다.', () => {
-    cy.wait('@getPopularMovies');
-
     cy.goToNextPage();
 
     cy.contains('더 보기').should('not.exist');
     cy.get('[data-cy="movie-skeleton"]').should('exist');
     cy.get('[data-cy="movie-skeleton"]').should('have.length', 20);
 
-    cy.wait('@getPopularMovies');
-
-    cy.contains('더 보기').should('exist');
     cy.get('[data-cy="movie-skeleton"]').should('not.exist');
+    cy.contains('더 보기').should('exist');
     cy.get('[data-cy="movie-item"]').should('exist');
     cy.get('[data-cy="movie-item"]').should('have.length', 40);
   });

@@ -7,7 +7,7 @@ Cypress.Commands.add('interceptMovieRequest', () => {
       },
       (req) => {
         const url = new URL(req.url);
-        const page = parseInt(url.searchParams.get('page') || '1');
+        const page = parseInt(url.searchParams.get('page') || '1', 10);
 
         req.reply({
           statusCode: 200,
