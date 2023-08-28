@@ -1,7 +1,7 @@
 describe('영화 목록 불러오기', () => {
   beforeEach(() => {
     cy.interceptMovieRequest();
-    cy.visit('http://localhost:8080/');
+    cy.visit('/');
   });
 
   it('페이지 진입시 스켈레톤 UI가 나타난다.', () => {

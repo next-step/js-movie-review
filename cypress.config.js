@@ -5,6 +5,7 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: 'http://localhost:8080/',
   },
   env: {
     TMDB_API_URL: 'https://api.themoviedb.org/3',

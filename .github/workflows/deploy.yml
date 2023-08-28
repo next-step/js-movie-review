@@ -2,7 +2,7 @@ name: NodeJS with Webpack
 
 on:
   push:
-    branches: ['step-1', 'step-1-deploy']
+    branches: ['step-1']
 
 concurrency:
   group: 'pages'
@@ -32,6 +32,11 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: './dist'
+
+      - name: cypress test
+        run: |
+          npm run dev
+          npm run cypress-test
 
   deploy:
     needs: build
