@@ -1,4 +1,4 @@
-import Component from '../../core/component.js';
+import Component from '../../core/Component.js';
 import Star from '../../../../public/star_filled.png';
 import '../../types.js';
 

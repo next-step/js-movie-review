@@ -1,4 +1,4 @@
-import Component from '../../core/component.js';
+import Component from '../../core/Component.js';
 import logo from '../../../../public/logo.png';
 
 class Header extends Component {
