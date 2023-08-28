@@ -12,4 +12,5 @@ module.exports = defineConfig({
     TMDB_API_ACCESS_TOKEN: 'token',
     TMDB_API_KEY: 'key',
   },
+  projectId: 'aga3gp',
 });

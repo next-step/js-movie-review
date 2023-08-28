@@ -3,6 +3,9 @@
 </p>
 <h2 align="middle">영화 리뷰</h2>
 <p align="middle">비동기 통신을 이용하여 웹 API 요청하기</p>
+
+<h3 align="middle"><a>https://cobocho.github.io/js-movie-review/</a><h3>
+
 <p align="middle">
   <img src="https://img.shields.io/badge/version-1.0.0-blue?style=flat-square" alt="template version"/>
   <img src="https://img.shields.io/badge/language-html-red.svg?style=flat-square"/>

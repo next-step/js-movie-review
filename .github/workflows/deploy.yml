@@ -41,6 +41,11 @@ jobs:
           wait-on-timeout: 120
           browser: chrome
           spec: cypress/e2e/*
+          record: true
+          parallel: true
+        env:
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
   deploy:
     needs: build
