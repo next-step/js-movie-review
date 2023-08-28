@@ -7,7 +7,7 @@ class MovieList extends Component {
     const skeleton = /*html*/ `
       <li>
         <a href="#">
-          <div class="item-card">
+          <div class="item-card" data-cy="movie-skeleton">
             <div class="item-thumbnail skeleton"></div>
             <div class="item-title skeleton"></div>
             <div class="item-score skeleton"></div>
@@ -19,7 +19,7 @@ class MovieList extends Component {
      */
     const movieItem = (movie) => /*html*/ `
       <a href="#">
-        <div class="item-card">
+        <div class="item-card" data-cy="movie-item">
           <img
             class="item-thumbnail"
             src="https://image.tmdb.org/t/p/original${movie.poster_path}"
@@ -32,7 +32,7 @@ class MovieList extends Component {
       </a>
     `;
     const error = /*html*/ `
-      <div>
+      <div data-cy="request-error">
         서버 통신중 문제가 발생하였습니다.
         error: ${this.$props.error}
       </div>
