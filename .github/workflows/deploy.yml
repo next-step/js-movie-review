@@ -34,9 +34,13 @@ jobs:
           path: './dist'
 
       - name: cypress test
-        run: |
-          npm run dev
-          npm run cypress-test
+        uses: cypress-io/github-action@v5
+        with:
+          start: npm run dev
+          wait-on: 'http://localhost:8080'
+          wait-on-timeout: 120
+          browser: chrome
+          spec: cypress/e2e/*
 
   deploy:
     needs: build
