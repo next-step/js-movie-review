@@ -43,7 +43,6 @@ class App extends Component {
       <main>
         <div class="popular-movies">
         </div>
-        ${!this.$state[movieStore.key].isLoading ? '<button class="btn primary full-width">더 보기</button>' : ''}
       </main>
     `;
   }

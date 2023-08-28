@@ -16,6 +16,7 @@ export class MovieList extends Component {
           ${this.$props.isLoading ? MovieSkeleton(20) : ''}
           ${this.$props.isError ? Error(this.$props.error) : ''}
         </ul>
+        ${!this.$props.isLoading ? '<button class="btn primary full-width">더 보기</button>' : ''}
       </div>
     `;
   }
