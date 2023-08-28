@@ -21,13 +21,10 @@ jobs:
       - run: npm ci --legacy-peer-deps
 
       - name: build
-        env:
-          CI: false
-          TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
-          TMDB_API_KEY: ${{ secrets.TMDB_API_KEY }}
-          TMDB_API_URL: ${{ secrets.TMDB_API_URL }}
         run: |
-          ls -la
+          echo "TMDB_API_ACCESS_TOKEN=${{ secrets.TMDB_API_ACCESS_TOKEN }}" >> .env
+          echo "TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}" >> .env
+          echo "TMDB_API_URL=${{ secrets.TMDB_API_URL }}" >> .env
           cat .env
           npm run build
 
