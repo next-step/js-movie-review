@@ -1,5 +1,5 @@
-import { getPopularMovies } from './api/movies.js';
 import { MovieList, Header } from './components/index.js';
+import MOVIE_LIST from './constants/movie-list-config.js';
 import { Component } from './core/index.js';
 import { movieStore } from './stores.js';
 import { $ } from './utils/selector.js';
@@ -10,7 +10,7 @@ class App extends Component {
       page: 1,
     };
     movieStore.subscribe(this);
-    movieStore.refetch(() => getPopularMovies(this.$state.page));
+    movieStore.refetch(() => MOVIE_LIST.POPULAR.FETCH(this.$state.page));
     this.addEvent('click', '.btn', () => this.getNextPage());
   }
 
@@ -20,7 +20,7 @@ class App extends Component {
    */
   getNextPage(increase = 1) {
     this.increasePage(increase);
-    movieStore.accumulateData(() => getPopularMovies(this.$state.page));
+    movieStore.accumulateData(() => MOVIE_LIST.POPULAR.FETCH(this.$state.page));
   }
 
   /**
@@ -37,7 +37,7 @@ class App extends Component {
     const { data: movies, isLoading, isError, error } = this.$state[movieStore.key];
     new Header($('header'));
     new MovieList($('.popular-movies'), {
-      title: '지금 인기있는 영화',
+      title: MOVIE_LIST.POPULAR.TITLE,
       movies,
       isLoading,
       isError,
