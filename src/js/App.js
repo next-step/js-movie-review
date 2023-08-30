@@ -2,6 +2,7 @@ import { getPopularMovies } from './api/movies.js';
 import { MovieList, Header } from './components/index.js';
 import { Component } from './core/index.js';
 import { movieStore } from './stores.js';
+import { $ } from './utils/selector.js';
 
 class App extends Component {
   setup() {
@@ -34,8 +35,8 @@ class App extends Component {
 
   mounted() {
     const { data: movies, isLoading, isError, error } = this.$state[movieStore.key];
-    new Header(this.$target.querySelector('header'));
-    new MovieList(this.$target.querySelector('.popular-movies'), {
+    new Header($('header'));
+    new MovieList($('.popular-movies'), {
       title: '지금 인기있는 영화',
       movies,
       isLoading,
