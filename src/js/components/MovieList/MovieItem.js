@@ -4,7 +4,7 @@ import Star from '../../../../public/star_filled.png';
  * @param {Movie} movie
  */
 export const MovieItem = (movie) => /* html */ `
-<a href="#">
+<a href="/movie/${movie.id}">
   <div class="item-card" data-cy="movie-item">
     <img
       class="item-thumbnail"

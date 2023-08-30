@@ -1,7 +1,6 @@
 import './css/index.css';
-import App from './js/App.js';
-import { $ } from './js/utils/selector';
+import App from './js/App';
 
 window.onload = () => {
-  new App($('#app'));
+  App();
 };
