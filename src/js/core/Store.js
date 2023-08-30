@@ -5,7 +5,7 @@ export class Store {
     data: null,
   };
 
-  #key;
+  key;
 
   #observers = new Set();
 
@@ -16,7 +16,7 @@ export class Store {
    */
   constructor(initData, key) {
     this.state.data = initData;
-    this.#key = key;
+    this.key = key;
   }
 
   /**
@@ -41,7 +41,7 @@ export class Store {
   notify() {
     this.#observers.forEach((observer) => {
       observer.setState({
-        [this.#key]: this.state,
+        [this.key]: this.state,
       });
     });
   }
@@ -53,7 +53,7 @@ export class Store {
   subscribe(observer) {
     this.#observers.add(observer);
     const globalState = {
-      [this.#key]: this.state,
+      [this.key]: this.state,
     };
     observer.setState(globalState);
   }

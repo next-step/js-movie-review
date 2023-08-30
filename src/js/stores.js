@@ -1,3 +1,3 @@
-import { APIStore } from './core/index.js';
+import { QueryStore } from './core/index.js';
 
-export const movieStore = APIStore.createStore([], 'movie');
+export const movieStore = QueryStore.createStore([], 'movie');

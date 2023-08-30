@@ -1,16 +1,19 @@
 import { Store } from './Store.js';
 
-export class APIStore extends Store {
+export class QueryStore extends Store {
   static stores = new Map();
 
   /**
    * @param {any} initData
    * @param {string} key
-   * @returns {APIStore}
+   * @returns {QueryStore}
    */
   static createStore(initData, key) {
-    APIStore.stores.set(key, new APIStore(initData, key));
-    return APIStore.stores.get(key);
+    if (QueryStore.stores.get(key)) {
+      throw new Error('이미 존재하는 스토어입니다!');
+    }
+    QueryStore.stores.set(key, new QueryStore(initData, key));
+    return QueryStore.stores.get(key);
   }
 
   state = {
