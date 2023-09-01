@@ -18,7 +18,7 @@ const Router = async () => {
 };
 
 const navigate = (url) => {
-  window.history.pushState(null, null, url);
+  window.history.pushState(null, null, `/js-movie-review${url}`);
   Router();
 };
 
