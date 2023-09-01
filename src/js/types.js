@@ -15,3 +15,9 @@
  * @property {number} vote_average - 영화의 평균 투표 점수입니다.
  * @property {number} vote_count - 영화에 대한 투표 횟수입니다.
  */
+
+/**
+ * @typedef {Object} Route
+ * @property {string} path
+ * @property {() => void} view
+ */
