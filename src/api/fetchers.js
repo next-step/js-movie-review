@@ -9,7 +9,6 @@ export const getPopularMovieLists = (page = 1) => {
 
   return fetch(`${API_TMDB_BASE_URL}/movie/popular?page=${page}`, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
     .catch((err) => console.error(err));
 };
 
@@ -26,7 +25,6 @@ export const getSearchMovieLists = (query, page = 1) => {
     options
   )
     .then((response) => response.json())
-    .then((response) => console.log(response))
     .catch((err) => console.error(err));
 };
 
@@ -38,6 +36,5 @@ export const getMovieDetails = (movieId) => {
 
   return fetch(`${API_TMDB_BASE_URL}/movie/${movieId}`, options)
     .then((response) => response.json())
-    .then((response) => console.log(response))
     .catch((err) => console.error(err));
 };
