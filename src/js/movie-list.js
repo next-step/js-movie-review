@@ -35,6 +35,7 @@ const createMovieListItem = (result) => {
   const itemStarImage = document.createElement('img');
   const itemStarRating = document.createTextNode(voteAverage);
 
+  listItem.classList.add('item');
   a.href = '#';
   itemCard.classList.add('item-card');
   itemThumbnail.classList.add('item-thumbnail', 'skeleton');
@@ -62,18 +63,22 @@ const createMovieListItems = async (page) => {
   const $itemList = document.querySelector('.item-list');
   const $itemMoreButton = document.querySelector('#item-more-button');
 
-  const { results } = await getPopularMovieLists(page);
+  try {
+    const { results } = await getPopularMovieLists(page);
 
-  if (results.length < 20) {
-    $itemMoreButton.style.display = 'none';
+    if (results.length < 20) {
+      $itemMoreButton.style.display = 'none';
+    }
+
+    results.forEach((result) => {
+      $itemList.appendChild(createMovieListItem(result));
+    });
+
+    const lazyTargets = document.querySelectorAll('.skeleton');
+    lazyTargets.forEach(lazyLoad);
+  } catch (error) {
+    throw new Error('FETCH ERROR');
   }
-
-  results.forEach((result) => {
-    $itemList.appendChild(createMovieListItem(result));
-  });
-
-  const lazyTargets = document.querySelectorAll('.skeleton');
-  lazyTargets.forEach(lazyLoad);
 };
 
 export const runGetMovieLists = () => {
