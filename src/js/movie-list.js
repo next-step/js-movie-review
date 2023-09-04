@@ -1,5 +1,28 @@
 import { getPopularMovieLists } from '../api/fetchers.js';
 
+const lazyLoad = (target) => {
+  const obs = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        if (
+          entry.target.className.includes('item-title') ||
+          entry.target.className.includes('item-score')
+        ) {
+          entry.target.classList.remove('skeleton');
+        } else {
+          const img = entry.target;
+          const src = img.getAttribute('data-src');
+
+          img.setAttribute('src', src);
+        }
+
+        observer.disconnect();
+      }
+    });
+  });
+  obs.observe(target);
+};
+
 const createMovieListItem = (result) => {
   const { poster_path: posterPath, title, vote_average: voteAverage } = result;
 
@@ -14,13 +37,13 @@ const createMovieListItem = (result) => {
 
   a.href = '#';
   itemCard.classList.add('item-card');
-  itemThumbnail.classList.add('item-thumbnail');
-  itemThumbnail.src = `https://image.tmdb.org/t/p/w220_and_h330_face/${posterPath}`;
+  itemThumbnail.classList.add('item-thumbnail', 'skeleton');
+  itemThumbnail.dataset.src = `https://image.tmdb.org/t/p/w220_and_h330_face/${posterPath}`;
   itemThumbnail.loading = 'lazy';
   itemThumbnail.alt = title;
-  itemTitle.classList.add('item-title');
+  itemTitle.classList.add('item-title', 'skeleton');
   itemTitle.innerHTML = title;
-  itemScore.classList.add('item-score');
+  itemScore.classList.add('item-score', 'skeleton');
   itemStarImage.src = './star_filled.png';
   itemStarImage.alt = '별점';
 
@@ -48,6 +71,9 @@ const createMovieListItems = async (page) => {
   results.forEach((result) => {
     $itemList.appendChild(createMovieListItem(result));
   });
+
+  const lazyTargets = document.querySelectorAll('.skeleton');
+  lazyTargets.forEach(lazyLoad);
 };
 
 export const runGetMovieLists = () => {
