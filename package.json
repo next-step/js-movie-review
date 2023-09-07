@@ -2,12 +2,13 @@
   "name": "js-movie-review",
   "version": "1.0.0",
   "description": "영화 리뷰 홈페이지 만들기",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
     "watch": "webpack --watch",
     "dev": "webpack serve",
     "build": "webpack --config webpack.config.js",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "prettier": "prettier --write --config .prettierrc.json './src/**/*.{js}'"
   },
   "repository": {
     "type": "git",
@@ -24,10 +25,29 @@
   },
   "homepage": "https://github.com/next-step/js-movie-review#readme",
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "babel-loader": "^9.1.2",
+    "clean-webpack-plugin": "^4.0.0",
+    "copy-webpack-plugin": "^11.0.0",
+    "css-loader": "^6.8.1",
     "cypress": "^12.17.4",
     "dotenv-webpack": "^8.0.1",
+    "eslint": "^8.31.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-cypress": "^2.14.0",
+    "eslint-plugin-jest": "^27.2.3",
+    "eslint-plugin-prettier": "^5.0.0",
+    "gh-pages": "^6.0.0",
     "html-webpack-plugin": "^5.5.3",
+    "prettier": "^3.0.0",
+    "style-loader": "^3.3.3",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "axios": "^1.5.0"
   }
 }
