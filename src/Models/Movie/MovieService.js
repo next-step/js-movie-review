@@ -1,33 +1,23 @@
-import { Fetcher } from '../Fetcher';
 import { PROMISE_STATE } from '../../constants';
 
 export class MovieService {
-  #fetcher = new Fetcher();
-  #movieApis;
+  #fetcher;
 
-  constructor(movieApis) {
-    this.#movieApis = movieApis;
+  constructor(fetcher) {
+    this.#fetcher = fetcher;
   }
 
-  async fetchAllMovies() {
-    const movieResults = await this.#fetchMoviesFromApis(this.#movieApis);
-
-    return this.#extractFulfilledResults(movieResults);
-  }
-
-  async #fetchMoviesFromApis(apiConfigs) {
-    return await Promise.allSettled(
-      apiConfigs.map(({ endpoint, config }) =>
-        this.#getMovies(endpoint, config)
+  async fetchMovies(movieApis) {
+    const movieResults = await Promise.allSettled(
+      movieApis.map(({ endpoint, config }) =>
+        this.#fetcher.get(endpoint, config)
       )
     );
+
+    return this.#getFulfilled(movieResults);
   }
 
-  async #getMovies(endpoint, config) {
-    return await this.#fetcher.get(endpoint, config);
-  }
-
-  #extractFulfilledResults(results) {
+  #getFulfilled(results) {
     return results
       .filter(({ status }) => status === PROMISE_STATE.FULFILLED)
       .map(({ value }) => value);
