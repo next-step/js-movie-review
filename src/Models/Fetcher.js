@@ -1,4 +1,4 @@
-import { ERROR } from '../constants';
+import { ERROR, EVENT } from '../constants';
 
 export class Fetcher {
   isLoading = false;
@@ -23,6 +23,6 @@ export class Fetcher {
 
   #setLoading(loadingState) {
     this.isLoading = loadingState;
-    this.eventListener.dispatchEvent(new Event('onLoadingStateChange'));
+    this.eventListener.dispatchEvent(new Event(EVENT.LOADING_STATE_CHANGE));
   }
 }

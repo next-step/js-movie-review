@@ -1,5 +1,5 @@
 import { MovieService } from './MovieService';
-import { MOVIE_API } from '../../constants';
+import { EVENT, MOVIE_API } from '../../constants';
 import { Fetcher } from '../Fetcher';
 
 export class MovieController {
@@ -13,9 +13,12 @@ export class MovieController {
   }
 
   #setupLoadingEvent() {
-    this.#fetcher.eventListener.addEventListener('onLoadingStateChange', () => {
-      this.#handleLoading(this.#fetcher.isLoading);
-    });
+    this.#fetcher.eventListener.addEventListener(
+      EVENT.LOADING_STATE_CHANGE,
+      () => {
+        this.#handleLoading(this.#fetcher.isLoading);
+      }
+    );
   }
 
   loadMovies() {
