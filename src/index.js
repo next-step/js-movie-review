@@ -10,7 +10,7 @@ class App {
   }
 
   async #initial() {
-    this.#data = await this.#movieController.fetchAllMovies();
+    this.#data = await this.#movieController.getAllMovies();
 
     console.log(this.#data);
   }
