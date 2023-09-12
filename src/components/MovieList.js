@@ -18,7 +18,7 @@ export default class MovieList {
 		this.movies.forEach(movie => {
 			const movieCard = new MovieCard(movie);
 
-			fragment.appendChild(movieCard.template);
+			fragment.appendChild(movieCard.element);
 		});
 
 		this.container.appendChild(fragment);
