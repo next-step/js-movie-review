@@ -11,7 +11,7 @@ export default class MoreButton {
 
 		this.#element.addEventListener('click', onClick);
 
-		rootElement.appendChild();
+		rootElement.appendChild(this.#element);
 	}
 
 	hideButton() {

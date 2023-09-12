@@ -4,6 +4,6 @@ export async function getMoviePopular(page) {
 	return await tmdbApiWrapper.get('/3/movie/popular', { page, language: 'ko-KR' });
 }
 
-export async function getMoviePopular(page, query) {
-	return await tmdbApiWrapper.get('/3/search/popular', { page, language: 'ko-KR', query });
+export async function getSearchMovie(page, query) {
+	return await tmdbApiWrapper.get('/3/search/movie', { page, language: 'ko-KR', query });
 }

@@ -13,6 +13,8 @@ export default class MovieList {
 	}
 
 	renderMovies() {
+		this.#container.innerHTML = '';
+
 		const fragment = document.createDocumentFragment();
 
 		this.#movies.forEach(movie => {
@@ -26,7 +28,6 @@ export default class MovieList {
 
 	updateMovies(newMovies) {
 		this.#movies = newMovies;
-		this.#container.innerHTML = '';
 
 		this.renderMovies();
 	}

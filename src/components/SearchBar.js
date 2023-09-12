@@ -1,9 +1,7 @@
 import * as events from 'events';
 
 export default class SearchBar {
-	constructor(onSearch) {
-		const header = document.querySelector('header');
-
+	constructor(rootElement, onSearch) {
 		const searchBox = document.createElement('form');
 		searchBox.classList.add('search-box');
 
@@ -17,7 +15,7 @@ export default class SearchBar {
 
 		searchBox.appendChild(textInput);
 		searchBox.appendChild(searchButton);
-		header.appendChild(searchBox);
+		rootElement.appendChild(searchBox);
 
 		let timeout;
 
