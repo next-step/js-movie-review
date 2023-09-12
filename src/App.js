@@ -7,6 +7,7 @@ import { HTMLFormat } from './lib/HTMLFormat';
 export default class App {
 	#rootElement;
 	searchBar;
+	itemViewSection;
 	movieList;
 	moreButton;
 	state;
@@ -33,8 +34,11 @@ export default class App {
 
 		this.#rootElement.appendChild(layoutFragment);
 
+		this.itemViewSection = document.querySelector('section.item-view');
+
 		this.searchBar = new SearchBar();
-		this.movieList = new MovieList();
-		this.moreButton = new MoreButton();
+
+		this.movieList = new MovieList(this.itemViewSection);
+		this.moreButton = new MoreButton(this.itemViewSection);
 	}
 }
