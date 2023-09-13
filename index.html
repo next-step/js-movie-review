@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>영화 리뷰</title>
-  </head>
-  <body>
-    영화 리뷰 미션을 진행하세요
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="stylesheet" href="./templates/reset.css" type="text/css" />
+  <link rel="stylesheet" href="./templates/common.css" type="text/css" />
+
+  <title>영화관</title>
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <h1><img src="./templates/logo.png" alt="MovieList 로고" /></h1>
+      <div class="search-box">
+        <input type="text" placeholder="검색" />
+        <button class="search-button">검색</button>
+      </div>
+    </header>
+    <section class="item-view">
+      <h2>지금 인기 있는 영화</h2>
+      <ul class="item-list"></ul>
+
+      <script type="module" src="./src/index.js"></script>
+  </div>
+</body>
+
 </html>
