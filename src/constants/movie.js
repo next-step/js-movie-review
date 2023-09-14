@@ -1,2 +1,2 @@
-const MIN_RATING = 0;
-const MAX_RATING = 10;
+const MIN_MOVIE_RATING = 0;
+const MAX_MOVIE_RATING = 10;
