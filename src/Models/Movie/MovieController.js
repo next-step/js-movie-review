@@ -1,6 +1,7 @@
 import { MovieService } from './MovieService';
 import { EVENT, MOVIE_API } from '../../constants';
 import { Fetcher } from '../Fetcher';
+import { MovieComponent } from '../../components';
 
 export class MovieController {
   #service;
@@ -16,7 +17,7 @@ export class MovieController {
     this.#fetcher.eventListener.addEventListener(
       EVENT.LOADING_STATE_CHANGE,
       () => {
-        this.#handleLoading(this.#fetcher.isLoading);
+        this.#loadingHandler(this.#fetcher.isLoading);
       }
     );
   }
@@ -27,5 +28,24 @@ export class MovieController {
     return this.#service.fetchMovies(movieApis);
   }
 
-  #handleLoading(isLoading) {}
+  #loadingHandler(isLoading) {
+    if (isLoading) return this.#renderSkeleton();
+    this.#renderMovieComponent();
+  }
+
+  #renderSkeleton() {
+    const targetElement = document.querySelector('#app');
+
+    targetElement.innerHTML('SkeletonUI');
+  }
+
+  #renderMovieComponent(movie) {
+    const movieList = document.querySelector('.movie-list');
+
+    const { data } = movie;
+    const movieComponents = data.map(
+      (movieData) => new MovieComponent(movieData)
+    );
+    console.log(movieComponents);
+  }
 }
