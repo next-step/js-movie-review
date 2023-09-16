@@ -3,7 +3,7 @@ import axios from "axios";
 export const getMovieData = async () => {
   try {
     const { data } = await axios.get(
-      `${process.env.TMDB_API_BASE_URL}&page=1`,
+      `${process.env.TMDB_API_BASE_URL}&page=2000`,
       {
         headers: {
           Authorization: `Bearer ${process.env.TMDB_API_ACCESS_TOKEN}`,
