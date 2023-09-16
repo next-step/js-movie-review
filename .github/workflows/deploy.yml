@@ -1,0 +1,45 @@
+name: Movie Deploy
+
+on:
+  push:
+    branches: ["step1"]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/configure-pages@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm ci
+
+      - name: build
+        run: yarn build
+        env:
+          TMDB_API_BASE_URL: ${{ secrets.TMDB_API_BASE_URL }}
+          TMDB_API_ACCESS_TOKEN: ${{ secrets.TMDB_API_ACCESS_TOKEN }}
+          TMDB_IMAGE_BASE_URL: ${{ secrets.TMDB_IMAGE_BASE_URL }}
+
+      - name: Upload pages artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: "./dist"
+
+      deploy:
+        needs: build
+        permissions:
+          pages: write
+          id-token: write
+        environment:
+          name: github-pages
+          url: ${{ steps.deployment.outputs.page_url }}
+
+        runs-on: ubuntu-latest
+        steps:
+          - name: Deploy to GitHub Pages
+            id: deployment
+            uses: actions/deploy-pages@v1
