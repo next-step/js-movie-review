@@ -22,6 +22,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html",
+      logo: "assets/images/logo.png",
     }),
     new DotEnv(),
   ],

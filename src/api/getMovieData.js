@@ -1,46 +1,12 @@
-import axios from "axios";
+import { axiosInstance } from "./axiosInstance";
 
-export const getMovieData = async () => {
+import requestError from "./requestError";
+
+export const getMovieData = async (page) => {
   try {
-    const { data } = await axios.get(
-      `${process.env.TMDB_API_BASE_URL}&page=2000`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.TMDB_API_ACCESS_TOKEN}`,
-          Accept: "application/json",
-        },
-        timeout: 5000,
-      }
-    );
-
+    const { data } = await axiosInstance.get(`&page=${page}`);
     return { success: true, data };
   } catch (error) {
-    if (!error.response) {
-      return { success: false, error: "네트워크 에러입니다" };
-    }
-
-    const status = error.response.status;
-
-    if (status >= 500) {
-      return { success: false, error: "서버 에러입니다", status };
-    }
-
-    if (status >= 400 && status < 500) {
-      return {
-        success: false,
-        error: "요청 오류입니다.",
-        status,
-      };
-    }
-
-    if (error.code === "ECONNABORTED") {
-      return { success: false, error: "타임아웃 오류입니다", status };
-    }
-
-    return {
-      success: false,
-      error: "일시적인 오류입니다 다시 시도해주세요",
-      status,
-    };
+    return requestError(error);
   }
 };
