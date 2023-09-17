@@ -1,6 +1,7 @@
 import { MovieService } from './MovieService';
 import { Fetcher } from '../Fetcher';
 import { MovieView } from '../../components/MovieView';
+import { EVENT } from '../../constants';
 
 export class MovieController {
   #service;
@@ -18,8 +19,8 @@ export class MovieController {
   }
 
   #setupFetchButtonEvent() {
-    const fetchButton = document.querySelector('#fetchButton');
-    fetchButton.addEventListener('click', async () => {
+    const fetchButton = document.querySelector('#movie-fetch-button');
+    fetchButton.addEventListener(EVENT.CLICK, async () => {
       this.#getNewMovie();
     });
   }
@@ -27,6 +28,7 @@ export class MovieController {
   async #getNewMovie() {
     const components = this.#view.showSkeleton();
     const movies = await this.#service.getMovie();
+
     movies.forEach((movie, index) => {
       if (components[index]) components[index].render(movie);
     });

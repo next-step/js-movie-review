@@ -1,9 +1,14 @@
-import { PROMISE_STATE, MOVIE_API, BASE_IMAGE_URL } from '../../constants';
+import {
+  PROMISE_STATE,
+  MOVIE_API,
+  BASE_IMAGE_URL,
+  DEFAULT_PAGE,
+} from '../../constants';
 import { Movie } from '../Movie';
 
 export class MovieService {
   #fetcher;
-  #page = 1;
+  #page = DEFAULT_PAGE;
 
   constructor(fetcher) {
     this.#fetcher = fetcher;
@@ -17,6 +22,7 @@ export class MovieService {
       )
     );
     const fulfilledMovies = this.#getFulfilled(movieResults);
+    console.log(fulfilledMovies);
 
     return this.#parseTMDB(fulfilledMovies);
   }
@@ -35,6 +41,7 @@ export class MovieService {
     const fetchData = await this.#fetchMoviePage(this.#page++);
     const movies = fetchData.map((movie) => {
       const { original_title, overview, poster_path, vote_average } = movie;
+
       return new Movie({
         title: original_title,
         thumbnail: `${BASE_IMAGE_URL}${poster_path}`,
