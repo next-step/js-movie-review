@@ -1,0 +1,405 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",
+      "genre_ids": [
+        28,
+        80,
+        53
+      ],
+      "id": 385687,
+      "original_language": "en",
+      "original_title": "Fast X",
+      "overview": "돔과 그의 패밀리 앞에 나타난 운명의 적 단테. 과거의 그림자는 돔의 모든 것을 파괴하기 위해 달려온다. 단테에 의해 산산히 흩어진 패밀리들은 모두 목숨을 걸고 맞서야 하는 함정에 빠지고 마는데...",
+      "popularity": 3701.937,
+      "poster_path": "/wXNihLltMCGR7XepN39syIlCt5X.jpg",
+      "release_date": "2023-05-17",
+      "title": "분노의 질주: 라이드 오어 다이",
+      "video": false,
+      "vote_average": 7.3,
+      "vote_count": 3698
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ctMserH8g2SeOAnCw5gFjdQF8mo.jpg",
+      "genre_ids": [
+        35,
+        12,
+        14
+      ],
+      "id": 346698,
+      "original_language": "en",
+      "original_title": "Barbie",
+      "overview": "원하는 무엇이든 될 수 있는 바비랜드에서 살아가던 바비가 현실 세계와 이어진 포털의 균열을 발견하게 되고, 이를 해결하기 위해 켄과 예기치 못한 여정을 떠나면서 펼쳐지는 이야기",
+      "popularity": 3306.523,
+      "poster_path": "/rt8sHzR0XUyKHxU75ZIWs7MsNEN.jpg",
+      "release_date": "2023-07-19",
+      "title": "바비",
+      "video": false,
+      "vote_average": 7.3,
+      "vote_count": 4505
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/55Rb9qt3yzyF4KQpC1c3T3Fbcao.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1008042,
+      "original_language": "en",
+      "original_title": "Talk to Me",
+      "overview": "",
+      "popularity": 3760.119,
+      "poster_path": "/kdPMUMJzyYAc4roD52qavX0nLIC.jpg",
+      "release_date": "2023-07-26",
+      "title": "톡 투 미",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 511
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/8pjWz2lt29KyVGoq1mXYu6Br7dE.jpg",
+      "genre_ids": [
+        28,
+        878,
+        27
+      ],
+      "id": 615656,
+      "original_language": "en",
+      "original_title": "Meg 2: The Trench",
+      "overview": "전 세계에서 가장 깊은 마리아나 해구, 역사상 가장 거대하고 무자비한 포식자가 도사리는 그곳에서 강철 다이버 ‘조나스’(제이슨 스타뎀)가 더 맹렬하게 돌아온 ‘메가로돈’과 짜릿한 대결을 펼치는 액션 어드벤처",
+      "popularity": 2693.211,
+      "poster_path": "/cbAHK6Vrt0GClMRUxH8TsgC2JqL.jpg",
+      "release_date": "2023-08-02",
+      "title": "메가로돈 2",
+      "video": false,
+      "vote_average": 7,
+      "vote_count": 1752
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/53z2fXEKfnNg2uSOPss2unPBGX1.jpg",
+      "genre_ids": [
+        27,
+        9648,
+        53
+      ],
+      "id": 968051,
+      "original_language": "en",
+      "original_title": "The Nun II",
+      "overview": "1956년, 프랑스의 한 성당에서 신부가 끔찍하게 살해당한다. 이 사건을 조사하기 위해 파견된 아이린 수녀는 4년 전 자신을 공포에 떨게 했던 악마의 기운을 느낀다. 어두운 밤, 계속해서 일어나는 의문의 사건들 가운데 충격적인 진실이 드러나는데…",
+      "popularity": 1970.168,
+      "poster_path": "/hx4R7GqhiUP2LHJZJNrzCIqadd3.jpg",
+      "release_date": "2023-09-06",
+      "title": "더 넌 2",
+      "video": false,
+      "vote_average": 6.6,
+      "vote_count": 178
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4fLZUr1e65hKPPVw0R3PmKFKxj1.jpg",
+      "genre_ids": [
+        16,
+        35,
+        10751,
+        14,
+        10749
+      ],
+      "id": 976573,
+      "original_language": "en",
+      "original_title": "Elemental",
+      "overview": "불, 물, 공기, 흙 4개의 원소들이 살고 있는 엘리멘트 시티. 재치 있고 불처럼 열정 넘치는 앰버는 어느 날 우연히 유쾌하고 감성적이며 물 흐르듯 사는 웨이드를 만나 특별한 우정을 쌓으며, 지금껏 믿어온 모든 것들이 흔들리는 새로운 경험을 하게 되는데...",
+      "popularity": 1490.151,
+      "poster_path": "/1YYL1OcgjPLjAGi6n0iZe1gdl9i.jpg",
+      "release_date": "2023-06-14",
+      "title": "엘리멘탈",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 2047
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9m161GawbY3cWxe6txd1NOHTjd0.jpg",
+      "genre_ids": [
+        878,
+        12,
+        28,
+        14
+      ],
+      "id": 335977,
+      "original_language": "en",
+      "original_title": "Indiana Jones and the Dial of Destiny",
+      "overview": "1969년 뉴욕, 전설적인 모험가이자 고고학자 인디아나 존스 앞에 대녀 헬레나와 오랜 숙적 위르겐 폴러의 세력이 등장한다. 그들의 목표는 단 하나, 운명의 다이얼. 역사의 흐름을 바꿀 수 있는 다이얼을 차지하려는 쫓고 쫓기는 위협 속에 인디아나 존스는 전 세계를 무대로 하는 새로운 모험에 뛰어드는데…",
+      "popularity": 1333.868,
+      "poster_path": "/8ifAx8GS5AHL7xOTMJDMaza84RQ.jpg",
+      "release_date": "2023-06-28",
+      "title": "인디아나 존스: 운명의 다이얼",
+      "video": false,
+      "vote_average": 6.7,
+      "vote_count": 1609
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/c6Splshb8lb2Q9OvUfhpqXl7uP0.jpg",
+      "genre_ids": [
+        28,
+        53
+      ],
+      "id": 717930,
+      "original_language": "en",
+      "original_title": "Kandahar",
+      "overview": "CIA 비밀요원 ‘톰’(제라드 버틀러) 그는 이란의 핵 작전’을 무마시키기 위해 경유지인 아프가니스탄으로 향한다. 하지만 펜타곤 소속 내부 고발자로 인해 작전이 노출되고, 톰의 신분도 탄로나게 된다. 파키스탄 정보부와 이슬람 무장단체 탈레반은 톰을 납치하기 위해 움직이기 시작했고, 톰은 동맹군이 있는 칸다하로 향하게 되는데... 400마일 떨어진 아프가니스탄의 칸다하, 그곳만이 유일한 탈출구이다!",
+      "popularity": 1640.898,
+      "poster_path": "/M2w3Hl3Xnjwjm06A14PuuRVOWe.jpg",
+      "release_date": "2023-05-25",
+      "title": "칸다하",
+      "video": false,
+      "vote_average": 6.7,
+      "vote_count": 471
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/yF1eOkaYvwiORauRCPWznV9xVvi.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 298618,
+      "original_language": "en",
+      "original_title": "The Flash",
+      "overview": "시공간이 붕괴된 세계, 차원이 다른 히어로가 온다! 빛보다 빠른 스피드, 물체 투과, 전기 방출, 자체 회복, 천재적인 두뇌까지 갓벽한 능력을 자랑하지만 존재감은 제로, 저스티스 리그에서 궂은일을 도맡아 하는 히어로 ‘플래시’. 어느 날 자신에게 빛보다 빠른 속도로 달리면 시공간 이동 능력이 있음을 알게 된 그는 ‘브루스 웨인’의 만류를 무시한 채 끔찍한 상처로 얼룩진 과거를 바꾸기 위해 시간을 역행한다. 의도치 않은 장소에 불시착한 ‘플래시’는 멀티버스 세상 속 또 다른 자신과 맞닥뜨리고 메타 휴먼이 흔적도 없이 사라지고 모든 것이 뒤엉킨 세상과 마주하게 된다. ‘플래시’는 자신이 알던 모습과 전혀 달라진 나이 들고 은퇴한 ‘배트맨’과 크립톤 행성에서 온 ‘슈퍼걸’의 도움으로 외계의 침공으로부터 시간과 차원이 붕괴된 지구를 구하려 나서는데…",
+      "popularity": 877.147,
+      "poster_path": "/muD7qu9UagO08dZBout1YXwdE6a.jpg",
+      "release_date": "2023-06-13",
+      "title": "플래시",
+      "video": false,
+      "vote_average": 6.9,
+      "vote_count": 2835
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/rV56FkcHkzHJcBOOqoCeSDnoBff.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 990140,
+      "original_language": "cn",
+      "original_title": "天龍八部之喬峰傳",
+      "overview": "북송 초기 송나라와 거란족의 요나라가 갈등을 겪던 시기를 배경으로, 거지 패거리 개방에 들어가 우두머리인 방주가 된 ‘교봉(견자단)’이 음모에 휩싸여 살인 누명을 쓰고 개방을 스스로 떠나면서 새롭게 시작되는 여정을 담은 정통 무협 액션",
+      "popularity": 948.868,
+      "poster_path": "/rl6lMKv6XRPPOgMTcTmZWSsEsLH.jpg",
+      "release_date": "2023-01-16",
+      "title": "천룡팔부: 교봉전",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 80
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/w2nFc2Rsm93PDkvjY4LTn17ePO0.jpg",
+      "genre_ids": [
+        16,
+        35,
+        28
+      ],
+      "id": 614930,
+      "original_language": "en",
+      "original_title": "Teenage Mutant Ninja Turtles: Mutant Mayhem",
+      "overview": "뉴욕의 하수구로 스며든 미스터리한 녹색 액체, ‘우즈’로 인해 아기 거북이 네 마리와 청년 쥐 스플린터는 사람과 비슷한 모습의 돌연변이가 된다. 15년 후, 10대 청소년이 된 레오나르도, 미켈란젤로, 라파엘, 도나텔로는 하수구에 숨어 사는 생활에서 벗어나 인간 세상에서 평범한 삶을 살고 싶어하고 우연히 만난 학생 기자 에이프릴과 함께 도시를 위협하는 '슈퍼플라이'와 그 일당을 물리치면 뉴욕의 히어로가 되어 당당히 세상에 나갈 수 있을 거라는 꿈을 꾸는데… 인간들을 모두 돌연변이로 만들겠다는 ‘슈퍼플라이’의 음모로 위험에 빠진 뉴욕! 틴에이저 히어로로 다시 태어난 ‘닌자터틀’ 형제들의 스트릿 액션 어드벤처가 펼쳐진다!",
+      "popularity": 1044.092,
+      "poster_path": "/6xORIhe6cP3iM5RYTHs7MTOH1qa.jpg",
+      "release_date": "2023-07-31",
+      "title": "닌자터틀: 뮤턴트 대소동",
+      "video": false,
+      "vote_average": 7.3,
+      "vote_count": 469
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jkKVLzLWjSvTnc84VzeljhSy6j8.jpg",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "id": 820525,
+      "original_language": "en",
+      "original_title": "After Everything",
+      "overview": "",
+      "popularity": 891.542,
+      "poster_path": "/gZLGCibvFY4zmt8sWUZcbBTHRtk.jpg",
+      "release_date": "2023-09-13",
+      "title": "애프터 에브리씽",
+      "video": false,
+      "vote_average": 6,
+      "vote_count": 14
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2vFuG6bWGyQUzYS9d69E5l85nIz.jpg",
+      "genre_ids": [
+        28,
+        12,
+        878
+      ],
+      "id": 667538,
+      "original_language": "en",
+      "original_title": "Transformers: Rise of the Beasts",
+      "overview": "전 우주의 행성을 집어삼키는 절대자, ‘유니크론’의 부하 ‘스커지’는 ‘테러콘’들을 이끌고 지구에 당도한다. 그에 맞서기 위해 지구에 정체를 숨기고 있던 트랜스포머 ‘오토봇’ 군단이 모습을 드러내고 또 다른 트랜스포머 진영인 ‘맥시멀’과 힘을 합친다. 옵티머스 프라임이 이끄는 ‘오토봇’과 옵티머스 프라이멀을 중심으로 한 ‘맥시멀’. 모두의 운명을 건 그들의 압도적 전투가 시작된다!",
+      "popularity": 885.947,
+      "poster_path": "/chUZNPNd7EiETSB4xBGykXhuXRr.jpg",
+      "release_date": "2023-06-06",
+      "title": "트랜스포머: 비스트의 서막",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 3161
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/waBWlJlMpyFb7STkFHfFvJKgwww.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 678512,
+      "original_language": "en",
+      "original_title": "Sound of Freedom",
+      "overview": "",
+      "popularity": 876.687,
+      "poster_path": "/kSf9svfL2WrKeuK8W08xeR5lTn8.jpg",
+      "release_date": "2023-07-03",
+      "title": "사운드 오브 프리덤",
+      "video": false,
+      "vote_average": 8,
+      "vote_count": 448
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2ii07lSwHarg0gWnJoCYL3Gyd1j.jpg",
+      "genre_ids": [
+        35,
+        12
+      ],
+      "id": 912908,
+      "original_language": "en",
+      "original_title": "Strays",
+      "overview": "",
+      "popularity": 788.204,
+      "poster_path": "/n1hqbSCtyBAxaXEl1Dj3ipXJAJG.jpg",
+      "release_date": "2023-08-17",
+      "title": "스트레이즈",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 271
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4HodYYKEIsGOdinkGi2Ucz6X9i0.jpg",
+      "genre_ids": [
+        16,
+        28,
+        12
+      ],
+      "id": 569094,
+      "original_language": "en",
+      "original_title": "Spider-Man: Across the Spider-Verse",
+      "overview": "여러 성장통을 겪으며 새로운 스파이더맨이 된 마일스 모랄레스. 그 앞에 다른 평행세계의 스파이더우먼 그웬이 다시 나타난다. 모든 차원의 멀티버스 속 스파이더맨들을 만나게 되지만, 질서에 대한 신념이 부딪히며 예상치 못한 균열이 생기는데… 상상 그 이상을 넘어서는 멀티버스의 세계가 열린다!",
+      "popularity": 830.825,
+      "poster_path": "/zG9TYiHt0fdaJiWuNEhFrfKzwoi.jpg",
+      "release_date": "2023-05-31",
+      "title": "스파이더맨: 어크로스 더 유니버스",
+      "video": false,
+      "vote_average": 8.5,
+      "vote_count": 4208
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/fgsHxz21B27hOOqQBiw9L6yWcM7.jpg",
+      "genre_ids": [
+        27,
+        9648,
+        53
+      ],
+      "id": 439079,
+      "original_language": "en",
+      "original_title": "The Nun",
+      "overview": "루마니아의 젊은 수녀가 자살하는 사건을 의뢰 받아 바티칸에서 파견된 버크 신부와 아이린 수녀가 수녀원을 조사하면서 충격적인 악령의 실체와 만나게 되는 이야기를 그린다.",
+      "popularity": 737.517,
+      "poster_path": "/mN226GIDSMhWBpqPJopGlLk3qXn.jpg",
+      "release_date": "2018-09-05",
+      "title": "더 넌",
+      "video": false,
+      "vote_average": 5.9,
+      "vote_count": 5985
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vMJb1D40wQNbTveNVFpNbo12faA.jpg",
+      "genre_ids": [
+        28,
+        36
+      ],
+      "id": 1049951,
+      "original_language": "en",
+      "original_title": "Viking: Bloodlust",
+      "overview": "",
+      "popularity": 615.587,
+      "poster_path": "/xveBJmViwHdgjH3UQQmImkHOW7B.jpg",
+      "release_date": "2023-04-21",
+      "title": "Viking: Bloodlust",
+      "video": false,
+      "vote_average": 6.7,
+      "vote_count": 22
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2QL5j6mB4ZpyBcVr0WO9H9MQGBu.jpg",
+      "genre_ids": [
+        28,
+        12,
+        18,
+        14,
+        36
+      ],
+      "id": 734253,
+      "original_language": "hi",
+      "original_title": "आदिपुरुष",
+      "overview": "",
+      "popularity": 647.644,
+      "poster_path": "/1H2xEZOixs0z0JKwyjANZiKNNVJ.jpg",
+      "release_date": "2023-06-16",
+      "title": "아디푸루시",
+      "video": false,
+      "vote_average": 5.1,
+      "vote_count": 36
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7I6VUdPj6tQECNHdviJkUHD2u89.jpg",
+      "genre_ids": [
+        28,
+        53,
+        80
+      ],
+      "id": 603692,
+      "original_language": "en",
+      "original_title": "John Wick: Chapter 4",
+      "overview": "죽을 위기에서 살아난 존 윅은 최고 회의를 쓰러트릴 방법을 찾아낸다. 비로소 완전한 자유의 희망을 보지만, 빌런 그라몽 후작과 전 세계의 최강 연합은 존 윅의 오랜 친구까지 적으로 만들어 버리고, 새로운 위기에 놓인 존 윅은 최후의 반격을 준비하는데...",
+      "popularity": 626.611,
+      "poster_path": "/9WF6TxCYwdiZw51NM92ConaQz1w.jpg",
+      "release_date": "2023-03-22",
+      "title": "존 윅 4",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 4495
+    }
+  ],
+  "total_pages": 3,
+  "total_results": 48
+}

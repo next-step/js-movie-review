@@ -6,6 +6,7 @@ export default class SearchBar {
 		searchBox.classList.add('search-box');
 
 		const textInput = document.createElement('input');
+		textInput.classList.add('search-input');
 		textInput.setAttribute('type', 'text');
 		textInput.setAttribute('placeholder', '검색');
 
