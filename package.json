@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "description": "영화 리뷰 홈페이지 만들기",
   "main": "src/index.js",
+  "repository": {
+    "url": "git+https://github.com/Gn0lee/js-movie-review.git"
+  },
   "scripts": {
     "watch": "webpack --watch",
     "dev": "webpack serve",
     "build": "webpack --config webpack.config.js",
     "cypress": "cypress open",
-    "prettier": "prettier --write --config .prettierrc.json './src/**/*.{js}'"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/next-step/js-movie-review.git"
+    "prettier": "prettier --write --config .prettierrc.json './src/**/*.{js}'",
+    "deploy": "gh-pages -d dist"
   },
   "keywords": [
     "영화리뷰",
