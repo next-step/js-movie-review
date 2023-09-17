@@ -49,7 +49,9 @@ class ApiWrapper {
 	}
 }
 
-export const tmdbApiWrapper = new ApiWrapper('https://api.themoviedb.org', {
+export const TMDB_BASE_URL = 'https://api.themoviedb.org';
+
+export const tmdbApiWrapper = new ApiWrapper(TMDB_BASE_URL, {
 	accept: 'application/json',
 	Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
 });
