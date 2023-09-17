@@ -22,7 +22,6 @@ export class MovieService {
       )
     );
     const fulfilledMovies = this.#getFulfilled(movieResults);
-    console.log(fulfilledMovies);
 
     return this.#parseTMDB(fulfilledMovies);
   }
