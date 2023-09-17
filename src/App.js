@@ -4,6 +4,7 @@ import MoreButton from './components/MoreButton';
 
 import { HTMLFormat } from './lib/HTMLFormat';
 import { getMoviePopular, getSearchMovie } from './api/getTMDBApis';
+import { getErrorMessageByStatusCode } from './lib/errorMessage';
 
 export default class App {
 	#rootElement;
@@ -48,20 +49,26 @@ export default class App {
 	async fetchMovies(isUpdate) {
 		const { query, page } = this.state;
 
-		const response = query ? await getSearchMovie(page, query) : await getMoviePopular(page);
+		try {
+			const response = query ? await getSearchMovie(page, query) : await getMoviePopular(page);
 
-		this.state.totalPages = response.totalPages;
+			this.state.totalPages = response.totalPages;
 
-		if (this.state.page >= this.state.totalPages) {
-			this.moreButton.hideButton();
-		} else {
-			this.moreButton.showButton();
-		}
+			if (this.state.page >= this.state.totalPages) {
+				this.moreButton.hideButton();
+			} else {
+				this.moreButton.showButton();
+			}
 
-		if (isUpdate) {
-			this.movieList.updateMovies(response.movies);
-		} else {
-			this.movieList.appendMovies(response.movies);
+			if (isUpdate) {
+				this.movieList.updateMovies(response.movies);
+			} else {
+				this.movieList.appendMovies(response.movies);
+			}
+		} catch (e) {
+			const statusCode = e?.response?.status || e?.statusCode || 0;
+
+			alert(getErrorMessageByStatusCode(statusCode));
 		}
 	}
 
