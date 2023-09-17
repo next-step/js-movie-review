@@ -27,27 +27,9 @@
 
 비동기 통신을 담당하는 객체.
 
-```js
-class Fetcher {
-  #baseUrl;
+### MovieComponent
 
-  constuctor(baseUrl) {
-    this.#baseUrl = baseUrl;
-  }
-
-  async get(endpoint) {
-    const response = await fetch(`${this.#baseUrl}${endpoint}`);
-
-    if (!response.ok) throw new Error('errorMessage');
-
-    return response.json();
-  }
-}
-```
-
-### MovieController
-
-협력관계 : MovieService
+협력관계 : MovieService 및 Movie 관련 Component들
 
 - [ ] 유저의 이벤트 및 설정(action)을 감지하여 MovieService에 전달한다.
 - [ ] 유저의 이벤트 및 설정에 맞는 결과(Movie[])를 MovieService로부터 전달받아 반환한다.
@@ -55,10 +37,14 @@ class Fetcher {
 
 ### MovieService
 
-협력 관계 : MovieController, Fetcher
+협력 관계 : MovieController, Fetcher, Movie
 
 - endpoint를 전달받아 Movie 객체들을 반환하는 역할.
   MovieController에서 전달받은 Endpoint에 따라 원하는 추상화 과정을 거친 뒤(인기순, 추천순, 조회수 순 등) Fetcher를 사용해 Movie 객체에 대한 비즈니스 로직을 담당하는 객체.
+
+### Movie
+
+협력 관계 : MovieService
 
 ---
 
