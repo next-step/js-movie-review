@@ -47,8 +47,8 @@ jobs:
           path: "./dist"
       - name: Deploy to step1 branch
         run: |
-          git config bxxmi
-          git config bxxmi@gmail.com
+          git config user.name "bxxmi"
+          git config user.email "bxxmi@gmail.com"
           cp -r dist/* .
           git add -A
           git commit -m "Update build output"
