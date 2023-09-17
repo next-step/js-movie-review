@@ -24,7 +24,9 @@ module.exports = {
       template: "./src/index.html",
       logo: "assets/images/logo.png",
     }),
-    new DotEnv(),
+    new DotEnv({
+      systemvars: true,
+    }),
   ],
   module: {
     rules: [
