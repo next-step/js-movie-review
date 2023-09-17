@@ -50,13 +50,7 @@ export default class App {
 
 		const response = query ? await getSearchMovie(page, query) : await getMoviePopular(page);
 
-		const newMovies = response.results.map(result => ({
-			title: result.title,
-			vote: result['vote_average'],
-			posterPath: result['poster_path'],
-		}));
-
-		this.state.totalPages = response['total_pages'];
+		this.state.totalPages = response.totalPages;
 
 		if (this.state.page >= this.state.totalPages) {
 			this.moreButton.hideButton();
@@ -65,9 +59,9 @@ export default class App {
 		}
 
 		if (isUpdate) {
-			this.movieList.updateMovies(newMovies);
+			this.movieList.updateMovies(response.movies);
 		} else {
-			this.movieList.appendMovies(newMovies);
+			this.movieList.appendMovies(response.movies);
 		}
 	}
 

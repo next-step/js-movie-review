@@ -18,20 +18,6 @@ export default class SearchBar {
 		searchBox.appendChild(searchButton);
 		rootElement.appendChild(searchBox);
 
-		let timeout;
-
-		textInput.addEventListener('input', event => {
-			clearTimeout(timeout);
-
-			timeout = setTimeout(async () => {
-				searchButton.style.display = 'none';
-
-				await onSearch(event.target.value);
-
-				searchButton.style.display = 'inline-block';
-			}, 300);
-		});
-
 		searchBox.addEventListener('submit', async event => {
 			event.preventDefault();
 
