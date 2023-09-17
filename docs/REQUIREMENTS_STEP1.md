@@ -48,6 +48,12 @@
 
 ---
 
+### MovieComponent
+
+협력 관계 : Movie, MovieListComponent
+
+- Movie 객체를 주입받아 렌더링할 컴포넌트를 생성한다.
+
 ### 구현 목록
 
 - [ ] App이 실행될 때, 영화 20개를 받아와 컴포넌트를 렌더링 한다.

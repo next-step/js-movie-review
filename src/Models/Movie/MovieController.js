@@ -1,10 +1,11 @@
 import { MovieService } from './MovieService';
-import { EVENT } from '../../constants';
 import { Fetcher } from '../Fetcher';
+import { MovieView } from '../../components/MovieView';
 
 export class MovieController {
   #service;
   #fetcher = new Fetcher();
+  #view = new MovieView();
 
   constructor() {
     this.#service = new MovieService(this.#fetcher);
@@ -12,25 +13,22 @@ export class MovieController {
   }
 
   async #initial() {
-    this.#setupLoadingEvent();
-    const movies = await this.#service.fetchMoviePage(1);
-    this.#renderMovie(movies);
+    this.#setupFetchButtonEvent();
+    this.#getNewMovie();
   }
 
-  #setupLoadingEvent() {
-    this.#fetcher.eventListener.addEventListener(
-      EVENT.LOADING_STATE_CHANGE,
-      () => {
-        this.#handleLoading(this.#fetcher.isLoading);
-      }
-    );
+  #setupFetchButtonEvent() {
+    const fetchButton = document.querySelector('#fetchButton');
+    fetchButton.addEventListener('click', async () => {
+      this.#getNewMovie();
+    });
   }
 
-  #handleLoading(isLoading) {
-    console.log(isLoading);
-  }
-
-  #renderMovie(movies) {
-    console.log('render:', movies);
+  async #getNewMovie() {
+    const components = this.#view.showSkeleton();
+    const movies = await this.#service.getMovie();
+    movies.forEach((movie, index) => {
+      if (components[index]) components[index].render(movie);
+    });
   }
 }
