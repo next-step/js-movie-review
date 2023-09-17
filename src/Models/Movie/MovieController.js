@@ -1,15 +1,20 @@
 import { MovieService } from './MovieService';
-import { EVENT, MOVIE_API } from '../../constants';
+import { EVENT } from '../../constants';
 import { Fetcher } from '../Fetcher';
 
 export class MovieController {
   #service;
-  #fetcher;
+  #fetcher = new Fetcher();
 
   constructor() {
-    this.#fetcher = new Fetcher();
     this.#service = new MovieService(this.#fetcher);
+    this.#initial();
+  }
+
+  async #initial() {
     this.#setupLoadingEvent();
+    const movies = await this.#service.fetchMoviePage(1);
+    this.#renderMovie(movies);
   }
 
   #setupLoadingEvent() {
@@ -21,11 +26,11 @@ export class MovieController {
     );
   }
 
-  loadMovies() {
-    const movieApis = [MOVIE_API.TMDB.POPULAR_MOVIE];
-
-    return this.#service.fetchMovies(movieApis);
+  #handleLoading(isLoading) {
+    console.log(isLoading);
   }
 
-  #handleLoading(isLoading) {}
+  #renderMovie(movies) {
+    console.log('render:', movies);
+  }
 }
