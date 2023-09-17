@@ -51,4 +51,34 @@ export class MovieService {
 
     return movies;
   }
+
+  async searchMovie(query) {
+    const searchData = await this.#fetchSearchPage(query, this.#page++);
+    const movies = searchData.map((movie) => {
+      const { original_title, overview, poster_path, vote_average } = movie;
+
+      return new Movie({
+        title: original_title,
+        thumbnail: `${BASE_IMAGE_URL}${poster_path}`,
+        rating: vote_average,
+        description: overview,
+      });
+    });
+
+    return movies;
+  }
+
+  async #fetchSearchPage(query, page) {
+    const searchApi = MOVIE_API.TMDB.SEARCH_API(query, page);
+    const searchResult = await this.#fetcher.get(
+      searchApi.endpoint,
+      searchApi.config
+    );
+
+    return this.#parseTMDB([searchResult]);
+  }
+
+  resetPage() {
+    this.#page = DEFAULT_PAGE;
+  }
 }

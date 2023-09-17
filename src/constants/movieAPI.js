@@ -14,6 +14,10 @@ const TMDB = Object.freeze({
     endpoint: `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`,
     config: TMDB_CONFIG.GET_MOVIE,
   }),
+  SEARCH_API: (query, page = 1) => ({
+    endpoint: `https://api.themoviedb.org/3/search/movie?api_key=YOUR_API_KEY&language=en-US&query=${query}&page=${page}`,
+    config: TMDB_CONFIG.GET_MOVIE,
+  }),
 });
 
 /* Export */

@@ -24,4 +24,8 @@ export class MovieView {
       return movieComponent;
     });
   }
+
+  clearMovies() {
+    this.#element.innerHTML = '';
+  }
 }
