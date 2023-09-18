@@ -1,6 +1,4 @@
 import './styles/index.css';
-import './styles/reset.css';
-import './styles/common.css';
 import logo from './assets/logo.png';
 import { MovieController } from './Models';
 
