@@ -19,10 +19,18 @@ export class View {
     this.#movieList.innerHTML = '';
   }
 
-  removeMovieFetchButton() {
+  hideMovieFetchButton() {
     const fetchButton = document.querySelector('#movie-fetch-button');
 
-    if (fetchButton) fetchButton.remove();
+    fetchButton.classList.remove('display');
+    fetchButton.classList.add('hidden');
+  }
+
+  renderMovieFetchButton() {
+    const fetchButton = document.querySelector('#movie-fetch-button');
+
+    fetchButton.classList.remove('hidden');
+    fetchButton.classList.add('display');
   }
 
   getSearchTerm() {

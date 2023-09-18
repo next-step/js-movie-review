@@ -36,15 +36,16 @@ export class MovieController {
       this.#view.clearMovies();
       this.#service.resetPage();
       this.#searchTerm = searchInput.value.trim();
-      this.#getMovie('search');
+      this.#getMovie();
     });
   }
 
-  async #getMovie(mode = 'popular') {
+  async #getMovie() {
     const components = this.#view.createMovieComponent(20);
     const movies = await this.#fetchBranch();
 
-    if (movies.length < 20) this.#view.removeMovieFetchButton(movies);
+    if (movies.length < 20) this.#view.hideMovieFetchButton();
+    if (movies.length === 20) this.#view.renderMovieFetchButton();
 
     for (let i = 0; i < 20; i++) components[i].render(movies[i]);
   }
