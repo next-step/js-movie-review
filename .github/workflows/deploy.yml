@@ -21,6 +21,12 @@ jobs:
       - name: Install Dependencies
         run: yarn install
 
+      - name: Create .env file
+        run: |
+          jq -r 'to_entries|map("\(.key)=\(.value|tostring)")|.[]' <<< "$SECRETS_CONTEXT" > .env
+        env:
+          SECRETS_CONTEXT: ${{ toJson(secrets) }}
+
       - name: Build
         run: yarn build
 
