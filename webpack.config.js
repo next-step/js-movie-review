@@ -2,6 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 module.exports = {
   entry: './src/index.js',
   mode: 'development',
@@ -14,7 +16,7 @@ module.exports = {
     historyApiFallback: true,
   },
   output: {
-    publicPath: '/',
+    publicPath: isProduction ? './' : '/',
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
