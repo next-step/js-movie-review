@@ -1,4 +1,4 @@
-export const convertTMDBResponse = response => {
+export const convertTMDBMovieListResponse = response => {
 	return {
 		totalPages: response['total_pages'],
 		movies: response.results.map(result => ({
@@ -6,7 +6,17 @@ export const convertTMDBResponse = response => {
 			vote: result['vote_average'],
 			posterPath: result['poster_path'],
 			id: result.id,
-			description: result.overview,
 		})),
+	};
+};
+
+export const convertTMDBMovieDetailResponse = response => {
+	return {
+		title: response.title,
+		id: response.id,
+		genres: response.genres.map(genre => genre.name),
+		posterPath: response['poster_path'],
+		description: response.overview,
+		vote: response['vote_average'],
 	};
 };

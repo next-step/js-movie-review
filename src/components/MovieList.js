@@ -12,10 +12,8 @@ export default class MovieList {
 		rootElement.appendChild(this.#container);
 
 		this.#container.addEventListener('click', event => {
-			const clickedMovie = this.#movies.find(movie => movie.id.toString() === event.target.dataset.index);
-
-			if (clickedMovie) {
-				openModal(clickedMovie);
+			if (event.target.dataset.index) {
+				openModal(event.target.dataset.index);
 			}
 		});
 	}
