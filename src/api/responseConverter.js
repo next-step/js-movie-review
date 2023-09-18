@@ -5,6 +5,8 @@ export const convertTMDBResponse = response => {
 			title: result.title,
 			vote: result['vote_average'],
 			posterPath: result['poster_path'],
+			id: result.id,
+			description: result.overview,
 		})),
 	};
 };

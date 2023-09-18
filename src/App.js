@@ -5,6 +5,7 @@ import MoreButton from './components/MoreButton';
 import { HTMLFormat } from './lib/HTMLFormat';
 import { getMoviePopular, getSearchMovie } from './api/TMDB_API';
 import { getErrorMessageByStatusCode } from './lib/errorMessage';
+import { addModalCloseEvent } from './components/Modal';
 
 export default class App {
 	#rootElement;
@@ -46,6 +47,10 @@ export default class App {
 
 		this.movieList = new MovieList(this.itemViewSection);
 		this.moreButton = new MoreButton(this.itemViewSection, this.handleMoreButtonClick.bind(this));
+
+		addModalCloseEvent();
+
+		this.fetchMovies(true);
 	}
 
 	async renderFirstPage() {

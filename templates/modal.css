@@ -37,6 +37,8 @@
 
   top: 12px;
   right: 32px;
+
+  cursor: pointer;
 }
 
 
@@ -60,6 +62,10 @@
 
   position: relative;
 
+  border-bottom: 1px solid rgba(241, 241, 241, 0.25);
+}
+
+.modal-title {
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -67,8 +73,6 @@
   letter-spacing: 0.15px;
   color: #F1F1F1;
   text-align: center;
-
-  border-bottom: 1px solid rgba(241, 241, 241, 0.25);
 }
 
 .modal-content-box {
@@ -79,11 +83,13 @@
   gap: 32px;
 }
 
-.modal-item-genre {
+.modal-genre-vote-box {
   display: flex;
   align-items: center;
   gap: 16px;
+}
 
+.modal-item-genre {
   color: #F1F1F1;
   font-size: 16px;
   font-style: normal;
@@ -92,11 +98,13 @@
   letter-spacing: 0.5px;
 }
 
-.modal-item-score{
+.modal-vote-box {
   display: flex;
   align-items: center;
   gap: 4px;
+}
 
+.modal-item-vote {
   color: #F1F1F1;
   font-size: 16px;
   font-style: normal;
@@ -113,7 +121,7 @@
   gap: 16px;
 }
 
-.modal-item-poster{
+.modal-item-poster {
   width: 292px;
   height: 433px;
   background-size: contain;
