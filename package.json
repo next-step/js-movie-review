@@ -22,7 +22,6 @@
   "bugs": {
     "url": "https://github.com/next-step/js-movie-review/issues"
   },
-  "homepage": "https://github.com/next-step/js-movie-review#readme",
   "devDependencies": {
     "cypress": "^12.17.4",
     "dotenv-webpack": "^8.0.1",
