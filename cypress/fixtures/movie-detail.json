@@ -1,0 +1,81 @@
+{
+  "adult": false,
+  "backdrop_path": "/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",
+  "belongs_to_collection": {
+    "id": 9485,
+    "name": "분노의 질주 시리즈",
+    "poster_path": "/zQdytnqfsWKJlqazqfMBL2L7aql.jpg",
+    "backdrop_path": "/z5A5W3WYJc3UVEWljSGwdjDgQ0j.jpg"
+  },
+  "budget": 340000000,
+  "genres": [
+    {
+      "id": 28,
+      "name": "액션"
+    },
+    {
+      "id": 80,
+      "name": "범죄"
+    },
+    {
+      "id": 53,
+      "name": "스릴러"
+    }
+  ],
+  "homepage": "",
+  "id": 385687,
+  "imdb_id": "tt5433140",
+  "original_language": "en",
+  "original_title": "Fast X",
+  "overview": "돔과 그의 패밀리 앞에 나타난 운명의 적 단테. 과거의 그림자는 돔의 모든 것을 파괴하기 위해 달려온다. 단테에 의해 산산히 흩어진 패밀리들은 모두 목숨을 걸고 맞서야 하는 함정에 빠지고 마는데...",
+  "popularity": 3872.798,
+  "poster_path": "/wXNihLltMCGR7XepN39syIlCt5X.jpg",
+  "production_companies": [
+    {
+      "id": 33,
+      "logo_path": "/8lvHyhjr8oUKOOy2dKXoALWKdp0.png",
+      "name": "Universal Pictures",
+      "origin_country": "US"
+    },
+    {
+      "id": 333,
+      "logo_path": "/5xUJfzPZ8jWJUDzYtIeuPO4qPIa.png",
+      "name": "Original Film",
+      "origin_country": "US"
+    },
+    {
+      "id": 1225,
+      "logo_path": "/rIxhJMR7oK8b2fMakmTfRLY2TZv.png",
+      "name": "One Race",
+      "origin_country": "US"
+    },
+    {
+      "id": 34530,
+      "logo_path": null,
+      "name": "Perfect Storm Entertainment",
+      "origin_country": "US"
+    }
+  ],
+  "production_countries": [
+    {
+      "iso_3166_1": "US",
+      "name": "United States of America"
+    }
+  ],
+  "release_date": "2023-05-17",
+  "revenue": 704709660,
+  "runtime": 142,
+  "spoken_languages": [
+    {
+      "english_name": "English",
+      "iso_639_1": "en",
+      "name": "English"
+    }
+  ],
+  "status": "Released",
+  "tagline": "달리거나 죽거나, 그들의 마지막 질주가 시작된다!",
+  "title": "분노의 질주: 라이드 오어 다이",
+  "video": false,
+  "vote_average": 7.276,
+  "vote_count": 3735
+}

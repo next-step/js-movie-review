@@ -3,7 +3,7 @@ const ELEMENT = Object.freeze({
 	MORE_BUTTON: () => cy.get('button.more-button'),
 	SEARCH_INPUT: () => cy.get('input.search-input'),
 	SEARCH_BUTTON: () => cy.get('button.search-button'),
-	CARD: () => cy.get('a.movie-card'),
+	CARD: () => cy.get('div.movie-card'),
 });
 const TEST_QUERY = 'next';
 
