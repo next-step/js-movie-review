@@ -1,6 +1,6 @@
 import './styles/index.css';
 import logo from './assets/logo.png';
-import { MovieController } from './Models';
+import { MovieController } from './Controller/MovieController';
 
 class App {
   #movieController;

@@ -1,7 +1,7 @@
-import { MovieService } from './MovieService';
-import { Fetcher } from '../Fetcher';
-import { View } from '../../View/View';
-import { EVENT } from '../../constants';
+import { MovieService } from '../Models/Movie/MovieService';
+import { Fetcher } from '../Models/Fetcher';
+import { View } from '../View/View';
+import { EVENT } from '../constants';
 
 export class MovieController {
   #service;
