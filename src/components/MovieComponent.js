@@ -2,45 +2,46 @@ import starFilled from '../assets/star_filled.png';
 
 export class MovieComponent {
   #element = document.createElement('li');
-  #skeletonClass = 'skeleton';
-  #thumbnail = '';
-  #title = '';
-  #rating = '';
 
   constructor() {
-    this.showSkeleton();
+    this.#showSkeleton();
   }
 
   get component() {
-    return `
+    return this.#element;
+  }
+
+  render(movie) {
+    if (!movie) return this.remove();
+
+    const { title, thumbnail, rating } = movie.getData();
+
+    this.#element.innerHTML = `
       <a href="#">
         <div class="item-card">
-          <img class="item-thumbnail ${this.#skeletonClass}" src="${
-      this.#thumbnail
-    }" loading="lazy" alt="${this.#title}" />
-          <p class="item-title ${this.#skeletonClass}">${this.#title}</p>
-          <p class="item-score ${this.#skeletonClass}"><img src="${
-      this.#thumbnail ? starFilled : ''
-    }" alt="별점" /> ${this.#rating}</p>
+          <img class="item-thumbnail" src="${thumbnail}" loading="lazy" alt="${title}" />
+          <p class="item-title">${title}</p>
+          <p class="item-score"><img src="${
+            rating ? starFilled : ''
+          }" alt="별점" /> ${rating}</p>
         </div>
       </a>
     `;
   }
 
-  showSkeleton() {
-    this.#element.innerHTML = this.component;
+  #showSkeleton() {
+    this.#element.innerHTML = `
+        <a href="#">
+          <div class="item-card">
+            <div class="item-thumbnail skeleton"></div>
+            <p class="item-title skeleton"></p>
+            <p class="item-score skeleton"></p>
+          </div>
+        </a>
+    `;
   }
 
-  render(movie) {
-    const { title, thumbnail, rating } = movie.getData();
-    this.#title = title;
-    this.#thumbnail = thumbnail;
-    this.#rating = rating;
-    this.#skeletonClass = '';
-    this.#element.innerHTML = this.component;
-  }
-
-  get element() {
-    return this.#element;
+  remove() {
+    this.#element.innerHTML = '';
   }
 }

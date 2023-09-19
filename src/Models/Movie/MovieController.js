@@ -1,12 +1,13 @@
 import { MovieService } from './MovieService';
 import { Fetcher } from '../Fetcher';
-import { MovieView } from '../../components/MovieView';
+import { View } from '../../View/View';
 import { EVENT } from '../../constants';
+import { MovieComponent } from '../../components/MovieComponent';
 
 export class MovieController {
   #service;
+  #view = new View();
   #fetcher = new Fetcher();
-  #view = new MovieView();
   #searchTerm = '';
 
   constructor() {
@@ -17,29 +18,15 @@ export class MovieController {
   async #initial() {
     this.#setupFetchButtonEvent();
     this.#setupSearchButtonEvent();
-    this.#getMoreMovie();
+    this.#getMovie();
   }
 
+  /* BindEvent */
   #setupFetchButtonEvent() {
     const fetchButton = document.querySelector('#movie-fetch-button');
     fetchButton.addEventListener(EVENT.CLICK, async () => {
-      this.#getMoreMovie();
+      this.#getMovie();
     });
-  }
-
-  async #getMoreMovie() {
-    const components = this.#view.showSkeleton();
-    const movies = await this.#fetchBranch(this.#searchTerm);
-
-    movies.forEach((movie, index) => {
-      if (components[index]) components[index].render(movie);
-    });
-  }
-
-  async #fetchBranch(searchTerm) {
-    if (searchTerm) return await this.#service.searchMovie(this.#searchTerm);
-
-    return await this.#service.getMovie();
   }
 
   #setupSearchButtonEvent() {
@@ -50,7 +37,28 @@ export class MovieController {
       this.#view.clearMovies();
       this.#service.resetPage();
       this.#searchTerm = searchInput.value.trim();
-      this.#getMoreMovie();
+      this.#getMovie();
     });
+  }
+
+  async #getMovie(mode = 'popular') {
+    const components = Array(20)
+      .fill(null)
+      .map(() => new MovieComponent());
+
+    const movieList = document.querySelector('.item-list');
+    components.forEach((v) => movieList.appendChild(v.component));
+    const movies = await this.#fetchBranch(mode);
+
+    if (movies.length < 20) this.#view.removeMovieFetchButton(movies);
+
+    for (let i = 0; i < 20; i++) components[i].render(movies[i]);
+  }
+
+  async #fetchBranch(mode) {
+    if (mode === 'search')
+      return await this.#service.searchMovie(this.#searchTerm); // view
+
+    return await this.#service.getMovie();
   }
 }

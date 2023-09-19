@@ -4,7 +4,7 @@ import {
   BASE_IMAGE_URL,
   DEFAULT_PAGE,
 } from '../../constants';
-import { Movie } from '../Movie';
+import { Movie } from './Movie';
 
 export class MovieService {
   #fetcher;
@@ -21,6 +21,8 @@ export class MovieService {
         this.#fetcher.get(endpoint, config)
       )
     );
+
+    if (movieResults.length === 0) return [];
     const fulfilledMovies = this.#getFulfilled(movieResults);
 
     return this.#parseTMDB(fulfilledMovies);

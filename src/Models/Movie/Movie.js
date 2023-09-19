@@ -1,4 +1,4 @@
-import { movieValidation } from '../validation';
+import { movieValidation } from '../../validation';
 
 /**
  * API 도메인별로 받아온 data를 정해진 Interface로 정형화합니다.
