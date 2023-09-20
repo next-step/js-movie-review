@@ -12,15 +12,19 @@ export default class App {
 	itemViewSection;
 	movieList;
 	moreButton;
-	state;
+	state = {
+		query: '',
+		page: 1,
+		totalPages: 1,
+	};
 
 	constructor() {
-		this.state = {
-			query: '',
-			page: 1,
-			totalPages: 1,
-		};
+		this.renderApp();
 
+		this.renderFirstPage();
+	}
+
+	renderApp() {
 		this.#rootElement = document.querySelector('#app');
 
 		const layoutFragment = document.createDocumentFragment();
@@ -42,11 +46,25 @@ export default class App {
 
 		this.movieList = new MovieList(this.itemViewSection);
 		this.moreButton = new MoreButton(this.itemViewSection, this.handleMoreButtonClick.bind(this));
-
-		this.fetchMovies(true);
 	}
 
-	async fetchMovies(isUpdate) {
+	async renderFirstPage() {
+		const movies = await this.fetchMovies();
+
+		this.movieList.updateMovies(movies);
+
+		this.updateMoreButtonDisplay();
+	}
+
+	updateMoreButtonDisplay() {
+		if (this.state.page >= this.state.totalPages) {
+			this.moreButton.hideButton();
+		} else {
+			this.moreButton.showButton();
+		}
+	}
+
+	async fetchMovies() {
 		const { query, page } = this.state;
 
 		try {
@@ -54,17 +72,7 @@ export default class App {
 
 			this.state.totalPages = response.totalPages;
 
-			if (this.state.page >= this.state.totalPages) {
-				this.moreButton.hideButton();
-			} else {
-				this.moreButton.showButton();
-			}
-
-			if (isUpdate) {
-				this.movieList.updateMovies(response.movies);
-			} else {
-				this.movieList.appendMovies(response.movies);
-			}
+			return response.movies;
 		} catch (e) {
 			const statusCode = e?.response?.status || e?.statusCode || 0;
 
@@ -77,11 +85,20 @@ export default class App {
 		this.state.page = 1;
 		this.state.totalPages = 1;
 
-		await this.fetchMovies(true);
+		const movies = await this.fetchMovies();
+
+		this.movieList.updateMovies(movies);
+
+		this.updateMoreButtonDisplay();
 	}
 
 	async handleMoreButtonClick() {
 		this.state.page += 1;
-		await this.fetchMovies(false);
+
+		const movies = await this.fetchMovies();
+
+		this.movieList.appendMovies(movies);
+
+		this.updateMoreButtonDisplay();
 	}
 }
