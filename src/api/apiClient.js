@@ -1,7 +1,6 @@
 import axios from 'axios';
-import _ from 'lodash';
 
-class ApiWrapper {
+export class ApiWrapper {
 	constructor(baseURL, config = {}) {
 		this.api = axios.create({
 			baseURL: baseURL,
@@ -45,12 +44,3 @@ class ApiWrapper {
 		}
 	}
 }
-
-export const TMDB_BASE_URL = 'https://api.themoviedb.org';
-
-export const tmdbApiWrapper = new ApiWrapper(TMDB_BASE_URL, {
-	headers: {
-		accept: 'application/json',
-		Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
-	},
-});

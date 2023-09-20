@@ -7,16 +7,18 @@ const ELEMENT = Object.freeze({
 });
 const TEST_QUERY = 'next';
 
+beforeEach(() => {
+	cy.intercept(
+		{
+			method: 'GET',
+			url: /^https:\/\/api\.themoviedb\.org\/3\/movie\/popular\?(?=.*page=1)(?=.*language=ko-KR).*$/i,
+		},
+		{ fixture: 'movie-popular-page1.json' },
+	).as('getPopularMoviesPage1');
+});
+
 describe('영화 목록 불러오기 테스트', () => {
 	beforeEach(() => {
-		cy.intercept(
-			{
-				method: 'GET',
-				url: /^https:\/\/api\.themoviedb\.org\/3\/movie\/popular\?(?=.*page=1)(?=.*language=ko-KR).*$/i,
-			},
-			{ fixture: 'movie-popular-page1.json' },
-		).as('getPopularMoviesPage1');
-
 		cy.intercept(
 			{
 				method: 'GET',
@@ -71,14 +73,6 @@ describe('영화 목록 불러오기 테스트', () => {
 
 describe('영화 검색 테스트', () => {
 	beforeEach(() => {
-		cy.intercept(
-			{
-				method: 'GET',
-				url: /^https:\/\/api\.themoviedb\.org\/3\/movie\/popular\?(?=.*page=1)(?=.*language=ko-KR).*$/i,
-			},
-			{ fixture: 'movie-popular-page1.json' },
-		).as('getPopularMoviesPage1');
-
 		cy.intercept(
 			{
 				method: 'GET',

@@ -3,7 +3,7 @@ import SearchBar from './components/SearchBar';
 import MoreButton from './components/MoreButton';
 
 import { HTMLFormat } from './lib/HTMLFormat';
-import { getMoviePopular, getSearchMovie } from './api/getTMDBApis';
+import { getMoviePopular, getSearchMovie } from './api/TMDB_API';
 import { getErrorMessageByStatusCode } from './lib/errorMessage';
 
 export default class App {
