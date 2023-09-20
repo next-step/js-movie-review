@@ -13,7 +13,6 @@ class ApiWrapper {
 			const response = await this.api.get(endpoint, { params, headers });
 			return response.data;
 		} catch (error) {
-			console.error('GET 요청 중 오류 발생:', error);
 			throw error;
 		}
 	}
@@ -23,7 +22,6 @@ class ApiWrapper {
 			const response = await this.api.post(endpoint, payload, { headers });
 			return response.data;
 		} catch (error) {
-			console.error('POST 요청 중 오류 발생:', error);
 			throw error;
 		}
 	}
@@ -33,7 +31,6 @@ class ApiWrapper {
 			const response = await this.api.put(endpoint, payload, { headers });
 			return response.data;
 		} catch (error) {
-			console.error('PUT 요청 중 오류 발생:', error);
 			throw error;
 		}
 	}
@@ -43,7 +40,6 @@ class ApiWrapper {
 			const response = await this.api.delete(endpoint, { headers });
 			return response.data;
 		} catch (error) {
-			console.error('DELETE 요청 중 오류 발생:', error);
 			throw error;
 		}
 	}
