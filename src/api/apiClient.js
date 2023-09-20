@@ -1,34 +1,35 @@
 import axios from 'axios';
+import _ from 'lodash';
 
 class ApiWrapper {
-	constructor(baseURL, headers = {}) {
+	constructor(baseURL, config = {}) {
 		this.api = axios.create({
 			baseURL: baseURL,
-			headers,
+			...config,
 		});
 	}
 
-	async get(endpoint, params = {}, headers = {}) {
+	async get(endpoint, config) {
 		try {
-			const response = await this.api.get(endpoint, { params, headers });
+			const response = await this.api.get(endpoint, config);
 			return response.data;
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async post(endpoint, payload = {}, headers = {}) {
+	async post(endpoint, payload = {}, config) {
 		try {
-			const response = await this.api.post(endpoint, payload, { headers });
+			const response = await this.api.post(endpoint, payload, config);
 			return response.data;
 		} catch (error) {
 			throw error;
 		}
 	}
 
-	async put(endpoint, payload = {}, headers = {}) {
+	async put(endpoint, payload = {}, config) {
 		try {
-			const response = await this.api.put(endpoint, payload, { headers });
+			const response = await this.api.put(endpoint, payload, config);
 			return response.data;
 		} catch (error) {
 			throw error;
@@ -48,6 +49,8 @@ class ApiWrapper {
 export const TMDB_BASE_URL = 'https://api.themoviedb.org';
 
 export const tmdbApiWrapper = new ApiWrapper(TMDB_BASE_URL, {
-	accept: 'application/json',
-	Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
+	headers: {
+		accept: 'application/json',
+		Authorization: `Bearer ${process.env.TMDB_API_TOKEN}`,
+	},
 });

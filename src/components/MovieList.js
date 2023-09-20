@@ -1,11 +1,10 @@
 import MovieCard from './MovieCard';
 
 export default class MovieList {
-	#movies;
+	#movies = [];
 	#container;
 
 	constructor(rootElement) {
-		this.#movies = [];
 		this.#container = document.createElement('ul');
 		this.#container.classList.add('item-list');
 
@@ -26,13 +25,13 @@ export default class MovieList {
 		this.#container.appendChild(fragment);
 	}
 
-	updateMovies(newMovies) {
+	updateMovies(newMovies = []) {
 		this.#movies = newMovies;
 
 		this.renderMovies();
 	}
 
-	appendMovies(newMovies) {
+	appendMovies(newMovies = []) {
 		this.#movies = [...this.#movies, ...newMovies];
 
 		this.renderMovies();
