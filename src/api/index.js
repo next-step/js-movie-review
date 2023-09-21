@@ -20,12 +20,12 @@ const requestAPI = async endpoint => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.message || "An error occurred");
+      throw new Error(response.status || "An error occurred");
     }
 
     return data;
   } catch (error) {
-    console.error(`Error : ${error}`);
+    throw error;
   }
 };
 
