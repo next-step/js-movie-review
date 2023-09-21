@@ -10,9 +10,7 @@ export class MovieList {
   }
 
   #getMovieData() {
-    const data = this.#movieClient.get();
-
-    return data;
+    return this.#movieClient.getPopularMovies();
   }
 
   #createMovieCard(movieData) {
@@ -30,13 +28,11 @@ export class MovieList {
     return fragment;
   }
 
-  render() {
-    const movieData = this.#getMovieData();
+  async render() {
+    const movieData = await this.#getMovieData();
     const cards = this.#createMovieCard(movieData);
     const cardList = this.#appendMovieList(cards);
 
     this.#$parent.appendChild(cardList);
-
-    console.log('hi');
   }
 }

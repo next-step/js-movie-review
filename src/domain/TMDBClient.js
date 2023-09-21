@@ -1,29 +1,29 @@
 import { ApiClient } from './ApiClient';
 
-export class TMDBClient {
-  #baseUrl;
-  #apiClient;
-
-  constructor() {
-    this.#baseUrl = `https://api.themoviedb.org/3/movie`;
-    this.#apiClient = new ApiClient(this.#baseUrl);
+export class TMDBClient extends ApiClient {
+  constructor(baseUrl) {
+    super(baseUrl);
   }
 
-  getPopularMovies(page = 1) {
-    const endpoint = `/popular?language=en-US&page=${page}}`;
+  async getPopularMovies(page = 1) {
+    const endpoint = `/popular?language=en-US&page=${page}`;
     const options = {
       method: 'GET',
       headers: {
         accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjZjA3MDc2OWNmYWRhOTg0NWEwNTlkN2U2MDQ2YzBhYSIsInN1YiI6IjYzMWYyYzhkYjg3YWVjMDA4MjgzY2RkNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.bjYX05NWfHAMCEuGoI7V4MkBL_4oc_nKO6ChMP86_xQ',
+        Authorization: process.env.ACCESS_TOKEN,
       },
     };
-    try {
-      const movieData = this.#apiClient.get(endpoint, options);
-      return movieData;
-    } catch (error) {
-      throw new Error(error);
-    }
+
+    const { results } = await this.get(endpoint, options);
+    return this.#formatMovieData(results);
+  }
+
+  #formatMovieData(movieData) {
+    return movieData.map((data) => {
+      const { poster_path, title, vote_average: score } = data;
+      const imgSrc = `${process.env.IMG_URL}${poster_path}`;
+      return { imgSrc, title, score };
+    });
   }
 }

@@ -30,7 +30,8 @@ export class MovieCard {
     $score.textContent = score;
 
     const $scoreImg = document.createElement('img');
-    $scoreImg.src = './templates/star_filled.png';
+    // FIXME: 경로를 찾을 수 있게 도와줘
+    $scoreImg.src = '../assets/star_filled.png';
     $scoreImg.alt = '별점';
 
     $score.appendChild($scoreImg);
@@ -40,7 +41,7 @@ export class MovieCard {
     a.appendChild(div);
     li.appendChild(a);
 
-    this.#card = li;
+    return li;
   }
 
   get card() {

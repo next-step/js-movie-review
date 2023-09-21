@@ -6,6 +6,12 @@ export class ApiClient {
   }
 
   async get(endpoint, options) {
-    return await fetch.get(`${this.#baseUrl}/${endpoint}`, options);
+    try {
+      const response = await fetch(`${this.#baseUrl}/${endpoint}`, options);
+      return await response.json();
+    } catch (error) {
+      // FIXME: 네트워크 요청 실패에 대한 적절한 에러처리 필요
+      console.log('적절한 에러 처리 필요');
+    }
   }
 }
