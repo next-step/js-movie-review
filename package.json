@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "영화 리뷰 홈페이지 만들기",
   "scripts": {
-    "preview": "parcel ./index.html --open chrome --port 3000",
-    "build": "parcel build ./index.html",
+    "preview": "parcel src/index.html --open chrome --port 3000",
+    "build": "parcel build src/index.html",
     "cypress": "cypress open"
   },
   "repository": {
