@@ -2,11 +2,9 @@
   "name": "js-movie-review",
   "version": "1.0.0",
   "description": "영화 리뷰 홈페이지 만들기",
-  "main": "index.js",
   "scripts": {
-    "watch": "webpack --watch",
-    "dev": "webpack serve",
-    "build": "webpack --config webpack.config.js",
+    "preview": "parcel ./index.html --open chrome --port 3000",
+    "build": "parcel build ./index.html",
     "cypress": "cypress open"
   },
   "repository": {
@@ -26,9 +24,6 @@
   "devDependencies": {
     "cypress": "^12.17.4",
     "dotenv": "^16.3.1",
-    "dotenv-webpack": "^8.0.1",
-    "html-webpack-plugin": "^5.5.3",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "parcel": "^2.9.3"
   }
 }
