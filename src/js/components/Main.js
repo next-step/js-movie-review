@@ -1,72 +1,71 @@
-import { MovieList } from "./MovieList";
 import { MovieItem } from "./MovieItem.js";
 
-import { MovieStore } from "../store";
-import { SkeletonUI } from "../shared/SkeletonUI";
-import { $createElement } from "../utils/dom";
+import { MovieGenre } from "./MovieGenre.js";
 
-import { LAST_PAGE, PAGE_ITEM } from "../../../utils/constants";
+import { $createElement } from "../utils/dom";
+import { LAST_PAGE, MovieStore, PAGE_ITEM } from "../store";
+
+import SkeletonUI from "../shared/SkeletonUI";
 
 export const Main = async () => {
+  const $moreButton = $createElement("button");
+  $moreButton.id = "moreButton";
+  $moreButton.classList.add("btn", "primary");
+  $moreButton.textContent = "더보기";
+
+  const mainFragment = new DocumentFragment();
+
   const $mainElement = $createElement("main");
   const movieData = new MovieStore();
+  const $itemViewList = $createElement("ul");
+  $itemViewList.classList.add("item-list");
 
-  $mainElement.innerHTML = `
-      ${MovieList(movieData.movieListTitle)}
-  `;
+  const skeletonCards = new SkeletonUI(PAGE_ITEM);
 
-  const $movieItemListContainer = $mainElement.querySelector(".item-list");
-  const $moreButton = $mainElement.querySelector("#moreButton");
+  mainFragment.appendChild(MovieGenre(movieData.movieGenreTitle));
 
   const updateMovieList = () => {
+    const fragment = new DocumentFragment();
+
     movieData.movieList.forEach(list => {
       const movieItemElement = MovieItem(list);
-      $movieItemListContainer.appendChild(movieItemElement);
+      fragment.appendChild(movieItemElement);
     });
-  };
 
-  const hideSkeleton = () => {
-    const $skeletonItem = document.querySelectorAll(".skeleton-container");
-    $skeletonItem.forEach(element => {
-      element.style.display = "none";
-    });
-  };
-
-  const showSkeleton = isLoading => {
-    const $skeletonUI = SkeletonUI(PAGE_ITEM);
-    $movieItemListContainer.innerHTML += $skeletonUI;
-
-    if (!isLoading) {
-      setTimeout(() => {
-        hideSkeleton();
-        updateMovieList();
-      }, 1000);
-    }
+    $itemViewList.appendChild(fragment);
   };
 
   const getMovieDataList = async () => {
-    $moreButton.setAttribute("disabled", "true");
-
     try {
-      if (movieData.currentPage > LAST_PAGE) {
+      if (movieData.currentPage >= LAST_PAGE) {
         $moreButton.style.display = "none";
-
-        return;
       }
 
-      showSkeleton(false);
-      await movieData.fetchPopularMovieData(showSkeleton);
+      $moreButton.setAttribute("disabled", "true");
+      skeletonCards.showSkeleton();
+
+      await movieData.fetchMovieData();
+      skeletonCards.hideSkeleton();
+
+      updateMovieList();
 
       $moreButton.removeAttribute("disabled");
     } catch (error) {
-      showSkeleton(true);
-      console.error("error::", error);
+      alert(error.message || "통신 오류가 발생했습니다.");
+    } finally {
+      skeletonCards.hideSkeleton();
     }
   };
+
+  $mainElement.appendChild($itemViewList);
+  $mainElement.appendChild(skeletonCards.$ul);
+  mainFragment.appendChild($mainElement);
+
+  $mainElement.appendChild($moreButton);
 
   $moreButton.addEventListener("click", getMovieDataList);
 
   await getMovieDataList();
 
-  return $mainElement;
+  return mainFragment;
 };
