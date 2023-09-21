@@ -15,11 +15,9 @@ export const MovieItem = item => {
     vote_average,
   } = item;
 
-  const $movieContainerLi = $createElement("li");
-  $movieContainerLi.setAttribute("id", id);
-
-  $movieContainerLi.innerHTML = `
-        <a href="#">
+  const $movieContainerLi = $createElement(
+    "li",
+    ` <a href="#" id=${id}>
             <div class="item-card">
             <img
                 class="item-thumbnail"
@@ -31,9 +29,9 @@ export const MovieItem = item => {
                 <img src=${star_filled} alt="별점" /> ${vote_average}
             </p>
             </div>
-  
-        </a>
-`;
+      </a>
+    `
+  );
 
   return $movieContainerLi;
 };

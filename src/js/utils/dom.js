@@ -1,7 +1,12 @@
 /**
  * @param {num} el
+ * @param {Node []} children
  * @returns {Element}
  */
-const $createElement = el => document.createElement(el);
+export const $createElement = (tagName, children) => {
+  const $element = document.createElement(tagName);
 
-export { $createElement };
+  if (children) $element.innerHTML = children;
+
+  return $element;
+};
