@@ -51,6 +51,8 @@ button {
   grid-template-columns: repeat(4, 180px);
   grid-column-gap: 160px;
   grid-row-gap: 48px;
+
+  margin-bottom: 10rem;
 }
 
 .item-card {
@@ -102,7 +104,6 @@ button.btn {
 }
 
 button.primary {
-  margin-bottom: 5rem;
   background: #f33f3f;
 }
 
@@ -162,4 +163,34 @@ header .search-box > .search-button {
   text-indent: -1000rem;
   background: url("../images/search_button.png") transparent no-repeat 0 1px;
   background-size: contain;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.non-visible {
+  visibility: hidden;
+}
+
+.alert .alert-danger {
+  color: red;
+}
+
+.hidden {
+  display: none;
+  /* visibility: hidden; */
+  /* transform: translate(-5000%); */
+}
+
+.absolute {
+  position: absolute;
+}
+
+#moreButton {
+  width: 100%;
+}
+
+main {
+  margin-top: 5rem;
 }
