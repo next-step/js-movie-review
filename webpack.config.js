@@ -21,9 +21,12 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html",
+      template: "./src/index.html",
+      logo: "assets/images/logo.png",
     }),
-    new DotEnv(),
+    new DotEnv({
+      systemvars: true,
+    }),
   ],
   module: {
     rules: [
