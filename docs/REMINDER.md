@@ -22,4 +22,13 @@ const updateMovieList = () => {
 
 ```
 
+
 ```
+
+`throw error vs throw new Error`
+
+```
+
+```
+
+- https://www.themoviedb.org/talk/5f5b7579629b2c0037c28933
