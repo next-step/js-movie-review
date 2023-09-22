@@ -1,0 +1,360 @@
+{
+  "page": 3,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/65rFnxzirxQDM0rYWmtAUYnjc.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1094713,
+      "original_language": "en",
+      "original_title": "The Mistress",
+      "overview": "",
+      "popularity": 380.782,
+      "poster_path": "/1kdmre0wlUAUk9BvySv4Xoveieg.jpg",
+      "release_date": "2023-07-28",
+      "title": "The Mistress",
+      "video": false,
+      "vote_average": 4.8,
+      "vote_count": 8
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vcQQx1z5iUbqZ3uJXvfCCMN3HPb.jpg",
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 869855,
+      "original_language": "nl",
+      "original_title": "H4Z4RD",
+      "overview": "",
+      "popularity": 381.111,
+      "poster_path": "/gUjmpgsG7fxPWejTmPMDLxFT7Yr.jpg",
+      "release_date": "2022-07-20",
+      "title": "해저드",
+      "video": false,
+      "vote_average": 6.3,
+      "vote_count": 16
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/8rpDcsfLJypbO6vREc0547VKqEv.jpg",
+      "genre_ids": [
+        878,
+        12,
+        28
+      ],
+      "id": 76600,
+      "original_language": "en",
+      "original_title": "Avatar: The Way of Water",
+      "overview": "판도라 행성에서 제이크 설리와 네이티리가 이룬 가족이 겪게 되는 무자비한 위협과 살아남기 위해 떠나야 하는 긴 여정과 전투, 그리고 견뎌내야 할 상처에 대한 이야기를 그렸다. 살아남기 위해 설리 가족이 숲에서 바다로 터전을 옮기면서 겪게 되는 화합의 과정, 그리고 곳곳에서 도사리는 새로운 위협까지 역경 속에서 더 아름답게 펼쳐진다.",
+      "popularity": 360.206,
+      "poster_path": "/z56bVX93oRG6uDeMACR7cXCnAbh.jpg",
+      "release_date": "2022-12-14",
+      "title": "아바타: 물의 길",
+      "video": false,
+      "vote_average": 7.7,
+      "vote_count": 9756
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lntyt4OVDbcxA1l7LtwITbrD3FI.jpg",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "id": 1010581,
+      "original_language": "es",
+      "original_title": "Culpa mía",
+      "overview": "노아는 남자 친구와 친구들이 있는 동네를 뒤로하고 엄마의 새 부자 남편 저택으로 이사를 가게 된다. 의붓오빠 닉과는 첫 만남부터 삐걱댔지만 곧 서로에게 이끌려 금지된 관계를 맺는다. 반항심과 고뇌로 가득 찬 그들의 인생은 송두리째 흔들리고 둘은 결국 뜨거운 사랑에 빠진다.",
+      "popularity": 312.52,
+      "poster_path": "/duT8Vks5FXwDkpxoR84xb2a6VB6.jpg",
+      "release_date": "2023-06-08",
+      "title": "나의 잘못",
+      "video": false,
+      "vote_average": 8.1,
+      "vote_count": 1673
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/nYDPmxvl0if5vHBBp7pDYGkTFc7.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 709631,
+      "original_language": "en",
+      "original_title": "Cobweb",
+      "overview": "이제 막 여덟 살이 된 소년 ‘피터’ . 밤이 찾아오면, 방에서 의문의 노크 소리가 들려왔고, 끔찍한 공포에 사로잡힌 피터는 부모님 ‘마크’와 ‘캐롤’에게 이 사실을 알린다..  하지만 그들이 피터의 방에 들어선 순간 아무런 소리도 들리지 않아 대수롭지 않게 여긴다. 다음 날 저녁, 피터는 또다시 방에서 의문의 노크 소리를 듣게 되고 소리가 나는 방향으로 한 발자국 씩 다가간다. 그리고 방 벽지를 뜯어보니 자그마한 구멍이 뚫려 있었고, 벽 너머로 정체를 알 수 없는 ‘무언가’의 목소리가 들려오는데…",
+      "popularity": 359.63,
+      "poster_path": "/5Ol63pZT8JfYgFMfADqySpgwkdj.jpg",
+      "release_date": "2023-07-19",
+      "title": "노크: 더 하우스",
+      "video": false,
+      "vote_average": 6.8,
+      "vote_count": 334
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/holtzVB17aoqCJlOiAXhKkCRhqj.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1115694,
+      "original_language": "en",
+      "original_title": "Goatman",
+      "overview": "",
+      "popularity": 359.114,
+      "poster_path": "/85N39Re3qw8o52BcmnVlacVPyni.jpg",
+      "release_date": "2023-04-17",
+      "title": "Goatman",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 11
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/9iLZ42pwPYaHjfjly6ERZfpxCS3.jpg",
+      "genre_ids": [
+        12,
+        14,
+        10402,
+        18
+      ],
+      "id": 818110,
+      "original_language": "de",
+      "original_title": "The Magic Flute",
+      "overview": "마술 피리의 주인공인 왕자가 되어 모험을 하게 되는 음악학교 학생의 이야기를 다룬 영화",
+      "popularity": 362.471,
+      "poster_path": "/xpkWvjxGL4vk0ErE8rNsm3qSYqn.jpg",
+      "release_date": "2022-09-30",
+      "title": "매직 플룻",
+      "video": false,
+      "vote_average": 6.1,
+      "vote_count": 32
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/f7UI3dYpr7ZUHGo0iIr1Qvy1VPe.jpg",
+      "genre_ids": [
+        16,
+        10751,
+        14,
+        35
+      ],
+      "id": 1040148,
+      "original_language": "en",
+      "original_title": "Ruby Gillman, Teenage Kraken",
+      "overview": "평범함 뒤에 숨겨진 능력을 가진 반전캐 크라켄 ‘루비’와  검은 속마음을 숨긴 사기캐 빌런 인어 ‘첼시’의 대결을 그린 드림웍스 제작진의 썸머 오션 어드벤처!",
+      "popularity": 344.93,
+      "poster_path": "/pUv9neufsz8hsXoIN5KkAeNZLgl.jpg",
+      "release_date": "2023-06-28",
+      "title": "틴에이지 크라켄 루비",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 637
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/TFTfzrkX8L7bAKUcch6qLmjpLu.jpg",
+      "genre_ids": [
+        28,
+        12,
+        53
+      ],
+      "id": 575264,
+      "original_language": "en",
+      "original_title": "Mission: Impossible - Dead Reckoning Part One",
+      "overview": "모든 인류를 위협할 새로운 무기를 추적하게 된 에단 헌트와 IMF팀은 이 무기가 인류의 미래를 통제할 수 있다는 사실을 알게 된다. 전 세계가 위태로운 상황에 처한 가운데, 이를 추적하던 에단 헌트에게 어둠의 세력까지 접근하고 마침내 미스터리하고 강력한 빌런과 마주하게 된 그는 가장 위험한 작전을 앞두고 자신이 아끼는 사람들의 생명과 중요한 임무 사이에서 선택을 해야 하는 상황에 놓이게 되는데…",
+      "popularity": 316.197,
+      "poster_path": "/nQsWPG020kSWdOl3EhFXRNE2s0n.jpg",
+      "release_date": "2023-07-08",
+      "title": "미션 임파서블: 데드 레코닝 PART ONE",
+      "video": false,
+      "vote_average": 7.7,
+      "vote_count": 1134
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4vlsYpItGVZN1UWZGqQBoCzrUSw.jpg",
+      "genre_ids": [
+        53
+      ],
+      "id": 1030987,
+      "original_language": "en",
+      "original_title": "Sympathy for the Devil",
+      "overview": "'운전사'는 수상한 인물 \"승객\"에 의해 억지로 운전을 하게 되고, 자신이 큰 판돈이 걸린 추적 게임에 참여하게 되었음을 깨닫는다. 그들의 무시무시한 동행이 진행될수록, 모든 것이 보이는 것과 같지는 않다는 사실이 명백해진다.",
+      "popularity": 280.381,
+      "poster_path": "/afGdVMa80LMs6ibLP22CwM5uI4e.jpg",
+      "release_date": "2023-07-20",
+      "title": "심퍼시 포 더 데블",
+      "video": false,
+      "vote_average": 6.3,
+      "vote_count": 85
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/4Yon9Qmg3U4onL0OywXAHSkFTUG.jpg",
+      "genre_ids": [
+        28,
+        18
+      ],
+      "id": 1163045,
+      "original_language": "yo",
+      "original_title": "Jagun Jagun",
+      "overview": "",
+      "popularity": 311.348,
+      "poster_path": "/n0GXumEMtwgYj2M3YW4Iu0veYJg.jpg",
+      "release_date": "2023-08-10",
+      "title": "Jagun Jagun",
+      "video": false,
+      "vote_average": 6.5,
+      "vote_count": 41
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/J0XkW5toJLGEucm1pLDvTHXaKC.jpg",
+      "genre_ids": [
+        28,
+        18,
+        10752
+      ],
+      "id": 1076487,
+      "original_language": "en",
+      "original_title": "Warhorse One",
+      "overview": "선교사 가족을 구출하려던 특수팀의 헬기가 추락하고 살아남은 단 한 명의 대원이 또한\r 생존한 단 한 명의 여자애를 구하기 위해 적진에서 홀로 싸우는 이야기",
+      "popularity": 334.915,
+      "poster_path": "/jP2ik17jvKiV5sGEknMFbZv7WAe.jpg",
+      "release_date": "2023-06-30",
+      "title": "워호스 원",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 168
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ixZzr4PyM2TPs5fka3IJj058WYo.jpg",
+      "genre_ids": [
+        28,
+        878,
+        12
+      ],
+      "id": 565770,
+      "original_language": "en",
+      "original_title": "Blue Beetle",
+      "overview": "",
+      "popularity": 310.857,
+      "poster_path": "/2Dk0mkkgjwCIJ7VMThFQP21g4gJ.jpg",
+      "release_date": "2023-08-16",
+      "title": "블루 비틀",
+      "video": false,
+      "vote_average": 6.9,
+      "vote_count": 359
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7drO1kYgQ0PnnU87sAnBEphYrSM.jpg",
+      "genre_ids": [
+        16,
+        28,
+        27
+      ],
+      "id": 1083862,
+      "original_language": "ja",
+      "original_title": "バイオハザード：デスアイランド",
+      "overview": "미국 대통령 직속 요원 레온은 기밀을 쥐고 있는 안토니오 테일러를 납치한 무장단체의 차량을 쫓고 있었다. 하지만 갑자기 나타난 의문의 여인의 방해로 범인들을 놓치고 만다. 한편, 대 생물테러 조직 'B.S.A.A.A.'의 크리스는 샌프란시스코를 중심으로 벌어지고 있는 감염 경로를 알 수 없는 좀비 발생 사건을 담당하고 있었다. 조사 결과, 바이러스에 감염된 피해자들이 모두 한 장소를 방문했다는 사실을 알게 된다. 그곳은 한때 감옥으로 사용되었던 감옥섬 알카트라즈다.",
+      "popularity": 313.455,
+      "poster_path": "/6YjwroiDhUODrgSp87u0rylpLTd.jpg",
+      "release_date": "2023-06-22",
+      "title": "레지던트 이블: 데스 아일랜드",
+      "video": false,
+      "vote_average": 7.6,
+      "vote_count": 657
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/6IafiYxaqR2MxCnEC29bi6637eo.jpg",
+      "genre_ids": [
+        28,
+        12,
+        53,
+        35
+      ],
+      "id": 457332,
+      "original_language": "en",
+      "original_title": "Hidden Strike",
+      "overview": "두 엘리트 군인에게 떨어진 특별한 임무. 총격과 폭발이 난무하는 사지에서 민간인들을 무사히 호송해야 한다. 성룡, 존 시나 주연 영화.",
+      "popularity": 297.263,
+      "poster_path": "/zsbolOkw8RhTU4DKOrpf4M7KCmi.jpg",
+      "release_date": "2023-07-06",
+      "title": "스내푸",
+      "video": false,
+      "vote_average": 7,
+      "vote_count": 721
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3mYCjwll5RG342Dz1f8HcnT8tV.jpg",
+      "genre_ids": [
+        28,
+        80
+      ],
+      "id": 606403,
+      "original_language": "ko",
+      "original_title": "특송",
+      "overview": "예상치 못한 배송사고로 걷잡을 수 없는 사건에 휘말린 특송 전문 드라이버 은하. 어쩌다 맡게 된 반송 불가 수하물에 출처를 알 수 없는 300억까지. 경찰과 국정원의 타겟이 되어 도심 한복판 모든 것을 건 추격전을 벌이게 되는데…",
+      "popularity": 368.074,
+      "poster_path": "/2mTwoa29q3xFmPZCDyRmDNufnfh.jpg",
+      "release_date": "2022-01-12",
+      "title": "특송",
+      "video": false,
+      "vote_average": 6.9,
+      "vote_count": 103
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oqP1qEZccq5AD9TVTIaO6IGUj7o.jpg",
+      "genre_ids": [
+        14,
+        28,
+        12
+      ],
+      "id": 455476,
+      "original_language": "en",
+      "original_title": "Knights of the Zodiac",
+      "overview": "강력한 힘을 가진 전쟁과 지혜의 신 ‘아테나’의 환생! 세상을 구할 수호 기사가 깨어난다!  어린 시절 누나 ‘패트리샤’가 납치된 후 홀로 자란 ‘세이야’  슬럼가 지하 격투장에서 벌어지는 결투로 근근이 살아가던 중, 위기의 상황에서 자신도 알지 못했던 미스터리한 힘이 발현되면서 ‘아테나’를 찾고 있던 ‘구라드’의 무장 조직에게 쫓기게 된다.  수수께끼의 남자 ‘알먼 키도’에 의해 가까스로 목숨을 구한 ‘세이야’는 그를 따라 도착한 은신처에서 ‘아테나’의 환생인 ‘시에나’와 마주한다.  오래전, 다른 신들에 맞서 인간을 지키던 전쟁과 지혜의 신 ‘아테나’ ‘알먼 키도’는 ‘시에나’에게 잠재된 ‘아테나’의 힘이 곧 깨어날 것이며, ‘세이야’는 ‘아테나’를 수호하고 세상을 지킬 성투사의 운명을 가졌다는 사실을 알려주는데...",
+      "popularity": 293.495,
+      "poster_path": "/fBNl8kpFMz5ugi3RGYfenKctzjq.jpg",
+      "release_date": "2023-04-27",
+      "title": "세인트 세이야: 더 비기닝",
+      "video": false,
+      "vote_average": 6.7,
+      "vote_count": 795
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vT17lPUglrAzjEqMwjPpIDe49ty.jpg",
+      "genre_ids": [
+        16,
+        12,
+        10751,
+        14
+      ],
+      "id": 459003,
+      "original_language": "uk",
+      "original_title": "Мавка: Лісова пісня",
+      "overview": "오랜 전쟁의 끝, 서로의 문을 닫아 버린 마법의 숲과 인간 세상. 숲의 정령이자 대자연의 새로운 수호자, 마브카는 어느 날 순수한 마음을 지닌 인간 청년 루카스와 사랑에 빠진다. 하지만 악당 킬리나는 사랑에 빠진 마브카의 마음을 이용해 숲을 파괴하고 숲의 심장을 차지하려는 음모를 꾸미는데…",
+      "popularity": 324.32,
+      "poster_path": "/oYv6T3ADPgGZHN3CUsZtT4WNJtC.jpg",
+      "release_date": "2023-03-02",
+      "title": "마브카 : 숲의 노래",
+      "video": false,
+      "vote_average": 7.4,
+      "vote_count": 373
+    }
+  ],
+  "total_pages": 3,
+  "total_results": 48
+}

@@ -53,3 +53,7 @@ npm run dev
 ## 📝 License
 
 This project is [MIT](https://github.com/next-step/js-lotto/blob/main/LICENSE) licensed.
+
+## gh-pages
+
+https://gn0lee.github.io/js-movie-review
