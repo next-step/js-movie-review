@@ -1,19 +1,32 @@
 import { getErrorMessageByStatusCode } from '../lib/errorMessage';
 import { getMovieDetails } from '../api/TMDB_API';
 
-export const addModalCloseEvent = () => {
-	document.querySelector('div.modal-close').addEventListener('click', () => {
-		document.querySelector('div.modal').classList.remove('open');
+export const closeModal = () => {
+	const modal = document.querySelector('div.modal');
 
-		document.querySelector('img.modal-item-poster').remove();
-	});
+	modal.classList.remove('open');
+
+	const posterImage = document.querySelector('img.modal-item-poster');
+	const title = document.querySelector('div.modal-title');
+	const genre = document.querySelector('div.modal-item-genre');
+	const description = document.querySelector('div.modal-item-detail');
+	const vote = document.querySelector('div.modal-item-vote');
+
+	posterImage.remove();
+	title.innerText = '';
+	genre.innerText = '';
+	description.innerText = '';
+	vote.innerText = '';
+};
+
+export const addModalCloseEvent = () => {
+	document.querySelector('div.modal-close').addEventListener('click', closeModal);
 
 	document.body.addEventListener('keydown', event => {
 		const modal = document.querySelector('div.modal');
 
 		if (modal.classList.contains('open') && event.key === 'Escape') {
-			modal.classList.remove('open');
-			document.querySelector('img.modal-item-poster').remove();
+			closeModal();
 		}
 	});
 };
