@@ -72,17 +72,11 @@ export default class App {
 	async fetchMovies() {
 		const { query, page } = this.state;
 
-		try {
-			const response = query ? await getSearchMovie(page, query) : await getMoviePopular(page);
+		const response = query ? await getSearchMovie(page, query) : await getMoviePopular(page);
 
-			this.state.totalPages = response.totalPages;
+		this.state.totalPages = response.totalPages;
 
-			return response.movies;
-		} catch (e) {
-			const statusCode = e?.response?.status || e?.statusCode || 0;
-
-			alert(getErrorMessageByStatusCode(statusCode));
-		}
+		return response.movies;
 	}
 
 	async handleSearch(query) {
@@ -90,20 +84,32 @@ export default class App {
 		this.state.page = 1;
 		this.state.totalPages = 1;
 
-		const movies = await this.fetchMovies();
+		try {
+			const movies = await this.fetchMovies();
 
-		this.movieList.updateMovies(movies);
+			this.movieList.updateMovies(movies);
 
-		this.updateMoreButtonDisplay();
+			this.updateMoreButtonDisplay();
+		} catch (e) {
+			const statusCode = e?.response?.status || e?.statusCode || 0;
+
+			alert(getErrorMessageByStatusCode(statusCode));
+		}
 	}
 
 	async handleMoreButtonClick() {
 		this.state.page += 1;
 
-		const movies = await this.fetchMovies();
+		try {
+			const movies = await this.fetchMovies();
 
-		this.movieList.appendMovies(movies);
+			this.movieList.appendMovies(movies);
 
-		this.updateMoreButtonDisplay();
+			this.updateMoreButtonDisplay();
+		} catch (e) {
+			const statusCode = e?.response?.status || e?.statusCode || 0;
+
+			alert(getErrorMessageByStatusCode(statusCode));
+		}
 	}
 }
