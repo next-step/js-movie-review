@@ -1,7 +1,7 @@
 import { MovieService } from '../Models';
 import { MovieView } from '../View';
 import { Fetcher } from '../api';
-import { EVENT, SELECTOR } from '../constants';
+import { EVENT, MOVIE_FETCH_UNIT, SELECTOR } from '../constants';
 
 export class MovieController {
   #service;
@@ -41,13 +41,13 @@ export class MovieController {
   }
 
   async #getMovie() {
-    const components = this.#view.createMovieComponent(20);
+    const components = this.#view.createMovieComponent(MOVIE_FETCH_UNIT);
     const movies = await this.#fetchBranch();
 
-    if (movies.length < 20) this.#view.hideMovieFetchButton();
-    if (movies.length === 20) this.#view.renderMovieFetchButton();
+    if (movies.length < MOVIE_FETCH_UNIT) this.#view.hideMovieFetchButton();
+    if (movies.length === MOVIE_FETCH_UNIT) this.#view.renderMovieFetchButton();
 
-    for (let i = 0; i < 20; i++) components[i].render(movies[i]);
+    for (let i = 0; i < MOVIE_FETCH_UNIT; i++) components[i].render(movies[i]);
   }
 
   async #fetchBranch() {
