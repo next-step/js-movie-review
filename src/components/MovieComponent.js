@@ -3,12 +3,20 @@ import starFilled from '../assets/star_filled.png';
 export class MovieComponent {
   #element = document.createElement('li');
 
-  constructor() {
-    this.#showSkeleton();
-  }
-
   get component() {
     return this.#element;
+  }
+
+  showSkeleton() {
+    this.#element.innerHTML = `
+        <a href="#">
+          <div class="item-card">
+            <div class="item-thumbnail skeleton"></div>
+            <p class="item-title skeleton"></p>
+            <p class="item-score skeleton"></p>
+          </div>
+        </a>
+    `;
   }
 
   render(movie) {
@@ -26,18 +34,6 @@ export class MovieComponent {
           }" alt="별점" /> ${rating}</p>
         </div>
       </a>
-    `;
-  }
-
-  #showSkeleton() {
-    this.#element.innerHTML = `
-        <a href="#">
-          <div class="item-card">
-            <div class="item-thumbnail skeleton"></div>
-            <p class="item-title skeleton"></p>
-            <p class="item-score skeleton"></p>
-          </div>
-        </a>
     `;
   }
 

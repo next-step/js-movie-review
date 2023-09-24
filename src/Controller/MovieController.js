@@ -42,12 +42,19 @@ export class MovieController {
 
   async #getMovie() {
     const components = this.#view.createMovieComponent(MOVIE_FETCH_UNIT);
-    const movies = await this.#fetchMovie();
+    components.forEach((component) => component.showSkeleton());
 
+    const movies = await this.#fetchMovie();
+    this.#handleFetchButton(movies);
+
+    components.forEach(
+      (component, index) => movies[index] && component.render(movies[index])
+    );
+  }
+
+  #handleFetchButton(movies) {
     if (movies.length < MOVIE_FETCH_UNIT) this.#view.hideMovieFetchButton();
     if (movies.length === MOVIE_FETCH_UNIT) this.#view.renderMovieFetchButton();
-
-    for (let i = 0; i < MOVIE_FETCH_UNIT; i++) components[i].render(movies[i]);
   }
 
   async #fetchMovie() {
