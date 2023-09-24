@@ -1,6 +1,6 @@
 import './styles/index.css';
 import logo from './assets/logo.png';
-import { MovieController } from './Controller/MovieController';
+import { MovieController } from './Controller';
 
 const initializeApp = () => {
   document.querySelector("img[src='./src/assets/logo.png']").src = logo;
