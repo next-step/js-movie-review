@@ -17,14 +17,14 @@ export class MovieController {
   #initial() {
     this.#setupFetchButtonEvent();
     this.#setupSearchButtonEvent();
-    this.#getMovie();
+    this.#getMovies();
   }
 
   /* BindEvent */
   #setupFetchButtonEvent() {
     const fetchButton = document.querySelector(SELECTOR.FETCH_BUTTON);
     fetchButton.addEventListener(EVENT.CLICK, () => {
-      this.#getMovie();
+      this.#getMovies();
     });
   }
 
@@ -36,11 +36,11 @@ export class MovieController {
       this.#view.clearMovies();
       this.#service.resetPage();
       this.#searchTerm = searchInput.value.trim();
-      this.#getMovie();
+      this.#getMovies();
     });
   }
 
-  async #getMovie() {
+  async #getMovies() {
     const components = this.#view.createMovieComponent(MOVIE_FETCH_UNIT);
     components.forEach((component) => component.showSkeleton());
 
@@ -59,7 +59,7 @@ export class MovieController {
 
   #fetchMovie() {
     return this.#searchTerm
-      ? this.#service.searchMovie(this.#searchTerm)
-      : this.#service.getMovie();
+      ? this.#service.searchMovies(this.#searchTerm)
+      : this.#service.getMovies();
   }
 }

@@ -1,7 +1,7 @@
 import { ERROR, EVENT } from '../constants';
 
 export class Fetcher {
-  isLoading = false;
+  loading = false;
   eventListener = new EventTarget();
 
   async get(endpoint, config = {}) {
@@ -21,8 +21,8 @@ export class Fetcher {
     return await response.json();
   }
 
-  #setLoading(loadingState) {
-    this.isLoading = loadingState;
+  #setLoading(loading) {
+    this.loading = loading;
     this.eventListener.dispatchEvent(new Event(EVENT.LOADING_STATE_CHANGE));
   }
 }
