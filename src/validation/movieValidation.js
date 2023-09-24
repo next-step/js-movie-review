@@ -1,27 +1,18 @@
-import { MIN_MOVIE_RATING, MAX_MOVIE_RATING, ERROR } from '../constants';
+import { MIN_MOVIE_RATING, MAX_MOVIE_RATING } from '../constants';
 
-const isValidString = (value) => {
-  if (!(typeof value === 'string' && value.trim() !== ''))
-    throw new Error(ERROR.MOVIE.INVALID_STRING);
+export const isValidString = (value) => {
+  if (typeof value === 'string' && value.trim() !== '') return true;
+
+  return false;
 };
 
-const isValidRating = (value) => {
+export const isValidRating = (value) => {
   if (
-    !(
-      typeof value === 'number' &&
-      MIN_MOVIE_RATING <= value &&
-      value <= MAX_MOVIE_RATING
-    )
+    typeof value === 'number' &&
+    MIN_MOVIE_RATING <= value &&
+    value <= MAX_MOVIE_RATING
   )
-    throw new Error(
-      ERROR.MOVIE.INVALID_RATING(MIN_MOVIE_RATING, MAX_MOVIE_RATING)
-    );
-};
+    return true;
 
-export const validateMovie = (movieData) => {
-  const { title, rating, description } = movieData;
-
-  isValidString(title);
-  isValidRating(rating);
-  isValidString(description);
+  return false;
 };
