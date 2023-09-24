@@ -22,7 +22,7 @@ export class MovieComponent {
   render(movie) {
     if (!movie) return this.remove();
 
-    const { title, thumbnail, rating } = movie.getData();
+    const { title, thumbnail, rating } = movie;
 
     this.#element.innerHTML = `
       <a href="#">
