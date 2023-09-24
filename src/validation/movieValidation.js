@@ -1,5 +1,4 @@
-import { ERROR } from '../constants';
-import { MIN_MOVIE_RATING, MAX_MOVIE_RATING } from '../constants';
+import { MIN_MOVIE_RATING, MAX_MOVIE_RATING, ERROR } from '../constants';
 
 const isValidString = (value) => {
   if (!(typeof value === 'string' && value.trim() !== ''))
@@ -19,7 +18,7 @@ const isValidRating = (value) => {
     );
 };
 
-export const movieValidation = (movieData) => {
+export const validateMovie = (movieData) => {
   const { title, rating, description } = movieData;
 
   isValidString(title);

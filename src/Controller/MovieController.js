@@ -57,10 +57,9 @@ export class MovieController {
     if (movies.length === MOVIE_FETCH_UNIT) this.#view.renderMovieFetchButton();
   }
 
-  async #fetchMovie() {
-    if (this.#searchTerm)
-      return await this.#service.searchMovie(this.#searchTerm);
-
-    return await this.#service.getMovie();
+  #fetchMovie() {
+    return this.#searchTerm
+      ? this.#service.searchMovie(this.#searchTerm)
+      : this.#service.getMovie();
   }
 }
