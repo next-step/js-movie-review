@@ -42,7 +42,7 @@ export class MovieController {
 
   async #getMovie() {
     const components = this.#view.createMovieComponent(MOVIE_FETCH_UNIT);
-    const movies = await this.#fetchBranch();
+    const movies = await this.#fetchMovie();
 
     if (movies.length < MOVIE_FETCH_UNIT) this.#view.hideMovieFetchButton();
     if (movies.length === MOVIE_FETCH_UNIT) this.#view.renderMovieFetchButton();
@@ -50,7 +50,7 @@ export class MovieController {
     for (let i = 0; i < MOVIE_FETCH_UNIT; i++) components[i].render(movies[i]);
   }
 
-  async #fetchBranch() {
+  async #fetchMovie() {
     if (this.#searchTerm)
       return await this.#service.searchMovie(this.#searchTerm);
 
