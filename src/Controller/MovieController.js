@@ -1,6 +1,7 @@
-import { MovieService, Fetcher } from '../Models';
+import { MovieService } from '../Models';
 import { MovieView } from '../View';
-import { EVENT } from '../constants';
+import { Fetcher } from '../api';
+import { EVENT, SELECTOR } from '../constants';
 
 export class MovieController {
   #service;
@@ -21,17 +22,17 @@ export class MovieController {
 
   /* BindEvent */
   #setupFetchButtonEvent() {
-    const fetchButton = document.querySelector('#movie-fetch-button');
-    fetchButton.addEventListener(EVENT.CLICK, async () => {
+    const fetchButton = document.querySelector(SELECTOR.FETCH_BUTTON);
+    fetchButton.addEventListener(EVENT.CLICK, () => {
       this.#getMovie();
     });
   }
 
   #setupSearchButtonEvent() {
-    const searchButton = document.querySelector('#movie-search-button');
-    const searchInput = document.querySelector('#movie-search-input');
+    const searchButton = document.querySelector(SELECTOR.SEARCH_BUTTON);
+    const searchInput = document.querySelector(SELECTOR.SEARCH_INPUT);
 
-    searchButton.addEventListener(EVENT.CLICK, async () => {
+    searchButton.addEventListener(EVENT.CLICK, () => {
       this.#view.clearMovies();
       this.#service.resetPage();
       this.#searchTerm = searchInput.value.trim();

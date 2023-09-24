@@ -1,7 +1,8 @@
 import { MovieComponent } from '../components/MovieComponent';
+import { SELECTOR } from '../constants';
 
 export class MovieView {
-  #movieList = document.querySelector('.item-list');
+  #movieList = document.querySelector(SELECTOR.ITEM_LIST);
 
   constructor() {}
 
@@ -20,20 +21,20 @@ export class MovieView {
   }
 
   hideMovieFetchButton() {
-    const fetchButton = document.querySelector('#movie-fetch-button');
+    const fetchButton = document.querySelector(SELECTOR.FETCH_BUTTON);
 
     fetchButton.classList.remove('display');
     fetchButton.classList.add('hidden');
   }
 
   renderMovieFetchButton() {
-    const fetchButton = document.querySelector('#movie-fetch-button');
+    const fetchButton = document.querySelector(SELECTOR.FETCH_BUTTON);
 
     fetchButton.classList.remove('hidden');
     fetchButton.classList.add('display');
   }
 
   getSearchTerm() {
-    return document.querySelector('#movie-search-input');
+    return document.querySelector(SELECTOR.SEARCH_INPUT);
   }
 }
