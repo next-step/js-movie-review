@@ -1,6 +1,6 @@
 import { MovieComponent } from '../components/MovieComponent';
 
-export class View {
+export class MovieView {
   #movieList = document.querySelector('.item-list');
 
   constructor() {}

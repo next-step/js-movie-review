@@ -1,11 +1,10 @@
-import { MovieService } from '../Models/Movie/MovieService';
-import { Fetcher } from '../Models/Fetcher';
-import { View } from '../View/View';
+import { MovieService, Fetcher } from '../Models';
+import { MovieView } from '../View';
 import { EVENT } from '../constants';
 
 export class MovieController {
   #service;
-  #view = new View();
+  #view = new MovieView();
   #fetcher = new Fetcher();
   #searchTerm = '';
 
@@ -14,7 +13,7 @@ export class MovieController {
     this.#initial();
   }
 
-  async #initial() {
+  #initial() {
     this.#setupFetchButtonEvent();
     this.#setupSearchButtonEvent();
     this.#getMovie();
