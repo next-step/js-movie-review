@@ -1,5 +1,5 @@
 import MovieList from './components/MovieList';
-import SearchBar from './components/SearchBar';
+import { renderSearchBar } from './components/SearchBar';
 import MoreButton from './components/MoreButton';
 
 import { HTMLFormat } from './lib/HTMLFormat';
@@ -7,15 +7,12 @@ import { getMoviePopular, getSearchMovie } from './api/TMDB_API';
 import { getErrorMessageByStatusCode } from './lib/errorMessage';
 import { addModalCloseEvent } from './components/Modal';
 
-let state = {
+const state = {
 	query: '',
 	page: 1,
 	totalPages: 1,
 };
 
-let rootView;
-let searchBar;
-let itemViewSection;
 let movieList;
 let moreButton;
 
@@ -26,7 +23,7 @@ async function runApp() {
 }
 
 function renderApp() {
-	rootView = document.querySelector('#app');
+	const rootView = document.querySelector('#app');
 
 	const layoutFragment = document.createDocumentFragment();
 
@@ -41,9 +38,9 @@ function renderApp() {
 
 	rootView.appendChild(layoutFragment);
 
-	itemViewSection = document.querySelector('section.item-view');
+	const itemViewSection = document.querySelector('section.item-view');
 
-	searchBar = new SearchBar(header, handleSearch);
+	renderSearchBar(header, handleSearch);
 
 	movieList = new MovieList(itemViewSection);
 	moreButton = new MoreButton(itemViewSection, handleMoreButtonClick);
