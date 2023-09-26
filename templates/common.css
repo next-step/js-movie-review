@@ -63,6 +63,8 @@ button {
   width: 180px;
   height: 270px;
   background-size: contain;
+
+  cursor: pointer;
 }
 
 .item-title {

@@ -7,7 +7,13 @@ export default class MovieCard {
 	constructor(movie) {
 		this.info = movie;
 		this.#element = document.createElement('li');
-		this.#element.innerHTML = HTMLFormat.MOVIE_CARD(this.info.title, this.info.vote, this.info.posterPath);
+
+		this.#element.innerHTML = HTMLFormat.MOVIE_CARD(
+			this.info.title,
+			this.info.vote,
+			this.info.posterPath,
+			this.info.id,
+		);
 	}
 
 	get element() {

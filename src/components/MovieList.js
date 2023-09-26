@@ -1,4 +1,5 @@
 import MovieCard from './MovieCard';
+import { openModal } from './Modal';
 
 export default class MovieList {
 	#movies = [];
@@ -9,6 +10,12 @@ export default class MovieList {
 		this.#container.classList.add('item-list');
 
 		rootElement.appendChild(this.#container);
+
+		this.#container.addEventListener('click', event => {
+			if (event.target.dataset.index) {
+				openModal(event.target.dataset.index);
+			}
+		});
 	}
 
 	renderMovies() {
