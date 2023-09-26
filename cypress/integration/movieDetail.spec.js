@@ -1,12 +1,12 @@
 const ELEMENT = Object.freeze({
 	CARD_THUMBNAIL: () => cy.get('img.item-thumbnail'),
-	MODAL_TITLE: () => cy.get('div.modal-title'),
-	MODAL_GENRE: () => cy.get('div.modal-item-genre'),
-	MODAL_VOTE: () => cy.get('div.modal-item-vote'),
-	MODAL_DESCRIPTION: () => cy.get('div.modal-item-detail'),
-	MODAL_CLOSE: () => cy.get('div.modal-close'),
+	MODAL_TITLE: () => cy.get('.modal-title'),
+	MODAL_GENRE: () => cy.get('.modal-item-genre'),
+	MODAL_VOTE: () => cy.get('.modal-item-vote'),
+	MODAL_DESCRIPTION: () => cy.get('.modal-item-detail'),
+	MODAL_CLOSE: () => cy.get('.modal-close'),
 	MODAL_IMG: () => cy.get('img.modal-item-poster'),
-	MODAL: () => cy.get('div.modal'),
+	MODAL: () => cy.get('.modal'),
 });
 
 describe('영화 카드 클릭 동작 테스트', () => {
