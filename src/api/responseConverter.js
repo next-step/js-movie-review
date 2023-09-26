@@ -14,7 +14,7 @@ export const convertTMDBMovieDetailResponse = response => {
 	return {
 		title: response.title,
 		id: response.id,
-		genres: response.genres.map(genre => genre.name),
+		genreNames: response.genres.map(genre => genre.name),
 		posterPath: response['poster_path'],
 		description: response.overview,
 		vote: response['vote_average'],

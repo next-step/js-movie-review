@@ -48,7 +48,7 @@ export const openModal = async id => {
 		posterImage.src = `https://image.tmdb.org/t/p/w220_and_h330_face/${movie.posterPath}`;
 
 		title.innerText = movie.title;
-		genre.innerText = movie.genres.join(', ');
+		genre.innerText = movie.genreNames.join(', ');
 		description.innerText = movie.description;
 		vote.innerText = movie.vote.toFixed(1);
 
