@@ -40,6 +40,9 @@ button {
 .item-view h2 {
   font-size: 2rem;
   font-weight: bold;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
 }
 
@@ -83,7 +86,7 @@ button {
 .item-title.skeleton::after,
 .item-score.skeleton::after {
   font-size: 0;
-  content: "loading";
+  content: 'loading';
 }
 
 .full-width {
@@ -108,8 +111,21 @@ button.primary {
 .item-card .skeleton {
   background: linear-gradient(-90deg, #aaa, #f0f0f0, #aaa, #f0f0f0);
   background-size: 400%;
+  -webkit-animation: skeleton-animation 5s infinite ease-out;
   animation: skeleton-animation 5s infinite ease-out;
   border-radius: 8px;
+}
+
+@-webkit-keyframes skeleton-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes skeleton-animation {
@@ -138,6 +154,9 @@ header {
 
 header h1 {
   cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   user-select: none;
   font-size: 2rem;
   font-weight: bold;
@@ -159,6 +178,6 @@ header .search-box > .search-button {
   width: 14px;
   border: 0;
   text-indent: -1000rem;
-  background: url("./search_button.png") transparent no-repeat 0 1px;
+  background: url('../assets/search_button.png') transparent no-repeat 0 1px;
   background-size: contain;
 }

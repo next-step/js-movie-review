@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DotEnv = require('dotenv-webpack');
 
 module.exports = {
-  entry: ['./src/index.js'],
+  entry: ['./src/js/index.js'],
   mode: 'development',
   resolve: {
     extensions: ['.js'],
@@ -21,7 +21,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './templates/index.html',
+      template: './src/index.html',
     }),
     new DotEnv(),
   ],
