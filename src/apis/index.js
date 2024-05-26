@@ -7,8 +7,7 @@ export async function getMovieList(page) {
     url.search = new URLSearchParams(params).toString();
 
     const res = await fetch(url).then((res) => res.json());
-
-    return res.results;
+    return res;
   } catch (error) {
     console.log(error);
   }
