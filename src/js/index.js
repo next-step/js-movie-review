@@ -13,7 +13,6 @@ const cinema = new Cinema();
 async function renderMovieItems(pages) {
     try {
         cinema.showSkeleton(true);
-        await new Promise((resolve) => setTimeout(resolve, 3000));
         const itemList = await getMovieList(pages);
         if (itemList.success !== false) {
             const newMoveList = itemList.results.map((item) => new Movie(item));
