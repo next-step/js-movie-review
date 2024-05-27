@@ -54,18 +54,30 @@ addEventListener('DOMContentLoaded', () => {
                 cinema.setMovies(newMoveList);
                 cinema.showMovies();
             }
-        } catch (error) {}
+        } catch (error) {
+            const modal = new Modal();
+            modal.content = `${covertError(error.name)}`;
+            document.querySelector('body').appendChild(modal.rendered);
+            moreMovies.style.display = 'none';
+        }
     });
 
     searchInput.addEventListener('keydown', async ({ key }) => {
         if (key === 'Enter') {
-            if (searchInput.value) {
-                const res = await getSearchedMovies(searchInput.value);
-                const newMoveList = res.results.map((item) => new Movie(item));
-                cinema.resetMovies();
-                renderTitle(`"${searchInput.value}" 검색 결과`);
-                cinema.setMovies(newMoveList);
-                cinema.showMovies();
+            try {
+                if (searchInput.value) {
+                    const res = await getSearchedMovies(searchInput.value);
+                    const newMoveList = res.results.map((item) => new Movie(item));
+                    cinema.resetMovies();
+                    renderTitle(`"${searchInput.value}" 검색 결과`);
+                    cinema.setMovies(newMoveList);
+                    cinema.showMovies();
+                }
+            } catch (error) {
+                const modal = new Modal();
+                modal.content = `${covertError(error.name)}`;
+                document.querySelector('body').appendChild(modal.rendered);
+                moreMovies.style.display = 'none';
             }
         }
     });
