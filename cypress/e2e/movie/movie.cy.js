@@ -32,4 +32,20 @@ context('영화 관련 테스팅', () => {
 
         cy.get('@popularMovies').its('body.success').should('eq', false);
     });
+
+    it('검색란에 원하는 단어를 입력하고 검색 버튼을 누르면 해당 결과가 나온다.', () => {
+        cy.get('#search-input').type('고질라');
+        cy.get('.search-button').click();
+        cy.get('.item-list li').should('exist');
+    });
+
+    it('검색란에 원하는 단어를 입력하고 엔터키를 누르면 검색 결과가 나온다.', () => {
+        cy.get('#search-input').type('고질라').type('{enter}');
+        cy.get('.item-list li').should('exist');
+    });
+
+    it('검색란에 원하는 단어를 누르고 엔터키를 눌렀을떄, 결과가 없을 경우도 있다.', () => {
+        cy.get('#search-input').type('@@@@').type('{enter}');
+        cy.get('.item-list li').should('have.length', 0);
+    });
 });
