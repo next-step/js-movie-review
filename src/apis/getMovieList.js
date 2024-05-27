@@ -1,6 +1,6 @@
 const BASE_URL = 'https://api.themoviedb.org/3//movie/popular';
 
-export async function getMovieList(page) {
+async function getMovieList(page) {
     try {
         const url = new URL(BASE_URL);
         const params = { api_key: process.env.TMDB_API_KEY, page: page, language: 'ko-KR' };
@@ -22,3 +22,6 @@ export async function getMovieList(page) {
         console.log('error', error);
     }
 }
+
+
+export default getMovieList;
