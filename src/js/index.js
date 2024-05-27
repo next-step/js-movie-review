@@ -1,6 +1,6 @@
 import '../styles/reset.css';
 import '../styles/common.css';
-import { getMovieList } from '../apis';
+import getMovieList from '../apis/getMovieList';
 import { Modal } from './view/modal';
 import { covertError } from './domain/error';
 import { Movie } from './domain/movie';
@@ -8,12 +8,12 @@ import { Cinema } from './view/cinema';
 import { renderHeader } from './view/header';
 import { renderLogo } from './view/logo';
 import { renderSearchBox } from './view/seachBox';
+import getSearchedMovies from '../apis/getSearchEdMovies';
+import renderTitle from './view/title';
 
 const moreMovies = document.getElementById('more-movies');
-const seacrhInput = document.getElementById('search-input');
 
 const cinema = new Cinema();
-const searchCinema = new Cinema();
 
 async function renderMovieItems(pages) {
     try {
@@ -39,21 +39,35 @@ async function renderMovieItems(pages) {
 addEventListener('DOMContentLoaded', () => {
     renderHeader(renderLogo(), renderSearchBox());
     renderMovieItems(cinema.page);
+    renderTitle('지금 인기 있는 영화');
 
     const searchButton = document.querySelector('.search-button');
+    const searchInput = document.getElementById('search-input');
 
-    searchButton.addEventListener('click', () => {
-        console.log('test');
-        async function test() {
-            const res = await fetch(
-                'https://api.themoviedb.org/3/search/movie?query=Jack+Reacher&api_key=cd45ff31f728c6222a2830fc1fb7f44e',
-                {
-                    method: 'GET'
-                }
-            );
-            console.log('res', res);
+    searchButton.addEventListener('click', async () => {
+        try {
+            if (searchInput.value) {
+                const res = await getSearchedMovies(searchInput.value);
+                const newMoveList = res.results.map((item) => new Movie(item));
+                cinema.resetMovies();
+                renderTitle(`"${searchInput.value}" 검색 결과`);
+                cinema.setMovies(newMoveList);
+                cinema.showMovies();
+            }
+        } catch (error) {}
+    });
+
+    searchInput.addEventListener('keydown', async ({ key }) => {
+        if (key === 'Enter') {
+            if (searchInput.value) {
+                const res = await getSearchedMovies(searchInput.value);
+                const newMoveList = res.results.map((item) => new Movie(item));
+                cinema.resetMovies();
+                renderTitle(`"${searchInput.value}" 검색 결과`);
+                cinema.setMovies(newMoveList);
+                cinema.showMovies();
+            }
         }
-        test();
     });
 });
 
