@@ -26,7 +26,7 @@ export class Cinema {
                     />
                     <p class="item-title">${movieInfo.getTitle()}</p>
                     <p class="item-score">
-                    <img src="${starFilled}" alt="별점" /> ${movieInfo.getVoteAverage()}
+                    ${movieInfo.getVoteAverage()} <img src="${starFilled}" alt="별점" /> 
                     </p>
                   </div>
                 </a>
