@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "영화 리뷰 홈페이지 만들기",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "watch": "webpack --watch",
     "dev": "webpack serve",
