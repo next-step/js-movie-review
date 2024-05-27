@@ -37,6 +37,10 @@ export class Cinema {
         this.#moviesWrapper.innerHTML += newItemsHTML;
     }
 
+    resetMovies() {
+        this.#moviesWrapper.innerHTML = '';
+    }
+
     showSkeleton(flag) {
         if (flag === true) {
             const skeletonHTML = Array(20)
