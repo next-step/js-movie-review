@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url); // get the resolved path to t
 const __dirname = path.dirname(__filename);
 
 export default {
-  entry: "./src/index.js",
+  entry: ["./src/index.js", "./templates/reset.css", "./templates/common.css"],
   mode: "development",
   resolve: {
     extensions: [".js"],
