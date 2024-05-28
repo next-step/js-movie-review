@@ -1,5 +1,8 @@
 import Movie from "./Movie.js";
 
+const apiKey = window.Cypress
+  ? Cypress.env("TMDB_API_KEY")
+  : process.env.TMDB_API_KEY;
 class MovieList {
   #movies;
 
@@ -15,11 +18,7 @@ class MovieList {
     this.#movies.push(movie);
   }
 
-  async fetchMovies(
-    page,
-    apiKey = process.env.TMDB_API_KEY,
-    language = "ko-KR"
-  ) {
+  async fetchMovies(page, language = "ko-KR") {
     const baseUrl = "https://api.themoviedb.org/3/movie/popular";
     const param = new URLSearchParams({
       api_key: apiKey,

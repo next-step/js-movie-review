@@ -1,4 +1,4 @@
-import MovieList from "../../src/js/domain/MovieList";
+import MovieList from "../../src/js/domain/MovieList.js";
 
 describe("영화 목록 기능 테스트", () => {
   it("영화 목록 API를 호출하면 20개씩 목록에 나타나야 한다.", () => {
@@ -16,11 +16,10 @@ describe("영화 목록 기능 테스트", () => {
   it("영화 목록 API를 호출하고 응답값을 저장한다.", async () => {
     // given
     const currentPage = 1;
-    const apiKey = Cypress.env("TMDB_API_KEY");
     const movieList = new MovieList();
 
     // when
-    await movieList.fetchMovies(currentPage, apiKey);
+    await movieList.fetchMovies(currentPage);
 
     // then
     expect(movieList.movies).to.have.length(20);
