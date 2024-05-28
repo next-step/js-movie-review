@@ -6,6 +6,8 @@ const apiKey = window.Cypress
 class MovieList {
   #movies;
 
+  static MOVIES_PER_PAGE = 20;
+
   constructor() {
     this.#movies = [];
   }

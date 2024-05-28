@@ -10,10 +10,12 @@ describe("영화 목록 기능 테스트", () => {
     });
     cy.request(`${baseUrl}?${param}`).as("movies");
     cy.get("@movies").its("status").should("eq", 200);
-    cy.get("@movies").its("body.results").should("have.length", 20);
+    cy.get("@movies")
+      .its("body.results")
+      .should("have.length", MovieList.MOVIES_PER_PAGE);
   });
 
-  it("영화 목록 API를 호출하고 응답값을 저장한다.", async () => {
+  it("영화 목록 API를 호출하고 영화 목록을 저장한다.", async () => {
     // given
     const currentPage = 1;
     const movieList = new MovieList();
@@ -22,6 +24,6 @@ describe("영화 목록 기능 테스트", () => {
     await movieList.fetchMovies(currentPage);
 
     // then
-    expect(movieList.movies).to.have.length(20);
+    expect(movieList.movies).to.have.length(MovieList.MOVIES_PER_PAGE);
   });
 });
