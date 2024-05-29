@@ -10,45 +10,37 @@ import Movie from './api/movie';
 async function initialMovieList() {
   const $itemView = document.querySelector('.item-view');
   const $itemList = document.querySelector('.item-list');
+  const $moreButton = CTAButton({ text: '더보기' });
 
-  const popularMovies = await Movie.getPopular(PageHandler.getCurrentPage());
+  const popularMovieList = await Movie.getPopular(PageHandler.getCurrentPage());
+  const $cardList = popularMovieList.results.map(createMovieCard);
 
-  const $cardList = popularMovies.results.map(
-    ({ title, poster_path, vote_average }) =>
-      MovieCard({
-        title,
-        poster: `https://image.tmdb.org/t/p/w200${poster_path}`,
-        score: vote_average,
-        icon: StarFilledIcon,
-      })
-  );
+  $itemView.appendChild($moreButton).addEventListener('click', async () => {
+    const { page, done } = PageHandler.next();
+    if (done) {
+      $moreButton.classList.add('hidden');
+    }
+    const nextPopularMovieList = await Movie.getPopular(page);
+    const $cardList = nextPopularMovieList.results.map(createMovieCard);
 
-  $itemView
-    .appendChild(CTAButton({ text: '더보기' }))
-    .addEventListener('click', async () => {
-      const nextPopularMovies = await Movie.getPopular(PageHandler.next());
-      const $cardList = nextPopularMovies.results.map(
-        ({ title, poster_path, vote_average }) =>
-          MovieCard({
-            title,
-            poster: `https://image.tmdb.org/t/p/w200${poster_path}`,
-            score: vote_average,
-            icon: StarFilledIcon,
-          })
-      );
-      $cardList.forEach((v) => {
-        $itemList.appendChild(v);
-      });
-    });
-
-  $cardList.forEach((v) => {
-    $itemList.appendChild(v);
+    $cardList.forEach((el) => $itemList.appendChild(el));
   });
+
+  $cardList.forEach((el) => $itemList.appendChild(el));
 
   $itemList.addEventListener('click', ({ target }) => {
     if (target.matches('.item-list .item-thumbnail')) {
       PageHandler.reset();
     }
+  });
+}
+
+function createMovieCard({ title, poster_path, vote_average }) {
+  return MovieCard({
+    title,
+    poster: `https://image.tmdb.org/t/p/w200${poster_path}`,
+    score: vote_average,
+    icon: StarFilledIcon,
   });
 }
 
