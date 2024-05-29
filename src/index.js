@@ -1,28 +1,13 @@
 import './css/reset.css';
 import './css/common.css';
 import StarFilledIcon from './assets/star_filled.png';
-import Logo from './assets/logo.png';
-import { MovieCard } from './components/MovieCard';
-
-function Layout() {
-  return `
-    <header>
-      <h1><img src="${Logo}" alt="MovieList 로고" /></h1>
-      <div class="search-box">
-        <input type="text" placeholder="검색" />
-        <button class="search-button">검색</button>
-      </div>
-    </header>
-    <main>
-      <section class="item-view">
-        <h2>지금 인기 있는 영화</h2>
-        <ul class="item-list"></ul>
-      </section>
-    </main>
-  `;
-}
+import PageHandler from './utils/PageHandler';
+import MovieCard from './components/MovieCard';
+import CTAButton from './components/CTAButton';
+import Layout from './components/Layout';
 
 async function initialMovieList() {
+  const $itemView = document.querySelector('.item-view');
   const $itemList = document.querySelector('.item-list');
 
   const param = new URLSearchParams({
@@ -44,16 +29,23 @@ async function initialMovieList() {
     })
   );
 
+  $itemView
+    .appendChild(CTAButton({ text: '더보기' }))
+    .addEventListener('click', () => {
+      PageHandler.next();
+    });
+
   $cardList.forEach((v) => {
     $itemList.appendChild(v);
   });
 
-  $itemList.insertAdjacentHTML(
-    'afterend',
-    `<button class="btn primary full-width">더 보기</button>`
-  );
+  $itemList.addEventListener('click', ({ target }) => {
+    if (target.matches('.item-list .item-thumbnail')) {
+      PageHandler.reset();
+    }
+  });
 }
 
 const app = document.getElementById('app');
-app.insertAdjacentHTML('afterbegin', Layout());
+app.appendChild(Layout());
 addEventListener('DOMContentLoaded', initialMovieList);
