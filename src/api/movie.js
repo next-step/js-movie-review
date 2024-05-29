@@ -9,6 +9,7 @@ async function getPopular(page) {
     ...DEFAULT_SEARCH_PARAMS,
     page,
   });
+
   return await fetch(`${MOVIE_BASE_URL}/popular?${param}`).then((res) =>
     res.json()
   );

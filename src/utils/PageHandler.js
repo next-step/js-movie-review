@@ -10,6 +10,7 @@ function PageEventHandler() {
   return {
     next() {
       attr.page = attr.page + 1;
+      return attr.page;
     },
     getCurrentPage() {
       return attr.page;

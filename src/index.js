@@ -26,10 +26,7 @@ async function initialMovieList() {
   $itemView
     .appendChild(CTAButton({ text: '더보기' }))
     .addEventListener('click', async () => {
-      PageHandler.next();
-      const nextPopularMovies = await Movie.getPopular(
-        PageHandler.getCurrentPage()
-      );
+      const nextPopularMovies = await Movie.getPopular(PageHandler.next());
       const $cardList = nextPopularMovies.results.map(
         ({ title, poster_path, vote_average }) =>
           MovieCard({
