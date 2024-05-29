@@ -1,0 +1,406 @@
+{
+  "page":1,
+  "results":[
+    {
+      "adult":false,
+      "backdrop_path":"/xRd1eJIDe7JHO5u4gtEYwGn5wtf.jpg",
+      "genre_ids":[
+        878,
+        28,
+        12
+      ],
+      "id":823464,
+      "original_language":"en",
+      "original_title":"Godzilla x Kong: The New Empire",
+      "overview":"두 타이탄의 전설적인 대결 이후 할로우 어스에 남은 콩은 드디어 애타게 찾던 동족을 발견하지만 그 뒤에 도사리고 있는 예상치 못한 위협에 맞닥뜨린다. 한편, 깊은 동면에 빠진 고질라는 알 수 없는 신호로 인해 깨어나고 푸른 눈의 폭군 스카 킹의 지배 아래 위기에 처한 할로우 어스를 마주하게 된다. 할로우 어스는 물론, 지구상에도 출몰해 전세계를 초토화시키는 타이탄들의 도발 속에서 고질라와 콩은 사상 처음으로 한 팀을 이뤄 반격에 나서기로 하는데…",
+      "popularity":3148.883,
+      "poster_path":"/4z1VMmlxHrziG45901esjB4dpIa.jpg",
+      "release_date":"2024-03-27",
+      "title":"고질라 X 콩: 뉴 엠파이어",
+      "video":false,
+      "vote_average":7.254,
+      "vote_count":2262
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/z121dSTR7PY9KxKuvwiIFSYW8cf.jpg",
+      "genre_ids":[
+        10752,
+        28,
+        18
+      ],
+      "id":929590,
+      "original_language":"en",
+      "original_title":"Civil War",
+      "overview":"이 영화는 뉴욕에서 워싱턴 D.C.로 여행하는 기자 팀을 따라가며, 권위주의 연방 정부와 여러 지역 파벌간에 미국 전역에서 벌어진 내전을 그린다. 이들 기자들은 반란군이 백악관을 전복하기 전에 워싱턴 D.C.에 도착하려고 노력한다. 이 영화는 전쟁에 대한 충격적이고 폭력적인 사건들을 탐구하면서 미래의 미국을 배경으로 한 언론 윤리에 대한 사색을 제공한다",
+      "popularity":2767.933,
+      "poster_path":"/sh7Rg8Er3tFcN9BpKIPOMvALgZd.jpg",
+      "release_date":"2024-04-10",
+      "title":"시빌 워",
+      "video":false,
+      "vote_average":7.23,
+      "vote_count":990
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/fqv8v6AycXKsivp1T5yKtLbGXce.jpg",
+      "genre_ids":[
+        878,
+        12,
+        28
+      ],
+      "id":653346,
+      "original_language":"en",
+      "original_title":"Kingdom of the Planet of the Apes",
+      "overview":"진화한 유인원과 퇴화된 인간들이 살아가는 땅. 유인원 리더 프록시무스는 완전한 군림을 위해 인간들을 사냥하며 자신의 제국을 건설한다. 한편, 또 다른 유인원 노아는 우연히 숨겨진 과거의 이야기와 시저의 가르침을 듣게 되고 인간과 유인원이 함께 할 새로운 세상을 꿈꾼다. 어느 날 그의 앞에 나타난 의문의 한 인간 소녀. 노아는 그녀와 함께 자유를 향한 여정을 시작하게 되는데…",
+      "popularity":3629.389,
+      "poster_path":"/plNOSbqkSuGEK2i15A5btAXtB7t.jpg",
+      "release_date":"2024-05-08",
+      "title":"혹성탈출: 새로운 시대",
+      "video":false,
+      "vote_average":7.1,
+      "vote_count":637
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/H5HjE7Xb9N09rbWn1zBfxgI8uz.jpg",
+      "genre_ids":[
+        28,
+        35
+      ],
+      "id":746036,
+      "original_language":"en",
+      "original_title":"The Fall Guy",
+      "overview":"잠수 이별을 택하고 후회뿐인 날을 보내던 스턴트맨 ‘콜트’(라이언 고슬링) 영화감독이 된 전 여친 ‘조디’(에밀리 블런트)의 촬영장에 복귀하며 아련한 재회를 기대했지만… 갑자기 주연배우가 사라지고 콜트는 우선 그부터 찾아야만 한다! <데드풀 2> 감독이 말아주는 코미디, 액션, 로맨스 장르 풀코스 액션도 터지고, 사랑도 터지고, 웃음도 터진다!",
+      "popularity":1915.521,
+      "poster_path":"/aUZ176q7ldMaPLYVnmaFWK4CApE.jpg",
+      "release_date":"2024-04-24",
+      "title":"스턴트맨",
+      "video":false,
+      "vote_average":7.325,
+      "vote_count":806
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/q8IEFmEGGSGmAWfwRs23XDwdFN4.jpg",
+      "genre_ids":[
+        28,
+        12,
+        878
+      ],
+      "id":786892,
+      "original_language":"en",
+      "original_title":"Furiosa: A Mad Max Saga",
+      "overview":"문명 붕괴 45년 후, 황폐해진 세상에 무참히 던져진 '퓨리오사'가 고향으로 돌아가기 위해 자신의 인생 전부를 걸고 떠나는 거대한 여정을 그린 액션 블록버스터",
+      "popularity":1193.177,
+      "poster_path":"/zaUFDdJidS4Nyyd6jb2Ok3Kq4Vo.jpg",
+      "release_date":"2024-05-22",
+      "title":"퓨리오사: 매드맥스 사가",
+      "video":false,
+      "vote_average":7.726,
+      "vote_count":403
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/iafs5DG5fGq7ef0acl3xlX4BFrs.jpg",
+      "genre_ids":[
+        18,
+        10770
+      ],
+      "id":1219685,
+      "original_language":"fr",
+      "original_title":"Un père idéal",
+      "overview":"",
+      "popularity":905.771,
+      "poster_path":"/4xJd3uwtL1vCuZgEfEc8JXI9Uyx.jpg",
+      "release_date":"2024-04-21",
+      "title":"Un père idéal",
+      "video":false,
+      "vote_average":5.79,
+      "vote_count":31
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/42rp8MkwOEFA62wwgKcuOpP8Fjb.jpg",
+      "genre_ids":[
+        28,
+        36,
+        18,
+        10752
+      ],
+      "id":660360,
+      "original_language":"ko",
+      "original_title":"노량: 죽음의 바다",
+      "overview":"임진왜란 발발로부터 7년이 지난 1598년 12월. 이순신은 왜군의 수장이던 도요토미 히데요시가 갑작스럽게 사망한 뒤 왜군들이 조선에서 황급히 퇴각하려 한다는 것을 알게 된다. 왜군을 완벽하게 섬멸하는 것이 이 전쟁을 올바르게 끝나는 것이라 생각한 이순신은 명나라와 조명연합함대를 꾸려 왜군의 퇴각로를 막고 적들을 섬멸하기로 결심한다. 하지만 왜군의 뇌물 공세에 넘어간 명나라 도독 진린은 왜군에게 퇴로를 열어주려 하고, 설상가상으로 왜군 수장인 시마즈의 살마군까지 왜군의 퇴각을 돕기 위해 노량으로 향하는데…",
+      "popularity":692.948,
+      "poster_path":"/WqgLrAbPnEfgn7WP7J2IvL1Z9V.jpg",
+      "release_date":"2023-12-20",
+      "title":"노량: 죽음의 바다",
+      "video":false,
+      "vote_average":7.159,
+      "vote_count":22
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/xOMo8BRK7PfcJv9JCnx7s5hj0PX.jpg",
+      "genre_ids":[
+        878,
+        12
+      ],
+      "id":693134,
+      "original_language":"en",
+      "original_title":"Dune: Part Two",
+      "overview":"황제의 모략으로 멸문한 가문의 유일한 후계자 폴. 어머니 레이디 제시카와 간신히 목숨만 부지한 채 사막으로 도망친다. 그곳에서 만난 반란군들과 숨어 지내다 그들과 함께 황제의 모든 것을 파괴할 전투를 준비한다. 한편 반란군들의 기세가 높아질수록 불안해진 황제와 귀족 가문은 잔혹한 암살자 페이드 로타를 보내 반란군을 몰살하려 하는데…",
+      "popularity":874.167,
+      "poster_path":"/8uUU2pxm6IYZw8UgnKJyx7Dqwu9.jpg",
+      "release_date":"2024-02-27",
+      "title":"듄: 파트 2",
+      "video":false,
+      "vote_average":8.2,
+      "vote_count":4176
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/3TNSoa0UHGEzEz5ndXGjJVKo8RJ.jpg",
+      "genre_ids":[
+        878,
+        28
+      ],
+      "id":614933,
+      "original_language":"en",
+      "original_title":"Atlas",
+      "overview":"AI를 극도로 불신하는 탁월한 대테러 분석가. 로봇 반역자를 체포하러 나선 임무가 틀어지면서, AI에 의지할 수밖에 없는 상황을 맞닥뜨린다.",
+      "popularity":820.285,
+      "poster_path":"/rMfyE8PjohOB8UWiKtZz7EOJyQK.jpg",
+      "release_date":"2024-05-23",
+      "title":"아틀라스",
+      "video":false,
+      "vote_average":6.715,
+      "vote_count":353
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/1m1rXopfNDVL3UMiv6kriYaJ3yE.jpg",
+      "genre_ids":[
+        28,
+        53,
+        80,
+        878
+      ],
+      "id":882059,
+      "original_language":"en",
+      "original_title":"Boy Kills World",
+      "overview":"풍부한 상상력을 지닌 청각장애 벙어리 소년 '보이'. 가족이 살해당한 뒤, 정글로 탈출한 보이는 신비한 t샤먼에게 훈련을 받아 자신의 유치한 상상을 억누르고 살인병기로 거듭난다.",
+      "popularity":795.815,
+      "poster_path":"/25JskXmchcYwj3jHRmcPm738MpB.jpg",
+      "release_date":"2024-04-24",
+      "title":"보이 킬스 월드",
+      "video":false,
+      "vote_average":6.784,
+      "vote_count":104
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/nb3xI8XI3w4pMVZ38VijbsyBqP4.jpg",
+      "genre_ids":[
+        18,
+        36
+      ],
+      "id":872585,
+      "original_language":"en",
+      "original_title":"Oppenheimer",
+      "overview":"제2차 세계대전 당시 핵무기 개발을 위해 진행되었던 비밀 프로젝트 ‘맨해튼 프로젝트’를 주도한 미국의 물리학자 ‘로버트 오펜하이머’의 이야기",
+      "popularity":774.93,
+      "poster_path":"/jpD6z9fgNe7OqsHoDeAWQWoULde.jpg",
+      "release_date":"2023-07-19",
+      "title":"오펜하이머",
+      "video":false,
+      "vote_average":8.099,
+      "vote_count":8131
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/fY3lD0jM5AoHJMunjGWqJ0hRteI.jpg",
+      "genre_ids":[
+        878,
+        27,
+        28
+      ],
+      "id":940721,
+      "original_language":"ja",
+      "original_title":"ゴジラ-1.0",
+      "overview":"고질라 탄생 70주년 기념 작품. 시리즈 사상 최악의 절망이 일본을 습격한다!  전후, 제로가 된 일본을 뒤쫓듯 나타난 고질라가 이 나라를 마이너스로 떨어뜨린다.  사상 최고로 절망적인 상황 속에서의 습격에 누가? 그리고 어떻게?  일본은 맞서게 되는 것인가...",
+      "popularity":755.261,
+      "poster_path":"/buvBq2zLP7CcJth8tjrI4znvfEO.jpg",
+      "release_date":"2023-11-03",
+      "title":"고질라: 마이너스 원",
+      "video":false,
+      "vote_average":7.661,
+      "vote_count":1185
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/kYgQzzjNis5jJalYtIHgrom0gOx.jpg",
+      "genre_ids":[
+        16,
+        28,
+        10751,
+        35,
+        14
+      ],
+      "id":1011985,
+      "original_language":"en",
+      "original_title":"Kung Fu Panda 4",
+      "overview":"마침내 내면의 평화… 냉면의 평화…가 찾아왔다고 믿는 용의 전사 ‘포’ 이젠 평화의 계곡의 영적 지도자가 되고, 자신을 대신할 후계자를 찾아야만 한다. “이제 용의 전사는 그만둬야 해요?” 용의 전사로의 모습이 익숙해지고 새로운 성장을 하기보다 지금 이대로가 좋은 ‘포’ 하지만 모든 쿵푸 마스터들의 능력을 그대로 복제하는 강력한 빌런 ‘카멜레온’이 나타나고 그녀를 막기 위해 정체를 알 수 없는 쿵푸 고수 ‘젠’과 함께 모험을 떠나게 되는데… 포는 가장 강력한 빌런과 자기 자신마저 뛰어넘고 진정한 변화를 할 수 있을까?",
+      "popularity":752.116,
+      "poster_path":"/1ZNOOMmILNUzVYbzG1j7GYb5bEV.jpg",
+      "release_date":"2024-03-02",
+      "title":"쿵푸팬더 4",
+      "video":false,
+      "vote_average":7.1,
+      "vote_count":1783
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/4XM8DUTQb3lhLemJC51Jx4a2EuA.jpg",
+      "genre_ids":[
+        28,
+        80,
+        53
+      ],
+      "id":385687,
+      "original_language":"en",
+      "original_title":"Fast X",
+      "overview":"돔과 그의 패밀리 앞에 나타난 운명의 적 단테. 과거의 그림자는 돔의 모든 것을 파괴하기 위해 달려온다. 단테에 의해 산산히 흩어진 패밀리들은 모두 목숨을 걸고 맞서야 하는 함정에 빠지고 마는데...",
+      "popularity":723.537,
+      "poster_path":"/wXNihLltMCGR7XepN39syIlCt5X.jpg",
+      "release_date":"2023-05-17",
+      "title":"분노의 질주: 라이드 오어 다이",
+      "video":false,
+      "vote_average":7.121,
+      "vote_count":5206
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/tdkCqOQ87ns39bWtzjJYsGTloH9.jpg",
+      "genre_ids":[
+        28,
+        80,
+        9648,
+        53
+      ],
+      "id":996154,
+      "original_language":"en",
+      "original_title":"Black Lotus",
+      "overview":"마테오는 인질 구출 작전 중, 상사 존의 명령을 무시하고 팀원들을 위기에 몰아넣는다. 그들은 가까스로 인질범들을 소탕하지만, 인질로 위장하고 있던 범인 중 한 명이 존을 사살한다. 그 후 마테오는 전역하고 전 세계를 떠돌며 일용직으로 근근히 살아간다. 존이 세상을 떠난 지 5년이 되던 날, 마테오는 존의 아내 헬렌을 찾아가 사과한다. 헬렌은 홀로 딸 앤지를 키우다가 투자 회사 사장 폴과 작년에 재혼을 했다. 딱히 묵을 곳이 없던 마테오는 헬렌의 집에서 며칠 묵기로 하고, 그의 딸 앤지와 친해진다. 한편, 폴은 폭력조직의 두목 개브리얼 사반의 돈을 관리하다가 투자를 잘못해 1,500만 유로를 날려 버린다. 사반은 돈을 찾아내라며 폴을 압박하고, 폴이 변명만 늘어놓자, 그의 딸 앤지를 납치한다. 이에 마테오는 앤지를 찾아 나서는데…",
+      "popularity":533.492,
+      "poster_path":"/jqHaAESQIA6bpEwPnE2Wulba40D.jpg",
+      "release_date":"2023-04-12",
+      "title":"블랙 로터스",
+      "video":false,
+      "vote_average":6.467,
+      "vote_count":105
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/tRS6jvPM9qPrrnx2KRp3ew96Yot.jpg",
+      "genre_ids":[
+        80,
+        9648,
+        53
+      ],
+      "id":414906,
+      "original_language":"en",
+      "original_title":"The Batman",
+      "overview":"지난 2년 간 고담시의 어둠 속에서 범법자들을 응징하며 배트맨으로 살아온 브루스 웨인. 알프레드와 제임스 고든 경위의 도움 아래 그는 도시의 부패한 공직자들과 고위 관료들 사이에서 복수의 화신으로 활약한다. 고담의 시장 선거를 앞두고 고담의 엘리트 집단을 목표로 잔악한 연쇄살인을 저지르는 수수께끼 킬러 리들러가 나타나자, 최고의 탐정 브루스 웨인이 수사에 나서고 남겨진 단서를 풀어가며 캣우먼, 펭귄, 카마인 팔코네, 리들러를 차례대로 만난다. 사이코 범인의 미스터리를 수사하면서 그 모든 증거가 자신을 향한 의도적인 메시지였음을 깨닫고,  리들러에게 농락 당한 배트맨은 광기에 사로잡힌다. 범인의 무자비한 계획을 막고 오랫동안 고담시를 썩게 만든 권력 부패의 고리를 끊어야 하지만, 부모님의 죽음에 얽힌 진실이 밝혀지자 복수와 정의 사이에서 갈등하는데...",
+      "popularity":645.607,
+      "poster_path":"/jicHGaOX5pHs7RKjfexMxvLkwjf.jpg",
+      "release_date":"2022-03-01",
+      "title":"더 배트맨",
+      "video":false,
+      "vote_average":7.677,
+      "vote_count":9624
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/lzWHmYdfeFiMIY4JaMmtR7GEli3.jpg",
+      "genre_ids":[
+        878,
+        12
+      ],
+      "id":438631,
+      "original_language":"en",
+      "original_title":"Dune",
+      "overview":"10191년, 아트레이데스 가문의 후계자인 폴은 시간과 공간을 초월해 과거와 미래를 모두 볼 수 있고, 더 나은 미래를 만들 유일한 구원자인 예지된 자의 운명을 타고났다. 그리고 어떤 계시처럼 매일 꿈에서 아라키스의 행성에 있는 한 여인을 만난다. 귀족들이 지지하는 아트레이데스 가문에 대한 황제의 질투는 폴과 그 일족들을 죽음이 기다리는 아라키스로 이끄는데...",
+      "popularity":642.642,
+      "poster_path":"/7zV8FTYofAORGm0Umgh1mNNCym8.jpg",
+      "release_date":"2021-09-15",
+      "title":"듄",
+      "video":false,
+      "vote_average":7.78,
+      "vote_count":11750
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/2mtxXjkQOLYPOhTKoCaWVVjKlfW.jpg",
+      "genre_ids":[
+        16,
+        35,
+        10751
+      ],
+      "id":748783,
+      "original_language":"en",
+      "original_title":"The Garfield Movie",
+      "overview":"세상귀찮 집냥이, 바쁘고 험난한 세상에 던져졌다! 집사 ‘존’과 반려견 ‘오디’를 기르며 평화로운 나날을 보내던 집냥이 ‘가필드’. 어느 날, 험악한 길냥이 무리에게 납치당해 냉혹한 거리로 던져진다. 돌봐주는 집사가 없는 집 밖 세상은 너무나도 정신없게 돌아가고 길에서 우연히 다시 만난 아빠 길냥이 ‘빅’은 오히려 ‘가필드’를 위기에 빠지게 하는데… 험난한 세상, 살아남아야 한다!",
+      "popularity":614.28,
+      "poster_path":"/57g3pHYi3p0JNVO1LkcyYbeMDBf.jpg",
+      "release_date":"2024-04-30",
+      "title":"가필드 더 무비",
+      "video":false,
+      "vote_average":6.513,
+      "vote_count":117
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/wODqakS0jinTUECNS6n4VomQbew.jpg",
+      "genre_ids":[
+        14,
+        12,
+        35
+      ],
+      "id":967847,
+      "original_language":"en",
+      "original_title":"Ghostbusters: Frozen Empire",
+      "overview":"무더운 여름의 뉴욕의 어느 날, 고대 유물 속 깨어난 데스칠로 인해 정체불명의 냉기가 몰려오고 마침내 도시는 얼어붙고 만다. 유령을 퇴치하는 그루버슨과 라이즈 버스터즈 멤버들은 얼어붙은 세상을 깨부수기 위해 유령 군단을 쫓기 시작하는데…",
+      "popularity":443.093,
+      "poster_path":"/mGzSIfzmcf9H91DS06cnka1SYrP.jpg",
+      "release_date":"2024-03-20",
+      "title":"고스트버스터즈: 오싹한 뉴욕",
+      "video":false,
+      "vote_average":6.658,
+      "vote_count":879
+    },
+    {
+      "adult":false,
+      "backdrop_path":"/9X7YweCJw3q8Mcf6GadxReFEksM.jpg",
+      "genre_ids":[
+        28,
+        18,
+        878
+      ],
+      "id":263115,
+      "original_language":"en",
+      "original_title":"Logan",
+      "overview":"2029년 알 수 없는 이유로 돌연변이들이 태어나지 않는 미래, 더이상 엑스맨은 없다. 갈수록 재생력이 약해져 늙고 수척해진 로건은 멕시코 국경지대 은신처에 찰스 교수를 보호 중이다. 뇌에 심각한 손상을 입은 찰스 교수는 과거를 제대로 기억하지 못하는 데다 간헐적으로 주변을 위협하는 발작까지 일으킨다. 찰스 교수와 함께 떠날 배를 사기 위해 리무진 기사로 일하며 돈을 모으는 로건. 어느 날 낯선 여인이 찾아와 돌연변이 소녀 로라를 캐나다 국경까지 데려다 달라고 부탁한다. 로건은 로라를 쫓는 기업의 경호집단을 피해 험난한 여정을 떠난다.",
+      "popularity":592.137,
+      "poster_path":"/tE6tvHXlAZ8hqM4k9ZvtWtBk4pc.jpg",
+      "release_date":"2017-02-28",
+      "title":"로건",
+      "video":false,
+      "vote_average":7.818,
+      "vote_count":18733
+    }
+  ],
+  "total_pages":44403,
+  "total_results":888045
+}
