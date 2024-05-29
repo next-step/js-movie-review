@@ -1,7 +1,8 @@
+const MOVIE_TOTAL_PAGE_LIMIT = 500;
+
 const INITIAL_VALUE = {
   page: 1,
-  size: 20,
-  totalPages: 500,
+  totalPages: MOVIE_TOTAL_PAGE_LIMIT,
 };
 
 function PageEventHandler() {
@@ -9,14 +10,32 @@ function PageEventHandler() {
 
   return {
     next() {
+      if (attr.page >= attr.totalPages) {
+        return {
+          page: attr.page,
+          done: true,
+        };
+      }
       attr.page = attr.page + 1;
-      return attr.page;
+
+      return {
+        page: attr.page,
+        done: attr.page >= attr.totalPages,
+      };
+    },
+    reset() {
+      attr = { ...INITIAL_VALUE };
     },
     getCurrentPage() {
       return attr.page;
     },
-    reset() {
-      attr = { ...INITIAL_VALUE };
+    setTotalPages(totalPages) {
+      if (totalPages > MOVIE_TOTAL_PAGE_LIMIT) {
+        throw TypeError(
+          `최대 조회 가능한 페이지는 ${MOVIE_TOTAL_PAGE_LIMIT}까지 입니다.`
+        );
+      }
+      attr.totalPages = totalPages;
     },
   };
 }
