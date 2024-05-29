@@ -115,6 +115,11 @@ button.primary {
   background-size: 400%;
   animation: skeleton-animation 5s infinite ease-out;
   border-radius: 8px;
+  color: rgba(0,0,0,0);
+}
+
+.item-card .skeleton img {
+  opacity: 0;
 }
 
 @keyframes skeleton-animation {
