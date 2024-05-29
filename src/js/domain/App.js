@@ -8,18 +8,8 @@ class App {
     this.#movieList = new MovieList();
   }
 
-  async init() {
-    await this.fetchNextPage();
-  }
-
-  get movies() {
-    return this.#movieList.movies;
-  }
-
-  get newMovies() {
-    return this.movies.slice(
-      (this.#currentPage - 1) * MovieList.MOVIES_PER_PAGE
-    );
+  get movieList() {
+    return this.#movieList;
   }
 
   get currentPage() {
@@ -30,9 +20,13 @@ class App {
     this.#currentPage = page;
   }
 
+  async init() {
+    await this.fetchNextPage();
+  }
+
   async fetchNextPage() {
     this.#currentPage++;
-    await this.#movieList.fetchMovies(this.#currentPage);
+    await this.movieList.fetchMovies(this.#currentPage);
   }
 }
 
