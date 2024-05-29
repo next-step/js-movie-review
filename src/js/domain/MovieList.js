@@ -1,12 +1,7 @@
+import Api from "./Api.js";
 import Movie from "./Movie.js";
-
-const apiKey = window.Cypress
-  ? Cypress.env("TMDB_API_KEY")
-  : process.env.TMDB_API_KEY;
 class MovieList {
   #movies;
-
-  static MOVIES_PER_PAGE = 20;
 
   constructor() {
     this.#movies = [];
@@ -20,18 +15,10 @@ class MovieList {
     this.#movies.push(movie);
   }
 
-  async fetchMovies(page, language = "ko-KR") {
-    const baseUrl = "https://api.themoviedb.org/3/movie/popular";
-    const param = new URLSearchParams({
-      api_key: apiKey,
-      language,
-      page,
-    });
+  async fetchMovies(page) {
+    const { results: movies } = await Api.getMovies(page);
 
-    const response = await fetch(`${baseUrl}?${param}`);
-    const data = await response.json();
-
-    data.results.forEach((movie) => {
+    movies.forEach((movie) => {
       this.addMovie(
         new Movie({
           title: movie.title,

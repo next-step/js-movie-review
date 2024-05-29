@@ -4,6 +4,7 @@ import App from "./js/domain/App.js";
 import { $ } from "./utils/dom.js";
 import MovieCardList from "./js/view/MovieCardList.js";
 import Skeleton from "./js/view/Skeleton.js";
+import Api from "./js/domain/Api.js";
 
 const app = new App();
 
@@ -15,7 +16,9 @@ addEventListener("DOMContentLoaded", async () => {
   // remove skeleton cards
   Skeleton.remove();
 
-  MovieCardList.render(app.newMovies);
+  const movies = app.movieList.movies;
+
+  MovieCardList.render(movies);
 });
 
 const showMoreButton = $(".show-more");
@@ -28,5 +31,9 @@ showMoreButton.addEventListener("click", async () => {
   // remove skeleton cards
   Skeleton.remove();
 
-  MovieCardList.render(app.newMovies);
+  const newMovies = app.movieList.movies.slice(
+    (app.currentPage - 1) * Api.NUM_MOVIES_PER_PAGE
+  );
+
+  MovieCardList.render(newMovies);
 });

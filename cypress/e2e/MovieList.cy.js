@@ -1,20 +1,7 @@
+import Api from "../../src/js/domain/Api.js";
 import MovieList from "../../src/js/domain/MovieList.js";
 
 describe("영화 목록 기능 테스트", () => {
-  it("영화 목록 API를 호출하면 20개씩 목록에 나타나야 한다.", () => {
-    const baseUrl = "https://api.themoviedb.org/3/movie/popular";
-    const param = new URLSearchParams({
-      api_key: Cypress.env("TMDB_API_KEY"),
-      language: "ko-KR",
-      page: 1,
-    });
-    cy.request(`${baseUrl}?${param}`).as("movies");
-    cy.get("@movies").its("status").should("eq", 200);
-    cy.get("@movies")
-      .its("body.results")
-      .should("have.length", MovieList.MOVIES_PER_PAGE);
-  });
-
   it("영화 목록 API를 호출하고 영화 목록을 저장한다.", async () => {
     // given
     const currentPage = 1;
@@ -24,6 +11,6 @@ describe("영화 목록 기능 테스트", () => {
     await movieList.fetchMovies(currentPage);
 
     // then
-    expect(movieList.movies).to.have.length(MovieList.MOVIES_PER_PAGE);
+    expect(movieList.movies).to.have.length(Api.NUM_MOVIES_PER_PAGE);
   });
 });
