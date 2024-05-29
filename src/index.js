@@ -25,8 +25,23 @@ async function initialMovieList() {
 
   $itemView
     .appendChild(CTAButton({ text: '더보기' }))
-    .addEventListener('click', () => {
+    .addEventListener('click', async () => {
       PageHandler.next();
+      const nextPopularMovies = await Movie.getPopular(
+        PageHandler.getCurrentPage()
+      );
+      const $cardList = nextPopularMovies.results.map(
+        ({ title, poster_path, vote_average }) =>
+          MovieCard({
+            title,
+            poster: `https://image.tmdb.org/t/p/w200${poster_path}`,
+            score: vote_average,
+            icon: StarFilledIcon,
+          })
+      );
+      $cardList.forEach((v) => {
+        $itemList.appendChild(v);
+      });
     });
 
   $cardList.forEach((v) => {
