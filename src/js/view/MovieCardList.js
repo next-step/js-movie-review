@@ -9,7 +9,6 @@ const MovieCardList = {
       MovieCard.generateMovieCard(movie)
     );
 
-    MovieCardList.elements.movieCardList.innerHTML = "";
     MovieCardList.elements.movieCardList.append(...movieCards);
   },
 };

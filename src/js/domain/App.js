@@ -16,6 +16,12 @@ class App {
     return this.#movieList.movies;
   }
 
+  get newMovies() {
+    return this.movies.slice(
+      (this.#currentPage - 1) * MovieList.MOVIES_PER_PAGE
+    );
+  }
+
   get currentPage() {
     return this.#currentPage;
   }
