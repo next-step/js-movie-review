@@ -29,5 +29,10 @@
     "html-webpack-plugin": "^5.5.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
+  },
+  "dependencies": {
+    "css-loader": "^7.1.2",
+    "dotenv": "^16.4.5",
+    "style-loader": "^4.0.0"
   }
 }
