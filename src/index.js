@@ -44,7 +44,7 @@ async function run() {
     });
     render.footer({ selector: "section", onClick: footerClick });
   } catch (error) {
-    console.error("error", error);
+    alert("에러가 발생했습니다.");
   }
 }
 
