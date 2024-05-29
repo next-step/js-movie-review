@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "watch": "webpack --watch",
-    "dev": "webpack serve",
+    "dev": "webpack serve --port 8080",
     "build": "webpack --config webpack.config.js",
     "cypress": "cypress open"
   },
