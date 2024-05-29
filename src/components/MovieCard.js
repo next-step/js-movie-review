@@ -26,7 +26,7 @@ const MovieScore = ({ score, icon }) => {
   const $icon = document.createElement('img');
   const $el = document.createElement('p');
   $el.className = 'item-score skeleton';
-  $el.textContent = score;
+  $el.textContent = Number(score).toFixed(1);
   $icon.src = icon;
   $el.appendChild($icon);
 
