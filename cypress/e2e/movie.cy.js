@@ -17,3 +17,21 @@ describe('영화목록 API 테스트', () => {
     });
   });
 });
+
+describe('영화목록 e2e 테스트', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:8080');
+  });
+  context('페이지 진입 시 인기영화 목록 1페이지를 조회하면', () => {
+    it('20개의 .item-card가 노출된다.', () => {
+      cy.get('.item-card').should('have.length', 20);
+    });
+  });
+  context('더보기 버튼을 클릭하면', () => {
+    it('40개의 item-card 노출된다.', () => {
+      cy.get('.btn').click();
+
+      cy.get('.item-card').should('have.length', 40);
+    });
+  });
+});
