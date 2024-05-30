@@ -10,16 +10,20 @@ export async function MovieListView() {
   const $movieList = document.querySelector('.item-list');
   const $moreButton = CTAButton({ text: '더보기' });
 
-  const { results } = await Movie.getPopular(PageHandler.getCurrentPage());
+  const { results, total_pages } = await Movie.getPopular(
+    PageHandler.getCurrentPage()
+  );
   const $popularMovieCards = results.map(MovieCardView);
 
   $popularMovieCards.forEach((el) => $movieList.appendChild(el));
 
   $movieList.addEventListener('click', onClickThumbnail);
 
-  $movieView
-    .appendChild($moreButton)
-    .addEventListener('click', onClickMoreButton($moreButton, $movieList));
+  if (PageHandler.getCurrentPage() !== total_pages) {
+    $movieView
+      .appendChild($moreButton)
+      .addEventListener('click', onClickMoreButton($moreButton, $movieList));
+  }
 }
 
 export function MovieCardView({ title, poster_path, vote_average }) {

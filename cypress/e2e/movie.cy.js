@@ -60,3 +60,34 @@ describe('영화목록 e2e 테스트', () => {
     });
   });
 });
+
+describe('짧은 영화목록 e2e 테스트', () => {
+  beforeEach(() => {
+    const baseUrl = 'https://api.themoviedb.org/3/movie/popular';
+    const param = new URLSearchParams({
+      api_key: Cypress.env('API_KEY'),
+      language: 'ko-KR',
+      page: 1,
+    });
+
+    cy.intercept(
+      {
+        method: 'GET',
+        url: `${baseUrl}?${param}`,
+      },
+      { fixture: 'movie-popular-short.json' }
+    ).as('popularMovies');
+
+    cy.visit('http://localhost:8080');
+  });
+
+  context('total_pages 가 1인 인기영화 목록 1페이지를 조회하면', () => {
+    it('18개의 .item-card가 노출된다.', () => {
+      cy.get('.item-card').should('have.length', 18);
+    });
+
+    it('더 보기 버튼이 노출되지 않는다.', () => {
+      cy.contains('더보기').should('not.exist');
+    });
+  });
+});
