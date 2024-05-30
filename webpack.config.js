@@ -9,7 +9,7 @@ module.exports = {
     extensions: ['.js'],
   },
   devServer: {
-    static: path.resolve(__dirname, 'dist/js-movie-review'),
+    static: path.resolve(__dirname, 'dist'),
     open: true,
     historyApiFallback: true,
   },
