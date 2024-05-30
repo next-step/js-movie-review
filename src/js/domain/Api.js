@@ -1,3 +1,5 @@
+import ErrorMessage from "../ErrorMessage.js";
+
 const Api = {
   BASE_URL: "https://api.themoviedb.org/3/movie/popular",
 
@@ -17,10 +19,24 @@ const Api = {
     return `${this.BASE_URL}?${param}`;
   },
 
-  getMovies: async function (page) {
-    const url = this.generateUrl(page);
+  throwError: function (status) {
+    switch (status) {
+      case 401:
+        throw new Error(ErrorMessage.NOT_VALID_API_KEY);
+      case 404:
+        throw new Error(ErrorMessage.NOT_VALID_URL);
+      default:
+        throw new Error(ErrorMessage.DEFAULT);
+    }
+  },
 
+  get: async function (url) {
     const response = await fetch(url);
+
+    if (!response.ok) {
+      this.throwError(response.status);
+    }
+
     return await response.json();
   },
 };

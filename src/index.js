@@ -10,10 +10,7 @@ const app = new App();
 
 addEventListener("DOMContentLoaded", async () => {
   Skeleton.render();
-
   await app.init();
-
-  // remove skeleton cards
   Skeleton.remove();
 
   const movies = app.movieList.movies;
@@ -25,12 +22,10 @@ const showMoreButton = $(".show-more");
 
 showMoreButton.addEventListener("click", async () => {
   Skeleton.render();
-
   await app.fetchNextPage();
-
-  // remove skeleton cards
   Skeleton.remove();
 
+  // render new movies
   const newMovies = app.movieList.movies.slice(
     (app.currentPage - 1) * Api.NUM_MOVIES_PER_PAGE
   );
