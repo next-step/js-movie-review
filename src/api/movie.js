@@ -10,9 +10,11 @@ async function getPopular(page) {
     page,
   });
 
-  return await fetch(`${MOVIE_BASE_URL}/popular?${param}`).then((res) =>
-    res.json()
-  );
+  const response = await fetch(`${MOVIE_BASE_URL}/popular?${param}`);
+  if (response.ok) {
+    return response.json();
+  }
+  return { results: [] };
 }
 
 const Movie = {
