@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/next-step/js-movie-review/issues"
   },
-  "homepage": "https://github.com/next-step/js-movie-review#readme",
+  "homepage": "https://gwbaik9717.github.io/js-movie-review/",
   "devDependencies": {
     "css-loader": "^7.1.2",
     "cypress": "^12.17.3",
