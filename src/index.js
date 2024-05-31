@@ -1,7 +1,7 @@
-import "../templates/common.css";
-import "../templates/reset.css";
-import starFilled from "../templates/star_filled.png";
-import { fetchPopularMovies } from "./js/util/fetch";
+import "./css/common.css";
+import "./css/reset.css";
+import starFilled from "./assets/star_filled.png";
+import { fetchPopularMovies } from "./js/util/fetchMovie";
 
 function generateMovieItem({ title, rating, thumbnail }) {
   const item = document.createElement("li");
