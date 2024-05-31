@@ -1,41 +1,10 @@
 import "./css/common.css";
 import "./css/reset.css";
-import starFilled from "./assets/star_filled.png";
-import { fetchPopularMovies } from "./js/util/fetchMovie";
-
-function generateMovieItem({ title, rating, thumbnail }) {
-  const item = document.createElement("li");
-  item.innerHTML = /*html*/ `
-  <a href="#">
-    <div class="item-card">
-      <img
-        class="item-thumbnail"
-        src="${thumbnail}"
-        loading="lazy"
-        alt="${title}"
-      />
-      <p class="item-title">${title}</p>
-      <p class="item-score"><img src="${starFilled}" alt="별점" />${rating}</p>
-    </div>
-  </a>`;
-  return item;
-}
-
-async function renderPopularMovies() {
-  const itemList = document.querySelector(".item-list");
-
-  const popularMovies = await fetchPopularMovies();
-  const movieItems = popularMovies.map((movie) => {
-    return generateMovieItem({
-      title: movie.title,
-      rating: movie.vote_average,
-      thumbnail: `https://image.tmdb.org/t/p/w200${movie.poster_path}`,
-    });
-  });
-
-  movieItems.forEach((item) => itemList.appendChild(item));
-}
+import { MovieList } from "./js/domain/MovieList";
+import { MovieCardsList } from "./js/view/MovieCardsList";
 
 addEventListener("DOMContentLoaded", async () => {
-  await renderPopularMovies();
+  const movieList = new MovieList();
+  await movieList.generateMovies({ page: 1 });
+  MovieCardsList.render(movieList.movies);
 });

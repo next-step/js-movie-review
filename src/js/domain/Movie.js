@@ -1,12 +1,12 @@
-class Movie {
+export class Movie {
   #title;
   #thumbnail;
   #rating;
 
-  constructor({ title, thumbnail, rationg }) {
+  constructor({ title, thumbnail, rating }) {
     this.#title = title;
     this.#thumbnail = thumbnail;
-    this.#rating = rationg;
+    this.#rating = rating;
   }
 
   get title() {
@@ -20,6 +20,4 @@ class Movie {
   get rating() {
     return this.#rating;
   }
-
-  render;
 }
