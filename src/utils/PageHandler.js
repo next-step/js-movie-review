@@ -10,7 +10,7 @@ function PageEventHandler() {
 
   return {
     next() {
-      if (attr.page >= attr.totalPages) {
+      if (!this.hasNextPage()) {
         return {
           page: attr.page,
           done: true,
@@ -20,7 +20,7 @@ function PageEventHandler() {
 
       return {
         page: attr.page,
-        done: attr.page >= attr.totalPages,
+        done: !this.hasNextPage(),
       };
     },
     getCurrentPage() {
