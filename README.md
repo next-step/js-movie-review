@@ -18,6 +18,10 @@
 
 </p>
 
+## 💾 데모 링크
+
+<a href="https://gwbaik9717.github.io/js-movie-review/">데모 링크</a>
+
 <br>
 
 ## ⚙️ Before Started

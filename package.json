@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "영화 리뷰 홈페이지 만들기",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "watch": "webpack --watch",
-    "dev": "webpack serve",
+    "dev": "webpack serve --port 8080",
     "build": "webpack --config webpack.config.js",
     "cypress": "cypress open"
   },
@@ -22,11 +23,13 @@
   "bugs": {
     "url": "https://github.com/next-step/js-movie-review/issues"
   },
-  "homepage": "https://github.com/next-step/js-movie-review#readme",
+  "homepage": "https://gwbaik9717.github.io/js-movie-review/",
   "devDependencies": {
-    "cypress": "^12.17.4",
+    "css-loader": "^7.1.2",
+    "cypress": "^12.17.3",
     "dotenv-webpack": "^8.0.1",
     "html-webpack-plugin": "^5.5.3",
+    "style-loader": "^4.0.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   }

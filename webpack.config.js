@@ -1,9 +1,12 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const DotEnv = require("dotenv-webpack");
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import DotEnv from "dotenv-webpack";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url); // get the resolved path to the file
+const __dirname = path.dirname(__filename);
 
-module.exports = {
-  entry: "./src/index.js",
+export default {
+  entry: ["./src/index.js", "./templates/reset.css", "./templates/common.css"],
   mode: "development",
   resolve: {
     extensions: [".js"],
