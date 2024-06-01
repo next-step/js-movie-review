@@ -31,11 +31,12 @@ function PageEventHandler() {
     },
     setTotalPages(totalPages) {
       if (totalPages > MOVIE_TOTAL_PAGE_LIMIT) {
-        throw TypeError(
-          `최대 조회 가능한 페이지는 ${MOVIE_TOTAL_PAGE_LIMIT}까지 입니다.`
-        );
+        return;
       }
       attr.totalPages = totalPages;
+    },
+    hasNextPage() {
+      return attr.page < attr.totalPages;
     },
   };
 }

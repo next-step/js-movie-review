@@ -3,7 +3,8 @@ import { getPopularMovie } from '../api/movie';
 import CTAButton from '../components/CTAButton';
 import MovieCard from '../components/MovieCard';
 import PageHandler from '../utils/PageHandler';
-import { onClickMoreButton } from '../utils/MovieHandler';
+import { getNextPopularMovie } from '../utils/MovieHandler';
+import { setHiddenElement } from '../utils/dom';
 
 export async function MovieListView() {
   const $movieView = document.querySelector('.item-view');
@@ -13,18 +14,34 @@ export async function MovieListView() {
   const { results, total_pages } = await getPopularMovie(
     PageHandler.getCurrentPage()
   );
+  PageHandler.setTotalPages(total_pages);
+
   const $popularMovieCards = results.map(MovieCardView);
 
   $popularMovieCards.forEach((el) => $movieList.appendChild(el));
 
-  if (PageHandler.getCurrentPage() !== total_pages) {
-    $movieView
-      .appendChild($moreButton)
-      .addEventListener('click', onClickMoreButton($moreButton, $movieList));
+  if (PageHandler.hasNextPage()) {
+    $movieView.appendChild($moreButton).addEventListener('click', async () => {
+      const { done, nextMovieList } = await getNextPopularMovie(
+        $moreButton,
+        $movieList
+      );
+
+      if (done) {
+        setHiddenElement($moreButton);
+      }
+
+      appendMovieListView($movieList, nextMovieList);
+    });
   }
 }
 
-export function MovieCardView({ title, poster_path, vote_average }) {
+function appendMovieListView($movieList, newMovieData) {
+  const $cardList = newMovieData.map(MovieCardView);
+  $cardList.forEach((el) => $movieList.appendChild(el));
+}
+
+function MovieCardView({ title, poster_path, vote_average }) {
   return MovieCard({
     title,
     poster: `https://image.tmdb.org/t/p/w200${poster_path}`,
