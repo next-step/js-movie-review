@@ -11,7 +11,7 @@ class MovieImage {
   render() {
     const img = document.createElement("img");
     img.classList.add("item-thumbnail");
-    img.src = this.#movieImage;
+    img.src = process.env.IMAGE_API_URL + this.#movieImage;
     img.alt = this.#title;
     img.loading = "lazy";
 
