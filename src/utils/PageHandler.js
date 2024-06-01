@@ -23,9 +23,6 @@ function PageEventHandler() {
         done: attr.page >= attr.totalPages,
       };
     },
-    reset() {
-      attr = { ...INITIAL_VALUE };
-    },
     getCurrentPage() {
       return attr.page;
     },
