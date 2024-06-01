@@ -1,6 +1,8 @@
+import { createElement } from "../../utils/dom";
+
 const MovieCard = {
   generateMovieCard(movie) {
-    const card = document.createElement("li");
+    const card = createElement("li");
     card.innerHTML = /* html */ `
     <a href="#">
     <div class="item-card">

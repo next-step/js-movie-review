@@ -1,3 +1,4 @@
+import { $all, createElement } from "../../utils/dom.js";
 import MovieCardList from "./MovieCardList.js";
 
 const Skeleton = {
@@ -7,7 +8,7 @@ const Skeleton = {
   },
 
   generateSkeletonCard() {
-    const card = document.createElement("li");
+    const card = createElement("li");
     card.classList.add("skeleton-card");
 
     card.innerHTML = /* html */ `
@@ -33,9 +34,7 @@ const Skeleton = {
   },
 
   remove() {
-    const skeletonCards = document.querySelectorAll(
-      Skeleton.selectors.SKELETON_CARD
-    );
+    const skeletonCards = $all(Skeleton.selectors.SKELETON_CARD);
     skeletonCards.forEach((card) => {
       card.remove();
     });
