@@ -21,7 +21,6 @@ describe("영화 카드 목록 기능 테스트", () => {
   });
 
   it("로딩 중일 때 스켈레톤 카드가 보인다.", () => {
-    // given
     cy.intercept(Api.generateUrl(2), (req) => {
       req.continue((res) => {
         // delay the response for 1 second
@@ -29,10 +28,8 @@ describe("영화 카드 목록 기능 테스트", () => {
       });
     }).as("getMovies");
 
-    // when
     cy.get(selectors["show-more"]).click(); // fetch next page
 
-    // then
     cy.get(selectors["skeleton-card"]).should("be.visible");
     cy.wait("@getMovies");
     cy.get(selectors["skeleton-card"]).should("not.exist");
