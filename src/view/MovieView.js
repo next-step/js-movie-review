@@ -21,7 +21,7 @@ export async function MovieListView() {
   $popularMovieCards.forEach((el) => $movieList.appendChild(el));
 
   if (PageHandler.hasNextPage()) {
-    $movieView.appendChild($moreButton).addEventListener('click', async () => {
+    const onClickMoreButton = async () => {
       const { done, nextMovieList } = await getNextPopularMovie(
         $moreButton,
         $movieList
@@ -32,7 +32,11 @@ export async function MovieListView() {
       }
 
       appendMovieListView($movieList, nextMovieList);
-    });
+    };
+
+    $movieView
+      .appendChild($moreButton)
+      .addEventListener('click', onClickMoreButton);
   }
 }
 
