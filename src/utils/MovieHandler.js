@@ -14,11 +14,3 @@ export function onClickMoreButton($moreButton, $movieView) {
     $cardList.forEach((el) => $movieView.appendChild(el));
   };
 }
-
-export function onClickThumbnail({ target }) {
-  if (target.matches('.item-list .item-thumbnail')) {
-    /**
-     * @TODO 썸네일 이미지 클릭
-     */
-  }
-}

@@ -3,7 +3,7 @@ import { getPopularMovie } from '../api/movie';
 import CTAButton from '../components/CTAButton';
 import MovieCard from '../components/MovieCard';
 import PageHandler from '../utils/PageHandler';
-import { onClickMoreButton, onClickThumbnail } from '../utils/MovieHandler';
+import { onClickMoreButton } from '../utils/MovieHandler';
 
 export async function MovieListView() {
   const $movieView = document.querySelector('.item-view');
@@ -16,8 +16,6 @@ export async function MovieListView() {
   const $popularMovieCards = results.map(MovieCardView);
 
   $popularMovieCards.forEach((el) => $movieList.appendChild(el));
-
-  $movieList.addEventListener('click', onClickThumbnail);
 
   if (PageHandler.getCurrentPage() !== total_pages) {
     $movieView
