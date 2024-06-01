@@ -1,5 +1,5 @@
 import StarFilledIcon from '../assets/star_filled.png';
-import Movie from '../api/movie';
+import { getPopularMovie } from '../api/movie';
 import CTAButton from '../components/CTAButton';
 import MovieCard from '../components/MovieCard';
 import PageHandler from '../utils/PageHandler';
@@ -10,7 +10,7 @@ export async function MovieListView() {
   const $movieList = document.querySelector('.item-list');
   const $moreButton = CTAButton({ text: '더보기' });
 
-  const { results, total_pages } = await Movie.getPopular(
+  const { results, total_pages } = await getPopularMovie(
     PageHandler.getCurrentPage()
   );
   const $popularMovieCards = results.map(MovieCardView);

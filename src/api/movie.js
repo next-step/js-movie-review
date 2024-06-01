@@ -4,7 +4,7 @@ const DEFAULT_SEARCH_PARAMS = {
 };
 const MOVIE_BASE_URL = 'https://api.themoviedb.org/3/movie';
 
-async function getPopular(page) {
+export async function getPopularMovie(page) {
   const param = new URLSearchParams({
     ...DEFAULT_SEARCH_PARAMS,
     page,
@@ -16,9 +16,3 @@ async function getPopular(page) {
   }
   return { results: [] };
 }
-
-const Movie = {
-  getPopular,
-};
-
-export default Movie;
