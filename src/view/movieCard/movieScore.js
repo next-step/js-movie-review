@@ -15,7 +15,7 @@ class MovieScore {
     img.src = StarImage;
     img.alt = "별점";
     p.classList.add("item-score");
-    p.textContent = this.#score;
+    p.textContent = this.#score.toFixed(1);
     p.appendChild(img);
     p.appendChild(span);
 
