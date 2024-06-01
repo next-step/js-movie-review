@@ -4,16 +4,18 @@ import CTAButton from '../components/CTAButton';
 import MovieCard from '../components/MovieCard';
 import PageHandler from '../utils/PageHandler';
 import { getNextPopularMovie } from '../utils/MovieHandler';
-import { setHiddenElement } from '../utils/dom';
+import { addClassName, removeClassName } from '../utils/dom';
+import { LoadingHandler } from '../utils/LoadingHandler';
 
 export async function MovieListView() {
   const $movieView = document.querySelector('.item-view');
   const $movieList = document.querySelector('.item-list');
   const $moreButton = CTAButton({ text: '더보기' });
+  const movieButtonLoading = new LoadingHandler(true);
 
   const { results, total_pages } = await getPopularMovie(
     PageHandler.getCurrentPage()
-  );
+  ).finally(() => movieButtonLoading.end());
   PageHandler.setTotalPages(total_pages);
 
   const $popularMovieCards = results.map(MovieCardView);
@@ -22,13 +24,22 @@ export async function MovieListView() {
 
   if (PageHandler.hasNextPage()) {
     const onClickMoreButton = async () => {
+      if (movieButtonLoading.isLoading()) {
+        return;
+      }
+      movieButtonLoading.start();
+      addClassName($moreButton, 'loading');
+
       const { done, nextMovieList } = await getNextPopularMovie(
         $moreButton,
         $movieList
-      );
+      ).finally(() => {
+        movieButtonLoading.end();
+        removeClassName($moreButton, 'loading');
+      });
 
       if (done) {
-        setHiddenElement($moreButton);
+        addClassName($moreButton, 'hidden');
       }
 
       appendMovieListView($movieList, nextMovieList);
