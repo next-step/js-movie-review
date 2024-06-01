@@ -7,10 +7,11 @@ class MovieCard {
     this.movieImage = new MovieImage(movieImage, title).element;
     this.movieTitle = new MovieTitle(title).element;
     this.movieScore = new MovieScore(score).element;
-    this.element = this.render();
+    this.element = this.element();
   }
 
-  render() {
+  element() {
+    const li = document.createElement("li");
     const a = document.createElement("a");
     const card = document.createElement("div");
     card.classList.add("item-card");
@@ -18,8 +19,9 @@ class MovieCard {
     card.appendChild(this.movieTitle);
     card.appendChild(this.movieScore);
     a.appendChild(card);
+    li.appendChild(a);
 
-    return a;
+    return li;
   }
 }
 

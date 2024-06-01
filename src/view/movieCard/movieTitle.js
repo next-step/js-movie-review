@@ -3,9 +3,10 @@ class MovieTitle {
 
   constructor(title) {
     this.#title = title;
-    this.element = this.render();
+    this.element = this.element();
   }
-  render() {
+
+  element() {
     const p = document.createElement("p");
     p.classList.add("item-title");
     p.textContent = this.#title;

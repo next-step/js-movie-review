@@ -3,10 +3,10 @@ class MovieListHeader {
 
   constructor(title) {
     this.#title = title;
-    this.element = this.render();
+    this.element = this.element();
   }
 
-  render() {
+  element() {
     const h2 = document.createElement("h2");
     h2.textContent = this.#title;
 

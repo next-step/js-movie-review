@@ -5,10 +5,10 @@ class MovieImage {
   constructor(movieImage, title) {
     this.#movieImage = movieImage;
     this.#title = title;
-    this.element = this.render();
+    this.element = this.element();
   }
 
-  render() {
+  element() {
     const img = document.createElement("img");
     img.classList.add("item-thumbnail");
     img.src = process.env.IMAGE_API_URL + this.#movieImage;

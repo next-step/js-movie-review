@@ -5,10 +5,10 @@ class MovieScore {
 
   constructor(score) {
     this.#score = score;
-    this.element = this.render();
+    this.element = this.element();
   }
 
-  render() {
+  element() {
     const p = document.createElement("p");
     const img = document.createElement("img");
     const span = document.createElement("span");
