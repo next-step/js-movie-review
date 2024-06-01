@@ -1,6 +1,10 @@
 import LogoImage from "../../assets/logo.png";
 
-export class Logo {
+class Logo {
+  constructor() {
+    this.element = this.render();
+  }
+
   render() {
     const h1 = document.createElement("h1");
     const img = document.createElement("img");
@@ -11,3 +15,5 @@ export class Logo {
     return h1;
   }
 }
+
+export default Logo;

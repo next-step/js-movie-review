@@ -1,6 +1,3 @@
-import Header from "./view/header/index.js";
+import layout from "./view/layout.js";
 
-addEventListener("DOMContentLoaded", () => {
-  const header = new Header();
-  header.render("#app");
-});
+addEventListener("DOMContentLoaded", layout);

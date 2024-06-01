@@ -1,18 +1,19 @@
-import { $ } from "../../utils/querySelector";
-import { Logo } from "./Logo";
+import Logo from "./Logo";
 import SearchBar from "./searchBar";
 
 class Header {
   constructor() {
-    this.logo = new Logo().render();
-    this.SearchBar = new SearchBar().render();
+    this.logo = new Logo().element;
+    this.SearchBar = new SearchBar().element;
+    this.element = this.render();
   }
 
-  render(selecter) {
+  render() {
     const header = document.createElement("header");
     header.appendChild(this.logo);
     header.appendChild(this.SearchBar);
-    $(selecter).appendChild(header);
+
+    return header;
   }
 }
 
