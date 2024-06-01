@@ -1,18 +1,17 @@
 import Movie from "./domain/movie.js";
-import { $ } from "./utils/querySelector.js";
 import layout from "./view/layout.js";
-import MovieCard from "./view/movieCard/index.js";
+import MovieList from "./view/movieList/index.js";
+import Skeleton from "./view/skeleton/index.js";
 
 addEventListener("DOMContentLoaded", async () => {
-  const movie = new Movie();
-
   layout();
-  await movie.init();
-  console.log(movie.list);
+  const movie = new Movie();
+  const movieList = new MovieList();
+  const skeleton = new Skeleton();
 
-  movie.list.forEach((movie) => {
-    const { title, poster_path, vote_average } = movie;
-    const movieCard = new MovieCard(poster_path, title, vote_average).element;
-    $("ul").appendChild(movieCard);
-  });
+  skeleton.renderSkeletons();
+  await movie.init();
+  skeleton.remove();
+
+  movieList.renderMovies(movie.list);
 });
