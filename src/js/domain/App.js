@@ -2,7 +2,7 @@ import Api from "./Api.js";
 import MovieList from "./MovieList.js";
 
 class App {
-  #currentPage = 0;
+  currentPage = 0;
   #movieList;
 
   constructor() {
@@ -13,18 +13,10 @@ class App {
     return this.#movieList;
   }
 
-  get currentPage() {
-    return this.#currentPage;
-  }
-
   get newMovies() {
     return this.movieList.movies.slice(
       (this.currentPage - 1) * Api.NUM_MOVIES_PER_PAGE
     );
-  }
-
-  set currentPage(page) {
-    this.#currentPage = page;
   }
 
   async init() {
@@ -32,8 +24,8 @@ class App {
   }
 
   async fetchNextPage() {
-    this.#currentPage++;
-    await this.movieList.fetchMovies(this.#currentPage);
+    this.currentPage++;
+    await this.movieList.fetchMovies(this.currentPage);
   }
 }
 
