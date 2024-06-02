@@ -1,4 +1,4 @@
-import ErrorMessage from "../ErrorMessage.js";
+import ErrorMessage from "../ErrorMessage";
 
 const Api = {
   BASE_URL: "https://api.themoviedb.org/3/movie/popular",
@@ -11,17 +11,17 @@ const Api = {
 
   NUM_MOVIES_PER_PAGE: 20,
 
-  generateUrl(page) {
+  generateUrl(page: number): string {
     const param = new URLSearchParams({
       api_key: this.API_KEY,
       language: this.LANGUAGE,
-      page,
+      page: page.toString(),
     });
 
     return `${this.BASE_URL}?${param}`;
   },
 
-  throwError(status) {
+  throwError(status: number) {
     switch (status) {
       case 401:
         throw new Error(ErrorMessage.NOT_VALID_API_KEY);
@@ -32,7 +32,9 @@ const Api = {
     }
   },
 
-  async get(url) {
+  async get<T>(url: string): Promise<{
+    results: T;
+  }> {
     const response = await fetch(url);
 
     if (!response.ok) {

@@ -1,8 +1,9 @@
-import Api from "./Api.js";
-import Movie from "./Movie.js";
+import { MovieApiData } from "../../types/movie-api-data";
+import Api from "./Api";
+import Movie from "./Movie";
 
 class MovieList {
-  #movies;
+  #movies: Movie[];
 
   constructor() {
     this.#movies = [];
@@ -12,22 +13,22 @@ class MovieList {
     return [...this.#movies];
   }
 
-  getMoviesByPage(page) {
+  getMoviesByPage(page: number) {
     return this.movies.slice(
       Api.NUM_MOVIES_PER_PAGE * (page - 1),
       Api.NUM_MOVIES_PER_PAGE * page
     );
   }
 
-  addMovie(movie) {
+  addMovie(movie: Movie) {
     this.#movies.push(movie);
   }
 
-  async fetchMovies(page) {
+  async fetchMovies(page: number) {
     const movieUrl = Api.generateUrl(page);
 
     try {
-      const { results: movies } = await Api.get(movieUrl);
+      const { results: movies } = await Api.get<MovieApiData[]>(movieUrl);
 
       movies.forEach((movie) => {
         this.addMovie(

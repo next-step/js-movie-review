@@ -1,5 +1,5 @@
-import ErrorMessage from "../../src/js/ErrorMessage.js";
-import Api from "../../src/js/domain/Api.js";
+import ErrorMessage from "../../src/js/ErrorMessage";
+import Api from "../../src/js/domain/Api";
 
 describe("Api 기능 테스트", () => {
   it("영화 목록 API를 호출하면 20개씩 목록에 나타나야 한다.", () => {
@@ -23,7 +23,7 @@ describe("Api 기능 테스트", () => {
     }).as("movies");
 
     expect(() => {
-      cy.request(Api.get(WRONG_URL)).to.throw(ErrorMessage.NOT_VALID_URL);
+      cy.request(WRONG_URL).should("throw", ErrorMessage.NOT_VALID_URL);
     });
   });
 });

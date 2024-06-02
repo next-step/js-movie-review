@@ -1,9 +1,9 @@
 import "../templates/logo.png";
 import "../templates/star_filled.png";
-import App from "./js/domain/App.js";
+import App from "./js/domain/App";
 import { $ } from "./utils/dom.js";
-import MovieCardList from "./js/view/MovieCardList.js";
-import MovieList from "./js/domain/MovieList.js";
+import MovieCardList from "./js/view/MovieCardList";
+import MovieList from "./js/domain/MovieList";
 const main = () => {
   const app = new App();
   const movieList = new MovieList();

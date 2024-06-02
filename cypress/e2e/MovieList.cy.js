@@ -1,5 +1,5 @@
-import Api from "../../src/js/domain/Api.js";
-import MovieList from "../../src/js/domain/MovieList.js";
+import Api from "../../src/js/domain/Api";
+import MovieList from "../../src/js/domain/MovieList";
 
 describe("영화 목록 기능 테스트", () => {
   it("영화 목록 API를 호출하고 영화 목록을 저장한다.", async () => {
