@@ -1,8 +1,9 @@
-export function renderHeader(logo, searchBox) {
-    const header = document.querySelector('.header');
+export function Header(logo, searchBox) {
+    const headerElement = document.createElement('header');
+    headerElement.classList.add('header');
 
-    header.innerHTML = `
-    ${logo}
-    ${searchBox}
-    `;
+    headerElement.appendChild(logo);
+    headerElement.appendChild(searchBox);
+
+    return headerElement;
 }
