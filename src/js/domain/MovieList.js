@@ -1,5 +1,6 @@
 import Api from "./Api.js";
 import Movie from "./Movie.js";
+
 class MovieList {
   #movies;
 
@@ -25,7 +26,7 @@ class MovieList {
         this.addMovie(
           new Movie({
             title: movie.title,
-            thumbnail: "https://image.tmdb.org/t/p/w500" + movie.poster_path,
+            thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
           })
         );

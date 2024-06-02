@@ -2,6 +2,7 @@ import ErrorMessage from "../ErrorMessage.js";
 
 const Api = {
   BASE_URL: "https://api.themoviedb.org/3/movie/popular",
+  THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
 
   API_KEY: window.Cypress
     ? Cypress.env("TMDB_API_KEY")
