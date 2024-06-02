@@ -1,9 +1,9 @@
 class SearchBar {
   constructor() {
-    this.element = this.render();
+    this.element = this.element();
   }
 
-  render() {
+  element() {
     const div = document.createElement("div");
     div.classList.add("search-box");
 

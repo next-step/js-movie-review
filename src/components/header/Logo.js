@@ -2,10 +2,10 @@ import LogoImage from "../../assets/logo.png";
 
 class Logo {
   constructor() {
-    this.element = this.render();
+    this.element = this.element();
   }
 
-  render() {
+  element() {
     const h1 = document.createElement("h1");
     const img = document.createElement("img");
 
