@@ -3,6 +3,7 @@ import ErrorMessage from "../ErrorMessage.js";
 const Api = {
   BASE_URL: "https://api.themoviedb.org/3/movie/popular",
   THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
+  LANGUAGE: "ko-KR",
 
   API_KEY: window.Cypress
     ? Cypress.env("TMDB_API_KEY")
@@ -13,7 +14,7 @@ const Api = {
   generateUrl(page) {
     const param = new URLSearchParams({
       api_key: this.API_KEY,
-      language: "ko-KR",
+      language: this.LANGUAGE,
       page,
     });
 
