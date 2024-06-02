@@ -3,7 +3,7 @@ import { getPopularMovie } from '../api/movie';
 import CTAButton from '../components/CTAButton';
 import MovieCard from '../components/MovieCard';
 import PageHandler from '../utils/PageHandler';
-import { getNextPopularMovie } from '../utils/MovieHandler';
+import { getNextPopularMovieList } from '../utils/MovieHandler';
 import { addClassName, removeClassName } from '../utils/dom';
 import { LoadingHandler } from '../utils/LoadingHandler';
 
@@ -33,7 +33,7 @@ export async function MovieListView() {
       movieButtonLoading.start();
       addClassName($moreButton, 'loading');
 
-      const { done, nextMovieList } = await getNextPopularMovie(
+      const { done, nextMovieList } = await getNextPopularMovieList(
         $moreButton,
         $movieList
       );
