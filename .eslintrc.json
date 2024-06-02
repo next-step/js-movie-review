@@ -18,5 +18,5 @@
     "sourceType": "module"
   },
   "ignorePatterns": ["**/__tests__/*"],
-  "extends": ["eslint:recommended", "plugin:prettier/recommended"]
+  "extends": ["eslint:recommended", "plugin:prettier/recommended", "plugin:cypress/recommended"]
 }
