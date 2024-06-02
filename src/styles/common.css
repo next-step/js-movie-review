@@ -127,6 +127,16 @@ button.primary {
     border-radius: 8px;
 }
 
+.item-card .skeleton-text {
+    width: 180px;
+    height: 19.2px;
+}
+
+.item-card .skeleton-score {
+    width: 180px;
+    height: 25px;
+}
+
 @-webkit-keyframes skeleton-animation {
     0% {
         background-position: 0% 50%;
