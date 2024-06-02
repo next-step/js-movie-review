@@ -1,5 +1,4 @@
-import { $all, createElement } from "../../utils/dom.js";
-import MovieCardList from "./MovieCardList.js";
+import { createElement } from "../../utils/dom.js";
 
 const Skeleton = {
   NUM_SKELETON_CARDS: 10,
@@ -23,14 +22,13 @@ const Skeleton = {
     return card;
   },
 
-  render() {
+  get skeletonCards() {
     const skeletonCards = Array.from(
       { length: Skeleton.NUM_SKELETON_CARDS },
       () => this.generateSkeletonCard()
     );
 
-    const target = MovieCardList.elements.movieCardList;
-    target.append(...skeletonCards);
+    return skeletonCards;
   },
 };
 
