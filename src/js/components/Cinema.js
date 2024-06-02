@@ -10,6 +10,7 @@ export class Cinema {
     };
 
     showMovies(movies) {
+        console.log('movies', movies);
         movies.forEach((movie) => {
             const movieCard = MovieCard({
                 title: movie.title,
