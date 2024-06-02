@@ -13,8 +13,7 @@ export class Cinema {
 
     showMovies() {
         const newItemsHTML = this.#movies
-            .map((movieInfo) => {
-                return `
+            .map((movieInfo) => `
               <li>
                 <a href="#">
                   <div class="item-card">
@@ -31,9 +30,8 @@ export class Cinema {
                   </div>
                 </a>
               </li>
-            `;
-            })
-            .join('');
+            `
+            ).join('');
         this.#moviesWrapper.innerHTML += newItemsHTML;
     }
 
