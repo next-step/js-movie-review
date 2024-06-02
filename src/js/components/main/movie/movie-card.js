@@ -1,6 +1,6 @@
-import starFilled from "../../assets/star_filled.png";
+import starFilled from "../../../../assets/star_filled.png";
 
-export const MovieCard = {
+export const movieCard = {
   generateMovieItem(movie) {
     const item = document.createElement("li");
     item.innerHTML = /*html*/ `

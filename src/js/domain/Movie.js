@@ -6,7 +6,7 @@ export class Movie {
   constructor({ title, thumbnail, rating }) {
     this.#title = title;
     this.#thumbnail = thumbnail;
-    this.#rating = rating;
+    this.#rating = rating.toFixed(2);
   }
 
   get title() {
