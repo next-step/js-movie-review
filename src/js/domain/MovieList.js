@@ -12,6 +12,13 @@ class MovieList {
     return [...this.#movies];
   }
 
+  getMoviesByPage(page) {
+    return this.movies.slice(
+      Api.NUM_MOVIES_PER_PAGE * (page - 1),
+      Api.NUM_MOVIES_PER_PAGE * page
+    );
+  }
+
   addMovie(movie) {
     this.#movies.push(movie);
   }

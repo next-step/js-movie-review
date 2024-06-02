@@ -1,31 +1,13 @@
-import Api from "./Api.js";
-import MovieList from "./MovieList.js";
-
 class App {
-  currentPage = 0;
-  #movieList;
+  currentPage = 1;
 
-  constructor() {
-    this.#movieList = new MovieList();
+  async init(movieList) {
+    await movieList.fetchMovies(this.currentPage);
   }
 
-  get movieList() {
-    return this.#movieList;
-  }
-
-  get newMovies() {
-    return this.movieList.movies.slice(
-      (this.currentPage - 1) * Api.NUM_MOVIES_PER_PAGE
-    );
-  }
-
-  async init() {
-    await this.fetchNextPage();
-  }
-
-  async fetchNextPage() {
+  async fetchNextPage(movieList) {
     this.currentPage++;
-    await this.movieList.fetchMovies(this.currentPage);
+    await movieList.fetchMovies(this.currentPage);
   }
 }
 
