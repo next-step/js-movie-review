@@ -1,26 +1,20 @@
-const BASE_URL = 'https://api.themoviedb.org/3/search/movie';
+import { BASE_URL } from '../constants/api';
 
 async function getSearchedMovies(query) {
-    try {
-        const url = new URL(BASE_URL);
-        const params = { query: query, api_key: process.env.TMDB_API_KEY };
-        url.search = new URLSearchParams(params).toString();
+    const url = createUrlSeacrhParams({
+        baseUrl: BASE_URL,
+        params: { query: query, api_key: process.env.TMDB_API_KEY }
+    });
 
-        const res = await fetch(url, {
-            method: 'GET'
-        }).then((res) => res.json());
-
-        if (res.success === false) {
-            const error = new Error();
-            error.name = res.status_code;
-            error.message = res.status_message;
-            throw error;
-        }
-
-        return res;
-    } catch (error) {
-        console.log();
-    }
+    const res = await fetch(url, {
+        method: 'GET'
+    })
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.success !== undefined && !data.success) throw new APIError(data.status_code, data.status_message);
+            return data;
+        });
+    return res;
 }
 
 export default getSearchedMovies;
