@@ -1,14 +1,14 @@
-import { headerLogo, headerSearch } from "./index";
+import { headerLogo, headerSearchBar } from "./index";
 
 export const Header = {
   render() {
     const element = document.createElement("header");
 
     const logo = headerLogo.render();
-    const search = headerSearch.render();
+    const searchBar = headerSearchBar.render();
 
     element.appendChild(logo);
-    element.appendChild(search);
+    element.appendChild(searchBar);
 
     return element;
   },

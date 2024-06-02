@@ -3,13 +3,13 @@ import { mainTitle } from "./index";
 import { mainMoreButton } from "./main-more-button";
 import { MovieCardsList } from "./movie/movie-cards-list";
 
-export const mainItemView = {
+export const mainSection = {
   async render() {
     const element = document.createElement("section");
     element.classList.add("item-view");
 
     const title = mainTitle.render();
-    const items = await this.generateMovieList();
+    const items = await this.generateMovieList({ page: 1 });
     const moreButton = mainMoreButton.render();
 
     element.appendChild(title);
@@ -19,9 +19,9 @@ export const mainItemView = {
     return element;
   },
 
-  async generateMovieList() {
+  async generateMovieList({ page = 1 }) {
     const movieList = new MovieList();
-    await movieList.generateMovies({ page: 1 });
+    await movieList.generateMovies({ page });
 
     const list = movieList.movies;
 

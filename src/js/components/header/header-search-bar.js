@@ -1,4 +1,4 @@
-export const headerSearch = {
+export const headerSearchBar = {
   render() {
     const element = document.createElement("div");
     element.classList.add("search-box");

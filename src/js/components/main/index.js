@@ -1,2 +1,2 @@
-export * from "./main-item-view";
+export * from "./main-section";
 export * from "./mainTitle";
