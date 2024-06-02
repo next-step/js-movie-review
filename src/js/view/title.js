@@ -1,6 +1,8 @@
-function renderTitle(title) {
-    const titleContainer = document.querySelector('.item-view h2');
-    titleContainer.innerText = title;
+function Title(title) {
+    const titleElement = document.createElement('h2');
+    titleElement.innerText = title;
+
+    return titleElement;
 }
 
-export default renderTitle;
+export default Title;

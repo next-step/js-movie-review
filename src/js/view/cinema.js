@@ -1,44 +1,29 @@
 import starFilled from '../../assets/star_filled.png';
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+import { IMAGE_BASE_URL } from '../../constants/api';
+import { MovieCard } from './MovieCard';
 
 export class Cinema {
-    #movies = [];
     page = 1;
-    #moviesWrapper = document.querySelector('.item-list');
-    #skeletonWrapper = document.querySelector('.skeleton-list');
+    #element = {
+        movieList: document.querySelector('.item-list'),
+        skeletonList: document.querySelector('.skeleton-list')
+    };
 
-    setMovies(movies) {
-        this.#movies = movies;
-    }
+    showMovies(movies) {
+        movies.forEach((movie) => {
+            const movieCard = MovieCard({
+                title: movie.title,
+                src: `${IMAGE_BASE_URL}${movie.poster_path}`,
+                voteAvg: movie.vote_average,
+                starSrc: starFilled
+            });
 
-    showMovies() {
-        const newItemsHTML = this.#movies
-            .map((movieInfo) => {
-                return `
-              <li>
-                <a href="#">
-                  <div class="item-card">
-                    <img
-                      class="item-thumbnail"
-                      src="${IMAGE_BASE_URL}${movieInfo.getPosterPath()}"
-                      loading="lazy"
-                      alt="${movieInfo.title}"
-                    />
-                    <p class="item-title">${movieInfo.getTitle()}</p>
-                    <p class="item-score">
-                    ${movieInfo.getVoteAverage()} <img src="${starFilled}" alt="별점" /> 
-                    </p>
-                  </div>
-                </a>
-              </li>
-            `;
-            })
-            .join('');
-        this.#moviesWrapper.innerHTML += newItemsHTML;
+            this.#element.movieList.appendChild(movieCard);
+        });
     }
 
     resetMovies() {
-        this.#moviesWrapper.innerHTML = '';
+        this.#element.movieList.innerHTML = '';
     }
 
     showSkeleton(flag) {
@@ -50,17 +35,17 @@ export class Cinema {
             <a href="#">
               <div class="item-card">
                 <div class="item-thumbnail skeleton"></div>
-                <div class="item-title skeleton"></div>
-                <div class="item-score skeleton"></div>
+                <div class="item-title skeleton skeleton-text"></div>
+                <div class="item-score skeleton skeleton-score"></div>
               </div>
             </a>
           </li>`
                 )
                 .join(''); // 배열을 문자열로 변환
 
-            this.#skeletonWrapper.innerHTML = skeletonHTML;
+            this.#element.skeletonList.innerHTML = skeletonHTML;
         } else {
-            this.#skeletonWrapper.innerHTML = '';
+            this.#element.skeletonList.innerHTML = '';
         }
     }
 }
