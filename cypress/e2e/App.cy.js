@@ -10,11 +10,14 @@ describe("앱 기능 테스트", async () => {
     expect(app.movieList.movies).to.have.length(Api.NUM_MOVIES_PER_PAGE);
   });
 
-  it("다음 페이지의 영화 목록을 불러오고, 현재 페이지 정보를 갱신한다.", async () => {
+  it("첫번째 페이지의 영화 목록을 모두 불러온 상태일때 두번째 페이지의 영화 목록을 불러오면, currentPage와 movies 가 갱신된다.", async () => {
     const nextPage = 2;
     const app = new App();
+
+    // 첫번째 페이지의 영화 목록을 불러온다.
     await app.init();
 
+    // 두번째 페이지의 영화 목록을 불러온다.
     await app.fetchNextPage();
 
     expect(app.currentPage).to.equal(nextPage);
