@@ -10,23 +10,24 @@ class MovieList {
   constructor() {
     this.#movieListHeader = new MovieListHeader("지금 인기있는 영화").element;
     this.#movieListWrapper = new MovieListWrapper().element;
-    this.element = this.element();
   }
 
-  element() {
+  render(target) {
     const section = document.createElement("section");
     section.classList.add("item-view");
     section.appendChild(this.#movieListHeader);
     section.appendChild(this.#movieListWrapper);
-    return section;
+
+    $(target).appendChild(section);
   }
 
-  renderMovies(movies) {
+  static renderMovies(movies) {
+    const fragment = document.createDocumentFragment();
     movies.forEach((movie) => {
-      const { title, poster_path, vote_average } = movie;
-      const movieCard = new MovieCard(poster_path, title, vote_average).element;
-      $("ul").appendChild(movieCard);
+      const movieCard = new MovieCard(movie).element;
+      fragment.appendChild(movieCard);
     });
+    $("ul").appendChild(fragment);
   }
 }
 

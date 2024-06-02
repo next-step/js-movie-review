@@ -1,4 +1,4 @@
-import { $ } from "../../utils/querySelector";
+import { $, $$ } from "../../utils/querySelector";
 
 class Skeleton {
   constructor() {
@@ -7,6 +7,7 @@ class Skeleton {
 
   element() {
     const li = document.createElement("li");
+    li.classList.add("skeleton-box");
     const a = document.createElement("a");
     const itemCardDiv = document.createElement("div");
     const itemThumbnailDiv = document.createElement("div");
@@ -26,12 +27,16 @@ class Skeleton {
   }
 
   remove() {
-    $("ul").innerHTML = "";
+    $$("li.skeleton-box").forEach((skeleton) => $("ul").removeChild(skeleton));
   }
 
   renderSkeletons() {
+    const fragment = document.createDocumentFragment();
+
     const skeletons = Array.from({ length: 12 }, () => new Skeleton().element);
-    skeletons.forEach((skeleton) => $("ul").appendChild(skeleton));
+    skeletons.forEach((skeleton) => fragment.appendChild(skeleton));
+
+    $("ul").appendChild(fragment);
   }
 }
 

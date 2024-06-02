@@ -2,27 +2,18 @@ import Api from "../apis";
 
 class Movie {
   #list;
-  #totalPages;
 
   constructor() {
     this.page = 1;
     this.#list = [];
-    this.#totalPages = 0;
+    this.api = new Api();
   }
 
-  async init() {
-    const { results, total_pages } = await new Api().getMovies(this.page);
-    console.log(results);
-    console.log(total_pages);
+  async load() {
+    const { results, total_pages } = await this.api.getMovies(this.page);
+    if (this.page >= total_pages) return;
     this.#list = results;
-    this.#totalPages = total_pages;
-  }
-
-  async loadMore() {
-    if (this.page >= this.#totalPages) return;
     this.page += 1;
-    const newMovies = await new Api().getMovies(this.page);
-    this.#list = this.movies.concat(newMovies);
   }
 
   get list() {
