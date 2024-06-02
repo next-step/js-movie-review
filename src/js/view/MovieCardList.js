@@ -1,15 +1,20 @@
+import { $ } from "../../utils/dom.js";
 import MovieCard from "./MovieCard.js";
 
 const MovieCardList = {
   elements: {
-    movieCardList: document.querySelector(".item-list"),
+    movieCardList: $(".item-list"),
   },
-  render: (movies) => {
+  render(movies) {
     const movieCards = movies.map((movie) =>
       MovieCard.generateMovieCard(movie)
     );
 
-    MovieCardList.elements.movieCardList.append(...movieCards);
+    if (!this.elements.movieCardList) {
+      return;
+    }
+
+    this.elements.movieCardList.append(...movieCards);
   },
 };
 
