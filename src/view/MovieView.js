@@ -15,7 +15,9 @@ export async function MovieListView() {
 
   const { results, total_pages } = await getPopularMovie(
     PageHandler.getCurrentPage()
-  ).finally(() => movieButtonLoading.end());
+  );
+
+  movieButtonLoading.end();
   PageHandler.setTotalPages(total_pages);
 
   const $popularMovieCards = results.map(MovieCardView);
@@ -27,16 +29,17 @@ export async function MovieListView() {
       if (movieButtonLoading.isLoading()) {
         return;
       }
+
       movieButtonLoading.start();
       addClassName($moreButton, 'loading');
 
       const { done, nextMovieList } = await getNextPopularMovie(
         $moreButton,
         $movieList
-      ).finally(() => {
-        movieButtonLoading.end();
-        removeClassName($moreButton, 'loading');
-      });
+      );
+
+      movieButtonLoading.end();
+      removeClassName($moreButton, 'loading');
 
       if (done) {
         addClassName($moreButton, 'hidden');
