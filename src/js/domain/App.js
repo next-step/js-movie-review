@@ -1,3 +1,4 @@
+import Api from "./Api.js";
 import MovieList from "./MovieList.js";
 
 class App {
@@ -14,6 +15,12 @@ class App {
 
   get currentPage() {
     return this.#currentPage;
+  }
+
+  get newMovies() {
+    return this.movieList.movies.slice(
+      (this.currentPage - 1) * Api.NUM_MOVIES_PER_PAGE
+    );
   }
 
   set currentPage(page) {

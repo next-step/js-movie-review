@@ -4,7 +4,6 @@ import App from "./js/domain/App.js";
 import { $ } from "./utils/dom.js";
 import MovieCardList from "./js/view/MovieCardList.js";
 import Skeleton from "./js/view/Skeleton.js";
-import Api from "./js/domain/Api.js";
 
 const app = new App();
 
@@ -25,10 +24,5 @@ showMoreButton.addEventListener("click", async () => {
   await app.fetchNextPage();
   Skeleton.remove();
 
-  // render new movies
-  const newMovies = app.movieList.movies.slice(
-    (app.currentPage - 1) * Api.NUM_MOVIES_PER_PAGE
-  );
-
-  MovieCardList.render(newMovies);
+  MovieCardList.render(app.newMovies);
 });

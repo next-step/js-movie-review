@@ -5,6 +5,7 @@ const MovieCardList = {
   elements: {
     movieCardList: $(".item-list"),
   },
+
   render(movies) {
     const movieCards = movies.map((movie) =>
       MovieCard.generateMovieCard(movie)
