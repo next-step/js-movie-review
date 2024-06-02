@@ -8,7 +8,8 @@
     "watch": "webpack --watch",
     "dev": "webpack serve --port 8080",
     "build": "webpack --config webpack.config.js",
-    "cypress": "cypress open"
+    "cypress": "start-server-and-test dev http://localhost:8080 cypress:open",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
