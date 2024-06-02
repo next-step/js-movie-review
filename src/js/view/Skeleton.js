@@ -32,13 +32,6 @@ const Skeleton = {
     const target = MovieCardList.elements.movieCardList;
     target.append(...skeletonCards);
   },
-
-  remove() {
-    const skeletonCards = $all(Skeleton.selectors.SKELETON_CARD);
-    skeletonCards.forEach((card) => {
-      card.remove();
-    });
-  },
 };
 
 export default Skeleton;
