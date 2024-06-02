@@ -10,7 +10,7 @@ const Api = {
 
   NUM_MOVIES_PER_PAGE: 20,
 
-  generateUrl: function (page) {
+  generateUrl(page) {
     const param = new URLSearchParams({
       api_key: this.API_KEY,
       language: "ko-KR",
@@ -20,7 +20,7 @@ const Api = {
     return `${this.BASE_URL}?${param}`;
   },
 
-  throwError: function (status) {
+  throwError(status) {
     switch (status) {
       case 401:
         throw new Error(ErrorMessage.NOT_VALID_API_KEY);
@@ -31,7 +31,7 @@ const Api = {
     }
   },
 
-  get: async function (url) {
+  async get(url) {
     const response = await fetch(url);
 
     if (!response.ok) {
