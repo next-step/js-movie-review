@@ -1,5 +1,11 @@
-import Logo from '../../assets/logo.png';
+export function Logo({ src, alt }) {
+    const logoWrapper = document.createElement('h1');
+    const logoElement = document.createElement('img');
+    logoElement.src = src;
+    logoElement.alt = alt;
+    logoElement.loading = 'lazy';
 
-export function renderLogo() {
-    return ` <h1><img src="${Logo}" alt="MovieList 로고" /></h1>`;
+    logoWrapper.appendChild(logoElement);
+
+    return logoWrapper;
 }
