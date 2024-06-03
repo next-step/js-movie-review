@@ -9,12 +9,12 @@ module.exports = {
     extensions: [".js"],
   },
   devServer: {
-    static: "./dist",
+    static: path.resolve(__dirname, "dist"),
     open: true,
     historyApiFallback: true,
   },
   output: {
-    publicPath: "/",
+    publicPath: "/js-movie-review/",
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
