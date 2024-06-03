@@ -7,7 +7,7 @@ export class MovieList {
   async generateMovies({ page }) {
     const movies = await fetchPopularMovies({ page });
 
-    this.#movies = movies.map(
+    const movieList = movies.map(
       (movie) =>
         new Movie({
           title: movie.title,
@@ -15,9 +15,16 @@ export class MovieList {
           thumbnail: `https://image.tmdb.org/t/p/w200${movie.poster_path}`,
         })
     );
+
+    this.addMovies(movieList);
+    return movieList;
   }
 
   get movies() {
     return [...this.#movies];
+  }
+
+  addMovies(movies) {
+    this.#movies = [...this.#movies, ...movies];
   }
 }

@@ -7,7 +7,9 @@
     "watch": "webpack --watch",
     "dev": "webpack serve",
     "build": "webpack --config webpack.config.js",
-    "cypress": "cypress open"
+    "cypress": "cypress open",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -22,10 +24,11 @@
   "bugs": {
     "url": "https://github.com/next-step/js-movie-review/issues"
   },
-  "homepage": "https://github.com/next-step/js-movie-review#readme",
+  "homepage": "https://hoondongkang.github.io/js-movie-review/",
   "devDependencies": {
     "cypress": "^12.17.4",
     "dotenv-webpack": "^8.0.1",
+    "gh-pages": "^6.1.1",
     "html-webpack-plugin": "^5.5.3",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
