@@ -11,6 +11,12 @@ describe("영화 리뷰 테스트", () => {
     cy.get(".load-more").should("exist").click();
     cy.get(".item-list li").should("have.length", 40);
   });
+
+  it("영화 목록 아이템에 대한 Skeleton UI를 구현한다.", () => {
+    cy.get(".skeleton-item").should("have.length", 20);
+    cy.wait(1000);
+    cy.get(".skeleton-item").should("have.length", 0);
+  });
 });
 
 describe("영화 리뷰 테스트", () => {
