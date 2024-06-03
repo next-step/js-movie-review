@@ -1,15 +1,19 @@
 import { movieCard } from "./movie-card";
 
-export const MovieCardsList = {
-  render(movies) {
+export const movieCardsList = {
+  render() {
     const element = document.createElement("ul");
     element.classList.add("item-list");
 
-    movies.forEach((movie) => {
-      const item = movieCard.generateMovieItem(movie);
-      element.appendChild(item);
-    });
-
     return element;
   },
+
+  loadMovieList(movies) {
+    const itemList = document.querySelector(".item-list");
+
+    movies.forEach((movie) => {
+      const item = movieCard.generateMovieItem(movie);
+      itemList.appendChild(item);
+    });
+  }
 };

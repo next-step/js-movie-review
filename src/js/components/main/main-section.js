@@ -1,7 +1,5 @@
 import { MovieList } from "../../domain/MovieList";
-import { mainTitle } from "./index";
-import { mainMoreButton } from "./main-more-button";
-import { MovieCardsList } from "./movie/movie-cards-list";
+import { mainTitle, mainMoreButton, movieCardsList, skeleton } from "./index";
 
 export const mainSection = {
   async render() {
@@ -9,22 +7,15 @@ export const mainSection = {
     element.classList.add("item-view");
 
     const title = mainTitle.render();
-    const items = await this.generateMovieList({ page: 1 });
+    const itemList = movieCardsList.render();
     const moreButton = mainMoreButton.render();
-
+    
     element.appendChild(title);
-    element.appendChild(items);
+    element.appendChild(itemList);
     element.appendChild(moreButton);
 
     return element;
   },
 
-  async generateMovieList({ page = 1 }) {
-    const movieList = new MovieList();
-    await movieList.generateMovies({ page });
 
-    const list = movieList.movies;
-
-    return MovieCardsList.render(list);
-  },
 };
