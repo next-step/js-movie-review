@@ -41,4 +41,43 @@ describe("Api 기능 테스트", () => {
       cy.request(WRONG_API).should("throw", ErrorMessage.NOT_VALID_API_KEY);
     });
   });
+
+  it("영화 검색 API를 호출하면 검색 결과를 반환한다.", () => {
+    const query = "Harry Potter";
+    const currentPage = 1;
+    const url = Api.generateSearchMoviesUrl(query, currentPage);
+
+    cy.request(url).as("movies");
+
+    cy.get("@movies").its("status").should("eq", 200);
+    cy.get("@movies").its("body.results").should("not.be.empty");
+  });
+
+  it("영화 검색 API 호출에 실패하면 에러를 발생시킨다.", () => {
+    const WRONG_URL = "https://api.themoviedb.org/3/search/movie/wrong";
+
+    cy.intercept(WRONG_URL, {
+      statusCode: 404,
+      body: { status_message: "Invalid page." },
+    }).as("movies");
+
+    expect(() => {
+      cy.request(WRONG_URL).should("throw", ErrorMessage.NOT_VALID_URL);
+    });
+  });
+
+  it("인증되지 않은 API 키로 영화 검색 API를 호출하면 에러를 발생시킨다.", () => {
+    const WRONG_API = "https://api.themoviedb.org/3/search/movie";
+
+    cy.intercept(WRONG_API, {
+      statusCode: 401,
+      body: {
+        status_message: "Invalid API key: You must be granted a valid key.",
+      },
+    }).as("movies");
+
+    expect(() => {
+      cy.request(WRONG_API).should("throw", ErrorMessage.NOT_VALID_API_KEY);
+    });
+  });
 });
