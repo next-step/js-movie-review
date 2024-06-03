@@ -1,7 +1,7 @@
 import ErrorMessage from "../ErrorMessage";
 
 const Api = {
-  BASE_URL: "https://api.themoviedb.org/3/movie/popular",
+  BASE_URL: "https://api.themoviedb.org/3",
   THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
   LANGUAGE: "ko-KR",
 
@@ -11,14 +11,25 @@ const Api = {
 
   NUM_MOVIES_PER_PAGE: 20,
 
-  generateUrl(page: number): string {
+  generatePopularMoviesUrl(page: number): string {
     const param = new URLSearchParams({
       api_key: this.API_KEY,
       language: this.LANGUAGE,
       page: page.toString(),
     });
 
-    return `${this.BASE_URL}?${param}`;
+    return `${this.BASE_URL}/movie/popular?${param}`;
+  },
+
+  generateSearchMoviesUrl(query: string, page: number): string {
+    const param = new URLSearchParams({
+      api_key: this.API_KEY,
+      language: this.LANGUAGE,
+      query,
+      page: page.toString(),
+    });
+
+    return `${this.BASE_URL}/search/movie?${param}`;
   },
 
   throwError(status: number) {

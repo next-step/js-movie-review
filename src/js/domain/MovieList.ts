@@ -25,7 +25,7 @@ class MovieList {
   }
 
   async fetchMovies(page: number) {
-    const movieUrl = Api.generateUrl(page);
+    const movieUrl = Api.generatePopularMoviesUrl(page);
 
     try {
       const { results: movies } = await Api.get<MovieApiData[]>(movieUrl);
@@ -39,6 +39,25 @@ class MovieList {
           })
         );
       });
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  async searchMovies(query: string, page: number) {
+    const searchUrl = Api.generateSearchMoviesUrl(query, page);
+
+    try {
+      const { results: movies } = await Api.get<MovieApiData[]>(searchUrl);
+
+      this.#movies = movies.map(
+        (movie) =>
+          new Movie({
+            title: movie.title,
+            thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
+            rating: movie.vote_average,
+          })
+      );
     } catch (e) {
       alert(e.message);
     }
