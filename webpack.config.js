@@ -4,13 +4,13 @@ const DotEnv = require("dotenv-webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  entry: ["./src/index.js", "./src/css/index.css"],
+  entry: ["./src/index.js"],
   mode: "development",
   resolve: {
-    extensions: [".js", ".css"],
+    extensions: [".js"],
   },
   devServer: {
-    static: "./dist",
+    static: path.resolve(__dirname, "dist"),
     open: true,
     historyApiFallback: true,
   },
