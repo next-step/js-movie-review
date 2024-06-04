@@ -1,6 +1,11 @@
 import { App } from "./components/App";
+import { createComponent } from "./createComponent";
 
-export function render() {
+export async function render() {
   const $app = document.querySelector("#app");
-  $app.innerHTML = App().element;
+
+  const app = await createComponent(App);
+
+  $app.innerHTML = app.element;
+  app.bindEvents();
 }

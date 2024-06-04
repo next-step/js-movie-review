@@ -162,3 +162,22 @@ header .search-box > .search-button {
   background: url("../images/search_button.png") transparent no-repeat 0 1px;
   background-size: contain;
 }
+
+.modal {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+}
+
+.modal > * {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  border: 1px solid black;
+}
