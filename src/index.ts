@@ -19,17 +19,17 @@ const main = () => {
     MovieCardList.render(movieList.movies);
   });
 
-  ShowMoreButton.elements.button.addEventListener("click", async () => {
+  ShowMoreButton.elements.button?.addEventListener("click", async () => {
     await ShowMoreButton.handleClick(app, movieList);
   });
 
-  SearchBox.elements.searchInput.addEventListener("input", (e: InputEvent) => {
+  SearchBox.elements.searchInput?.addEventListener("input", (e: InputEvent) => {
     SearchBox.handleInputSearchQuery(e, app);
   });
-  SearchBox.elements.searchButton.addEventListener("click", () => {
+  SearchBox.elements.searchButton?.addEventListener("click", () => {
     SearchBox.handleSubmitSearchQuery(app, movieList);
   });
-  SearchBox.elements.searchInput.addEventListener(
+  SearchBox.elements.searchInput?.addEventListener(
     "keydown",
     async (e: KeyboardEvent) => {
       if (e.key === "Enter") {

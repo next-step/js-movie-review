@@ -1,5 +1,7 @@
 import { $, removeElements } from "../../utils/dom.js";
+import Api from "../domain/Api.ts";
 import MovieCard from "./MovieCard.js";
+import ShowMoreButton from "./ShowMoreButton.js";
 import Skeleton from "./Skeleton.js";
 
 const MovieCardList = {
@@ -17,6 +19,12 @@ const MovieCardList = {
     }
 
     this.elements.movieCardList.append(...movieCards);
+
+    if (movies.length < Api.NUM_MOVIES_PER_PAGE) {
+      ShowMoreButton.hide();
+    } else {
+      ShowMoreButton.show();
+    }
   },
 
   clear() {
