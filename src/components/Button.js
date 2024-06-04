@@ -1,4 +1,4 @@
-export function Button({ classNames = [], type = 'text', id = '', name = '', onClick, onKeyDown }) {
+function Button({ classNames = [], type = 'text', id = '', name = '', onClick, onKeyDown }) {
     const buttonElement = document.createElement('button');
 
     buttonElement.classList.add(...classNames);
@@ -11,3 +11,5 @@ export function Button({ classNames = [], type = 'text', id = '', name = '', onC
     onKeyDown && buttonElement.addEventListener('keydown', onKeyDown);
     return buttonElement;
 }
+
+export default Button;

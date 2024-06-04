@@ -1,4 +1,4 @@
-export function Logo({ src, alt }) {
+function Logo({ src, alt }) {
     const logoWrapper = document.createElement('h1');
     const logoElement = document.createElement('img');
     logoElement.src = src;
@@ -9,3 +9,5 @@ export function Logo({ src, alt }) {
 
     return logoWrapper;
 }
+
+export default Logo;

@@ -1,4 +1,4 @@
-export function Header(logo, searchBox) {
+function Header(logo, searchBox) {
     const headerElement = document.createElement('header');
     headerElement.classList.add('header');
 
@@ -7,3 +7,5 @@ export function Header(logo, searchBox) {
 
     return headerElement;
 }
+
+export default Header;

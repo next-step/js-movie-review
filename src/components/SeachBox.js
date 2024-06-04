@@ -1,4 +1,4 @@
-export function SearchBox({ input, button }) {
+function SearchBox({ input, button }) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('search-box');
 
@@ -7,3 +7,5 @@ export function SearchBox({ input, button }) {
 
     return wrapper;
 }
+
+export default SearchBox;
