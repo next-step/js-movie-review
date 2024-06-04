@@ -1,9 +1,10 @@
 import { BASE_URL } from '../constants/api';
+import { createUrlSeacrhParams } from './utils/createUrlSeachParams';
 
 async function getSearchedMovies(query) {
     const url = createUrlSeacrhParams({
         baseUrl: BASE_URL,
-        params: { query: query, api_key: process.env.TMDB_API_KEY }
+        params: { query: query, api_key: process.env.TMDB_API_KEY, language: 'ko-KR' }
     });
 
     const res = await fetch(url, {
