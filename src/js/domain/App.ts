@@ -27,7 +27,7 @@ class App {
     this.currentPage = 1;
     movieList.clearMovies();
 
-    this.fetchMovieList(movieList);
+    await this.fetchMovieList(movieList);
   }
 }
 
