@@ -19,6 +19,10 @@ const MovieCardList = {
     this.elements.movieCardList.append(...movieCards);
   },
 
+  clear() {
+    this.elements.movieCardList.innerHTML = "";
+  },
+
   addSkeleton() {
     this.elements.movieCardList.append(...Skeleton.skeletonCards);
   },
