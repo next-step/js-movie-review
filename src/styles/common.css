@@ -56,14 +56,6 @@ button {
     grid-row-gap: 48px;
 }
 
-.skeleton-list {
-    display: grid;
-    margin: 48px 0;
-    grid-template-columns: repeat(4, 180px);
-    grid-column-gap: 160px;
-    grid-row-gap: 48px;
-}
-
 .item-card {
     display: flex;
     flex-direction: column;
@@ -125,16 +117,6 @@ button.primary {
     -webkit-animation: skeleton-animation 5s infinite ease-out;
     animation: skeleton-animation 5s infinite ease-out;
     border-radius: 8px;
-}
-
-.item-card .skeleton-text {
-    width: 180px;
-    height: 19.2px;
-}
-
-.item-card .skeleton-score {
-    width: 180px;
-    height: 25px;
 }
 
 @-webkit-keyframes skeleton-animation {
