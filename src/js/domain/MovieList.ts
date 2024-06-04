@@ -24,6 +24,10 @@ class MovieList {
     this.#movies.push(movie);
   }
 
+  clearMovies() {
+    this.#movies = [];
+  }
+
   async fetchMovies(page: number) {
     const movieUrl = Api.generatePopularMoviesUrl(page);
 
@@ -50,14 +54,15 @@ class MovieList {
     try {
       const { results: movies } = await Api.get<MovieApiData[]>(searchUrl);
 
-      this.#movies = movies.map(
-        (movie) =>
+      movies.forEach((movie) => {
+        this.addMovie(
           new Movie({
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
           })
-      );
+        );
+      });
     } catch (e) {
       alert(e.message);
     }
