@@ -1,10 +1,11 @@
 import MovieCardList from "./MovieCardList.js";
+import { $ } from "../../utils/dom.js";
 
 const SearchBox = {
   elements: {
-    searchBox: document.querySelector(".search-box"),
-    searchInput: document.querySelector(".search-input"),
-    searchButton: document.querySelector(".search-button"),
+    searchBox: $(".search-box"),
+    searchInput: $(".search-input"),
+    searchButton: $(".search-button"),
   },
 
   async handleInputSearchQuery(e, app) {

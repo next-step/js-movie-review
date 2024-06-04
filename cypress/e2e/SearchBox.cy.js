@@ -1,5 +1,4 @@
 import Api from "../../src/js/domain/Api";
-import Movie from "../../src/js/domain/Movie";
 
 const selectors = {
   searchInput: ".search-input",

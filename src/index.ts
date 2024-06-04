@@ -1,10 +1,10 @@
 import "../templates/logo.png";
 import "../templates/star_filled.png";
 import App from "./js/domain/App";
-import { $ } from "./utils/dom.js";
 import MovieCardList from "./js/view/MovieCardList";
 import MovieList from "./js/domain/MovieList";
 import SearchBox from "./js/view/SearchBox";
+import ShowMoreButton from "./js/view/ShowMoreButton";
 
 const main = () => {
   const app = new App();
@@ -19,21 +19,8 @@ const main = () => {
     MovieCardList.render(movieList.movies);
   });
 
-  const showMoreButton = $(".show-more");
-
-  if (!showMoreButton) {
-    return;
-  }
-
-  showMoreButton.addEventListener("click", async () => {
-    MovieCardList.addSkeleton();
-
-    await app.fetchNextPage(movieList);
-
-    MovieCardList.removeSkeleton();
-
-    const newMovies = movieList.getMoviesByPage(app.currentPage);
-    MovieCardList.render(newMovies);
+  ShowMoreButton.elements.button.addEventListener("click", async () => {
+    await ShowMoreButton.handleClick(app, movieList);
   });
 
   SearchBox.elements.searchInput.addEventListener("input", (e: InputEvent) => {
