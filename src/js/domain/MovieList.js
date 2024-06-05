@@ -1,4 +1,4 @@
-import { fetchPopularMovies } from "../util/fetchMovie";
+import { fetchPopularMovies } from "../api/api";
 import { Movie } from "./Movie";
 
 export class MovieList {
