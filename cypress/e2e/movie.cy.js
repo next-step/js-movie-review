@@ -39,18 +39,8 @@ describe("영화 리뷰 웹 테스트", () => {
   });
 
   it("영화 목록을 불러오는 동안 스켈레톤 UI를 보여준다.", () => {
-    const baseUrl = "https://api.themoviedb.org/3/movie/popular";
-    const param = new URLSearchParams({
-      api_key: Cypress.env("TMDB_API_KEY"),
-      language: "ko-KR",
-      page: 1,
-    });
-
-    cy.request("GET", `${baseUrl}?${param}`).as("popularMovies");
-
-    console.log("@popularMovies", "@popularMovies");
     cy.get(".skeleton-card").should("have.length", 20);
-    // cy.wait("@popularMovies");
-    cy.get(".skeleton-card").should("not.exist");
+    cy.wait(1000);
+    cy.get(".skeleton-card").should("have.length", 0);
   });
 });
