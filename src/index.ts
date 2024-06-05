@@ -30,9 +30,10 @@ const main = () => {
     SearchBox.handleSubmitSearchQuery(app, movieList);
   });
   SearchBox.elements.searchInput?.addEventListener(
-    "keydown",
+    "keypress",
     async (e: KeyboardEvent) => {
       if (e.key === "Enter") {
+        e.preventDefault();
         await SearchBox.handleSubmitSearchQuery(app, movieList);
       }
     }
