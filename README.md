@@ -1,3 +1,7 @@
+## 배포 URL
+
+https://seungdeok.github.io/js-movie-review
+
 <p align="middle" >
   <img width="200" src="https://i.ibb.co/JsjssdJ/popcorn.png">
 </p>
