@@ -1,20 +1,27 @@
 describe("영화 리뷰 테스트", () => {
   beforeEach(() => {
+    // given
     cy.visit("http://localhost:8080");
   });
 
-  it("마운트 시 영화 목록의 1페이지를 불러온다.", () => {
+  it("초기 페이지 로딩 시 20개의 영화 목록을 불러온다.", () => {
+    // then
     cy.get(".item-list li").should("have.length", 20);
   });
 
-  it("더보기 버튼을 누르면 그 다음의 영화 목록 20개를 불러온다.", () => {
+  it("더보기 버튼을 클릭하면 그 다음의 영화 목록 20개를 불러온다.", () => {
+    // when
     cy.get(".load-more").should("exist").click();
+    // then
     cy.get(".item-list li").should("have.length", 40);
   });
 
-  it("영화 목록 아이템에 대한 Skeleton UI를 구현한다.", () => {
+  it("영화 목록 아이템을 로딩 중일 때 Skeleton UI가 노출 된다.", () => {
+    // then
     cy.get(".skeleton-item").should("have.length", 20);
+    // when
     cy.wait(1000);
+    // then
     cy.get(".skeleton-item").should("have.length", 0);
   });
 });
@@ -27,6 +34,7 @@ describe("영화 리뷰 테스트", () => {
       language: "ko-KR",
       page: 1,
     });
+    // given
     cy.intercept(
       {
         method: "GET",
@@ -38,9 +46,11 @@ describe("영화 리뷰 테스트", () => {
     cy.visit("http://localhost:8080");
   });
 
-  it("페이지 끝에 도달한 경우에는 더보기 버튼을 화면에 출력하지 않는다.", async () => {
+  it("마지막 페이지 도달 시 더보기 버튼이 표시되지 않는다.", async () => {
+    // when
     cy.wait("@popularMovies");
 
+    // then
     cy.get(".load-more").should("not.exist");
   });
 });
