@@ -6,6 +6,8 @@ import "./css/common.css";
 
 addEventListener("DOMContentLoaded", () => {
   const movie = new Movie();
+
   new HeaderView();
-  new MovieView(movie);
+  const movieView = new MovieView(movie);
+  movieView.loadMore();
 });

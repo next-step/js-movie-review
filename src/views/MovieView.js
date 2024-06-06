@@ -12,8 +12,6 @@ export class MovieView {
     this.loadMoreButton.addEventListener("click", async () => {
       await this.loadMore();
     });
-
-    this.loadMore();
   }
 
   setup() {
