@@ -2,6 +2,8 @@ import starFilled from "../assets/star_filled.png";
 
 export class MovieView {
   constructor(movieInstance) {
+    this.setup();
+
     this.movieInstance = movieInstance;
     this.itemList = document.querySelector(".item-list");
     this.loadMoreButton = document.querySelector(".load-more");
@@ -11,6 +13,20 @@ export class MovieView {
     });
 
     this.loadMore();
+  }
+
+  setup() {
+    const mainElement = document.createElement("main");
+
+    mainElement.innerHTML = /*html */ `
+      <section class="item-view">
+        <h2>지금 인기 있는 영화</h2>
+        <ul class="item-list"></ul>
+        <button class="btn primary full-width load-more">더 보기</button>
+      </section>
+    `;
+
+    document.getElementById("app").appendChild(mainElement);
   }
 
   showSkeleton() {
