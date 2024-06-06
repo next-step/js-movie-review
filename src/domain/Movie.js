@@ -16,8 +16,9 @@ export class Movie {
       this.hasMore = data.page < data.total_pages;
       this.currentPage += 1;
       return data.results;
-    } catch {
+    } catch (error) {
       this.hasMore = false;
+      throw error;
     }
   }
 }

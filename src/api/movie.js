@@ -1,4 +1,5 @@
-const BASE_URL = "https://api.themoviedb.org/3/movie";
+import ApiClient from "./client";
+
 const BASE_API_KEY = process.env.API_KEY;
 
 export async function getPopularMovies(page) {
@@ -8,10 +9,7 @@ export async function getPopularMovies(page) {
     page,
   });
 
-  const response = await fetch(`${BASE_URL}/popular?${param}`);
+  const data = await ApiClient.get(`/popular?${param}`);
 
-  if (response.ok) {
-    return response.json();
-  }
-  return { results: [] };
+  return data;
 }

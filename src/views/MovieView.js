@@ -1,3 +1,4 @@
+import { InternetServerError, UnauthorizedError } from "../api/error";
 import starFilled from "../assets/star_filled.png";
 
 export class MovieView {
@@ -56,7 +57,7 @@ export class MovieView {
       const movies = await this.movieInstance.loadMore();
       this.hideSkeleton();
 
-      movies.forEach((movie) => {
+      movies?.forEach((movie) => {
         const movieElement = document.createElement("li");
         const thumbnail = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
         movieElement.innerHTML = /*html */ `
@@ -77,8 +78,13 @@ export class MovieView {
       if (!this.movieInstance.hasMore) {
         this.loadMoreButton.style.display = "none";
       }
-    } catch {
+    } catch (error) {
       this.hideSkeleton();
+      if (error instanceof UnauthorizedError) {
+        alert("401");
+      } else if (error instanceof InternetServerError) {
+        alert("500");
+      }
     }
   }
 }
