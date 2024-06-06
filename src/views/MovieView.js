@@ -54,10 +54,10 @@ export class MovieView {
   async loadMore() {
     try {
       this.showSkeleton();
-      const movies = await this.movieInstance.loadMore();
+      const list = await this.movieInstance.loadMore();
       this.hideSkeleton();
 
-      movies?.forEach((movie) => {
+      list?.forEach((movie) => {
         const movieElement = document.createElement("li");
         const thumbnail = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
         movieElement.innerHTML = /*html */ `
