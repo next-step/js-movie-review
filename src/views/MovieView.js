@@ -31,18 +31,19 @@ export class MovieView {
   }
 
   showSkeleton() {
-    for (let i = 0; i < 20; i++) {
-      const skeletonItem = document.createElement("li");
-      skeletonItem.classList.add("skeleton-item");
-      skeletonItem.innerHTML = /*html */ `
+    const skeletonElement = Array.from(
+      { length: 20 },
+      () => /*html */ `
+        <li class="skeleton-item">
             <div class="item-card">
                 <div class="item-thumbnail skeleton"></div>
                 <div class="item-title skeleton"></div>
                 <div class="item-score skeleton"></div>
             </div>
-        `;
-      this.itemList.appendChild(skeletonItem);
-    }
+        </li>
+    `
+    ).join("");
+    this.itemList.innerHTML += skeletonElement;
   }
 
   hideSkeleton() {
@@ -57,10 +58,11 @@ export class MovieView {
       const list = await this.movieInstance.loadMore();
       this.hideSkeleton();
 
-      list?.forEach((movie) => {
-        const movieElement = document.createElement("li");
-        const thumbnail = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
-        movieElement.innerHTML = /*html */ `
+      const listElement = list
+        .map((movie) => {
+          const thumbnail = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+          return /*html */ `
+            <li>
               <a href="#">
                   <div class="item-card">
                       <img class="item-thumbnail" loading="lazy" src="${thumbnail}" alt="${movie.title}">
@@ -71,9 +73,12 @@ export class MovieView {
                       </p>
                   </div>
               </a>
-          `;
-        this.itemList.appendChild(movieElement);
-      });
+            </li>
+        `;
+        })
+        .join("");
+
+      this.itemList.innerHTML += listElement;
 
       if (!this.movieInstance.hasMore) {
         this.loadMoreButton.style.display = "none";

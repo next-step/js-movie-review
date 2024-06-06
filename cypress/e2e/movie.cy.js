@@ -1,7 +1,7 @@
 describe("영화 리뷰 테스트", () => {
   beforeEach(() => {
     // given
-    cy.visit("http://localhost:8080");
+    cy.visit("http://localhost:8081");
   });
 
   it("초기 페이지 로딩 시 20개의 영화 목록을 불러온다.", () => {
@@ -43,7 +43,7 @@ describe("영화 리뷰 테스트", () => {
       { fixture: "movie-popular.json" }
     ).as("popularMovies");
 
-    cy.visit("http://localhost:8080");
+    cy.visit("http://localhost:8081");
   });
 
   it("마지막 페이지 도달 시 더보기 버튼이 표시되지 않는다.", async () => {
