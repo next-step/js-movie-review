@@ -1,9 +1,9 @@
 import { MovieApiData } from "../../types/movie-api-data";
 import Api from "./Api";
-import Movie from "./Movie";
+import MovieModel from "./MovieModel";
 
-class MovieList {
-  #movies: Movie[];
+class MovieListModel {
+  #movies: MovieModel[];
 
   constructor() {
     this.#movies = [];
@@ -20,7 +20,7 @@ class MovieList {
     );
   }
 
-  addMovie(movie: Movie) {
+  addMovie(movie: MovieModel) {
     this.#movies.push(movie);
   }
 
@@ -36,7 +36,7 @@ class MovieList {
 
       movies.forEach((movie) => {
         this.addMovie(
-          new Movie({
+          new MovieModel({
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
@@ -56,7 +56,7 @@ class MovieList {
 
       movies.forEach((movie) => {
         this.addMovie(
-          new Movie({
+          new MovieModel({
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
@@ -69,4 +69,4 @@ class MovieList {
   }
 }
 
-export default MovieList;
+export default MovieListModel;

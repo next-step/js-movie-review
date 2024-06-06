@@ -1,4 +1,4 @@
-class Movie {
+class MovieModel {
   #title: string;
   #rating: number;
   #thumbnail: string;
@@ -30,4 +30,4 @@ class Movie {
   }
 }
 
-export default Movie;
+export default MovieModel;

@@ -2,13 +2,13 @@ import "../templates/logo.png";
 import "../templates/star_filled.png";
 import App from "./js/domain/App";
 import MovieCardList from "./js/view/MovieCardList";
-import MovieList from "./js/domain/MovieList";
+import MovieListModel from "./js/domain/MovieListModel";
 import SearchBox from "./js/view/SearchBox";
 import ShowMoreButton from "./js/view/ShowMoreButton";
 
 const main = () => {
   const app = new App();
-  const movieList = new MovieList();
+  const movieList = new MovieListModel();
 
   addEventListener("DOMContentLoaded", async () => {
     MovieCardList.addSkeleton();

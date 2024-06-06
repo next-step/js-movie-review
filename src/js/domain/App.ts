@@ -1,14 +1,14 @@
-import MovieList from "./MovieList";
+import MovieListModel from "./MovieListModel";
 
 class App {
   currentPage = 1;
   searchQuery = "";
 
-  async init(movieList: MovieList) {
+  async init(movieList: MovieListModel) {
     await this.fetchMovieList(movieList);
   }
 
-  async fetchMovieList(movieList: MovieList) {
+  async fetchMovieList(movieList: MovieListModel) {
     if (this.searchQuery) {
       await movieList.searchMovies(this.searchQuery, this.currentPage);
       return;
@@ -17,13 +17,13 @@ class App {
     await movieList.fetchMovies(this.currentPage);
   }
 
-  async fetchNextPage(movieList: MovieList) {
+  async fetchNextPage(movieList: MovieListModel) {
     this.currentPage++;
 
     await this.fetchMovieList(movieList);
   }
 
-  async searchMovies(movieList: MovieList) {
+  async searchMovies(movieList: MovieListModel) {
     this.currentPage = 1;
     movieList.clearMovies();
 

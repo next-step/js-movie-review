@@ -1,8 +1,8 @@
-import Movie from "../../src/js/domain/Movie";
+import MovieModel from "../../src/js/domain/MovieModel";
 
 describe("영화 기능 테스트", () => {
   it("영화는 썸네일, 제목, 평점으로 이루어져있다.", function () {
-    const movie = new Movie({
+    const movie = new MovieModel({
       title: "테스트",
       rating: 5,
       thumbnail: "test.jpg",
