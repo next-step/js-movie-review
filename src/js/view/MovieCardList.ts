@@ -1,15 +1,16 @@
-import { $, removeElements } from "../../utils/dom.js";
-import Api from "../domain/Api.ts";
-import MovieCard from "./MovieCard.js";
-import ShowMoreButton from "./ShowMoreButton.js";
-import Skeleton from "./Skeleton.js";
+import { $, removeElements } from "../../utils/dom";
+import Api from "../domain/Api";
+import MovieCard from "./MovieCard";
+import ShowMoreButton from "./ShowMoreButton";
+import Skeleton from "./Skeleton";
+import MovieModel from "../domain/MovieModel";
 
 const MovieCardList = {
   elements: {
     movieCardList: $(".item-list"),
   },
 
-  render(movies) {
+  render(movies: MovieModel[]) {
     const movieCards = movies.map((movie) =>
       MovieCard.generateMovieCard(movie)
     );
@@ -28,17 +29,18 @@ const MovieCardList = {
   },
 
   clear() {
-    this.elements.movieCardList.innerHTML = "";
+    MovieCardList.elements.movieCardList.innerHTML = "";
   },
 
   addSkeleton() {
-    this.elements.movieCardList.append(...Skeleton.skeletonCards);
+    MovieCardList.elements.movieCardList.append(...Skeleton.skeletonCards);
   },
 
   removeSkeleton() {
-    removeElements(this.elements.movieCardList, [
-      Skeleton.selectors.SKELETON_CARD,
-    ]);
+    removeElements(
+      MovieCardList.elements.movieCardList,
+      Skeleton.selectors.SKELETON_CARD
+    );
   },
 };
 

@@ -1,9 +1,9 @@
-import { createElement } from "../../utils/dom.js";
+import { createElement } from "../../utils/dom";
 
 const Skeleton = {
-  NUM_SKELETON_CARDS: 10,
+  NUM_SKELETON_CARDS: 10 as const,
   selectors: {
-    SKELETON_CARD: ".skeleton-card",
+    SKELETON_CARD: ".skeleton-card" as const,
   },
 
   generateSkeletonCard() {
@@ -23,9 +23,9 @@ const Skeleton = {
   },
 
   get skeletonCards() {
-    const skeletonCards = Array.from(
+    const skeletonCards = Array.from<void, HTMLElement>(
       { length: Skeleton.NUM_SKELETON_CARDS },
-      () => this.generateSkeletonCard()
+      this.generateSkeletonCard
     );
 
     return skeletonCards;

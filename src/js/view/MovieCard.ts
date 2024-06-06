@@ -1,7 +1,8 @@
-import { createElement } from "../../utils/dom.js";
+import { createElement } from "../../utils/dom";
+import MovieModel from "../domain/MovieModel";
 
 const MovieCard = {
-  generateMovieCard(movie) {
+  generateMovieCard(movie: MovieModel) {
     const { title, rating, thumbnail } = movie;
     const card = createElement("li");
     card.innerHTML = /* html */ `

@@ -1,5 +1,7 @@
-import MovieCardList from "./MovieCardList.js";
-import { $ } from "../../utils/dom.js";
+import MovieCardList from "./MovieCardList";
+import { $ } from "../../utils/dom";
+import App from "../domain/App";
+import MovieListModel from "../domain/MovieListModel";
 
 const SearchBox = {
   elements: {
@@ -8,12 +10,12 @@ const SearchBox = {
     searchButton: $(".search-button"),
   },
 
-  async handleInputSearchQuery(e, app) {
-    const query = e.target.value;
+  async handleInputSearchQuery(e: Event, app: App) {
+    const query = (e.target as HTMLInputElement).value;
     app.searchQuery = query;
   },
 
-  async handleSubmitSearchQuery(app, movieList) {
+  async handleSubmitSearchQuery(app: App, movieList: MovieListModel) {
     MovieCardList.clear();
 
     MovieCardList.addSkeleton();
