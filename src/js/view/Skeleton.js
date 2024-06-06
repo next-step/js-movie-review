@@ -1,4 +1,4 @@
-import MovieCardList from "./MovieCardList.js";
+import { createElement } from "../../utils/dom.js";
 
 const Skeleton = {
   NUM_SKELETON_CARDS: 10,
@@ -7,7 +7,7 @@ const Skeleton = {
   },
 
   generateSkeletonCard() {
-    const card = document.createElement("li");
+    const card = createElement("li");
     card.classList.add("skeleton-card");
 
     card.innerHTML = /* html */ `
@@ -22,23 +22,13 @@ const Skeleton = {
     return card;
   },
 
-  render() {
+  get skeletonCards() {
     const skeletonCards = Array.from(
       { length: Skeleton.NUM_SKELETON_CARDS },
       () => this.generateSkeletonCard()
     );
 
-    const target = MovieCardList.elements.movieCardList;
-    target.append(...skeletonCards);
-  },
-
-  remove() {
-    const skeletonCards = document.querySelectorAll(
-      Skeleton.selectors.SKELETON_CARD
-    );
-    skeletonCards.forEach((card) => {
-      card.remove();
-    });
+    return skeletonCards;
   },
 };
 

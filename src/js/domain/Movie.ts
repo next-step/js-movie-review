@@ -1,9 +1,17 @@
 class Movie {
-  #title;
-  #rating;
-  #thumbnail;
+  #title: string;
+  #rating: number;
+  #thumbnail: string;
 
-  constructor({ title, rating, thumbnail }) {
+  constructor({
+    title,
+    rating,
+    thumbnail,
+  }: {
+    title: string;
+    rating: number;
+    thumbnail: string;
+  }) {
     this.#title = title;
     this.#rating = rating;
     this.#thumbnail = thumbnail;

@@ -6,10 +6,10 @@ const __filename = fileURLToPath(import.meta.url); // get the resolved path to t
 const __dirname = path.dirname(__filename);
 
 export default {
-  entry: ["./src/index.js", "./templates/reset.css", "./templates/common.css"],
+  entry: ["./src/index.ts", "./templates/reset.css", "./templates/common.css"],
   mode: "development",
   resolve: {
-    extensions: [".js"],
+    extensions: [".ts", ".js"],
   },
   devServer: {
     static: "./dist",
@@ -37,6 +37,11 @@ export default {
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
+      },
+      {
+        test: /\.ts?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
       },
     ],
   },

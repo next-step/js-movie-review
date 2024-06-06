@@ -1,16 +1,23 @@
-import Api from "../../src/js/domain/Api.js";
-import MovieList from "../../src/js/domain/MovieList.js";
+import Api from "../../src/js/domain/Api";
+import MovieList from "../../src/js/domain/MovieList";
 
 describe("영화 목록 기능 테스트", () => {
   it("영화 목록 API를 호출하고 영화 목록을 저장한다.", async () => {
-    // given
     const currentPage = 1;
     const movieList = new MovieList();
 
-    // when
     await movieList.fetchMovies(currentPage);
 
-    // then
     expect(movieList.movies).to.have.length(Api.NUM_MOVIES_PER_PAGE);
+  });
+
+  it("영화 검색 API를 호출하고 검색된 영화 목록을 저장한다.", async () => {
+    const query = "Harry Potter";
+    const page = 1;
+    const movieList = new MovieList();
+
+    await movieList.searchMovies(query, page);
+
+    expect(movieList.movies).to.have.length.within(0, Api.NUM_MOVIES_PER_PAGE);
   });
 });

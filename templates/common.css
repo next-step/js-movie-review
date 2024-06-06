@@ -17,6 +17,10 @@ button {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 #app {
   padding-bottom: 48px;
 }
