@@ -1,5 +1,6 @@
 import { InternetServerError, UnauthorizedError } from "../api/error";
 import starFilled from "../assets/star_filled.png";
+import { ModalView } from "./ModalView";
 
 export class MovieView {
   constructor(movieInstance) {
@@ -8,6 +9,7 @@ export class MovieView {
     this.movieInstance = movieInstance;
     this.itemList = document.querySelector(".item-list");
     this.loadMoreButton = document.querySelector(".load-more");
+    this.modal = new ModalView();
 
     this.loadMoreButton.addEventListener("click", async () => {
       await this.loadMore();
@@ -84,9 +86,9 @@ export class MovieView {
     } catch (error) {
       this.hideSkeleton();
       if (error instanceof UnauthorizedError) {
-        alert("401");
+        this.modal.show("Unauthorized: 접근이 거부되었습니다.");
       } else if (error instanceof InternetServerError) {
-        alert("500");
+        this.modal.show("Internal Server Error: 서버 오류가 발생했습니다.");
       }
     }
   }
