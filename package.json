@@ -9,7 +9,8 @@
         "build": "webpack --config webpack.config.js",
         "cypress": "cypress open",
         "format": "prettier --check --ignore-path .gitignore .",
-        "format:fix": "prettier --write --ignore-path .gitignore ."
+        "format:fix": "prettier --write --ignore-path .gitignore .",
+        "deploy": "npm run build && gh-pages -d dist"
     },
     "repository": {
         "type": "git",
