@@ -1,9 +1,10 @@
 import starFilled from '../assets//../assets/star_filled.png';
 import { IMAGE_BASE_URL } from '../constants/api';
-import { MovieCard } from './MovieCard';
+import { MovieCard } from '../components/MovieCard';
 
 export class Cinema {
     constructor() {
+        this.isConnect = false;
         this.page = 1;
         this.movieListElement = document.querySelector('.item-list');
     }
@@ -21,11 +22,15 @@ export class Cinema {
 
             fragment.appendChild(movieCard);
         });
-        this.movieListElement.innerHTML = '';
+        this.isConnect = true;
+
+        this.removeSkeletons();
+
         this.movieListElement.appendChild(fragment);
     }
 
     showSekeleton(count) {
+        this.isConnect = false;
         const fragment = document.createDocumentFragment();
         [...Array(count)].forEach(() => {
             const movieCard = MovieCard({
@@ -39,5 +44,20 @@ export class Cinema {
         });
 
         this.movieListElement.appendChild(fragment);
+
+        setTimeout(() => {
+            if (this.isConnect === false) {
+                this.movieListElement.innerHTML = '';
+            }
+        }, 5000);
+    }
+
+    removeSkeletons() {
+        const skeletons = this.movieListElement.querySelectorAll('.skeleton');
+        skeletons.forEach((skeleton) => skeleton.remove());
+    }
+
+    resetMovies() {
+        this.movieListElement.innerHTML = '';
     }
 }
