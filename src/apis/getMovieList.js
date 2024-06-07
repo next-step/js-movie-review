@@ -1,4 +1,4 @@
-import ApiClient from './\bapiClient';
+import ApiClient from './apiClient';
 
 async function getMovieList(page) {
     const res = ApiClient.request('GET', '3/movie/popular', {
