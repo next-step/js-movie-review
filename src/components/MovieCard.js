@@ -10,6 +10,7 @@ export function MovieCard({ title, src, voteAvg, starSrc, loading = false }) {
     const scoreElement = Score({ voteAvg: voteAvg, src: starSrc, loading: loading });
 
     if (loading) {
+        liElement.classList.add('skeleton');
         cardElement.classList.add('item-card');
         imageElement.classList.add('item-thumbnail', 'skeleton');
         titleElement.classList.add('item-title', 'skeleton');

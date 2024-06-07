@@ -1,7 +1,7 @@
-import { Cinema } from '../components/Cinema';
 import { Modal } from '../components/modal';
 import getMovieList from '../apis/getMovieList';
 import getSearchedMovies from '../apis/getSearchEdMovies';
+import { Cinema } from './Cinema';
 
 export function MovieListView() {
     const cinema = new Cinema();
@@ -12,7 +12,7 @@ export function MovieListView() {
         try {
             cinema.showSekeleton(20, true);
             const itemList = await getMovieList(pages);
-            cinema.createMovies(itemList);
+            cinema.createMovies(itemList.results);
         } catch (error) {
             const modal = new Modal();
             modal.content = error.message;
