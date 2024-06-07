@@ -47,7 +47,7 @@ export class Cinema {
 
         setTimeout(() => {
             if (this.isConnect === false) {
-                this.removeSkeletons();
+                this.movieListElement.innerHTML = '';
             }
         }, 5000);
     }
