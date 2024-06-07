@@ -44,7 +44,7 @@ describe('영화 관련 테스팅', () => {
         cy.intercept(
             {
                 method: 'GET',
-                url: 'https://api.themoviedb.org/3/movie/popular*',
+                url: /^https:\/\/api\.themoviedb\.org\/3\/movie\/popular*/,
                 query: {
                     api_key: Cypress.env('TMDB_API_KEY'),
                     page: '1',
@@ -61,7 +61,7 @@ describe('영화 관련 테스팅', () => {
         cy.intercept(
             {
                 method: 'GET',
-                url: 'https://api.themoviedb.org/3/movie/popular*',
+                url: /^https:\/\/api\.themoviedb\.org\/3\/movie\/popular*/,
                 query: {
                     api_key: Cypress.env('TMDB_API_KEY'),
                     page: '2',
