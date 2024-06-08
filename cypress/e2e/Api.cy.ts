@@ -54,15 +54,17 @@ describe("Api 기능 테스트", () => {
   });
 
   it("영화 검색 API 호출에 실패하면 에러를 발생시킨다.", () => {
-    const WRONG_URL = "https://api.themoviedb.org/3/search/movie/wrong";
+    const query = "Harry Potter";
+    const currentPage = 1;
+    const url = Api.generateSearchMoviesUrl(query, currentPage);
 
-    cy.intercept(WRONG_URL, {
+    cy.intercept(url, {
       statusCode: 404,
       body: { status_message: "Invalid page." },
     }).as("movies");
 
     expect(() => {
-      cy.request(WRONG_URL).should("throw", ErrorMessage.NOT_VALID_URL);
+      cy.request(url).should("throw", ErrorMessage.NOT_VALID_URL);
     });
   });
 
@@ -79,5 +81,15 @@ describe("Api 기능 테스트", () => {
     expect(() => {
       cy.request(WRONG_API).should("throw", ErrorMessage.NOT_VALID_API_KEY);
     });
+  });
+
+  it("영화 상세 정보 API를 호출하면 상세 정보를 반환한다.", () => {
+    const movieId = 929590;
+    const url = Api.generateMovieDetailUrl(movieId);
+
+    cy.request(url).as("movie");
+
+    cy.get("@movie").its("status").should("eq", 200);
+    cy.get("@movie").its("body").should("not.be.empty");
   });
 });

@@ -32,6 +32,15 @@ const Api = {
     return `${this.BASE_URL}/search/movie?${param}`;
   },
 
+  generateMovieDetailUrl(id: number): string {
+    const param = new URLSearchParams({
+      api_key: this.API_KEY,
+      language: this.LANGUAGE,
+    });
+
+    return `${this.BASE_URL}/movie/${id}?${param}`;
+  },
+
   throwError(status: number) {
     switch (status) {
       case 401:
