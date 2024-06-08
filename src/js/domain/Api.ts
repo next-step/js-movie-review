@@ -43,6 +43,10 @@ const Api = {
     return `${this.BASE_URL}/movie/${movieId}/account_states`;
   },
 
+  generatePostMovieUserRatingUrl(movieId: number): string {
+    return `${this.BASE_URL}/movie/${movieId}/rating`;
+  },
+
   throwError(status: number) {
     switch (status) {
       case 401:

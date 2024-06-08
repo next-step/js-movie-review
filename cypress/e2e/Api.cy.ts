@@ -126,4 +126,24 @@ describe("Api 기능 테스트", () => {
     cy.get("@rating").its("status").should("eq", 200);
     cy.get("@rating").its("body").should("not.be.empty");
   });
+
+  it("사용자가 영화를 평가하는 API를 호출하면 성공 메시지를 반환한다.", () => {
+    const movieId = 929590;
+    const url = Api.generatePostMovieUserRatingUrl(movieId);
+    const moiveUserRating = 8.5;
+
+    cy.request({
+      method: "POST",
+      url,
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+      body: `{"value":${moiveUserRating}}`,
+    }).as("rating");
+
+    cy.get("@rating").its("status").should("eq", 201);
+    cy.get("@rating").its("body").should("not.be.empty");
+  });
 });

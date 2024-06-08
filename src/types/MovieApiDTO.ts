@@ -21,3 +21,7 @@ export interface MovieUserRatingResponseDTO {
         value: number;
       };
 }
+
+export interface MovieUserRatingRequestDTO {
+  value: number;
+}
