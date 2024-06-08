@@ -1,3 +1,4 @@
+import { HttpRequestInterceptor } from "cypress/types/net-stubbing";
 import ErrorMessage from "../ErrorMessage";
 
 const Api = {
@@ -68,6 +69,29 @@ const Api = {
         Authorization: `Bearer ${this.API_ACCESS_TOKEN}`,
       },
     };
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      this.throwError(response.status);
+    }
+
+    return await response.json();
+  },
+
+  async post<T, U>(url: string, body?: T): Promise<U> {
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: `Bearer ${this.API_ACCESS_TOKEN}`,
+      },
+    };
+
+    if (body) {
+      options.body = JSON.stringify(body);
+    }
+
     const response = await fetch(url, options);
 
     if (!response.ok) {

@@ -1,6 +1,7 @@
 import { MovieGenre } from "../../types/Movie";
 import {
   MovieDetailResponseDTO,
+  MovieUserRatingRequestDTO,
   MovieUserRatingResponseDTO,
 } from "../../types/MovieApiDTO";
 import Api from "./Api";
@@ -84,6 +85,20 @@ class MovieModel {
       }
 
       this.userRating = rated.value;
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  async postMovieUserRating(rating: number) {
+    const url = Api.generatePostMovieUserRatingUrl(this.#id);
+
+    try {
+      await Api.post<MovieUserRatingRequestDTO, unknown>(url, {
+        value: rating,
+      });
+
+      this.userRating = rating;
     } catch (e) {
       alert(e.message);
     }
