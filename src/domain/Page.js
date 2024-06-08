@@ -5,7 +5,6 @@ class Page {
   #currentPage = 1; //상수화
   #movieList = [];
   #api;
-  skeleton = true;
 
   constructor() {
     this.#api = new MovieAPI();
