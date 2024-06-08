@@ -20,6 +20,10 @@
 
 <br>
 
+## 데모 링크
+
+https://chanw9503.github.io/js-movie-review/
+
 ## ⚙️ Before Started
 
 #### <img alt="Tip" src="https://img.shields.io/static/v1.svg?label=&message=Tip&style=flat-square&color=673ab8"> 로컬에서 서버 띄워서 손쉽게 핫리로드 기능 이용하는 방법
