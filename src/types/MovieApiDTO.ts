@@ -12,3 +12,12 @@ export interface MovieDetailResponseDTO extends PopularMovieListResponseDTO {
     name: string;
   }[];
 }
+
+export interface MovieUserRatingResponseDTO {
+  id: number;
+  rated:
+    | false
+    | {
+        value: number;
+      };
+}

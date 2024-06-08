@@ -31,16 +31,16 @@ const Api = {
     return `${this.BASE_URL}/search/movie?${param}`;
   },
 
-  generateMovieDetailUrl(id: number): string {
+  generateMovieDetailUrl(movieId: number): string {
     const param = new URLSearchParams({
       language: this.LANGUAGE,
     });
 
-    return `${this.BASE_URL}/movie/${id}?${param}`;
+    return `${this.BASE_URL}/movie/${movieId}?${param}`;
   },
 
-  generateUserMovieRatingUrl(id: number): string {
-    return `${this.BASE_URL}/movie/${id}/account_states`;
+  generateMovieUserRatingUrl(movieId: number): string {
+    return `${this.BASE_URL}/movie/${movieId}/account_states`;
   },
 
   throwError(status: number) {

@@ -46,4 +46,58 @@ describe("영화 기능 테스트", () => {
     expect(movie.genres).to.deep.include({ id: 1, name: "Action" });
     expect(movie.genres).to.deep.include({ id: 2, name: "Adventure" });
   });
+
+  it("사용자가 평가한 평점을 가져오는 API를 호출하고 만약 이미 평가한 이력이 있다면 userRating 에 저장한다.", async () => {
+    const movieId = 653346;
+    const movie = new MovieModel({
+      id: movieId,
+      title: "테스트",
+      rating: 5,
+      thumbnail: "test.jpg",
+      overview: "",
+    });
+
+    cy.intercept(Api.generateMovieUserRatingUrl(movieId), (req) => {
+      req.continue((res) => {
+        res.send({
+          results: {
+            id: movieId,
+            rated: {
+              value: 3,
+            },
+          },
+        });
+      });
+    });
+
+    await movie.fetchMovieUserRating();
+
+    expect(movie.userRating).to.equal(3);
+  });
+
+  it("사용자가 평가한 평점을 가져오는 API를 호출하고 만약 평가한 이력이 없다면 userRating 는 null 이다.", async () => {
+    const movieId = 653346;
+    const movie = new MovieModel({
+      id: movieId,
+      title: "테스트",
+      rating: 5,
+      thumbnail: "test.jpg",
+      overview: "",
+    });
+
+    cy.intercept(Api.generateMovieUserRatingUrl(movieId), (req) => {
+      req.continue((res) => {
+        res.send({
+          results: {
+            id: movieId,
+            rated: false,
+          },
+        });
+      });
+    });
+
+    await movie.fetchMovieUserRating();
+
+    expect(movie.userRating).to.be.null;
+  });
 });

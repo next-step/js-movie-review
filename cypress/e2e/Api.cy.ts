@@ -113,7 +113,7 @@ describe("Api 기능 테스트", () => {
 
   it("사용자가 평가한 영화 정보 API를 호출하면 사용자의 평가 정보를 반환한다.", () => {
     const movieId = 929590;
-    const url = Api.generateUserMovieRatingUrl(movieId);
+    const url = Api.generateMovieUserRatingUrl(movieId);
 
     cy.request({
       method: "GET",

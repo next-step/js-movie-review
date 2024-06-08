@@ -1,5 +1,8 @@
 import { MovieGenre } from "../../types/Movie";
-import { MovieDetailResponseDTO } from "../../types/MovieApiDTO";
+import {
+  MovieDetailResponseDTO,
+  MovieUserRatingResponseDTO,
+} from "../../types/MovieApiDTO";
 import Api from "./Api";
 
 class MovieModel {
@@ -8,6 +11,7 @@ class MovieModel {
   #rating: number;
   #thumbnail: string;
   #overview: string;
+  userRating: null | number = null; // 사용자가 평가한 평점
   genres: MovieGenre[] = [];
 
   constructor({
@@ -61,6 +65,25 @@ class MovieModel {
       const { genres } = movieDetail;
 
       this.genres = genres;
+    } catch (e) {
+      alert(e.message);
+    }
+  }
+
+  async fetchMovieUserRating() {
+    const url = Api.generateMovieUserRatingUrl(this.#id);
+
+    try {
+      const { results: userRatingInfo } =
+        await Api.get<MovieUserRatingResponseDTO>(url);
+
+      const { rated } = userRatingInfo;
+
+      if (!rated) {
+        return;
+      }
+
+      this.userRating = rated.value;
     } catch (e) {
       alert(e.message);
     }
