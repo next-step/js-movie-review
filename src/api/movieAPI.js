@@ -15,7 +15,7 @@ class MovieAPI {
     });
 
     if (!response.ok) {
-      throw new Error();
+      throw new Error("다시 시도해주세요.");
     }
 
     return await response.json();
