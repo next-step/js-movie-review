@@ -21,6 +21,7 @@ export default {
     filename: "bundle.js",
     path: path.resolve(__dirname, "dist"),
     clean: true,
+    assetModuleFilename: "images/[name][ext]",
   },
   plugins: [
     new HtmlWebpackPlugin({

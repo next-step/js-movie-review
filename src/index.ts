@@ -1,5 +1,6 @@
 import "../templates/logo.png";
 import "../templates/star_filled.png";
+import "../templates/star_empty.png";
 import App from "./js/domain/App";
 import MovieCardList from "./js/view/MovieCardList";
 import MovieListModel from "./js/domain/MovieListModel";

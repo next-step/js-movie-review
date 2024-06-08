@@ -15,7 +15,7 @@ const MovieCard = {
         alt=${title}
       />
       <p class="item-title">${title}</p>
-      <p class="item-score"><img src="./star_filled.png" alt="별점" /> ${rating}</p>
+      <p class="item-score"><img src="./images/star_filled.png" alt="별점" /> ${rating}</p>
     </div>
   </a>
     `;
