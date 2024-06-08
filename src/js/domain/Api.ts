@@ -1,19 +1,19 @@
 import ErrorMessage from "../ErrorMessage";
 
 const Api = {
-  BASE_URL: "https://api.themoviedb.org/3",
-  THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
-  LANGUAGE: "ko-KR",
-
   API_KEY: window.Cypress
     ? Cypress.env("TMDB_API_KEY")
     : process.env.TMDB_API_KEY,
-
+  API_ACCESS_TOKEN: window.Cypress
+    ? Cypress.env("TMDB_API_ACCESS_TOKEN")
+    : process.env.TMDB_API_ACCESS_TOKEN,
+  BASE_URL: "https://api.themoviedb.org/3",
+  THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
+  LANGUAGE: "ko-KR",
   NUM_MOVIES_PER_PAGE: 20,
 
   generatePopularMoviesUrl(page: number): string {
     const param = new URLSearchParams({
-      api_key: this.API_KEY,
       language: this.LANGUAGE,
       page: page.toString(),
     });
@@ -23,7 +23,6 @@ const Api = {
 
   generateSearchMoviesUrl(query: string, page: number): string {
     const param = new URLSearchParams({
-      api_key: this.API_KEY,
       language: this.LANGUAGE,
       query,
       page: page.toString(),
@@ -34,11 +33,14 @@ const Api = {
 
   generateMovieDetailUrl(id: number): string {
     const param = new URLSearchParams({
-      api_key: this.API_KEY,
       language: this.LANGUAGE,
     });
 
     return `${this.BASE_URL}/movie/${id}?${param}`;
+  },
+
+  generateUserMovieRatingUrl(id: number): string {
+    return `${this.BASE_URL}/movie/${id}/account_states`;
   },
 
   throwError(status: number) {
@@ -55,7 +57,14 @@ const Api = {
   async get<T>(url: string): Promise<{
     results: T;
   }> {
-    const response = await fetch(url);
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${this.API_ACCESS_TOKEN}`,
+      },
+    };
+    const response = await fetch(url, options);
 
     if (!response.ok) {
       this.throwError(response.status);

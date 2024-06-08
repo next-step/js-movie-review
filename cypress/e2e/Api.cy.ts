@@ -6,7 +6,13 @@ describe("Api 기능 테스트", () => {
     const currentPage = 1;
     const url = Api.generatePopularMoviesUrl(currentPage);
 
-    cy.request(url).as("movies");
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("movies");
 
     cy.get("@movies").its("status").should("eq", 200);
     cy.get("@movies")
@@ -47,7 +53,13 @@ describe("Api 기능 테스트", () => {
     const currentPage = 1;
     const url = Api.generateSearchMoviesUrl(query, currentPage);
 
-    cy.request(url).as("movies");
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("movies");
 
     cy.get("@movies").its("status").should("eq", 200);
     cy.get("@movies").its("body.results").should("not.be.empty");
@@ -87,9 +99,31 @@ describe("Api 기능 테스트", () => {
     const movieId = 929590;
     const url = Api.generateMovieDetailUrl(movieId);
 
-    cy.request(url).as("movie");
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("movie");
 
     cy.get("@movie").its("status").should("eq", 200);
     cy.get("@movie").its("body").should("not.be.empty");
+  });
+
+  it("사용자가 평가한 영화 정보 API를 호출하면 사용자의 평가 정보를 반환한다.", () => {
+    const movieId = 929590;
+    const url = Api.generateUserMovieRatingUrl(movieId);
+
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("rating");
+
+    cy.get("@rating").its("status").should("eq", 200);
+    cy.get("@rating").its("body").should("not.be.empty");
   });
 });
