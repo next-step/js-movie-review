@@ -1,13 +1,12 @@
 import { makeDom } from "./util";
 
-export default ({ onClick }) => {
-  const { dom } = makeDom("button");
-  dom.classList.add("btn");
-  dom.classList.add("primary");
-  dom.classList.add("full-width");
-  dom.textContent = "더 보기";
+const footer = ({ onClick }) => {
+  const dom = makeDom(
+    `<button class="btn primary full-width">더 보기</button>`
+  );
 
-  dom.addEventListener("click", onClick);
+  dom.dom.addEventListener("click", onClick);
 
-  return { dom };
+  return dom;
 };
+export default footer;

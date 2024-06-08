@@ -11,13 +11,11 @@ import MovieCard from "./MovieCard";
  *  }
  * ]
  */
-export default ({ cardDatas }) => {
+const movieCardListRefetch = ({ cardDatas }) => {
   const ul = document.querySelector("ul");
-
-  cardDatas.map((cardData) => {
-    const { href, src, title, alt, score } = cardData;
-    const card = MovieCard({ href, src, title, alt, score });
-
-    ul.append(card.dom);
-  });
+  const fragment = new DocumentFragement();
+  cardDatas.map(MovieCard).forEach(({ dom }) => fragment.appendChild(dom));
+  ul.appendChild(fragment);
 };
+
+export default movieCardListRefetch;

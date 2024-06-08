@@ -1,4 +1,4 @@
-import render from "./App";
+import render from "./render";
 import "../templates/reset.css";
 import "../templates/common.css";
 import { getMovieList } from "./api";
@@ -44,7 +44,7 @@ async function run() {
     });
     render.footer({ selector: "section", onClick: footerClick });
   } catch (error) {
-    alert("에러가 발생했습니다.");
+    console.log("에러가 발생했습니다.", error);
   }
 }
 

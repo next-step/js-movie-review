@@ -1,6 +1,5 @@
 import { makeDom } from "./util";
 import MovieCard from "./MovieCard";
-import MovieCardString from "./MovieCardListRefetch";
 import cssClass from "../const/css-class";
 
 /**
@@ -14,17 +13,17 @@ import cssClass from "../const/css-class";
  *  }
  * ]
  */
-export default ({ cardDatas }) => {
+const movieCardList = ({ cardDatas }) => {
   const ul = document.querySelector("ul");
-  const { dom } = ul ? { dom: ul } : makeDom("ul");
-  ul ? null : dom.classList.add(cssClass["item-list"]);
+  const dom = ul ? ul : makeDom(`<ul class="${cssClass["item-list"]}"/>`);
 
-  cardDatas.map((cardData) => {
+  cardDatas.forEach((cardData) => {
     const { href, src, title, alt, score } = cardData;
     const card = MovieCard({ href, src, title, alt, score });
 
-    dom.append(card.dom);
+    dom.append(card);
   });
 
-  return { dom };
+  return dom;
 };
+export default movieCardList;

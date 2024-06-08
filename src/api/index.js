@@ -8,7 +8,7 @@ async function getMovieList({ page }) {
 
     return jsonData;
   } catch (error) {
-    throw new Error("에러 발생");
+    throw new Error(error);
   }
 }
 

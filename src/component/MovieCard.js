@@ -8,9 +8,10 @@ import star_filled from "../../templates/star_filled.png";
  * alt : 영화 썸네일 alt
  * score : 영화 점수
  */
-export default ({ href, src, title, alt, score }) => {
+const movieCard = ({ href, src, title, alt, score }) => {
   const image_base_url = "http://image.tmdb.org/t/p/w220_and_h330_face";
   const string = `
+  <li>
     <a href="${href}">
       <div class="item-card">
         <img
@@ -23,9 +24,10 @@ export default ({ href, src, title, alt, score }) => {
         <p class="item-score"><img src="${star_filled}" alt="별점" /> ${score}</p>
       </div>
     </a>
+    </li>
   `;
 
-  const dom = makeDom("li", string);
-
-  return dom;
+  return makeDom(string);
 };
+
+export default movieCard;
