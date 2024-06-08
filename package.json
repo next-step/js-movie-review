@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/next-step/js-movie-review.git"
+    "url": "https://jjiyeon.github.io/js-movie-review/"
   },
   "keywords": [
     "영화리뷰",
@@ -24,7 +24,7 @@
   "bugs": {
     "url": "https://github.com/next-step/js-movie-review/issues"
   },
-  "homepage": "https://github.com/next-step/js-movie-review#readme",
+  "homepage": "https://jjiyeon.github.io/js-movie-review/",
   "devDependencies": {
     "cypress": "^12.17.4",
     "dotenv-webpack": "^8.0.1",
