@@ -1,4 +1,4 @@
-import { MovieApiData } from "../../types/movie-api-data";
+import { PopularMovieListResponseDTO } from "../../types/MovieApiDTO";
 import Api from "./Api";
 import MovieModel from "./MovieModel";
 
@@ -32,14 +32,18 @@ class MovieListModel {
     const movieUrl = Api.generatePopularMoviesUrl(page);
 
     try {
-      const { results: movies } = await Api.get<MovieApiData[]>(movieUrl);
+      const { results: movies } = await Api.get<PopularMovieListResponseDTO[]>(
+        movieUrl
+      );
 
       movies.forEach((movie) => {
         this.addMovie(
           new MovieModel({
+            id: movie.id,
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
+            overview: movie.overview,
           })
         );
       });
@@ -52,14 +56,18 @@ class MovieListModel {
     const searchUrl = Api.generateSearchMoviesUrl(query, page);
 
     try {
-      const { results: movies } = await Api.get<MovieApiData[]>(searchUrl);
+      const { results: movies } = await Api.get<PopularMovieListResponseDTO[]>(
+        searchUrl
+      );
 
       movies.forEach((movie) => {
         this.addMovie(
           new MovieModel({
+            id: movie.id,
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
+            overview: movie.overview,
           })
         );
       });
