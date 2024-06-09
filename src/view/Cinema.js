@@ -3,6 +3,10 @@ import { IMAGE_BASE_URL } from '../constants/api';
 import { MovieCard } from '../components/MovieCard';
 
 export class Cinema {
+    isConnect;
+    page;
+    movieListElement;
+
     constructor() {
         this.isConnect = false;
         this.page = 1;
