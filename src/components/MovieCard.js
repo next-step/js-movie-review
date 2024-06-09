@@ -1,6 +1,6 @@
 import { Score } from './Score';
 
-export function MovieCard({ title, src, voteAvg, starSrc, loading = false }) {
+export function MovieCard({ title = '', src = '', voteAvg = '', starSrc = '', loading = false }) {
     const liElement = document.createElement('li');
     const aElement = document.createElement('a');
     aElement.href = '#';
