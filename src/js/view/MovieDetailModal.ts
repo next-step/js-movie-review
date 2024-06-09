@@ -1,7 +1,6 @@
 import { $ } from "../../utils/dom";
-import MovieListModel from "../domain/MovieListModel";
+import UserMovieRatingForm from "./UserMovieRatingForm";
 import MovieModel from "../domain/MovieModel";
-import MovieDetailModalSkeleton from "./MovieDetailModalSkeleton";
 
 const MovieDetailModal = {
   elements: {
@@ -10,82 +9,77 @@ const MovieDetailModal = {
     modalInner: $(".modal-inner"),
     movieTitle: $(".movie-title"),
     modalBody: $(".modal-body"),
+    movieHeader: $(".movie-header"),
+    movieOverview: $(".movie-overview"),
+    movieThumbnail: $(".movie-thumbnail"),
   },
 
-  open(movieList: MovieListModel, movieId: number) {
+  open(movie: MovieModel) {
     MovieDetailModal.elements.modal.classList.add("open");
-    this.renderModalContent(movieList, movieId);
+    MovieDetailModal.render(movie);
   },
 
   close() {
-    this.resetModalContent();
+    this.reset();
     MovieDetailModal.elements.modal.classList.remove("open");
   },
 
-  resetModalContent() {
-    MovieDetailModal.elements.movieTitle.textContent = "";
-    MovieDetailModal.elements.modalBody.innerHTML = "";
+  reset() {
+    MovieDetailModal.elements.movieThumbnail.innerHTML = "";
+    MovieDetailModal.elements.movieHeader.innerHTML = "";
+    MovieDetailModal.elements.movieOverview.textContent = "";
+    UserMovieRatingForm.reset();
   },
 
   addSkeleton() {
-    MovieDetailModal.elements.modalBody.innerHTML =
-      MovieDetailModalSkeleton.generateTemplate();
+    MovieDetailModal.elements.movieThumbnail.classList.add("skeleton");
+    MovieDetailModal.elements.movieHeader.classList.add("skeleton");
+    MovieDetailModal.elements.movieOverview.classList.add("skeleton");
+    UserMovieRatingForm.addSkeleton();
   },
 
-  async generateModalBodyContent(movie: MovieModel) {
-    await Promise.all([movie.fetchMovieDetail(), movie.fetchMovieUserRating()]);
+  removeSkeleton() {
+    MovieDetailModal.elements.movieThumbnail.classList.remove("skeleton");
+    MovieDetailModal.elements.movieHeader.classList.remove("skeleton");
+    MovieDetailModal.elements.movieOverview.classList.remove("skeleton");
+    UserMovieRatingForm.removeSkeleton();
+  },
 
-    const genres = movie.genres.join(", ");
+  renderMovieTitle(title: string) {
+    MovieDetailModal.elements.movieTitle.textContent = title;
+  },
 
-    return /* html */ `
-      <div class="movie-thumbnail">
-        <img
-          src=${movie.thumbnail}
-          alt=${movie.title}
-        />
-      </div>
-
-      <div class="movie-info">
-        <p class="movie-header">
-          <span class="modal-genres">${genres}</span>
-          <img src="./images/star_filled.png" alt="별점" /> ${movie.rating}
-        </p>
-        <p class="movie-overview">${movie.overview}</p>
-
-        <div class="user-rating">
-          <span class="user-rating-title">내 별점</span>
-          <div class="rating-stars">
-            ${[1, 2, 3, 4, 5]
-              .map((star) => {
-                const isFilled = star <= movie.userRating / 2;
-                return /* html */ `
-                <img
-                  src="./images/star_${isFilled ? "filled" : "empty"}.png"
-                  alt="star"
-                  data-star=${star}
-                />
-              `;
-              })
-              .join("")}
-          </div>
-          ${movie.userRating ? `<span>${movie.userRating}</span>` : ""}
-        </div>
-      </div>
+  renderMovieThumbnail(thumbnail: string, title: string) {
+    MovieDetailModal.elements.movieThumbnail.innerHTML = /* html */ `
+      <img
+        src=${thumbnail}
+        alt=${title}
+      />
     `;
   },
 
-  async renderModalContent(movieList: MovieListModel, movieId: number) {
-    const movie = movieList.getMovieById(movieId);
+  renderMovieHeader(genres: string[], rating: number) {
+    MovieDetailModal.elements.movieHeader.innerHTML = /* html */ `
+      <span class="modal-genres">${genres.join(", ")}</span>
+      <img src="./images/star_filled.png" alt="별점" /> ${rating}
+    `;
+  },
 
-    if (!movie) {
-      return;
-    }
+  renderMovieOverview(overview: string) {
+    MovieDetailModal.elements.movieOverview.textContent = overview;
+  },
 
-    MovieDetailModal.elements.movieTitle.textContent = movie.title;
+  async render(movie: MovieModel) {
+    MovieDetailModal.renderMovieTitle(movie.title);
 
     MovieDetailModal.addSkeleton();
-    MovieDetailModal.elements.modalBody.innerHTML =
-      await this.generateModalBodyContent(movie);
+    await Promise.all([movie.fetchMovieDetail(), movie.fetchMovieUserRating()]);
+    MovieDetailModal.removeSkeleton();
+
+    MovieDetailModal.renderMovieThumbnail(movie.thumbnail, movie.title);
+    MovieDetailModal.renderMovieHeader(movie.genres, movie.rating);
+    MovieDetailModal.renderMovieOverview(movie.overview);
+    UserMovieRatingForm.render(movie);
   },
 };
 
