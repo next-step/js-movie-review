@@ -13,8 +13,8 @@ import MovieCard from "./MovieCard";
  */
 const movieCardListRefetch = ({ cardDatas }) => {
   const ul = document.querySelector("ul");
-  const fragment = new DocumentFragement();
-  cardDatas.map(MovieCard).forEach(({ dom }) => fragment.appendChild(dom));
+  const fragment = new DocumentFragment();
+  cardDatas.map(MovieCard).forEach((dom) => fragment.appendChild(dom));
   ul.appendChild(fragment);
 };
 

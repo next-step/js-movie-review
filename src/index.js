@@ -27,6 +27,9 @@ async function run() {
     render.header({ selector: "#app" });
     render.movieContainer({ selector: "#app" });
 
+    // 스켈레톤
+    render.skeletonList({ selector: "section" });
+
     const response = await getMovieList({ page: requestParam.page });
     requestParam.page = requestParam.page + 1;
     const result = response.results.map((movieInfo) => ({
@@ -36,7 +39,8 @@ async function run() {
       alt: movieInfo.title,
       score: movieInfo.vote_average,
     }));
-    console.log("result", result);
+
+    render.remmoveSkeletonList({ selector: ".skeleton-li" });
 
     render.movieCardList({
       selector: "section",

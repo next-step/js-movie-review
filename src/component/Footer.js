@@ -5,7 +5,7 @@ const footer = ({ onClick }) => {
     `<button class="btn primary full-width">더 보기</button>`
   );
 
-  dom.dom.addEventListener("click", onClick);
+  dom.addEventListener("click", onClick);
 
   return dom;
 };

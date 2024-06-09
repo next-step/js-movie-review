@@ -1,6 +1,7 @@
 import { makeDom } from "./util";
 import MovieCard from "./MovieCard";
 import cssClass from "../const/css-class";
+import List from "./List";
 
 /**
  * cardDatas : [
@@ -14,8 +15,7 @@ import cssClass from "../const/css-class";
  * ]
  */
 const movieCardList = ({ cardDatas }) => {
-  const ul = document.querySelector("ul");
-  const dom = ul ? ul : makeDom(`<ul class="${cssClass["item-list"]}"/>`);
+  const dom = List();
 
   cardDatas.forEach((cardData) => {
     const { href, src, title, alt, score } = cardData;
