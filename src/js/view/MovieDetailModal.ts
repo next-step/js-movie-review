@@ -33,7 +33,7 @@ const MovieDetailModal = {
   },
 
   async generateModalBodyContent(movie: MovieModel) {
-    await movie.fetchMovieDetail();
+    await Promise.all([movie.fetchMovieDetail(), movie.fetchMovieUserRating()]);
 
     const genres = movie.genres.join(", ");
 
