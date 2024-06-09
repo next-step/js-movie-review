@@ -92,7 +92,7 @@ class MovieModel {
 
       this.userRating = rating;
     } catch (e) {
-      alert(e.message);
+      throw e;
     }
   }
 }

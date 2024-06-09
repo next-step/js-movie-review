@@ -61,6 +61,16 @@ const main = () => {
   UserMovieRatingForm.elements.userRating.addEventListener("mouseleave", () => {
     UserMovieRatingForm.handleMouseLeave(currentMovie.userRating);
   });
+  UserMovieRatingForm.elements.userRating.addEventListener(
+    "click",
+    async (e: Event) => {
+      if (!currentMovie) {
+        return;
+      }
+
+      await UserMovieRatingForm.handleClick(e, currentMovie);
+    }
+  );
 
   // 더보기 버튼 관련 이벤트 리스너
   ShowMoreButton.elements.button?.addEventListener("click", async () => {

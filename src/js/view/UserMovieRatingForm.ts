@@ -1,4 +1,5 @@
 import { $, $all } from "../../utils/dom";
+import ErrorMessage from "../ErrorMessage";
 import MovieModel from "../domain/MovieModel";
 
 const UserMovieRatingForm = {
@@ -62,6 +63,24 @@ const UserMovieRatingForm = {
       const rating = Number(target.dataset.rating);
       UserMovieRatingForm.fillStars(rating);
       UserMovieRatingForm.setRatingScore(rating);
+    }
+  },
+
+  async handleClick(e: Event, movie: MovieModel) {
+    const target = e.target as HTMLImageElement;
+    if (target.tagName === "IMG" && target.dataset.rating) {
+      const rating = Number(target.dataset.rating);
+
+      // rollback if optimistic update fails
+      const prevRating = movie.userRating;
+
+      try {
+        movie.userRating = rating;
+        await movie.postMovieUserRating(rating);
+      } catch (e) {
+        movie.userRating = prevRating;
+        alert(ErrorMessage.FAILED_TO_POST_RATING);
+      }
     }
   },
 
