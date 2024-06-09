@@ -58,6 +58,7 @@ button {
 }
 
 .item-card {
+  cursor: pointer;
   display: flex;
   flex-direction: column;
 }
@@ -109,10 +110,10 @@ button.primary {
   background: #f33f3f;
 }
 
-.item-card .skeleton {
+.skeleton {
   background: linear-gradient(-90deg, #aaa, #f0f0f0, #aaa, #f0f0f0);
-  background-size: 400%;
   animation: skeleton-animation 5s infinite ease-out;
+  background-size: 400%;
   border-radius: 8px;
 }
 

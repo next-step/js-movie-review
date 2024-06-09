@@ -6,6 +6,7 @@ import MovieCardList from "./js/view/MovieCardList";
 import MovieListModel from "./js/domain/MovieListModel";
 import SearchBox from "./js/view/SearchBox";
 import ShowMoreButton from "./js/view/ShowMoreButton";
+import Modal from "./js/view/MovieDetailModal";
 
 const main = () => {
   const app = new App();
@@ -18,6 +19,30 @@ const main = () => {
 
     MovieCardList.removeSkeleton();
     MovieCardList.render(movieList.movies);
+  });
+
+  MovieCardList.elements.movieCardList?.addEventListener(
+    "click",
+    (e: Event) => {
+      const target = e.target as HTMLDivElement;
+      const movieId = target.closest<HTMLDivElement>(".item-card")?.dataset?.id;
+
+      if (movieId) {
+        Modal.open(movieList, Number(movieId));
+      }
+    }
+  );
+
+  Modal.elements.modal?.addEventListener("click", Modal.close.bind(Modal));
+  Modal.elements.closeBtn?.addEventListener("click", Modal.close.bind(Modal));
+  Modal.elements.modalInner?.addEventListener("click", (e: Event) => {
+    e.stopPropagation();
+  });
+
+  window.addEventListener("keydown", (e: KeyboardEvent) => {
+    if (e.key === "Escape") {
+      Modal.close();
+    }
   });
 
   ShowMoreButton.elements.button?.addEventListener("click", async () => {
