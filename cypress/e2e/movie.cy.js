@@ -63,16 +63,23 @@ describe("영화 리뷰 테스트", () => {
 
   it("엔터키를 눌러 검색하여 영화 목록을 불러온다.", () => {
     // when
-    cy.get(".search-box input").type("반도{enter}");
+    cy.get(".search-box input").clear().type("반도{enter}");
     // then
     cy.get(".item-list li").should("have.length", 11);
   });
 
   it("검색 버튼을 클릭하여 검색하여 영화 목록을 불러온다.", () => {
     // when
-    cy.get(".search-box input").type("반도");
+    cy.get(".search-box input").clear().type("반도");
     cy.get(".search-button").click();
     // then
     cy.get(".item-list li").should("have.length", 11);
+  });
+
+  it("빈 값을 입력하고 검색하면 영화 목록 20개를 불러온다.", () => {
+    // when
+    cy.get(".search-box input").clear().type("{enter}");
+    // then
+    cy.get(".item-list li").should("have.length", 20);
   });
 });
