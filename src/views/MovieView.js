@@ -31,19 +31,31 @@ export class MovieView {
   }
 
   showSkeleton() {
-    const skeletonElement = Array.from(
-      { length: 20 },
-      () => /*html */ `
-        <li class="skeleton-item">
-            <div class="item-card">
-                <div class="item-thumbnail skeleton"></div>
-                <div class="item-title skeleton"></div>
-                <div class="item-score skeleton"></div>
-            </div>
-        </li>
-    `
-    ).join("");
-    this.itemList.innerHTML += skeletonElement;
+    const fragment = document.createDocumentFragment();
+    Array.from({ length: 20 }).forEach(() => {
+      const li = document.createElement("li");
+      li.className = "skeleton-item";
+
+      const itemCard = document.createElement("div");
+      itemCard.className = "item-card";
+
+      const thumbnail = document.createElement("div");
+      thumbnail.className = "item-thumbnail skeleton";
+
+      const title = document.createElement("div");
+      title.className = "item-title skeleton";
+
+      const score = document.createElement("div");
+      score.className = "item-score skeleton";
+
+      itemCard.appendChild(thumbnail);
+      itemCard.appendChild(title);
+      itemCard.appendChild(score);
+      li.appendChild(itemCard);
+      fragment.appendChild(li);
+    });
+
+    this.itemList.appendChild(fragment);
   }
 
   hideSkeleton() {
@@ -58,27 +70,43 @@ export class MovieView {
       const list = await this.movieInstance.loadMore();
       this.hideSkeleton();
 
-      const listElement = list
-        .map((movie) => {
-          const thumbnail = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
-          return /*html */ `
-            <li>
-              <a href="#">
-                  <div class="item-card">
-                      <img class="item-thumbnail" loading="lazy" src="${thumbnail}" alt="${movie.title}">
-                      <p class="item-title">${movie.title}</p>
-                      <p class="item-score">
-                        <img src=${starFilled} alt="별점" />
-                        ${movie.vote_average}
-                      </p>
-                  </div>
-              </a>
-            </li>
-        `;
-        })
-        .join("");
+      const fragment = document.createDocumentFragment();
+      list.forEach((movie) => {
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#";
 
-      this.itemList.innerHTML += listElement;
+        const itemCard = document.createElement("div");
+        itemCard.className = "item-card";
+
+        const img = document.createElement("img");
+        img.className = "item-thumbnail";
+        img.loading = "lazy";
+        img.src = `https://image.tmdb.org/t/p/w200${movie.poster_path}`;
+        img.alt = `${movie.title}`;
+
+        const title = document.createElement("p");
+        title.className = "item-title";
+        title.textContent = movie.title;
+
+        const score = document.createElement("p");
+        score.className = "item-score";
+        const starImg = document.createElement("img");
+        starImg.src = starFilled;
+        starImg.alt = "별점";
+        score.appendChild(starImg);
+        score.append(` ${movie.vote_average}`);
+
+        itemCard.appendChild(img);
+        itemCard.appendChild(title);
+        itemCard.appendChild(score);
+        a.appendChild(itemCard);
+        li.appendChild(a);
+
+        fragment.appendChild(li);
+      });
+
+      this.itemList.appendChild(fragment);
 
       if (!this.movieInstance.hasMore) {
         this.loadMoreButton.style.display = "none";
