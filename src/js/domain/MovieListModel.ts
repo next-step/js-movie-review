@@ -28,13 +28,17 @@ class MovieListModel {
     this.#movies = [];
   }
 
+  getMovieById(movieId: number) {
+    return this.#movies.find((movie) => movie.id === movieId);
+  }
+
   async fetchMovies(page: number) {
     const movieUrl = Api.generatePopularMoviesUrl(page);
 
     try {
-      const { results: movies } = await Api.get<PopularMovieListResponseDTO[]>(
-        movieUrl
-      );
+      const { results: movies } = await Api.get<{
+        results: PopularMovieListResponseDTO[];
+      }>(movieUrl);
 
       movies.forEach((movie) => {
         this.addMovie(
@@ -56,9 +60,9 @@ class MovieListModel {
     const searchUrl = Api.generateSearchMoviesUrl(query, page);
 
     try {
-      const { results: movies } = await Api.get<PopularMovieListResponseDTO[]>(
-        searchUrl
-      );
+      const { results: movies } = await Api.get<{
+        results: PopularMovieListResponseDTO[];
+      }>(searchUrl);
 
       movies.forEach((movie) => {
         this.addMovie(

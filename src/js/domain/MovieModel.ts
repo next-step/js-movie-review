@@ -59,11 +59,7 @@ class MovieModel {
     const url = Api.generateMovieDetailUrl(this.#id);
 
     try {
-      const { results: movieDetail } = await Api.get<MovieDetailResponseDTO>(
-        url
-      );
-
-      const { genres } = movieDetail;
+      const { genres } = await Api.get<MovieDetailResponseDTO>(url);
 
       this.genres = genres;
     } catch (e) {
@@ -75,10 +71,7 @@ class MovieModel {
     const url = Api.generateMovieUserRatingUrl(this.#id);
 
     try {
-      const { results: userRatingInfo } =
-        await Api.get<MovieUserRatingResponseDTO>(url);
-
-      const { rated } = userRatingInfo;
+      const { rated } = await Api.get<MovieUserRatingResponseDTO>(url);
 
       if (!rated) {
         return;

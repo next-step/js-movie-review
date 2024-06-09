@@ -36,9 +36,7 @@ describe("영화 기능 테스트", () => {
     cy.intercept(Api.generateMovieDetailUrl(movieId), (req) => {
       req.continue((res) => {
         res.send({
-          results: {
-            genres,
-          },
+          genres,
         });
       });
     }).as("getMovieDetail");
@@ -62,11 +60,9 @@ describe("영화 기능 테스트", () => {
     cy.intercept(Api.generateMovieUserRatingUrl(movieId), (req) => {
       req.continue((res) => {
         res.send({
-          results: {
-            id: movieId,
-            rated: {
-              value: userRating,
-            },
+          id: movieId,
+          rated: {
+            value: userRating,
           },
         });
       });
@@ -90,10 +86,8 @@ describe("영화 기능 테스트", () => {
     cy.intercept(Api.generateMovieUserRatingUrl(movieId), (req) => {
       req.continue((res) => {
         res.send({
-          results: {
-            id: movieId,
-            rated: false,
-          },
+          id: movieId,
+          rated: false,
         });
       });
     });

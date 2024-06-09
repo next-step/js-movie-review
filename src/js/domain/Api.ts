@@ -59,9 +59,7 @@ const Api = {
     }
   },
 
-  async get<T>(url: string): Promise<{
-    results: T;
-  }> {
+  async get<T>(url: string): Promise<T> {
     const options = {
       method: "GET",
       headers: {
