@@ -2,7 +2,7 @@ import { $, removeElements } from "../../utils/dom";
 import Api from "../domain/Api";
 import MovieCard from "./MovieCard";
 import ShowMoreButton from "./ShowMoreButton";
-import Skeleton from "./Skeleton";
+import MovieCardListSkeleton from "./MovieCardListSkeleton";
 import MovieModel from "../domain/MovieModel";
 
 const MovieCardList = {
@@ -33,13 +33,15 @@ const MovieCardList = {
   },
 
   addSkeleton() {
-    MovieCardList.elements.movieCardList.append(...Skeleton.skeletonCards);
+    MovieCardList.elements.movieCardList.append(
+      ...MovieCardListSkeleton.skeletonCards
+    );
   },
 
   removeSkeleton() {
     removeElements(
       MovieCardList.elements.movieCardList,
-      Skeleton.selectors.SKELETON_CARD
+      MovieCardListSkeleton.selectors.SKELETON_CARD
     );
   },
 };

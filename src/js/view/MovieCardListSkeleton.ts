@@ -1,6 +1,6 @@
 import { createElement } from "../../utils/dom";
 
-const Skeleton = {
+const MovieCardListSkeleton = {
   NUM_SKELETON_CARDS: 10 as const,
   selectors: {
     SKELETON_CARD: ".skeleton-card" as const,
@@ -24,7 +24,7 @@ const Skeleton = {
 
   get skeletonCards() {
     const skeletonCards = Array.from<void, HTMLElement>(
-      { length: Skeleton.NUM_SKELETON_CARDS },
+      { length: MovieCardListSkeleton.NUM_SKELETON_CARDS },
       this.generateSkeletonCard
     );
 
@@ -32,4 +32,4 @@ const Skeleton = {
   },
 };
 
-export default Skeleton;
+export default MovieCardListSkeleton;
