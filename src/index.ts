@@ -59,7 +59,7 @@ const main = () => {
     UserMovieRatingForm.handleHover
   );
   UserMovieRatingForm.elements.userRating.addEventListener("mouseleave", () => {
-    UserMovieRatingForm.fillStars(currentMovie.userRating);
+    UserMovieRatingForm.handleMouseLeave(currentMovie.userRating);
   });
 
   // 더보기 버튼 관련 이벤트 리스너

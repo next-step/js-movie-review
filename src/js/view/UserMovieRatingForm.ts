@@ -40,7 +40,9 @@ const UserMovieRatingForm = {
               })
               .join("")}
           </div>
-          ${movie.userRating ? `<span>${movie.userRating}</span>` : ""}
+          <span class="rating-score">${
+            movie.userRating ? movie.userRating : ""
+          }</span>  
         `;
   },
 
@@ -57,7 +59,13 @@ const UserMovieRatingForm = {
     if (target.tagName === "IMG" && target.dataset.rating) {
       const rating = Number(target.dataset.rating);
       UserMovieRatingForm.fillStars(rating);
+      UserMovieRatingForm.setRatingScore(rating);
     }
+  },
+
+  handleMouseLeave(userRating: number | null) {
+    UserMovieRatingForm.resetStars(userRating);
+    UserMovieRatingForm.resetRatingScore(userRating);
   },
 
   fillStars(rating: number) {
@@ -72,9 +80,14 @@ const UserMovieRatingForm = {
     });
   },
 
-  resetStars(userRating: number) {
+  resetStars(userRating: number | null) {
     const stars = $all(".rating-star") as HTMLImageElement[];
     stars.forEach((star) => {
+      if (!userRating) {
+        star.src = UserMovieRatingForm.PATH_STAR_EMPTY;
+        return;
+      }
+
       const starRating = Number(star.dataset.rating);
       if (starRating <= userRating) {
         star.src = UserMovieRatingForm.PATH_STAR_FILLED;
@@ -82,6 +95,25 @@ const UserMovieRatingForm = {
         star.src = UserMovieRatingForm.PATH_STAR_EMPTY;
       }
     });
+  },
+
+  setRatingScore(rating: number) {
+    const ratingScore = $(".rating-score") as HTMLSpanElement;
+    if (ratingScore) {
+      ratingScore.textContent = rating.toString();
+    }
+  },
+
+  resetRatingScore(userRating: number | null) {
+    const ratingScore = $(".rating-score") as HTMLSpanElement;
+    if (!userRating) {
+      ratingScore.textContent = "";
+      return;
+    }
+
+    if (ratingScore) {
+      ratingScore.textContent = userRating.toString();
+    }
   },
 };
 
