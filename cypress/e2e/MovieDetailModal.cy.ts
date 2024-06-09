@@ -5,7 +5,9 @@ const selectors = {
   modal: ".modal",
   modalCloseBtn: ".modal-close",
   movieTitle: ".movie-title",
-  modalBody: ".modal-body",
+  movieHeader: ".movie-header",
+  movieOverview: ".movie-overview",
+  movieThumbnail: ".movie-thumbnail",
   skeleton: ".skeleton",
 };
 
@@ -70,16 +72,17 @@ describe("영화 상세 모달 기능 테스트", () => {
     cy.get(selectors.modal).should("be.visible");
   });
 
-  it("영화 상세 모달이 닫힐 때 modal의 title 과 body 가 초기화 되어야 한다.", () => {
+  it("영화 상세 모달이 닫힐 때 modal의 title, header, overview, thumbnail 이 초기화 되어야 한다.", () => {
     cy.get(selectors.modalCloseBtn).click();
     cy.get(selectors.modal).should("not.be.visible");
 
     cy.get(selectors.movieTitle).should("be.empty");
-
-    cy.get(selectors.modalBody).should("be.empty");
+    cy.get(selectors.movieHeader).should("be.empty");
+    cy.get(selectors.movieOverview).should("be.empty");
+    cy.get(selectors.movieThumbnail).should("be.empty");
   });
 
-  it("영화 상세 정보와 사용자의 영화 평점을 fetch 하는 동안 스켈레톤이 보여야 한다.", () => {
+  it("영화 상세 정보를 fetch 하는 동안 스켈레톤이 보여야 한다.", () => {
     cy.get(selectors.modal).should("be.visible");
     cy.get(selectors.skeleton).should("be.visible");
     cy.wait("@getMovieDetail");

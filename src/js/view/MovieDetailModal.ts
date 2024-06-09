@@ -25,6 +25,7 @@ const MovieDetailModal = {
   },
 
   reset() {
+    MovieDetailModal.elements.movieTitle.textContent = "";
     MovieDetailModal.elements.movieThumbnail.innerHTML = "";
     MovieDetailModal.elements.movieHeader.innerHTML = "";
     MovieDetailModal.elements.movieOverview.textContent = "";
