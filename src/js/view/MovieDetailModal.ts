@@ -35,7 +35,7 @@ const MovieDetailModal = {
   async generateModalBodyContent(movie: MovieModel) {
     await movie.fetchMovieDetail();
 
-    const genres = movie.genres.map((genre) => genre.name).join(", ");
+    const genres = movie.genres.join(", ");
 
     return /* html */ `
       <div class="movie-thumbnail">

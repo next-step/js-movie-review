@@ -43,7 +43,7 @@ describe("영화 기능 테스트", () => {
 
     await movie.fetchMovieDetail();
 
-    expect(movie.genres).to.deep.equals(genres);
+    expect(movie.genres).to.deep.equals(genres.map((genre) => genre.name));
   });
 
   it("사용자가 평가한 평점을 가져오는 API를 호출하고 만약 이미 평가한 이력이 있다면 userRating 에 저장한다.", async () => {

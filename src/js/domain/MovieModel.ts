@@ -1,4 +1,3 @@
-import { MovieGenre } from "../../types/Movie";
 import {
   MovieDetailResponseDTO,
   MovieUserRatingRequestDTO,
@@ -13,7 +12,7 @@ class MovieModel {
   #thumbnail: string;
   #overview: string;
   userRating: null | number = null; // 사용자가 평가한 평점
-  genres: MovieGenre[] = [];
+  genres: string[] = [];
 
   constructor({
     id,
@@ -61,7 +60,7 @@ class MovieModel {
     try {
       const { genres } = await Api.get<MovieDetailResponseDTO>(url);
 
-      this.genres = genres;
+      this.genres = genres.map((genre) => genre.name);
     } catch (e) {
       alert(e.message);
     }
