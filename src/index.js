@@ -8,7 +8,7 @@ import "./css/modal.css";
 addEventListener("DOMContentLoaded", () => {
   const movie = new Movie();
 
-  new HeaderView();
+  new HeaderView(movie);
   const movieView = new MovieView(movie);
   movieView.loadMore();
 });

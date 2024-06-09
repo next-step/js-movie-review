@@ -54,3 +54,25 @@ describe("영화 리뷰 테스트", () => {
     cy.get(".load-more").should("not.exist");
   });
 });
+
+describe("영화 리뷰 테스트", () => {
+  beforeEach(() => {
+    // given
+    cy.visit("http://localhost:8081");
+  });
+
+  it("엔터키를 눌러 검색하여 영화 목록을 불러온다.", () => {
+    // when
+    cy.get(".search-box input").type("반도{enter}");
+    // then
+    cy.get(".item-list li").should("have.length", 11);
+  });
+
+  it("검색 버튼을 클릭하여 검색하여 영화 목록을 불러온다.", () => {
+    // when
+    cy.get(".search-box input").type("반도");
+    cy.get(".search-button").click();
+    // then
+    cy.get(".item-list li").should("have.length", 11);
+  });
+});
