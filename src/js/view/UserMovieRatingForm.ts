@@ -26,16 +26,18 @@ const UserMovieRatingForm = {
               .map((ratingScoreOption) => {
                 const isFilled = ratingScoreOption <= movie.userRating;
                 return /* html */ `
-                <img
-                  class="rating-star"
-                  src=${
-                    isFilled
-                      ? UserMovieRatingForm.PATH_STAR_FILLED
-                      : UserMovieRatingForm.PATH_STAR_EMPTY
-                  }
-                  alt=${"RatingScore:" + ratingScoreOption}
-                  data-rating=${ratingScoreOption}
-                />
+                <div class="rating-star-wrapper">
+                  <img
+                    class="rating-star"
+                    src=${
+                      isFilled
+                        ? UserMovieRatingForm.PATH_STAR_FILLED
+                        : UserMovieRatingForm.PATH_STAR_EMPTY
+                    }
+                    alt=${"RatingScore:" + ratingScoreOption}
+                    data-rating=${ratingScoreOption}
+                  />
+                </div>
               `;
               })
               .join("")}
@@ -106,12 +108,13 @@ const UserMovieRatingForm = {
 
   resetRatingScore(userRating: number | null) {
     const ratingScore = $(".rating-score") as HTMLSpanElement;
-    if (!userRating) {
-      ratingScore.textContent = "";
-      return;
-    }
 
     if (ratingScore) {
+      if (!userRating) {
+        ratingScore.textContent = "";
+        return;
+      }
+
       ratingScore.textContent = userRating.toString();
     }
   },
