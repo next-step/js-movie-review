@@ -1,6 +1,7 @@
 import starFilled from '../assets//../assets/star_filled.png';
-import { IMAGE_BASE_URL } from '../constants/api';
 import { MovieCard } from '../components/MovieCard';
+
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 
 export class Cinema {
     isConnect;
@@ -14,46 +15,22 @@ export class Cinema {
     }
 
     createMovies(movies) {
-        const fragment = document.createDocumentFragment();
-
-        movies.forEach((movie) => {
-            const movieCard = MovieCard({
+        this.isConnect = true;
+        const elements = movies.map((movie) =>
+            MovieCard({
                 title: movie.title,
                 src: `${IMAGE_BASE_URL}${movie.poster_path}`,
                 voteAvg: movie.vote_average,
                 starSrc: starFilled
-            });
-
-            fragment.appendChild(movieCard);
-        });
-        this.isConnect = true;
-
+            })
+        );
+        appendFragments(this.movieListElement, elements);
         this.removeSkeletons();
-
-        this.movieListElement.appendChild(fragment);
     }
 
-    showSekeleton(count) {
+    isLoading() {
         this.isConnect = false;
-        const fragment = document.createDocumentFragment();
-        [...Array(count)].forEach(() => {
-            const movieCard = MovieCard({
-                title: '',
-                src: '',
-                voteAvg: '',
-                starSrc: '',
-                loading: true
-            });
-            fragment.appendChild(movieCard);
-        });
-
-        this.movieListElement.appendChild(fragment);
-
-        setTimeout(() => {
-            if (this.isConnect === false) {
-                this.removeSkeletons();
-            }
-        }, 5000);
+        appendFragments(this.movieListElement, Array(20).map(MovieCard));
     }
 
     removeSkeletons() {
