@@ -11,15 +11,13 @@ describe("검색창 기능 테스트", () => {
   const query = "Harry Potter";
 
   beforeEach(() => {
-    cy.intercept(Api.generatePopularMoviesUrl(1), (req) => {
-      req.continue((res) => {
-        res.setDelay(1000);
-      });
+    cy.intercept(Api.generatePopularMoviesUrl(1), {
+      fixture: "movieList.json",
+      delay: 1000,
     }).as("getPopularMovies");
     cy.intercept(Api.generateSearchMoviesUrl(query, 1), {
       delay: 1000,
     }).as("searchMovies");
-
     cy.visit("http://localhost:8080/");
     cy.wait("@getPopularMovies");
   });

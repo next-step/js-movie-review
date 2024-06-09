@@ -9,7 +9,9 @@ const selectors = {
 describe("영화 카드 목록 기능 테스트", () => {
   beforeEach(() => {
     const url = Api.generatePopularMoviesUrl(1);
-    cy.intercept("GET", url).as("getPopularMovies");
+    cy.intercept("GET", url, {
+      fixture: "movieList.json",
+    }).as("getPopularMovies");
     cy.visit("http://localhost:8080/");
     cy.wait("@getPopularMovies");
   });

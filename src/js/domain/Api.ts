@@ -1,4 +1,3 @@
-import { HttpRequestInterceptor } from "cypress/types/net-stubbing";
 import ErrorMessage from "../ErrorMessage";
 
 const Api = {

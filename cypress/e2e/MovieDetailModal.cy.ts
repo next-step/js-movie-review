@@ -14,7 +14,9 @@ const selectors = {
 describe("영화 상세 모달 기능 테스트", () => {
   beforeEach(() => {
     const url = Api.generatePopularMoviesUrl(1);
-    cy.intercept("GET", url).as("getPopularMovies");
+    cy.intercept("GET", url, {
+      fixture: "movieList.json",
+    }).as("getPopularMovies");
     cy.visit("http://localhost:8080/");
     cy.wait("@getPopularMovies");
 
@@ -25,6 +27,7 @@ describe("영화 상세 모달 기능 테스트", () => {
       .then((movieId) => {
         cy.intercept("GET", Api.generateMovieDetailUrl(Number(movieId)), {
           delay: 1000,
+          fixture: "movieDetail.json",
         }).as("getMovieDetail");
         cy.intercept("GET", Api.generateMovieUserRatingUrl(Number(movieId))).as(
           "getUserRating"
