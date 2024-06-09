@@ -8,7 +8,10 @@ const selectors = {
 
 describe("영화 카드 목록 기능 테스트", () => {
   beforeEach(() => {
+    const url = Api.generatePopularMoviesUrl(1);
+    cy.intercept("GET", url).as("getPopularMovies");
     cy.visit("http://localhost:8080/");
+    cy.wait("@getPopularMovies");
   });
 
   it("앱 최초 로드시 20개의 영화 카드가 보여야 한다.", () => {
@@ -21,15 +24,11 @@ describe("영화 카드 목록 기능 테스트", () => {
   });
 
   it("로딩 중일 때 스켈레톤 카드가 보인다.", () => {
-    cy.intercept(Api.generatePopularMoviesUrl(2), (req) => {
-      req.continue((res) => {
-        // delay the response for 1 second
-        res.setDelay(1000);
-      });
+    cy.intercept("GET", Api.generatePopularMoviesUrl(2), {
+      delay: 1000,
     }).as("getMovies");
 
     cy.get(selectors["show-more"]).click(); // fetch next page
-
     cy.get(selectors["skeleton-card"]).should("be.visible");
     cy.wait("@getMovies");
     cy.get(selectors["skeleton-card"]).should("not.exist");
