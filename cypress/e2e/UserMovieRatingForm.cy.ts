@@ -1,4 +1,5 @@
 import Api from "../../src/js/domain/Api";
+import UserMovieRatingForm from "../../src/js/view/UserMovieRatingForm";
 
 const selectors = {
   itemCard: ".item-card",
@@ -7,11 +8,15 @@ const selectors = {
   movieTitle: ".movie-title",
   modalBody: ".modal-body",
   skeleton: ".skeleton",
+  userRating: ".user-rating",
+  ratingStar: ".rating-star",
 };
 
 describe("사용자 영화 평점 폼 기능 테스트", () => {
   beforeEach(() => {
-    cy.intercept("GET", Api.generatePopularMoviesUrl(1)).as("getPopularMovies");
+    cy.intercept("GET", Api.generatePopularMoviesUrl(1), {
+      fixture: "movieList.json",
+    }).as("getPopularMovies");
     cy.visit("http://localhost:8080/");
     cy.wait("@getPopularMovies");
 
@@ -22,10 +27,12 @@ describe("사용자 영화 평점 폼 기능 테스트", () => {
       .then((movieId) => {
         cy.intercept("GET", Api.generateMovieDetailUrl(Number(movieId)), {
           delay: 1000,
+          fixture: "movieDetail.json",
         }).as("getMovieDetail");
-        cy.intercept("GET", Api.generateMovieUserRatingUrl(Number(movieId))).as(
-          "getUserRating"
-        );
+        cy.intercept("GET", Api.generateMovieUserRatingUrl(Number(movieId)), {
+          delay: 1000,
+          fixture: "movieUserRatingNonExists.json",
+        }).as("getUserRating");
 
         cy.get(selectors.itemCard).first().click();
       });
@@ -36,5 +43,23 @@ describe("사용자 영화 평점 폼 기능 테스트", () => {
     cy.get(selectors.skeleton).should("be.visible");
     cy.wait("@getMovieDetail");
     cy.get(selectors.skeleton).should("not.exist");
+  });
+
+  it("사용자의 마우스 호버 위치에 따라 별점이 변경되어야 한다.", () => {
+    cy.get(selectors.modal).should("be.visible");
+
+    // hover over the first star
+    cy.get(selectors.ratingStar).first().trigger("mouseover");
+    cy.get(selectors.ratingStar)
+      .first()
+      .should("have.attr", "src")
+      .should("include", UserMovieRatingForm.PATH_STAR_FILLED);
+
+    // hover over the second star
+    cy.get(selectors.ratingStar).eq(1).trigger("mouseover");
+    cy.get(selectors.ratingStar)
+      .eq(1)
+      .should("have.attr", "src")
+      .should("include", UserMovieRatingForm.PATH_STAR_FILLED);
   });
 });
