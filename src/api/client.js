@@ -1,6 +1,6 @@
 import { ApiError, UnauthorizedError, InternetServerError } from "./error";
 
-const BASE_URL = "https://api.themoviedb.org/3/movie";
+const BASE_URL = "https://api.themoviedb.org/3";
 
 export default class ApiClient {
   static async get(endpoint, headers = {}) {

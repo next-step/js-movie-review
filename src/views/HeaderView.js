@@ -1,8 +1,25 @@
 import logo from "../assets/logo.png";
 
 export class HeaderView {
-  constructor() {
+  constructor(movieInstance) {
+    this.movieInstance = movieInstance;
     this.setup();
+    this.searchButtonElement = document.querySelector(".search-button");
+    this.searchInputElement = document.querySelector(".search-box input");
+
+    const onSearch = async () => {
+      const query = this.searchInputElement.value.trim();
+      this.movieInstance.setSearchQuery(query);
+      await this.movieInstance.loadMore();
+    };
+
+    this.searchButtonElement.addEventListener("click", onSearch);
+
+    this.searchInputElement.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        onSearch();
+      }
+    });
   }
 
   setup() {
