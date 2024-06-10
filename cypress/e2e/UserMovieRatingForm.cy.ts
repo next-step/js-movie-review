@@ -1,3 +1,4 @@
+import ErrorMessage from "../../src/js/ErrorMessage";
 import Api from "../../src/js/domain/Api";
 import UserMovieRatingForm from "../../src/js/view/UserMovieRatingForm";
 
@@ -33,6 +34,20 @@ describe("사용자 영화 평점 폼 기능 테스트", () => {
           delay: 1000,
           fixture: "movieUserRatingExists.json",
         }).as("getUserRating");
+        cy.intercept(
+          "POST",
+          Api.generatePostMovieUserRatingUrl(Number(movieId)),
+          (req) => {
+            req.reply((res) => {
+              // 요청한 body 가 올바른지 확인
+              expect(req.body).to.have.property("value", 2);
+              res.send({
+                statusCode: 200,
+                body: {},
+              });
+            });
+          }
+        ).as("postUserRating");
 
         cy.get(selectors.itemCard).first().click();
       });
@@ -91,6 +106,77 @@ describe("사용자 영화 평점 폼 기능 테스트", () => {
     // hover over the third star
     cy.get(selectors.ratingStar).eq(2).trigger("mouseover");
     cy.get(selectors.ratingScore).should("have.text", "6");
+  });
+
+  it("사용자가 별점을 클릭하면 올바른 post 요청이 발생해야 한다.", () => {
+    cy.wait("@getMovieDetail");
+    cy.wait("@getUserRating");
+
+    cy.get(selectors.modal).should("be.visible");
+
+    // 2점 클릭
+    cy.get(selectors.ratingStar).first().click();
+
+    cy.wait("@postUserRating").its("request").should("exist");
+  });
+
+  it("사용자가 별점을 클릭하면 별들의 색깔이 올바르게 변경되어야 한다.", () => {
+    cy.wait("@getMovieDetail");
+    cy.wait("@getUserRating");
+
+    cy.get(selectors.modal).should("be.visible");
+
+    // 2점 클릭
+    cy.get(selectors.ratingStar).first().click();
+    cy.get(selectors.ratingStar)
+      .first()
+      .should("have.attr", "src")
+      .should("include", UserMovieRatingForm.PATH_STAR_FILLED);
+  });
+
+  it("사용자가 별점을 클릭하면 rating-score 가 변경되어야 한다.", () => {
+    cy.wait("@getMovieDetail");
+    cy.wait("@getUserRating");
+
+    cy.get(selectors.modal).should("be.visible");
+
+    // 2점 클릭
+    cy.get(selectors.ratingStar).first().click();
+    cy.get(selectors.ratingScore).should("have.text", "2");
+  });
+
+  it("사용자 별점을 post 하는 요청이 실패하면, 에러 메시지를 보여준다.", () => {
+    cy.get(selectors.itemCard)
+      .first()
+      .invoke("attr", "data-id")
+      .then((movieId) => {
+        cy.intercept(
+          "POST",
+          Api.generatePostMovieUserRatingUrl(Number(movieId)),
+          (req) => {
+            req.reply((res) => {
+              res.send({
+                statusCode: 500,
+                body: {},
+              });
+            });
+          }
+        ).as("postUserRating");
+
+        cy.wait("@getMovieDetail");
+        cy.wait("@getUserRating");
+
+        cy.get(selectors.modal).should("be.visible");
+
+        // 2점 클릭
+        cy.get(selectors.ratingStar).eq(3).click();
+
+        cy.wait("@postUserRating");
+
+        cy.on("window:alert", (str) => {
+          expect(str).to.equal(ErrorMessage.FAILED_TO_POST_RATING);
+        });
+      });
   });
 });
 
