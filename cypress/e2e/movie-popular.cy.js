@@ -21,29 +21,14 @@ describe("영화 리스트 e2e 테스트", () => {
     cy.get("button.btn").should("be.visible");
   });
 
-  it("루트 경로로 접속 시 데이터를 제대로 불러 오는지 테스트", () => {
-    cy.wait("@getMoiveList").then((interception) => {
-      const nextPageMovieItemsLength =
-        interception.response.body.results.length;
-
-      cy.wrap(nextPageMovieItemsLength).should("eq", 20);
-      // cy.should('eq', nextPageMovieItemsLength)
-      // cy.get("#app > main > section > button").scrollIntoView();
-    });
-  });
-
   it("스크롤을 최하단으로 내리고 더보기를 눌렀을 때 20개를 더 불러 오는지 확인", () => {
     cy.wait("@getMoiveList").then(() => {
       // cy.should('eq', nextPageMovieItemsLength)
       cy.get("#app > main > section > button").scrollIntoView();
       cy.get("button.btn").click();
 
-      cy.wait("@getSecontMoiveList").then((interception) => {
-        const nextPageMovieItemsLength =
-          interception.response.body.results.length;
-        console.log("nextPageMovieItemsLength", nextPageMovieItemsLength);
-
-        cy.wrap(nextPageMovieItemsLength).should("eq", 20);
+      cy.wait("@getSecontMoiveList").then(() => {
+        cy.get("li").should("have.length", 40);
       });
     });
   });

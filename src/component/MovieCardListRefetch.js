@@ -1,3 +1,4 @@
+import list from "./List";
 import MovieCard from "./MovieCard";
 
 /**
@@ -11,11 +12,11 @@ import MovieCard from "./MovieCard";
  *  }
  * ]
  */
-const movieCardListRefetch = ({ cardDatas }) => {
-  const ul = document.querySelector("ul");
+const MovieCardListRefetch = ({ cardDatas }) => {
+  const ul = list();
   const fragment = new DocumentFragment();
   cardDatas.map(MovieCard).forEach((dom) => fragment.appendChild(dom));
   ul.appendChild(fragment);
 };
 
-export default movieCardListRefetch;
+export default MovieCardListRefetch;

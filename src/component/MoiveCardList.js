@@ -1,6 +1,4 @@
-import { makeDom } from "./util";
 import MovieCard from "./MovieCard";
-import cssClass from "../const/css-class";
 import List from "./List";
 
 /**
@@ -14,16 +12,13 @@ import List from "./List";
  *  }
  * ]
  */
-const movieCardList = ({ cardDatas }) => {
+const MovieCardList = ({ cardDatas }) => {
   const dom = List();
 
-  cardDatas.forEach((cardData) => {
-    const { href, src, title, alt, score } = cardData;
-    const card = MovieCard({ href, src, title, alt, score });
-
-    dom.append(card);
-  });
+  const fragment = new DocumentFragment();
+  cardDatas.map(MovieCard).forEach((dom) => fragment.appendChild(dom));
+  dom.appendChild(fragment);
 
   return dom;
 };
-export default movieCardList;
+export default MovieCardList;

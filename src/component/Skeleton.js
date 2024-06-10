@@ -1,7 +1,7 @@
 import { makeDom } from "./util";
 
-const skeleton = () => {
-  const dom = makeDom(
+const skeleton = () =>
+  makeDom(
     `<li class="skeleton-li">
       <a href="#">
         <div class="item-card">
@@ -13,6 +13,4 @@ const skeleton = () => {
     </li>`
   );
 
-  return dom;
-};
 export default skeleton;

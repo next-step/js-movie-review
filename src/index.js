@@ -6,7 +6,7 @@ import { getMovieList } from "./api";
 const requestParam = {
   page: 1,
 };
-async function footerClick() {
+async function movieCardListRefetch() {
   const response = await getMovieList({ page: requestParam.page });
   requestParam.page = requestParam.page + 1;
   const result = response.results.map((movieInfo) => ({
@@ -46,7 +46,7 @@ async function run() {
       selector: "section",
       cardDatas: result,
     });
-    render.footer({ selector: "section", onClick: footerClick });
+    render.footer({ selector: "section", onClick: movieCardListRefetch });
   } catch (error) {
     console.log("에러가 발생했습니다.", error);
   }

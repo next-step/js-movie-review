@@ -6,9 +6,18 @@ async function getMovieList({ page }) {
     );
     const jsonData = await response.json();
 
+    if (!response.ok) {
+      switch (response.status) {
+        case 401:
+          throw new Error("서버 인증에러가 발생했습니다.");
+        default:
+          throw new Error(`${response.status} 통신에 문제가 있습니다.`);
+      }
+    }
+
     return jsonData;
   } catch (error) {
-    throw new Error(error);
+    throw new Error(`서버에서 에러가 발생했습니다.`);
   }
 }
 

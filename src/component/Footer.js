@@ -1,6 +1,6 @@
 import { makeDom } from "./util";
 
-const footer = ({ onClick }) => {
+const Footer = ({ onClick }) => {
   const dom = makeDom(
     `<button class="btn primary full-width">더 보기</button>`
   );
@@ -9,4 +9,4 @@ const footer = ({ onClick }) => {
 
   return dom;
 };
-export default footer;
+export default Footer;
