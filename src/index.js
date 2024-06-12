@@ -1,9 +1,7 @@
 import './styles/reset.css';
 import './styles/common.css';
+import App from './view/App';
 
-import { Layout } from './components/Layout';
-import { MovieListView } from './view/movieListView';
-
-const app = document.getElementById('app');
-app.appendChild(Layout());
-app.addEventListener('DOMContentLoaded', MovieListView());
+document.addEventListener('DOMContentLoaded', () => {
+    App();
+});
