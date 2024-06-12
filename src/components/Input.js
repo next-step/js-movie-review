@@ -1,4 +1,4 @@
-function Input({ id, type, placeholder, value, onChange }) {
+function Input({ id, type, placeholder, value, onChange, onKeyDown }) {
     const inputElement = document.createElement('input');
     inputElement.id = id;
     inputElement.type = type;
@@ -6,6 +6,7 @@ function Input({ id, type, placeholder, value, onChange }) {
     inputElement.value = value || '';
 
     onChange && inputElement.addEventListener('input', onChange);
+    onKeyDown && inputElement.addEventListener('keydown', onKeyDown);
 
     return inputElement;
 }
