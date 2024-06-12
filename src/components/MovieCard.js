@@ -1,38 +1,26 @@
-import { Score } from './Score';
-
 export function MovieCard({ title = '', src = '', voteAvg = '', starSrc = '', loading = false }) {
-    const liElement = document.createElement('li');
-    const aElement = document.createElement('a');
-    aElement.href = '#';
-    const cardElement = document.createElement('div');
-    const imageElement = document.createElement('img');
-    const titleElement = document.createElement('p');
-    const scoreElement = Score({ voteAvg: voteAvg, src: starSrc, loading: loading });
-
     if (loading) {
-        liElement.classList.add('skeleton');
-        cardElement.classList.add('item-card');
-        imageElement.classList.add('item-thumbnail', 'skeleton');
-        titleElement.classList.add('item-title', 'skeleton');
-        imageElement.loading = 'lazy';
-        imageElement.alt = title;
-        titleElement.innerText = title;
-    } else {
-        cardElement.classList.add('item-card');
-        imageElement.classList.add('item-thumbnail');
-        titleElement.classList.add('item-title');
-        imageElement.loading = 'lazy';
-        imageElement.alt = title;
-        imageElement.src = src;
-        titleElement.innerText = title;
+        return SkeletonMovieCard();
     }
 
-    cardElement.append(imageElement);
-    cardElement.append(titleElement);
-    cardElement.append(scoreElement);
+    const liElement = document.createElement('li');
 
-    aElement.append(cardElement);
-    liElement.append(aElement);
+    const newVoteAvg = loading ? '' : Number(voteAvg).toFixed(2);
+    const imageSrc = loading ? '' : src;
+    const imageAlt = title;
+
+    liElement.innerHTML = `
+        <a href="#">
+            <div class="item-card">
+                <img class="item-thumbnail" loading="lazy" alt="${imageAlt}" src="${imageSrc}">
+                <p class="item-title">${title}</p>
+                <p class="item-score">
+                    <span>${newVoteAvg}</span>
+                    <img src="${starSrc}" alt="별점" loading="lazy">
+                </p>
+            </div>
+        </a>
+    `;
 
     return liElement;
 }
