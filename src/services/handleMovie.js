@@ -1,5 +1,6 @@
 import getMovieList from '../apis/getMovieList';
-import { Modal } from '../components/modal';
+import ConfirmModal from '../components/modal/ConfirmModal';
+import { Modal } from '../components/modal/container/Modal';
 import renderMovies from '../view/renderMovies';
 import renderSkeletonMovies from '../view/renderSkeletonMovies';
 
@@ -10,8 +11,7 @@ export default async function handleMovie(page) {
         renderSkeletonMovies({ loading: false });
         renderMovies({ movieList: movieList.results, resetHTML: false });
     } catch (error) {
-        const modal = new Modal();
-        modal.content = error.message;
-        document.querySelector('body').appendChild(modal.rendered);
+        renderSkeletonMovies({ loading: false });
+        new Modal(document.querySelector('body'), ConfirmModal(error.message));
     }
 }
