@@ -1,5 +1,6 @@
 import Input from './Input';
 import Button from './Button';
+import { handleSearch } from '../services/handleSeach';
 
 function Header({ logoSrc, logoAlt, onSearch }) {
     const headerElement = document.createElement('header');
@@ -9,13 +10,31 @@ function Header({ logoSrc, logoAlt, onSearch }) {
         <div class="search-box"></div>
     `;
 
+    let page = 1;
+
     const searchInput = Input({
         id: 'search-input',
         type: 'text',
         placeholder: '검색',
         onKeyDown: async (event) => {
             if (event.code === 'Enter') {
-                await onSearch(event.target.value);
+                document.getElementById('more-movies').remove();
+                const sectionContainer = document.querySelector('.item-view');
+
+                sectionContainer.appendChild(
+                    Button({
+                        classNames: ['btn', 'primary', 'full-width'],
+                        type: 'button',
+                        id: 'more-movies',
+                        name: '더 보기',
+                        onClick: () => {
+                            page += 1;
+                            handleSearch(searchInput.value, page);
+                        }
+                    })
+                );
+
+                await onSearch(event.target.value, page);
             }
         }
     });
@@ -25,8 +44,24 @@ function Header({ logoSrc, logoAlt, onSearch }) {
         name: '검색',
         type: 'button',
         onClick: async () => {
+            document.getElementById('more-movies').remove();
+            const sectionContainer = document.querySelector('.item-view');
+
+            sectionContainer.appendChild(
+                Button({
+                    classNames: ['btn', 'primary', 'full-width'],
+                    type: 'button',
+                    id: 'more-movies',
+                    name: '더 보기',
+                    onClick: () => {
+                        page += 1;
+                        handleSearch(searchInput.value, page);
+                    }
+                })
+            );
+
             const inputValue = document.getElementById('search-input').value;
-            await onSearch(inputValue);
+            await onSearch(inputValue, page);
         }
     });
 
