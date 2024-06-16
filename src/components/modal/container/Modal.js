@@ -21,7 +21,7 @@ export class Modal {
         if (!this.#visibility) {
             this.#parentElement.removeEventListener('keydown', this.handleKeyDown);
             this.#modalContainer.querySelector('.close-button').removeEventListener('click', this.handleClick);
-            this.#modalContainer.removeEventListener('click', this.handleBackgroundClick);
+            this.#modalContainer.remove();
         }
     }
 
