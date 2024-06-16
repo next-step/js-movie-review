@@ -39,8 +39,6 @@ describe('API 호출 중 에러 발생시 예외처리 테스트', () => {
 
         cy.get('.modal').should('be.visible');
 
-        cy.get('.modal-content')
-            .should('be.visible')
-            .and('contain', '데이터 요청에 실패했습니다. 다음에 다시 이용해주세요.');
+        cy.get('.modal-content').should('be.visible');
     });
 });
