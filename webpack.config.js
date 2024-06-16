@@ -6,7 +6,7 @@ module.exports = {
     entry: ['./src/index.js'],
     mode: 'development',
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js', '.ts']
     },
     devServer: {
         static: './dist',
@@ -34,6 +34,11 @@ module.exports = {
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource'
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             }
         ]
     }

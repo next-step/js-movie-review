@@ -1,4 +1,4 @@
-import ApiClient from './apiClient';
+import ApiClient from '../domain/ApiClient';
 
 const getMovieDetail = async (movie_id) => {
     const res = ApiClient.request({
