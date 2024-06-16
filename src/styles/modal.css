@@ -1,0 +1,196 @@
+.modal {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    color: black;
+    border-radius: 12px;
+}
+
+.modal-content {
+    width: 400px;
+    height: 200px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.modal-detail {
+    background-color: #2c2c2c;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    width: 800px;
+    max-width: 100%;
+    position: relative;
+    color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-detail > .header {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.modal-detail > .header > h1 {
+    font-size: 24px;
+    margin: 0;
+}
+.poster {
+    width: 300px;
+    margin-right: 20px;
+}
+.poster img {
+    width: 292px;
+    height: 433px;
+}
+.modal-detail > .content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 100%;
+}
+
+.sub-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
+
+.content-detail {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.genres,
+.rating,
+.description,
+.user-rating {
+    margin: 10px 0;
+    line-height: 24px;
+}
+.rating {
+    display: flex;
+    align-items: center;
+}
+.rating img {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}
+.user-rating {
+    display: flex;
+    align-items: center;
+
+    background-color: #383839;
+    padding: 20px;
+    border-radius: 16px;
+    line-height: 24px;
+    font-size: 16px;
+
+    gap: 10px;
+}
+.stars {
+    display: flex;
+}
+.stars img {
+    width: 20px;
+    height: 20px;
+}
+.close-button {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.modal-background {
+    display: block;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 834px) {
+    .modal-detail {
+        background-color: #2c2c2c;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        width: 740px;
+        max-width: 100%;
+        position: relative;
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .poster {
+        width: 260px;
+        margin-right: 20px;
+    }
+    .poster img {
+        width: 260px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 390px) {
+    .modal-background {
+        display: block;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal {
+        display: block;
+        position: fixed; /* fixed로 변경 */
+        bottom: 0; /* 화면 맨 아래에 위치하도록 설정 */
+        width: 100%;
+        background-color: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        color: black;
+        border-radius: 12px 12px 0 0; /* 상단 모서리만 둥글게 */
+    }
+
+    .modal-detail {
+        background-color: #2c2c2c;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .poster {
+        display: none;
+    }
+}
