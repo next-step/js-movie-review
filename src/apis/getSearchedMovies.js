@@ -1,3 +1,4 @@
+
 import ApiClient from '../domain/ApiClient';
 
 async function getSearchedMovies(query, page) {
@@ -10,6 +11,7 @@ async function getSearchedMovies(query, page) {
             api_key: process.env.TMDB_API_KEY,
             language: 'ko-KR'
         }
+
     });
 
     return res;

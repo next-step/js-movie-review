@@ -1,3 +1,4 @@
+
 import ApiClient from '../domain/ApiClient';
 
 async function getMovieList(page) {
@@ -9,6 +10,7 @@ async function getMovieList(page) {
             page: page,
             language: 'ko-KR'
         }
+
     });
 
     return res;

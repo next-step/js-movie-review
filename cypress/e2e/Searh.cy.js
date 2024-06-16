@@ -58,4 +58,5 @@ describe('검색 관련된 내용 추가', () => {
 
         cy.contains('.modal-content', '더이상 영화가 존재하지 않습니다.');
     });
+
 });

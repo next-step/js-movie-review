@@ -1,4 +1,6 @@
+
 function Button({ classNames = [], type = 'button', id = '', name = '', onClick }) {
+
     const buttonElement = document.createElement('button');
 
     buttonElement.classList.add(...classNames);

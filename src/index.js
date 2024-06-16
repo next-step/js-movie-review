@@ -7,3 +7,4 @@ import App from './view/App';
 document.addEventListener('DOMContentLoaded', () => {
     App();
 });
+

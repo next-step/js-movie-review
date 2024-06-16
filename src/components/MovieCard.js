@@ -1,3 +1,4 @@
+
 import getMovieDetail from '../apis/getMovieDetail';
 import MovieDetailModal from './modal/MovieDetailModal';
 import { Modal } from './modal/container/Modal';
@@ -42,6 +43,7 @@ export function MovieCard({ title = '', src = '', voteAvg = '', starSrc = '', id
             })
         );
     });
+
 
     return liElement;
 }

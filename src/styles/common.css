@@ -185,6 +185,7 @@ header .search-box > .search-button {
     background-size: contain;
 }
 
+
 .input-toggle {
     display: block !important;
     width: 100%;
@@ -198,4 +199,5 @@ header .search-box > .search-button {
 .search-box-toggle {
     width: 100%;
     display: flex;
+
 }

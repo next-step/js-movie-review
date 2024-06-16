@@ -40,5 +40,6 @@ describe('API 호출 중 에러 발생시 예외처리 테스트', () => {
         cy.get('.modal').should('be.visible');
 
         cy.get('.modal-content').should('be.visible');
+
     });
 });

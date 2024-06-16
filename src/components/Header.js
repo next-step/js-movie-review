@@ -1,3 +1,4 @@
+
 import Input from './Input';
 import Button from './Button';
 import { handleSearch } from '../services/handleSeach';
@@ -95,6 +96,7 @@ function Header({ logoSrc, logoAlt, onSearch }) {
 
     searchBox.appendChild(searchInput);
     searchBox.appendChild(searchButton);
+
 
     return headerElement;
 }
