@@ -196,6 +196,11 @@ header .search-box > .search-button {
 }
 
 .search-box-toggle {
+.logo-toggle {
+    display: none;
+}
+
+.search-box-toggle {
     width: 100%;
     display: flex;
 }

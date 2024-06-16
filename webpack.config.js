@@ -7,6 +7,7 @@ module.exports = {
     mode: 'development',
     resolve: {
         extensions: ['.js', '.ts']
+        extensions: ['.js', '.ts']
     },
     devServer: {
         static: './dist',
