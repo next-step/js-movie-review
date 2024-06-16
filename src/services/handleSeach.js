@@ -1,6 +1,8 @@
 import getSearchedMovies from '../apis/getSearchEdMovies';
-import { Modal } from '../components/modal';
+import ConfirmModal from '../components/modal/ConfirmModal';
+import { Modal } from '../components/modal/container/Modal';
 import renderMovies from '../view/renderMovies';
+import renderSkeletonMovies from '../view/renderSkeletonMovies';
 
 export async function handleSearch(value) {
     try {
@@ -11,8 +13,7 @@ export async function handleSearch(value) {
         renderSkeletonMovies({ loading: false });
         renderMovies({ movieList: searchList.results, resetHTML: true });
     } catch (error) {
-        const modal = new Modal();
-        modal.content = error.message;
-        document.querySelector('body').appendChild(modal.rendered);
+        renderSkeletonMovies({ loading: false });
+        new Modal(document.querySelector('body'), ConfirmModal(error.message));
     }
 }
