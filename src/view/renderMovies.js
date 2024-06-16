@@ -15,7 +15,8 @@ async function renderMovies({ movieList, resetHTML }) {
             title: movie.title,
             src: `${IMAGE_BASE_URL}${movie.poster_path}`,
             voteAvg: movie.vote_average,
-            starSrc: starFilled
+            starSrc: starFilled,
+            id: movie.id
         })
     );
     appendFragments(movieListElement, elements);
