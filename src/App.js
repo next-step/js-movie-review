@@ -1,9 +1,9 @@
-import { Header } from "../components/header/header";
-import { movieCardsList, skeleton } from "../components/main";
-import { Main } from "../components/main/main";
-import { MovieList } from "../domain/MovieList";
+import { Header } from "./js/components/header";
+import { movieCardsList, skeleton } from "./js/components/main";
+import { Main } from "./js/components/main/main";
+import { MovieList } from "./js/domain/MovieList";
 
-export class Controller {
+export default class App {
   movieList;
 
   constructor() {
@@ -28,10 +28,10 @@ export class Controller {
 
       const movies = await this.getMovieCards();
       movieCardsList.loadMovieList(movies);
-
-      skeleton.remove();
     } catch (error) {
+      alert(error.message)
       console.error(error);
+    } finally {
       skeleton.remove();
     }
   }
