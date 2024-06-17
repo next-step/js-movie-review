@@ -1,8 +1,8 @@
-export const skeleton =  {
-    render() {
-        const item = document.createElement("li");
-        item.classList.add("skeleton-card");
-        item.innerHTML  = /*html*/ `
+export const skeleton = {
+  render() {
+    const item = document.createElement("li");
+    item.classList.add("skeleton-card");
+    item.innerHTML = /*html*/ `
         <a href="#">
             <div class="item-card">
             <div class="item-thumbnail skeleton"></div>
@@ -10,22 +10,26 @@ export const skeleton =  {
             <div class="item-score skeleton"></div>
             </div>
         </a>
-        `
-        return item;
-    },
+        `;
+    return item;
+  },
 
-    load() {
-        const itemList = document.querySelector(".item-list");
+  load() {
+    const itemList = document.querySelector(".item-list");
 
-        const skeletons = Array.from({ length: 20 }, () => this.render());
+    const fragment = document.createDocumentFragment();
 
-        skeletons.forEach((skeleton) => itemList.appendChild(skeleton));
-    },
+    const skeletons = Array.from({ length: 20 }, () => this.render());
 
-    remove() {
-        const itemList = document.querySelector(".item-list");
-        const skeletons = document.querySelectorAll(".skeleton-card");
+    skeletons.forEach((skeleton) => fragment.appendChild(skeleton));
 
-        skeletons.forEach((skeleton) => itemList.removeChild(skeleton));
-    }
-}
+    itemList.append(fragment);
+  },
+
+  remove() {
+    const itemList = document.querySelector(".item-list");
+    const skeletons = document.querySelectorAll(".skeleton-card");
+
+    skeletons.forEach((skeleton) => itemList.removeChild(skeleton));
+  },
+};
