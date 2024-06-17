@@ -3,9 +3,14 @@ import { Movie } from "./Movie";
 
 export class MovieList {
   #movies = [];
+  #page = 1;
 
-  async generateMovies({ page }) {
-    const movies = await fetchPopularMovies({ page });
+  constructor({ page = 1 }) {
+    this.#page = page;
+  }
+
+  async generateMovies() {
+    const movies = await fetchPopularMovies({ page: this.#page });
 
     const movieList = movies.map(
       (movie) =>
@@ -22,6 +27,10 @@ export class MovieList {
 
   get movies() {
     return [...this.#movies];
+  }
+
+  nextPage() {
+    this.#page ++;
   }
 
   addMovies(movies) {

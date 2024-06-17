@@ -4,11 +4,10 @@ import { Main } from "../components/main/main";
 import { MovieList } from "../domain/MovieList";
 
 export class Controller {
-  #currentPage = 1;
   movieList;
 
   constructor() {
-    this.movieList = new MovieList();
+    this.movieList = new MovieList({ page: 1 });
   }
 
   async init() {
@@ -27,7 +26,7 @@ export class Controller {
     try {
       skeleton.load();
 
-      const movies = await this.getMovieCards({ page: this.#currentPage });
+      const movies = await this.getMovieCards();
       movieCardsList.loadMovieList(movies);
 
       skeleton.remove();
@@ -37,8 +36,8 @@ export class Controller {
     }
   }
 
-  async getMovieCards({ page = 1 }) {
-    const movieCards = await this.movieList.generateMovies({ page });
+  async getMovieCards() {
+    const movieCards = await this.movieList.generateMovies();
 
     return movieCards;
   }
@@ -47,7 +46,7 @@ export class Controller {
     const showMoreButton = document.querySelector(".show-more");
 
     showMoreButton.addEventListener("click", async () => {
-      this.#currentPage += 1;
+      this.movieList.nextPage();
       await this.loadMovieList();
     });
   }
