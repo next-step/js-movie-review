@@ -1,10 +1,10 @@
 import { mainSection } from "./main-section";
 
 export const Main = {
-  async render() {
+  render() {
     const element = document.createElement("main");
 
-    const itemView = await mainSection.render();
+    const itemView = mainSection.render();
 
     element.appendChild(itemView);
 

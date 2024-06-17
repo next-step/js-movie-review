@@ -1,8 +1,7 @@
-import { MovieList } from "../../domain/MovieList";
-import { mainTitle, mainMoreButton, movieCardsList, skeleton } from "./index";
+import { mainTitle, mainMoreButton, movieCardsList } from "./index";
 
 export const mainSection = {
-  async render() {
+  render() {
     const element = document.createElement("section");
     element.classList.add("item-view");
 

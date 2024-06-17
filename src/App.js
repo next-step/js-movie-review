@@ -5,18 +5,20 @@ import { MovieList } from "./js/domain/MovieList";
 
 export default class App {
   movieList;
+  #app;
+  #header;
+  #main;
 
   constructor() {
     this.movieList = new MovieList({ page: 1 });
+    this.#app = document.getElementById("app");
+    this.#header = Header.render();
+    this.#main = Main.render();
   }
 
   async init() {
-    const app = document.getElementById("app");
-    const header = Header.render();
-    const main = await Main.render();
-
-    app.appendChild(header);
-    app.appendChild(main);
+    this.#app.appendChild(this.#header);
+    this.#app.appendChild(this.#main);
 
     this.loadMovieList();
     this.showMoreMovies();
