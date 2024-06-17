@@ -25,7 +25,7 @@ export const skeleton = {
 
     skeletons.forEach((skeleton) => fragment.appendChild(skeleton));
 
-    itemList.append(fragment);
+    itemList.appendChild(fragment);
   },
 
   remove() {

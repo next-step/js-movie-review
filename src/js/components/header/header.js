@@ -7,8 +7,7 @@ export const Header = {
     const logo = headerLogo.render();
     const searchBar = headerSearchBar.render();
 
-    element.appendChild(logo);
-    element.appendChild(searchBar);
+    element.append(logo, searchBar);
 
     return element;
   },

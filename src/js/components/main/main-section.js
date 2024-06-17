@@ -8,13 +8,9 @@ export const mainSection = {
     const title = mainTitle.render();
     const itemList = movieCardsList.render();
     const moreButton = mainMoreButton.render();
-    
-    element.appendChild(title);
-    element.appendChild(itemList);
-    element.appendChild(moreButton);
+
+    element.append(title, itemList, moreButton);
 
     return element;
   },
-
-
 };
