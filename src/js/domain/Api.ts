@@ -1,19 +1,19 @@
 import ErrorMessage from "../ErrorMessage";
 
 const Api = {
-  BASE_URL: "https://api.themoviedb.org/3",
-  THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
-  LANGUAGE: "ko-KR",
-
   API_KEY: window.Cypress
     ? Cypress.env("TMDB_API_KEY")
     : process.env.TMDB_API_KEY,
-
+  API_ACCESS_TOKEN: window.Cypress
+    ? Cypress.env("TMDB_API_ACCESS_TOKEN")
+    : process.env.TMDB_API_ACCESS_TOKEN,
+  BASE_URL: "https://api.themoviedb.org/3",
+  THUMBNAIL_URL: "https://image.tmdb.org/t/p/w500",
+  LANGUAGE: "ko-KR",
   NUM_MOVIES_PER_PAGE: 20,
 
   generatePopularMoviesUrl(page: number): string {
     const param = new URLSearchParams({
-      api_key: this.API_KEY,
       language: this.LANGUAGE,
       page: page.toString(),
     });
@@ -23,13 +23,28 @@ const Api = {
 
   generateSearchMoviesUrl(query: string, page: number): string {
     const param = new URLSearchParams({
-      api_key: this.API_KEY,
       language: this.LANGUAGE,
       query,
       page: page.toString(),
     });
 
     return `${this.BASE_URL}/search/movie?${param}`;
+  },
+
+  generateMovieDetailUrl(movieId: number): string {
+    const param = new URLSearchParams({
+      language: this.LANGUAGE,
+    });
+
+    return `${this.BASE_URL}/movie/${movieId}?${param}`;
+  },
+
+  generateMovieUserRatingUrl(movieId: number): string {
+    return `${this.BASE_URL}/movie/${movieId}/account_states`;
+  },
+
+  generatePostMovieUserRatingUrl(movieId: number): string {
+    return `${this.BASE_URL}/movie/${movieId}/rating`;
   },
 
   throwError(status: number) {
@@ -43,10 +58,38 @@ const Api = {
     }
   },
 
-  async get<T>(url: string): Promise<{
-    results: T;
-  }> {
-    const response = await fetch(url);
+  async get<T>(url: string): Promise<T> {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${this.API_ACCESS_TOKEN}`,
+      },
+    };
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+      this.throwError(response.status);
+    }
+
+    return await response.json();
+  },
+
+  async post<T, U>(url: string, body?: T): Promise<U> {
+    const options: RequestInit = {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: `Bearer ${this.API_ACCESS_TOKEN}`,
+      },
+    };
+
+    if (body) {
+      options.body = JSON.stringify(body);
+    }
+
+    const response = await fetch(url, options);
 
     if (!response.ok) {
       this.throwError(response.status);

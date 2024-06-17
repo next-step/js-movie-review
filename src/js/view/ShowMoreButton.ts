@@ -1,12 +1,14 @@
-import { $ } from "../../utils/dom.js";
-import MovieCardList from "./MovieCardList.js";
+import { $ } from "../../utils/dom";
+import MovieCardList from "./MovieCardList";
+import App from "../domain/App";
+import MovieListModel from "../domain/MovieListModel";
 
 const ShowMoreButton = {
   elements: {
     button: $(".show-more"),
   },
 
-  async handleClick(app, movieList) {
+  async handleClick(app: App, movieList: MovieListModel) {
     MovieCardList.addSkeleton();
 
     await app.fetchNextPage(movieList);
@@ -18,11 +20,11 @@ const ShowMoreButton = {
   },
 
   show() {
-    this.elements.button?.classList.remove("hidden");
+    ShowMoreButton.elements.button.classList.remove("hidden");
   },
 
   hide() {
-    this.elements.button?.classList.add("hidden");
+    ShowMoreButton.elements.button.classList.add("hidden");
   },
 };
 

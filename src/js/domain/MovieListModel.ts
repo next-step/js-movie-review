@@ -1,9 +1,9 @@
-import { MovieApiData } from "../../types/movie-api-data";
+import { PopularMovieListResponseDTO } from "../../types/MovieApiDTO";
 import Api from "./Api";
-import Movie from "./Movie";
+import MovieModel from "./MovieModel";
 
-class MovieList {
-  #movies: Movie[];
+class MovieListModel {
+  #movies: MovieModel[];
 
   constructor() {
     this.#movies = [];
@@ -20,7 +20,7 @@ class MovieList {
     );
   }
 
-  addMovie(movie: Movie) {
+  addMovie(movie: MovieModel) {
     this.#movies.push(movie);
   }
 
@@ -28,18 +28,26 @@ class MovieList {
     this.#movies = [];
   }
 
+  getMovieById(movieId: number) {
+    return this.#movies.find((movie) => movie.id === movieId);
+  }
+
   async fetchMovies(page: number) {
     const movieUrl = Api.generatePopularMoviesUrl(page);
 
     try {
-      const { results: movies } = await Api.get<MovieApiData[]>(movieUrl);
+      const { results: movies } = await Api.get<{
+        results: PopularMovieListResponseDTO[];
+      }>(movieUrl);
 
       movies.forEach((movie) => {
         this.addMovie(
-          new Movie({
+          new MovieModel({
+            id: movie.id,
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
+            overview: movie.overview,
           })
         );
       });
@@ -52,14 +60,18 @@ class MovieList {
     const searchUrl = Api.generateSearchMoviesUrl(query, page);
 
     try {
-      const { results: movies } = await Api.get<MovieApiData[]>(searchUrl);
+      const { results: movies } = await Api.get<{
+        results: PopularMovieListResponseDTO[];
+      }>(searchUrl);
 
       movies.forEach((movie) => {
         this.addMovie(
-          new Movie({
+          new MovieModel({
+            id: movie.id,
             title: movie.title,
             thumbnail: `${Api.THUMBNAIL_URL}${movie.poster_path}`,
             rating: movie.vote_average,
+            overview: movie.overview,
           })
         );
       });
@@ -69,4 +81,4 @@ class MovieList {
   }
 }
 
-export default MovieList;
+export default MovieListModel;

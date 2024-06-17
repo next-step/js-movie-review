@@ -9,7 +9,7 @@
   <body>
     <div id="app">
       <header>
-        <h1><img src="./templates/logo.png" alt="MovieList 로고" /></h1>
+        <h1><img src="./images/logo.png" alt="MovieList 로고" /></h1>
         <div class="search-box">
           <input class="search-input" type="text" placeholder="검색" />
           <button class="search-button">검색</button>
@@ -22,6 +22,26 @@
           <button class="show-more btn primary full-width">더 보기</button>
         </section>
       </main>
+
+      <div class="modal">
+        <div class="modal-inner">
+          <div class="modal-header">
+            <div></div>
+            <h2 class="movie-title"></h2>
+            <button class="modal-close">X</button>
+          </div>
+          <div class="modal-body">
+            <div class="movie-thumbnail"></div>
+
+            <div class="movie-info">
+              <p class="movie-header"></p>
+              <p class="movie-overview"></p>
+
+              <div class="user-rating"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

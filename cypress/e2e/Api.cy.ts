@@ -6,7 +6,13 @@ describe("Api 기능 테스트", () => {
     const currentPage = 1;
     const url = Api.generatePopularMoviesUrl(currentPage);
 
-    cy.request(url).as("movies");
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("movies");
 
     cy.get("@movies").its("status").should("eq", 200);
     cy.get("@movies")
@@ -47,22 +53,30 @@ describe("Api 기능 테스트", () => {
     const currentPage = 1;
     const url = Api.generateSearchMoviesUrl(query, currentPage);
 
-    cy.request(url).as("movies");
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("movies");
 
     cy.get("@movies").its("status").should("eq", 200);
     cy.get("@movies").its("body.results").should("not.be.empty");
   });
 
   it("영화 검색 API 호출에 실패하면 에러를 발생시킨다.", () => {
-    const WRONG_URL = "https://api.themoviedb.org/3/search/movie/wrong";
+    const query = "Harry Potter";
+    const currentPage = 1;
+    const url = Api.generateSearchMoviesUrl(query, currentPage);
 
-    cy.intercept(WRONG_URL, {
+    cy.intercept(url, {
       statusCode: 404,
       body: { status_message: "Invalid page." },
     }).as("movies");
 
     expect(() => {
-      cy.request(WRONG_URL).should("throw", ErrorMessage.NOT_VALID_URL);
+      cy.request(url).should("throw", ErrorMessage.NOT_VALID_URL);
     });
   });
 
@@ -79,5 +93,57 @@ describe("Api 기능 테스트", () => {
     expect(() => {
       cy.request(WRONG_API).should("throw", ErrorMessage.NOT_VALID_API_KEY);
     });
+  });
+
+  it("영화 상세 정보 API를 호출하면 상세 정보를 반환한다.", () => {
+    const movieId = 929590;
+    const url = Api.generateMovieDetailUrl(movieId);
+
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("movie");
+
+    cy.get("@movie").its("status").should("eq", 200);
+    cy.get("@movie").its("body").should("not.be.empty");
+  });
+
+  it("사용자가 평가한 영화 정보 API를 호출하면 사용자의 평가 정보를 반환한다.", () => {
+    const movieId = 929590;
+    const url = Api.generateMovieUserRatingUrl(movieId);
+
+    cy.request({
+      method: "GET",
+      url,
+      headers: {
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+    }).as("rating");
+
+    cy.get("@rating").its("status").should("eq", 200);
+    cy.get("@rating").its("body").should("not.be.empty");
+  });
+
+  it("사용자가 영화를 평가하는 API를 호출하면 성공 메시지를 반환한다.", () => {
+    const movieId = 929590;
+    const url = Api.generatePostMovieUserRatingUrl(movieId);
+    const moiveUserRating = 8.5;
+
+    cy.request({
+      method: "POST",
+      url,
+      headers: {
+        accept: "application/json",
+        "Content-Type": "application/json;charset=utf-8",
+        Authorization: `Bearer ${Api.API_ACCESS_TOKEN}`,
+      },
+      body: `{"value":${moiveUserRating}}`,
+    }).as("rating");
+
+    cy.get("@rating").its("status").should("eq", 201);
+    cy.get("@rating").its("body").should("not.be.empty");
   });
 });

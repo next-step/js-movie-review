@@ -1,11 +1,11 @@
 import Api from "../../src/js/domain/Api";
 import App from "../../src/js/domain/App";
-import MovieList from "../../src/js/domain/MovieList";
+import MovieListModel from "../../src/js/domain/MovieListModel";
 
 describe("앱 기능 테스트", async () => {
   it("앱 초기화시 영화 목록의 첫번째 페이지를 비동기 통신(TMDB 인기순 api)으로 불러온다.", async () => {
     const app = new App();
-    const movieList = new MovieList();
+    const movieList = new MovieListModel();
 
     await app.init(movieList);
 
@@ -15,7 +15,7 @@ describe("앱 기능 테스트", async () => {
   it("첫번째 페이지의 영화 목록을 모두 불러온 상태일때 두번째 페이지의 영화 목록을 불러오면, currentPage와 movies 가 갱신된다.", async () => {
     const nextPage = 2;
     const app = new App();
-    const movieList = new MovieList();
+    const movieList = new MovieListModel();
 
     // 첫번째 페이지의 영화 목록을 불러온다.
     await app.init(movieList);
@@ -29,7 +29,7 @@ describe("앱 기능 테스트", async () => {
 
   it("영화 검색 결과를 불러오면 기존 페이지에 대한 정보를 초기화 한다.", async () => {
     const app = new App();
-    const movieList = new MovieList();
+    const movieList = new MovieListModel();
     await app.init(movieList);
 
     // 두번째 페이지의 영화 목록을 불러온다.
@@ -45,7 +45,7 @@ describe("앱 기능 테스트", async () => {
 
   it("빈 스트링을 검색하면 페이지 정보가 초기화되고, 영화 인기 목록으로 영화 목록을 overwrite 한다.", async () => {
     const app = new App();
-    const movieList = new MovieList();
+    const movieList = new MovieListModel();
     await app.init(movieList);
 
     // 두번째 페이지의 영화 목록을 불러온다.
