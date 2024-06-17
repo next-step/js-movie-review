@@ -3,7 +3,9 @@ import starFilled from "../../../../assets/star_filled.png";
 export const movieCard = {
   generateMovieItem(movie) {
     const item = document.createElement("li");
-    item.innerHTML = /*html*/ `
+    item.insertAdjacentHTML(
+      "afterbegin",
+      /*html*/ `
       <a href="#">
         <div class="item-card">
           <img
@@ -15,7 +17,8 @@ export const movieCard = {
           <p class="item-title">${movie.title}</p>
           <p class="item-score"><img src="${starFilled}" alt="별점" />${movie.rating}</p>
         </div>
-      </a>`;
+      </a>`
+    );
     return item;
   },
 };

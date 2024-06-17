@@ -2,15 +2,17 @@ export const skeleton = {
   render() {
     const item = document.createElement("li");
     item.classList.add("skeleton-card");
-    item.innerHTML = /*html*/ `
-        <a href="#">
+    item.insertAdjacentHTML(
+      "afterbegin",
+      /*html */ `
+      <a href="#">
             <div class="item-card">
             <div class="item-thumbnail skeleton"></div>
             <div class="item-title skeleton"></div>
             <div class="item-score skeleton"></div>
             </div>
-        </a>
-        `;
+        </a>`
+    ); /*html*/
     return item;
   },
 
