@@ -19,13 +19,19 @@ export const skeleton = {
   load() {
     const itemList = document.querySelector(".item-list");
 
+    const fragment = this.create();
+
+    itemList.appendChild(fragment);
+  },
+
+  create() {
     const fragment = document.createDocumentFragment();
 
     const skeletons = Array.from({ length: 20 }, () => this.render());
 
     skeletons.forEach((skeleton) => fragment.appendChild(skeleton));
 
-    itemList.appendChild(fragment);
+    return fragment;
   },
 
   remove() {

@@ -30,11 +30,9 @@ export default class App {
       skeleton.load();
 
       const movies = await this.getMovieCards();
-      movieCardsList.loadMovieList(movies);
+      movieCardsList.load(movies);
     } catch (error) {
       errorDialog.load(error);
-      // alert(error.message)
-      // console.error(error);
     } finally {
       skeleton.remove();
     }

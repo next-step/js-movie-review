@@ -8,16 +8,28 @@ export const movieCardsList = {
     return element;
   },
 
-  loadMovieList(movies) {
+  load(movies) {
     const itemList = document.querySelector(".item-list");
 
+    const fragment = this.create(movies);
+
+    itemList.appendChild(fragment);
+  },
+
+  create(movies) {
     const fragment = document.createDocumentFragment();
 
     movies.forEach((movie) => {
-      const item = movieCard.generateMovieItem(movie);
+      const item = this.generate(movie);
       fragment.appendChild(item);
     });
 
-    itemList.appendChild(fragment);
+    return fragment;
+  },
+
+  generate(movie) {
+    const item = movieCard.generateMovieItem(movie);
+
+    return item;
   },
 };
