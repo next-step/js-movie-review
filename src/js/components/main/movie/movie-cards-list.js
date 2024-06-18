@@ -11,9 +11,13 @@ export const movieCardsList = {
   loadMovieList(movies) {
     const itemList = document.querySelector(".item-list");
 
+    const fragment = document.createDocumentFragment();
+
     movies.forEach((movie) => {
       const item = movieCard.generateMovieItem(movie);
-      itemList.appendChild(item);
+      fragment.appendChild(item);
     });
-  }
+
+    itemList.appendChild(fragment);
+  },
 };
