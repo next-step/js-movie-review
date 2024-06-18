@@ -22,9 +22,9 @@ describe("영화 리뷰 웹 테스트", () => {
   it("영화 카드는 썸네일, 별점, 제목을 갖는다.", () => {
     cy.get(".item-card").each(($el) => {
       cy.wrap($el).within(() => {
-        cy.get(".item-thumbnail").should("exist");
-        cy.get(".item-title").should("exist");
-        cy.get(".item-score").should("exist");
+        cy.get(".item-thumbnail").should("be.visible");
+        cy.get(".item-title").should("be.visible");
+        cy.get(".item-score").should("be.visible");
       });
     });
   });
