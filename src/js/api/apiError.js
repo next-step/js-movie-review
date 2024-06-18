@@ -1,21 +1,31 @@
 import { ERROR_MSG } from "./constants";
 
 export class ApiError extends Error {
-  status = -1;
-
-  constructor(message, status) {
+  constructor(message, details, status = -1) {
     super(message);
+    this.details = details;
     this.status = status;
   }
 
   static handle(error) {
+    let errMsg;
+    let errDetails;
+
     switch (parseInt(error.message)) {
       case 401:
-        throw new Error(ERROR_MSG.INVALID_API_KEY);
+        errMsg = ERROR_MSG.INVALID_API_KEY.message;
+        errDetails = ERROR_MSG.INVALID_API_KEY.details;
+        break;
       case 404:
-        throw new Error(ERROR_MSG.INVALID_REQUEST);
+        errMsg = ERROR_MSG.INVALID_REQUEST.message;
+        errDetails = ERROR_MSG.INVALID_REQUEST.details;
+        break;
       default:
-        throw new Error(ERROR_MSG.DEFAULT);
+        errMsg = ERROR_MSG.DEFAULT.message;
+        errDetails = ERROR_MSG.DEFAULT.details;
+        break;
     }
+
+    throw new ApiError(errMsg, errDetails, error.status);
   }
 }
