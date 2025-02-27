@@ -1,33 +1,41 @@
 {
-  "name": "js-movie-review",
-  "version": "1.0.0",
-  "description": "영화 리뷰 홈페이지 만들기",
-  "main": "index.js",
+  "name": "javascript-movie-review",
+  "version": "2.0.0",
+  "description": "우아한테크코스 레벨1 영화 리뷰 미션 저장소",
+  "type": "module",
   "scripts": {
-    "watch": "webpack --watch",
-    "dev": "webpack serve",
-    "build": "webpack --config webpack.config.js",
-    "cypress": "cypress open"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test-unit": "jest --no-cache",
+    "test-e2e": "cypress open",
+    "deploy": "vite build --base=/js-movie-review/ --minify=false && npx gh-pages -d dist"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/next-step/js-movie-review.git"
-  },
-  "keywords": [
-    "영화리뷰",
-    "비동기"
-  ],
-  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/next-step/js-movie-review/issues"
-  },
-  "homepage": "https://github.com/next-step/js-movie-review#readme",
+  "homepage": "https://{username}.github.io/js-movie-review",
   "devDependencies": {
-    "cypress": "^12.17.4",
-    "dotenv-webpack": "^8.0.1",
-    "html-webpack-plugin": "^5.5.3",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^4.15.1"
+    "vite": "^6.1.0",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@types/jest": "^29.4.0",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "cypress": "^12.3.0",
+    "eslint": "^8.35.0",
+    "prettier": "^2.8.4"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    }
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  },
+  "engines": {
+    "npm": ">=10.8.2",
+    "node": ">=20.17.0"
   }
 }
