@@ -9,20 +9,28 @@
     "preview": "vite preview",
     "test-unit": "jest --no-cache",
     "test-e2e": "cypress open",
+    "fix": "eslint --fix --ext .js .",
+    "format:check": "prettier **/*.js --check",
+    "format:write": "prettier **/*.js --write",
     "deploy": "vite build --base=/js-movie-review/ --minify=false && npx gh-pages -d dist"
   },
   "license": "ISC",
   "homepage": "https://{username}.github.io/js-movie-review",
   "devDependencies": {
-    "vite": "^6.1.0",
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
     "@types/jest": "^29.4.0",
     "babel-jest": "^29.3.1",
-    "jest": "^29.3.1",
-    "cypress": "^12.3.0",
+    "cypress": "^12.17.4",
     "eslint": "^8.35.0",
-    "prettier": "^2.8.4"
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.0.2",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.11.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "jest": "^29.3.1",
+    "prettier": "3.5.2",
+    "vite": "^6.1.0"
   },
   "jest": {
     "transform": {
