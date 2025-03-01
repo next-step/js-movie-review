@@ -2,6 +2,8 @@ import { Button } from '../../components/Button';
 import { MovieItem } from '../../domains/movie/components/MovieItem';
 import { getPopularMovie } from '../../domains/movie/services';
 import { thumbnailStore } from '../../domains/movie/stores';
+import { searchParams } from '../../libs/search-params';
+import { addEvent } from '../../utils';
 
 const DEFAULT_POPULAR_MOVIES = { results: [] };
 
@@ -40,7 +42,9 @@ const render = ({ loader }) => {
 };
 
 const loader = async () => {
-  const data = await getPopularMovie();
+  const page = Number(searchParams.get('page')) || 1;
+
+  const data = await getPopularMovie({ page });
 
   const {
     title: thumbnailTitle,
@@ -58,6 +62,13 @@ const loader = async () => {
 
   render({ loader: data });
 };
+
+addEvent('click', '#movie_more_load', () => {
+  const page = Number(searchParams.get('page')) || 1;
+  searchParams.set('page', page + 1);
+
+  loader();
+});
 
 loader();
 

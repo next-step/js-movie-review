@@ -7,12 +7,14 @@ export const ThumbnailHeader = () => {
     thumbnailStore.get();
 
   const rate = thumbnailVoteAverage.toFixed(1);
+  const backgroundImage = thumbnailSrc
+    ? `url('https://image.tmdb.org/t/p/w1280${thumbnailSrc}');`
+    : '';
 
-  // <img src="https://image.tmdb.org/t/p/original${thumbnailSrc}" />
   return `
     <header id="header-container">
       <div class="background-container">
-        <div class="overlay" aria-hidden="true" style="background: no-repeat url('https://image.tmdb.org/t/p/w1280${thumbnailSrc}'); background-size: cover;">
+        <div class="overlay" aria-hidden="true" style="background: no-repeat ${backgroundImage} background-size: cover;">
         </div>
         <div class="top-rated-container">
           ${SearchHeader()}

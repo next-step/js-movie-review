@@ -11,9 +11,11 @@ const movieApi = (url, options) => {
   return fetch(_url, _options);
 };
 
-export const getPopularMovie = async () => {
+export const getPopularMovie = async (params) => {
+  const { page } = params;
+
   const response = await movieApi(
-    '/3/discover/movie?include_adult=false&include_video=false&language=ko&region=kr&page=1&sort_by=popularity.desc',
+    `/3/discover/movie?include_adult=false&include_video=false&language=ko&region=kr&page=1&sort_by=popularity.desc&page=${page ?? 1}`,
     { method: 'GET' },
   );
 
