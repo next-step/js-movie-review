@@ -24,7 +24,7 @@ export const Home = (props = { popularMovies: DEFAULT_POPULAR_MOVIES }) => {
           isEmpty
             ? `<div class="empty"><h4 style="font-size: 1.4rem; font-weight: 600;">조회된 정보가 없습니다.</h4></div>`
             : `<ul class="thumbnail-list">
-          ${popularMovies.results.map((movie) => MovieItem(movie)).join('')}
+          ${popularMovies.results.map((movie) => `<li>${MovieItem(movie)}</li>`).join('')}
         </ul>`
         }
       </section>
