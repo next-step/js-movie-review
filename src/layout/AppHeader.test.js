@@ -4,10 +4,18 @@ describe("AppHeader 객체를 생성한다", () => {
   test("Header 객체는 isOpen 상태를 가집니다.", () => {
     const element = AppHeader();
     const data = element.querySelector("header");
-    console.log(element, data.innerHTML);
+    expect(data.innerHTML).toBe("true");
     data.click();
-    console.log(element, data.innerHTML);
     // UI 리렌더링 로직이 필요
-    expect(element).toBe("");
+    expect(data.innerHTML).toBe("false");
   });
+
+  // test("Header 객체는 isOpen 상태를 가집니다.", () => {
+  //   const element = AppHeader();
+  //   const data = element.component.querySelector("header");
+  //   data.click();
+  //   element.render();
+  //   // UI 리렌더링 로직이 필요
+  //   expect(data.innerHTML).toBe("false");
+  // });
 });

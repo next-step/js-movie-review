@@ -1,20 +1,30 @@
 import { state } from "../shared/state";
 
 export const AppHeader = () => {
-  const headerState = state(true);
+  const { value: headerState, subscribe } = state(true);
 
   const handleClick = () => {
-    headerState.value = 2;
+    headerState.value = !headerState.value;
   };
+
+  const container = document.createDocumentFragment();
+  const header = document.createElement("header");
+  header.addEventListener("click", handleClick);
+  // header.innerHTML = headerState.value;
+  container.appendChild(header);
 
   const render = () => {
-    const container = document.createDocumentFragment();
-    const header = document.createElement("header");
-    header.addEventListener("click", handleClick);
-    header.dataset.data = headerState.value;
-    container.appendChild(header);
-    return container;
+    header.innerHTML = headerState.value;
   };
 
-  return render();
+  // 초기 렌더
+  render();
+
+  // value내 값이 변할 떄, render를 다시!
+  subscribe((key, value) => {
+    // console.log(`🔔 Observer 패턴: ${key} 변경됨 -> ${value}`);
+    render();
+  });
+
+  return container;
 };
