@@ -1,19 +1,20 @@
 import { Button } from '../../components/Button';
 import { MovieItem } from '../../domains/movie/components/MovieItem';
+import { getPopularMovie } from '../../domains/movie/services';
+import { thumbnailStore } from '../../domains/movie/stores';
 
-export const Home = () => {
+const DEFAULT_POPULAR_MOVIES = { results: [] };
+
+export const Home = (props = { popularMovies: DEFAULT_POPULAR_MOVIES }) => {
+  const { popularMovies } = props;
+
   return `
-    <main>
+    <main id="home-container">
       <section>
         <h2>지금 인기 있는 영화</h2>
 
         <ul class="thumbnail-list">
-          ${Array.from(
-            { length: 6 },
-            () => `<li>
-            ${MovieItem()}
-          </li>`,
-          ).join('')}
+          ${popularMovies.results.map((movie) => MovieItem(movie)).join('')}
         </ul>
       </section>
 
@@ -27,15 +28,37 @@ export const Home = () => {
   `;
 };
 
-// const render = () => {
-//   const oldContainer = document.querySelector('#home-container');
-//   if (!oldContainer) return;
+const render = ({ loader }) => {
+  const oldContainer = document.querySelector('#home-container');
+  if (!oldContainer) return;
 
-//   const newContainer = document.createElement('div');
-//   newContainer.id = 'home-container';
-//   newContainer.innerHTML = Home();
+  const newContainer = document.createElement('div');
+  newContainer.id = 'home-container';
+  newContainer.innerHTML = Home({ popularMovies: loader });
 
-//   oldContainer.replaceWith(newContainer);
-// };
+  oldContainer.replaceWith(newContainer);
+};
+
+const loader = async () => {
+  const data = await getPopularMovie();
+
+  const {
+    title: thumbnailTitle,
+    vote_average: thumbnailVoteAverage,
+    id: thumbnailId,
+    backdrop_path: thumbnailSrc,
+  } = data.results[0];
+
+  thumbnailStore.set({
+    thumbnailId,
+    thumbnailTitle,
+    thumbnailSrc,
+    thumbnailVoteAverage,
+  });
+
+  render({ loader: data });
+};
+
+loader();
 
 // restaurantStore.subscribe(render);

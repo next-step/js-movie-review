@@ -1,11 +1,19 @@
 import { Button } from '../components/Button';
+import { thumbnailStore } from '../domains/movie/stores';
 import { SearchHeader } from './SearchHeader';
 
 export const ThumbnailHeader = () => {
+  const { thumbnailTitle, thumbnailSrc, thumbnailVoteAverage } =
+    thumbnailStore.get();
+
+  const rate = thumbnailVoteAverage.toFixed(1);
+
+  // <img src="https://image.tmdb.org/t/p/original${thumbnailSrc}" />
   return `
-    <header>
+    <header id="header-container">
       <div class="background-container">
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay" aria-hidden="true" style="background: no-repeat url('https://image.tmdb.org/t/p/w1280${thumbnailSrc}'); background-size: cover;">
+        </div>
         <div class="top-rated-container">
           ${SearchHeader()}
           
@@ -15,9 +23,9 @@ export const ThumbnailHeader = () => {
                 src="${import.meta.env.BASE_URL}assets/star_empty.png"
                 class="star"
               />
-              <span class="rate-value">9.5</span>
+              <span class="rate-value">${rate}</span>
             </div>
-            <div class="title">인사이드 아웃2</div>
+            <div class="title">${thumbnailTitle}</div>
             ${Button({ name: 'movie_detail', content: '자세히 보기' })}
           </div>
         </div>
@@ -25,3 +33,16 @@ export const ThumbnailHeader = () => {
     </header>
   `;
 };
+
+const render = () => {
+  const oldContainer = document.querySelector('#header-container');
+  if (!oldContainer) return;
+
+  const newContainer = document.createElement('div');
+  newContainer.id = 'header-container';
+  newContainer.innerHTML = ThumbnailHeader();
+
+  oldContainer.replaceWith(newContainer);
+};
+
+thumbnailStore.subscribe(render);
