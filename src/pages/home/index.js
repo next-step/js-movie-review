@@ -5,10 +5,14 @@ import { thumbnailStore } from '../../domains/movie/stores';
 import { searchParams } from '../../libs/search-params';
 import { addEvent } from '../../utils';
 
+const MAX_PAGE = 500;
 const DEFAULT_POPULAR_MOVIES = { results: [] };
 
 export const Home = (props = { popularMovies: DEFAULT_POPULAR_MOVIES }) => {
   const { popularMovies } = props;
+  const currentPage = Number(searchParams.get('page'));
+
+  const isLastPage = currentPage === MAX_PAGE;
 
   return `
     <main id="home-container">
@@ -20,12 +24,16 @@ export const Home = (props = { popularMovies: DEFAULT_POPULAR_MOVIES }) => {
         </ul>
       </section>
 
-      ${Button({
-        name: 'movie_more_load',
-        content: '더 보기',
-        size: 'lg',
-        fullWidth: true,
-      })}
+      ${
+        !isLastPage
+          ? Button({
+              name: 'movie_more_load',
+              content: '더 보기',
+              size: 'lg',
+              fullWidth: true,
+            })
+          : ''
+      }
     </main>
   `;
 };
