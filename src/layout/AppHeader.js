@@ -7,11 +7,14 @@ export const AppHeader = () => {
     headerState.value = 2;
   };
 
-  const container = document.createDocumentFragment();
-  const header = document.createElement("header");
-  header.addEventListener("click", handleClick);
-  header.innerHTML = headerState.value;
-  container.appendChild(header);
+  const render = () => {
+    const container = document.createDocumentFragment();
+    const header = document.createElement("header");
+    header.addEventListener("click", handleClick);
+    header.dataset.data = headerState.value;
+    container.appendChild(header);
+    return container;
+  };
 
-  return container;
+  return render();
 };

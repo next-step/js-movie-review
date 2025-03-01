@@ -7,6 +7,7 @@ describe("AppHeader 객체를 생성한다", () => {
     console.log(element, data.innerHTML);
     data.click();
     console.log(element, data.innerHTML);
+    // UI 리렌더링 로직이 필요
     expect(element).toBe("");
   });
 });
