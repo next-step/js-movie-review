@@ -13,19 +13,24 @@ export const Home = (props = { popularMovies: DEFAULT_POPULAR_MOVIES }) => {
   const currentPage = Number(searchParams.get('page'));
 
   const isLastPage = currentPage === MAX_PAGE;
+  const isEmpty = popularMovies.results.length === 0;
 
   return `
     <main id="home-container">
       <section>
         <h2>지금 인기 있는 영화</h2>
 
-        <ul class="thumbnail-list">
+        ${
+          isEmpty
+            ? `<div class="empty"><h4 style="font-size: 1.4rem; font-weight: 600;">조회된 정보가 없습니다.</h4></div>`
+            : `<ul class="thumbnail-list">
           ${popularMovies.results.map((movie) => MovieItem(movie)).join('')}
-        </ul>
+        </ul>`
+        }
       </section>
 
       ${
-        !isLastPage
+        !isLastPage && !isEmpty
           ? Button({
               name: 'movie_more_load',
               content: '더 보기',
@@ -54,19 +59,21 @@ const loader = async () => {
 
   const data = await getPopularMovie({ page });
 
-  const {
-    title: thumbnailTitle,
-    vote_average: thumbnailVoteAverage,
-    id: thumbnailId,
-    backdrop_path: thumbnailSrc,
-  } = data.results[0];
+  if (data.results.length > 0) {
+    const {
+      title: thumbnailTitle,
+      vote_average: thumbnailVoteAverage,
+      id: thumbnailId,
+      backdrop_path: thumbnailSrc,
+    } = data.results[0];
 
-  thumbnailStore.set({
-    thumbnailId,
-    thumbnailTitle,
-    thumbnailSrc,
-    thumbnailVoteAverage,
-  });
+    thumbnailStore.set({
+      thumbnailId,
+      thumbnailTitle,
+      thumbnailSrc,
+      thumbnailVoteAverage,
+    });
+  }
 
   render({ loader: data });
 };
