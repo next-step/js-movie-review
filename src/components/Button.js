@@ -4,36 +4,25 @@ const BUTTON_SIZES = {
   sm: 30,
 };
 
-const BUTTON_VARIANTS = {
-  primary: {
-    border: 'none',
-    background: 'var(--primary-color)',
-    color: 'var(--grey-100)',
-  },
-  outlined: {
-    border: '1px solid var(--grey-300)',
-    background: 'transparent',
-    color: 'var(--grey-300)',
-  },
-};
-
 export const Button = (props) => {
-  const { name, size = 'md', content, variant = 'primary' } = props;
+  const {
+    name,
+    size = 'md',
+    content,
+    variant = 'primary',
+    fullWidth = false,
+  } = props;
 
   const _size = BUTTON_SIZES[size];
-  const { border, background, color } = BUTTON_VARIANTS[variant];
+  const width = fullWidth ? '100%' : 'fit-content';
 
   return `
     <button
       id="${name}"
+      class="${variant}"
       style="
-        width: 100%;
+        width: ${width};
         height: ${_size}px;
-        border: ${border};
-        background: ${background};
-        color: ${color};
-        border-radius: 8px;
-        pointer: cursor;
       "
     >
       ${content}

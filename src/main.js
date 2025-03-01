@@ -1,4 +1,6 @@
 import { App } from './app';
+import { globalStore } from './stores';
+import './styles/index.css';
 
 console.log('npm run dev 명령어를 통해 영화 리뷰 미션을 시작하세요');
 

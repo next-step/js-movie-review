@@ -1,12 +1,29 @@
+import { Button } from '../../components/Button';
+import { MovieItem } from '../../domains/movie/components/MovieItem';
+
 export const Home = () => {
   return `
-    <section id="home-container" style="padding: 20px 16px; display: flex; flex-direction: column; flex: 1; gap: 16px;">
-      <div style="width: 100%; display:flex; justify-content: space-between;">
-    
-      </div>
-      
-     
-    </section>
+    <main>
+      <section>
+        <h2>지금 인기 있는 영화</h2>
+
+        <ul class="thumbnail-list">
+          ${Array.from(
+            { length: 6 },
+            () => `<li>
+            ${MovieItem()}
+          </li>`,
+          ).join('')}
+        </ul>
+      </section>
+
+      ${Button({
+        name: 'movie_more_load',
+        content: '더 보기',
+        size: 'lg',
+        fullWidth: true,
+      })}
+    </main>
   `;
 };
 

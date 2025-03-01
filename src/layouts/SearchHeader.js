@@ -1,7 +1,15 @@
+import { SearchInput } from '../domains/search/comopnents/SearchInput';
+
 export const SearchHeader = () => {
   return `
-    <header style="padding: 16px 12px; text-align:center; background-color: var(--primary-color); display: flex; justify-content: space-between; align-items: center;">
-      <h1 class="text-title" style="color: var(--grey-100)">점심에는 뭐 먹지</h1>
-    </header>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+      <h1 class="logo">
+        <img src="${import.meta.env.BASE_URL}assets/logo.png" alt="logo icon" />
+      </h1>
+
+      <div style="display: flex; justify-content: center; flex: 1;">
+        <div style="width: 50%;">${SearchInput()}</div>
+      </div>
+    </div>
   `;
 };
