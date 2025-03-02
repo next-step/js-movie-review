@@ -1,7 +1,7 @@
 import { loadFooter } from "./components/footer";
 import { loadHeader } from "./components/header";
 import { loadTabs } from "./components/tabs";
-import { loadMovies } from "./movieList";
+import { initMovieList } from "./movieList";
 
 document.addEventListener("DOMContentLoaded", async () => {
   try {
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     loadTabs();
     loadFooter();
 
-    loadMovies();
+    initMovieList();
   } catch (error) {
     console.error("❌ 초기화 중 오류 발생:", error);
   }
