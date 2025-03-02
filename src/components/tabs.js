@@ -11,16 +11,17 @@ export function loadTabs() {
     </ul>
   `;
 
-  document.querySelectorAll(".tab-item").forEach((tab) => {
-    tab.addEventListener("click", (event) => {
-      event.preventDefault();
-      document
-        .querySelector(".tab-item.selected")
-        ?.classList.remove("selected");
-      tab.classList.add("selected");
+  document.getElementById("tab-container").addEventListener("click", (e) => {
+    e.preventDefault();
+    const target = e.target.closest("li[data-category]");
+    if (!target) return;
 
-      // const category = tab.closest("li").dataset.category;
-      // loadMoviesByCategory(category);
-    });
+    document
+      .querySelectorAll(".tab-item.selected")
+      .forEach((el) => el.classList.remove("selected"));
+    target.querySelector(".tab-item").classList.add("selected");
+
+    const tabType = target.getAttribute("data-tab");
+    console.log(tabType);
   });
 }

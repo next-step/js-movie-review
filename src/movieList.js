@@ -1,80 +1,55 @@
 import { fetchMovies } from "./api.js";
+import { showSkeletonUI, renderMovies } from "./movieRenderer.js";
+import {
+  createLoadMoreButton,
+  removeLoadMoreButton,
+} from "./components/loadMoreButton.js";
 
-const SKELETON_COUNT = 8;
+let allMovies = [];
+let displayedCount = 0;
 
-function showSkeletonUI() {
+function getMoviesPerLoad() {
+  return window.matchMedia("(max-width: 768px)").matches ? 3 : 9;
+}
+
+function loadMoreMovies() {
   const movieContainer = document.getElementById("movie-list-container");
   if (!movieContainer) return;
 
-  movieContainer.innerHTML = "";
+  const moviesPerLoad = getMoviesPerLoad();
+  const remaining = allMovies.length - displayedCount;
+  const itemsToLoad = Math.min(remaining, moviesPerLoad);
 
-  for (let i = 0; i < SKELETON_COUNT; i++) {
-    const skeletonItem = document.createElement("li");
-    skeletonItem.classList.add("movie-item", "skeleton");
+  renderMovies(
+    movieContainer,
+    allMovies.slice(displayedCount, displayedCount + itemsToLoad)
+  );
+  displayedCount += itemsToLoad;
 
-    skeletonItem.innerHTML = `
-    <div class="item">
-      <div class="skeleton skeleton-thumbnail"></div>
-      <div class="item-desc">
-        <div class="skeleton-star-row">
-          <div class="skeleton skeleton-star"></div>
-          <p class="skeleton skeleton-rate"></p>
-        </div>
-        <div class="skeleton-title-row">
-          <strong class="skeleton skeleton-title"></strong>
-        </div>
-      </div>
-    </div>
-  `;
-
-    movieContainer.appendChild(skeletonItem);
+  if (displayedCount >= allMovies.length) {
+    removeLoadMoreButton();
   }
 }
 
-async function loadMovies() {
+async function fetchAndRenderMovies() {
   const movieContainer = document.getElementById("movie-list-container");
   if (!movieContainer) return;
 
-  showSkeletonUI();
+  showSkeletonUI(movieContainer);
 
   try {
-    const movies = await fetchMovies();
+    allMovies = await fetchMovies();
     movieContainer.innerHTML = "";
+    loadMoreMovies();
 
-    movies.forEach((movie) => {
-      const movieItem = document.createElement("li");
-      movieItem.classList.add("movie-item");
-
-      const itemDiv = document.createElement("div");
-      itemDiv.classList.add("item");
-
-      const img = document.createElement("img");
-      img.classList.add("thumbnail");
-      img.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
-      img.alt = movie.title;
-
-      const descDiv = document.createElement("div");
-      descDiv.classList.add("item-desc");
-
-      const rateP = document.createElement("p");
-      rateP.classList.add("rate");
-      rateP.innerHTML = `<img src="./images/star_empty.png" class="star" /> <span>${movie.vote_average.toFixed(
-        1
-      )}</span>`;
-
-      const titleStrong = document.createElement("strong");
-      titleStrong.textContent = movie.title;
-
-      descDiv.appendChild(rateP);
-      descDiv.appendChild(titleStrong);
-      itemDiv.appendChild(img);
-      itemDiv.appendChild(descDiv);
-      movieItem.appendChild(itemDiv);
-      movieContainer.appendChild(movieItem);
-    });
+    if (allMovies.length > getMoviesPerLoad()) {
+      createLoadMoreButton(movieContainer, loadMoreMovies);
+    }
   } catch (error) {
-    console.error(error);
+    console.error("❌ Error loading movies:", error);
   }
 }
 
-export { loadMovies };
+export function initMovieList() {
+  fetchAndRenderMovies();
+}
