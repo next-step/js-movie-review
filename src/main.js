@@ -1,25 +1,16 @@
+import { loadFooter } from "./components/footer";
+import { loadHeader } from "./components/header";
+import { loadTabs } from "./components/tabs";
 import { loadMovies } from "./movieList";
 
 document.addEventListener("DOMContentLoaded", async () => {
-  async function loadComponent(containerId, filePath) {
-    try {
-      const response = await fetch(filePath);
-      const content = await response.text();
-      const container = document.getElementById(containerId);
+  try {
+    loadHeader({ title: "인사이드 아웃 2", rating: "9.5" });
+    loadTabs();
+    loadFooter();
 
-      if (container) {
-        container.insertAdjacentHTML("beforeend", content);
-      } else {
-        console.error(`Element with ID '${containerId}' not found`);
-      }
-    } catch (error) {
-      console.error(error);
-    }
+    loadMovies();
+  } catch (error) {
+    console.error("❌ 초기화 중 오류 발생:", error);
   }
-
-  await loadComponent("header-container", "../templates/header.html");
-  await loadComponent("footer-container", "../templates/footer.html");
-  await loadComponent("tab-container", "../templates/tabs.html");
-
-  await loadMovies();
 });
