@@ -1,11 +1,15 @@
-export function loadHeader({ title = "기본 제목", rating = "0.0" }) {
+export function loadHeader({
+  title = "기본 제목",
+  rating = "0.0",
+  backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg",
+}) {
   const headerContainer = document.getElementById("header-container");
   if (!headerContainer) return;
 
   headerContainer.innerHTML = `
-    <header>
+    <header style="background-image: url('${backdrop}');">
       <div class="background-container">
-        <div class="overlay" aria-hidden="true"></div>
+        <div class="overlay"></div>  
         <div class="top-rated-container">
           <h1 class="logo">
             <img src="./images/logo.png" alt="MovieList" />

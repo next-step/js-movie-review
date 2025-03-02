@@ -4,6 +4,7 @@ export function createLoadMoreButton(movieContainer, onClick) {
 
   const loadMoreBtn = document.createElement("button");
   loadMoreBtn.id = "load-more-btn";
+  loadMoreBtn.classList.add("primary");
   loadMoreBtn.textContent = "더보기";
   loadMoreBtn.addEventListener("click", onClick);
 

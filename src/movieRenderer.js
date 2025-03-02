@@ -47,7 +47,10 @@ export function renderMovies(movieContainer, movies) {
   const movieGrid = document.createElement("div");
   movieGrid.classList.add("movie-grid");
 
-  const fragment = document.createDocumentFragment();
+  movieContainer.innerHTML = "";
+
+  const movieGrid = document.createElement("div");
+  movieGrid.classList.add("movie-grid");
 
   movies.forEach((movie) => {
     const movieItem = document.createElement("div");
