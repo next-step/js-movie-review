@@ -3,8 +3,11 @@ export function showSkeletonUI(movieContainer) {
 
   movieContainer.innerHTML = "";
 
+  const skeletonGrid = document.createElement("div");
+  skeletonGrid.classList.add("movie-grid");
+
   for (let i = 0; i < 8; i++) {
-    const skeletonItem = document.createElement("li");
+    const skeletonItem = document.createElement("div");
     skeletonItem.classList.add("movie-item", "skeleton");
 
     skeletonItem.innerHTML = `
@@ -21,8 +24,11 @@ export function showSkeletonUI(movieContainer) {
         </div>
       </div>
     `;
-    movieContainer.appendChild(skeletonItem);
+
+    skeletonGrid.appendChild(skeletonItem);
   }
+
+  movieContainer.appendChild(skeletonGrid);
 }
 
 export function renderMovies(movieContainer, movies) {
