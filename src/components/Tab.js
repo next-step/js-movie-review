@@ -5,7 +5,7 @@ export function createTabs(onTabChange = null) {
     return;
   }
 
-  let selectedTab = sessionStorage.getItem("selectedTab") || "now_playing";
+  let selectedTab = sessionStorage.getItem("selectedTab") || "popular";
 
   function renderTabs() {
     tabContainer.innerHTML = "";
@@ -45,9 +45,9 @@ export function createTabs(onTabChange = null) {
     sessionStorage.setItem("selectedTab", selectedTab);
     updateSelectedTab();
 
-    // if (onTabChange) {
-    //   onTabChange(selectedTab);
-    // }
+    if (onTabChange) {
+      onTabChange(selectedTab);
+    }
   }
 
   function updateSelectedTab() {
@@ -61,9 +61,9 @@ export function createTabs(onTabChange = null) {
     renderTabs();
     tabContainer.addEventListener("click", handleTabClick);
 
-    // if (onTabChange) {
-    //   onTabChange(selectedTab);
-    // }
+    if (onTabChange) {
+      onTabChange(selectedTab);
+    }
   }
 
   return { init, getSelectedTab: () => selectedTab };

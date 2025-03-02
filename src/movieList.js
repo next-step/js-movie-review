@@ -39,13 +39,13 @@ function loadMoreMovies(movies) {
   }
 }
 
-async function fetchAndRenderMovies() {
+export async function fetchAndRenderMovies(selectedCategory) {
   if (!movieContainer) return;
 
   showSkeletonUI(movieContainer);
 
   try {
-    allMovies = await fetchMovies();
+    allMovies = await fetchMovies(selectedCategory);
     movieContainer.innerHTML = "";
     displayedCount = 0;
 
@@ -70,8 +70,4 @@ async function fetchAndRenderMovies() {
       "영화를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
     );
   }
-}
-
-export async function initializeMovieList() {
-  fetchAndRenderMovies();
 }

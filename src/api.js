@@ -13,8 +13,8 @@ function fetchWithTimeout(url, options, timeout = 5000) {
   ]);
 }
 
-export async function fetchMovies(page = 1) {
-  const url = `${BASE_URL}/popular?language=ko-KR&page=${page}`;
+export async function fetchMovies(category, page = 1) {
+  const url = `${BASE_URL}/${category}?language=ko-KR&page=${page}`;
   const options = {
     method: "GET",
     headers: {

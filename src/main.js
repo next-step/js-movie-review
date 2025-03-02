@@ -1,14 +1,13 @@
 import { createTabs } from "./components/Tab";
-import { initializeMovieList } from "./movieList";
+import { fetchAndRenderMovies } from "./movieList";
 
 function initializeTabs() {
-  const tabs = createTabs();
+  const tabs = createTabs(fetchAndRenderMovies);
   tabs.init();
 }
 
 async function initializeApp() {
   initializeTabs();
-  await initializeMovieList();
 }
 
 if (document.readyState === "loading") {
