@@ -1,6 +1,5 @@
 @import "./colors.css";
 @import url("./skeleton.css");
-@import url("./button.css");
 
 * {
   box-sizing: border-box;
