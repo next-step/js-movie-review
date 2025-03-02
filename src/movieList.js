@@ -4,7 +4,7 @@ import {
   createLoadMoreButton,
   removeLoadMoreButton,
 } from "./components/loadMoreButton.js";
-import { LoadHeader } from "./components/Header.js";
+import { LoadHeader } from "./components/Headers.js";
 import { showErrorUI } from "../utils/error.js";
 import { debounce } from "../utils/helper.js";
 
