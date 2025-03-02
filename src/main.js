@@ -1,4 +1,4 @@
-import { createTabs } from "./components/tabs";
+import { createTabs } from "./components/Tab";
 import { initializeMovieList } from "./movieList";
 
 function initializeTabs() {
