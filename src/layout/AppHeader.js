@@ -21,7 +21,7 @@ export const AppHeader = () => {
   render();
 
   // value내 값이 변할 떄, render를 다시!
-  subscribe((key, value) => {
+  subscribe(() => {
     // console.log(`🔔 Observer 패턴: ${key} 변경됨 -> ${value}`);
     render();
   });
