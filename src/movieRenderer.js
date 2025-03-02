@@ -28,26 +28,32 @@ export function showSkeletonUI(movieContainer) {
 export function renderMovies(movieContainer, movies) {
   if (!movieContainer) return;
 
-  const fragment = document.createDocumentFragment();
+  movieContainer.innerHTML = "";
+
+  const movieGrid = document.createElement("div");
+  movieGrid.classList.add("movie-grid");
 
   movies.forEach((movie) => {
-    const li = document.createElement("li");
-    li.className = "movie-item";
-    li.innerHTML = `
+    const movieItem = document.createElement("div");
+    movieItem.classList.add("movie-item");
+
+    movieItem.innerHTML = `
       <div class="item">
         <img class="thumbnail" src="https://image.tmdb.org/t/p/w500${
           movie.poster_path
         }" alt="${movie.title}" />
         <div class="item-desc">
-          <p class="rate"><img src="./images/star_empty.png" class="star" /> <span>${movie.vote_average.toFixed(
-            1
-          )}</span></p>
+          <p class="rate">
+            <img src="./images/star_empty.png" class="star" />
+            <span>${movie.vote_average.toFixed(1)}</span>
+          </p>
           <strong>${movie.title}</strong>
         </div>
       </div>
     `;
-    fragment.appendChild(li);
+
+    movieGrid.appendChild(movieItem);
   });
 
-  movieContainer.appendChild(fragment);
+  movieContainer.appendChild(movieGrid);
 }
