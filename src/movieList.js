@@ -26,10 +26,7 @@ function loadMoreMovies(movies) {
   const remaining = movies.length - displayedCount;
   const itemsToLoad = Math.min(remaining, moviesPerLoad);
 
-  renderMovies(
-    movieContainer,
-    movies.slice(displayedCount, displayedCount + itemsToLoad)
-  );
+  renderMovies(movieContainer, movies.slice(0, displayedCount + itemsToLoad));
   displayedCount += itemsToLoad;
 
   if (displayedCount >= movies.length) {
