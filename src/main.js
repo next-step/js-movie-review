@@ -1,16 +1,18 @@
-import { loadFooter } from "./components/footer";
 import { createTabs } from "./components/tabs";
-import { initMovieList } from "./movieList";
+import { initializeMovieList } from "./movieList";
 
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const tabs = createTabs();
-    tabs.init();
+function initializeTabs() {
+  const tabs = createTabs();
+  tabs.init();
+}
 
-    loadFooter();
+async function initializeApp() {
+  initializeTabs();
+  await initializeMovieList();
+}
 
-    initMovieList();
-  } catch (error) {
-    console.error(error);
-  }
-});
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", initializeApp);
+} else {
+  initializeApp();
+}

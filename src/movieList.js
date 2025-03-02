@@ -4,8 +4,9 @@ import {
   createLoadMoreButton,
   removeLoadMoreButton,
 } from "./components/loadMoreButton.js";
-import { loadHeader } from "./components/header.js";
+import { LoadHeader } from "./components/Header.js";
 import { showErrorUI } from "../utils/error.js";
+import { debounce } from "../utils/helper.js";
 
 const movieContainer = document.getElementById("movie-list-container");
 
@@ -13,9 +14,12 @@ let allMovies = [];
 let displayedCount = 0;
 let moviesPerLoad = getMoviesPerLoad();
 
-window.addEventListener("resize", () => {
-  moviesPerLoad = getMoviesPerLoad();
-});
+window.addEventListener(
+  "resize",
+  debounce(() => {
+    moviesPerLoad = getMoviesPerLoad();
+  }, 300)
+);
 
 function getMoviesPerLoad() {
   return window.innerWidth <= 768 ? 3 : 9;
@@ -53,7 +57,7 @@ async function fetchAndRenderMovies() {
 
     if (allMovies.length > 0) {
       const firstMovie = allMovies[0];
-      loadHeader({
+      LoadHeader({
         title: firstMovie.title,
         rating: firstMovie.vote_average.toFixed(1),
         backdrop: `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${firstMovie.backdrop_path}`,
@@ -68,6 +72,6 @@ async function fetchAndRenderMovies() {
   }
 }
 
-export function initMovieList() {
+export async function initializeMovieList() {
   fetchAndRenderMovies();
 }
