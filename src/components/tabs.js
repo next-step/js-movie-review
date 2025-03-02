@@ -13,6 +13,8 @@ export function createTabs() {
       <li data-category="upcoming"><a href="#"><div class="tab-item"><h3>상영 예정</h3></div></a></li>
     </ul>
   `;
+
+    updateSelectedTab();
   }
 
   function handleTabClick(e) {
@@ -22,12 +24,15 @@ export function createTabs() {
 
     selectedTab = target.getAttribute("data-category");
 
-    tabContainer
-      .querySelectorAll(".tab-item.selected")
-      .forEach((el) => el.classList.remove("selected"));
-    target.querySelector(".tab-item").classList.add("selected");
-
+    updateSelectedTab();
     sessionStorage.setItem("selectedTab", selectedTab);
+  }
+
+  function updateSelectedTab() {
+    tabContainer.querySelectorAll("li[data-category]").forEach((li) => {
+      const tabItem = li.querySelector(".tab-item");
+      tabItem.classList.toggle("selected", li.dataset.category === selectedTab);
+    });
   }
 
   function init() {

@@ -5,6 +5,7 @@ import {
   removeLoadMoreButton,
 } from "./components/loadMoreButton.js";
 import { loadHeader } from "./components/header.js";
+import { showErrorUI } from "../utils/error.js";
 
 const movieContainer = document.getElementById("movie-list-container");
 
@@ -60,7 +61,10 @@ async function fetchAndRenderMovies() {
     }
   } catch (error) {
     console.error(error);
-    movieContainer.innerHTML = `<p class="error-message">영화를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요.</p>`;
+    showErrorUI(
+      movieContainer,
+      "영화를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+    );
   }
 }
 
