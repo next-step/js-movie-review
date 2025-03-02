@@ -1,5 +1,6 @@
 import { state } from "../shared/state";
 import { Box } from "../widget/Box";
+import { getFavoriteMovies } from "../shared/api/get";
 
 export const AppMain = () => {
   const { value: mainState, subscribe } = state(true);
@@ -27,6 +28,13 @@ export const AppMain = () => {
     // console.log(`🔔 Observer 패턴: ${key} 변경됨 -> ${value}`);
     render();
   });
+
+  const getTest = async () => {
+    await getFavoriteMovies();
+  };
+
+  //   console.log(getTest());
+  getTest();
 
   return container;
 };
