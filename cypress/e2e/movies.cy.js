@@ -79,7 +79,7 @@ describe("Movie App E2E Tests", () => {
       cy.wait("@getPopularMovies");
 
       cy.fixture("popularMovies.json").then((data) => {
-        const totalMovies = data.result.length;
+        const totalMovies = data.results.length;
 
         cy.get(".movie-grid .movie-item").should("have.length", 9);
         cy.get("#load-more-btn").click();
@@ -93,6 +93,40 @@ describe("Movie App E2E Tests", () => {
         }
 
         cy.get("#load-more-btn").should("not.exist");
+      });
+    });
+  });
+
+  describe("Error Handling Tests", () => {
+    it("displays error message when the fetch fails", () => {
+      cy.intercept("GET", "**/popular?*", {
+        statusCode: 500,
+        body: {},
+      }).as("getPopularError");
+      cy.wait("@getPopularError");
+
+      cy.contains(
+        "영화를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+      ).should("be.visible");
+    });
+  });
+
+  describe("Header Rendering Tests", () => {
+    it("renders the correct header with first movie's data", () => {
+      cy.fixture("popularMovies.json").then((data) => {
+        const firstMovie = data.results[0];
+        const expectedTitle = firstMovie.title;
+        const expectedRating = firstMovie.vote_average.toFixed(1);
+        const expectedBackdrop = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${firstMovie.backdrop_path}`;
+
+        cy.get("#header-container").within(() => {
+          cy.contains(expectedTitle).should("exist");
+          cy.contains(expectedRating).should("exist");
+        });
+
+        cy.get("header")
+          .should("have.attr", "style")
+          .and("contain", expectedBackdrop);
       });
     });
   });
