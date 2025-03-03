@@ -51,4 +51,49 @@ describe("Movie App E2E Tests", () => {
       cy.wait("@getNowPlayingMovies");
     });
   });
+
+  describe("Movie List & Load More Tests", () => {
+    it("loads initial 9 movies on desktop", () => {
+      cy.viewport(1024, 768);
+      cy.wait("@getPopularMovies");
+
+      cy.get(".movie-grid .movie-item").should("have.length", 9);
+    });
+
+    it("loads initial 3 movies on mobile", () => {
+      cy.viewport(375, 667);
+      cy.reload();
+      cy.wait("@getPopularMovies");
+
+      cy.get(".movie-grid .movie-item").should("have.length", 3);
+    });
+
+    it("shows loadMore button if there are more movies to load", () => {
+      cy.viewport(1024, 768);
+      cy.wait("@getPopularMovies");
+      cy.get("#load-more-btn").should("be.visible");
+    });
+
+    it("dynamically loads additional movies until all movies are displayed and then hides the load more button", () => {
+      cy.viewport(1024, 768);
+      cy.wait("@getPopularMovies");
+
+      cy.fixture("popularMovies.json").then((data) => {
+        const totalMovies = data.result.length;
+
+        cy.get(".movie-grid .movie-item").should("have.length", 9);
+        cy.get("#load-more-btn").click();
+
+        const firstLoadCount = Math.min(9 + 9, totalMovies);
+        cy.get(".movie-grid .movie-item").should("have.length", firstLoadCount);
+
+        if (totalMovies > firstLoadCount) {
+          cy.get("#load-more-btn").click();
+          cy.get(".movie-grid .movie-item").should("have.length", totalMovies);
+        }
+
+        cy.get("#load-more-btn").should("not.exist");
+      });
+    });
+  });
 });
