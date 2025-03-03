@@ -14,7 +14,24 @@ export const AppHeader = () => {
   container.appendChild(header);
 
   const render = () => {
-    header.innerHTML = headerState.value;
+    header.innerHTML = /* html */ `
+    <div class="background-container">
+      <div class="overlay" aria-hidden="true"></div>
+      <div class="top-rated-container">
+        <h1 class="logo">
+          <img src="../../images/logo.png" alt="MovieList" />
+        </h1>
+        <div class="top-rated-movie">
+          <div class="rate">
+            <img src="../../templates/images/star_empty.png" class="star" />
+            <span class="rate-value">9.5</span>
+          </div>
+          <div class="title">인사이드 아웃2</div>
+          <button class="primary detail">자세히 보기</button>
+        </div>
+      </div>
+    </div>
+    `;
   };
 
   // 초기 렌더

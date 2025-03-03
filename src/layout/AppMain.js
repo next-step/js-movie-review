@@ -1,23 +1,51 @@
 import { state } from "../shared/state";
-import { Box } from "../widget/Box";
+import { ThumbnailList } from "../widget/ThumbnailList";
 import { getFavoriteMovies } from "../shared/api/get";
+import { MainTabs } from "../widget/MainTabs";
 
 export const AppMain = () => {
-  const { value: mainState, subscribe } = state(true);
-
-  const handleClick = () => {
-    mainState.value = !mainState.value;
-  };
-
+  const { value: mainState, subscribe } = state([]);
+  const { value: pageState } = state(1);
   const container = document.createDocumentFragment();
   const div = document.createElement("div");
-  div.addEventListener("click", handleClick);
-  // header.innerHTML = headerState.value;
   container.appendChild(div);
 
-  const render = () => {
-    div.innerHTML = /* html */ `${mainState.value}`;
-    div.appendChild(Box());
+  const getResponse = async (index) => {
+    const response = await getFavoriteMovies(index);
+    return response;
+  };
+
+  const handleClick = async () => {
+    pageState.value += 1;
+    const data = await getResponse(pageState.value);
+    const { results } = data;
+    mainState.value = [...mainState.value, ...results];
+  };
+
+  const button = document.createElement("button");
+  button.addEventListener("click", handleClick);
+  button.innerHTML = "더 보기";
+  container.appendChild(button);
+
+  // 초기 비동기 렌더링
+  (async () => {
+    const data = await getResponse(pageState.value);
+    const { results } = data;
+    mainState.value = results;
+  })();
+
+  const render = async () => {
+    div.innerHTML = /* html */ `<div class="container">
+    ${MainTabs()}
+    <main>
+      <section>
+        <h2>지금 인기 있는 영화</h2>
+        ${ThumbnailList({
+          mainState,
+        })}
+      </section>
+    </main>
+  </div>`;
   };
 
   // 초기 렌더
@@ -25,16 +53,8 @@ export const AppMain = () => {
 
   // value내 값이 변할 떄, render를 다시!
   subscribe(() => {
-    // console.log(`🔔 Observer 패턴: ${key} 변경됨 -> ${value}`);
     render();
   });
-
-  const getTest = async () => {
-    await getFavoriteMovies();
-  };
-
-  //   console.log(getTest());
-  getTest();
 
   return container;
 };

@@ -1,12 +1,10 @@
+import "@testing-library/jest-dom";
+
 import { AppHeader } from "./AppHeader";
 
 describe("AppHeader 객체를 생성한다", () => {
-  test("Header 객체는 isOpen 상태를 가집니다.", () => {
+  test("AppHeader 객체는 화면에 렌더링됩니다.", () => {
     const element = AppHeader();
-    const data = element.querySelector("header");
-    expect(data.innerHTML).toBe("true");
-    data.click();
-    // UI 리렌더링 로직이 필요
-    expect(data.innerHTML).toBe("false");
+    expect(element).toHaveTextContent("자세히 보기");
   });
 });

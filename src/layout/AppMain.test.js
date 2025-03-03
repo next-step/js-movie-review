@@ -1,11 +1,9 @@
+import "@testing-library/jest-dom";
+// import { AppMain } from "./AppMain";
+
 describe("AppMain 객체를 생성한다", () => {
-  beforeAll(() => {});
-  test("AppMain 객체는 isOpen 상태를 가집니다.", () => {
+  test("AppMain 객체는 화면에 렌더링됩니다.", () => {
     // const element = AppMain();
-    // const data = element.querySelector("div");
-    // expect(data.innerHTML).toContain("true");
-    // data.click();
-    // // UI 리렌더링 로직이 필요
-    // expect(data.innerHTML).toContain("false");
+    // expect(element).toHaveTextContent("자세히 보기");
   });
 });
