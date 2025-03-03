@@ -2,8 +2,12 @@ import { Button } from '../../components/Button';
 import { EmptyMovie } from '../../domains/movie/components/EmptyMovie';
 import ErrorMovie from '../../domains/movie/components/ErrorMovie';
 import { MovieItem } from '../../domains/movie/components/MovieItem';
-import { getPopularMovie } from '../../domains/movie/services';
+import {
+  getPopularMovie,
+  getSearchedMovies,
+} from '../../domains/movie/services';
 import { updateMovieThumbnail } from '../../domains/movie/utils';
+import { searchStore } from '../../domains/search/stores';
 import { searchParams } from '../../libs/search-params';
 import { addEvent } from '../../utils';
 
@@ -62,6 +66,17 @@ const render = ({ loader, isError, error }) => {
 
 const loader = async () => {
   const page = Number(searchParams.get('page')) || 1;
+  const { hasSearchValue, searchValue } = searchStore.get();
+
+  if (hasSearchValue) {
+    const searchedMovies = await getSearchedMovies({
+      page,
+      query: searchValue,
+    });
+
+    render({ isError: false, loader: searchedMovies });
+    return;
+  }
 
   try {
     const data = await getPopularMovie({ page });
@@ -73,6 +88,8 @@ const loader = async () => {
     render({ isError: true, error: error.message });
   }
 };
+
+searchStore.subscribe(loader);
 
 addEvent('click', '#movie_more_load', () => {
   const page = Number(searchParams.get('page')) || 1;
