@@ -1,13 +1,14 @@
-import { createTabs } from "./components/Tab";
-import { fetchAndRenderMovies } from "./movieList";
+import { createTabs } from "./components/Tab.js";
+import { createMovieController } from "./createMovieController.js";
 
-function initializeTabs() {
-  const tabs = createTabs(fetchAndRenderMovies);
+function initializeApp() {
+  const movieCtrl = createMovieController("movie-list-container");
+  movieCtrl.initResizeListener();
+
+  const tabs = createTabs(async (selectedTab) => {
+    await movieCtrl.init(selectedTab);
+  });
   tabs.init();
-}
-
-async function initializeApp() {
-  initializeTabs();
 }
 
 if (document.readyState === "loading") {
