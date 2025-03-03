@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 describe("API 테스트를 생성한다", () => {
   beforeEach("TEST 별, GET 호출", () => {
     cy.intercept(

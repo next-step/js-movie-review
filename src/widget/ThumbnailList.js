@@ -6,7 +6,7 @@ export const ThumbnailList = ({ mainState }) => {
   const render = () => {
     div.innerHTML = /* html */ `<ul class="thumbnail-list">
         ${mainState.value
-          .map((result) => {
+          ?.map((result) => {
             const { title, poster_path: posterPath } = result;
             return /* html */ `<li>
               <div class="item">
@@ -18,7 +18,7 @@ https://media.themoviedb.org/t/p/w440_and_h660_face${posterPath}"
                 />
                 <div class="item-desc">
                   <p class="rate">
-                    <img src="./images/star_empty.png" class="star" />
+                    <img src="star_empty.png" class="star" />
                     <span>7.7</span>
                   </p>
                   <strong>${title}</strong>

@@ -6,9 +6,22 @@ import { MainTabs } from "../widget/MainTabs";
 export const AppMain = () => {
   const { value: mainState, subscribe } = state([]);
   const { value: pageState } = state(1);
+
   const container = document.createDocumentFragment();
   const div = document.createElement("div");
-  container.appendChild(div);
+  div.classList.add("container");
+
+  div.innerHTML = /* html */ `
+    ${MainTabs()}
+    <main>
+      <h2>지금 인기 있는 영화</h2>  
+      <section>
+          ${ThumbnailList({
+            mainState,
+          })}
+      </section>
+    </main>
+  `;
 
   const getResponse = async (index) => {
     const response = await getFavoriteMovies(index);
@@ -25,7 +38,9 @@ export const AppMain = () => {
   const button = document.createElement("button");
   button.addEventListener("click", handleClick);
   button.innerHTML = "더 보기";
-  container.appendChild(button);
+  div.querySelector("section").insertAdjacentElement("afterend", button);
+
+  container.appendChild(div);
 
   // 초기 비동기 렌더링
   (async () => {
@@ -35,21 +50,15 @@ export const AppMain = () => {
   })();
 
   const render = async () => {
-    div.innerHTML = /* html */ `<div class="container">
-    ${MainTabs()}
-    <main>
-      <section>
-        <h2>지금 인기 있는 영화</h2>
+    if (pageState.value >= 2 && div.querySelector("button")) {
+      div.querySelector("main").removeChild(button);
+    }
+    div.querySelector("section").innerHTML = /* html */ `
         ${ThumbnailList({
           mainState,
         })}
-      </section>
-    </main>
-  </div>`;
+  `;
   };
-
-  // 초기 렌더
-  render();
 
   // value내 값이 변할 떄, render를 다시!
   subscribe(() => {
