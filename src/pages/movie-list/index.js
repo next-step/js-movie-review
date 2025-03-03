@@ -1,3 +1,8 @@
+import {
+  createSkeletonMovieList,
+  hiddenSkeletonMovieListItem,
+} from "./skeleton.js";
+
 const createMovieListItem = (movie) => {
   const movieListItem = document.createElement("li");
   movieListItem.classList.add("item");
@@ -69,18 +74,28 @@ const createMovieContainer = () => {
 export const updateMovieList = (movies) => {
   const movieList = document.querySelector(".thumbnail-list");
 
-  movieList.replaceChildren();
-
   movies.forEach((movie) => {
     movieList.appendChild(createMovieListItem(movie));
   });
+};
+
+const onClickLoadButton = async (onLoadMore) => {
+  const movieList = document.querySelector(".thumbnail-list");
+  const skeletonMovieListItem = createSkeletonMovieList();
+  movieList.append(...skeletonMovieListItem);
+
+  await onLoadMore();
+  hiddenSkeletonMovieListItem();
 };
 
 export const createMovieListSection = ({ movies, onLoadMore }) => {
   const container = createMovieContainer();
   const layout = createMovieLayout();
   const movieList = createMovieList(movies);
-  const loadButton = createMovieListLoadButton(onLoadMore);
+
+  const loadButton = createMovieListLoadButton(() =>
+    onClickLoadButton(onLoadMore)
+  );
 
   container.appendChild(layout);
   layout.appendChild(movieList);

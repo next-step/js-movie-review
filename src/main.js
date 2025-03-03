@@ -18,8 +18,8 @@ const fetchPopularMovies = async () => {
 };
 
 const handleLoadMore = async (fetchNextPage) => {
-  const { totalItems, data } = await fetchNextPage();
-  updateMovieList(totalItems);
+  const { data } = await fetchNextPage();
+  updateMovieList(data.results);
 
   if (data.page === MAX_PAGE) {
     hiddenMovieListLoadButton();
