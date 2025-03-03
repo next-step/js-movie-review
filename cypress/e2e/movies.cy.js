@@ -56,14 +56,22 @@ describe("Movie App E2E Tests", () => {
 
   describe("Movie List & Load More Tests", () => {
     it("loads initial 9 movies on desktop", () => {
+<<<<<<< HEAD
       cy.viewport(...VIEWPORT_DESKTOP);
+=======
+      cy.viewport(1024, 768);
+>>>>>>> e3613d7 (test: Add tests for data fetching and load more functionality)
       cy.wait("@getPopularMovies");
 
       cy.get(".movie-grid .movie-item").should("have.length", 9);
     });
 
     it("loads initial 3 movies on mobile", () => {
+<<<<<<< HEAD
       cy.viewport(...VIEWPORT_MOBILE);
+=======
+      cy.viewport(375, 667);
+>>>>>>> e3613d7 (test: Add tests for data fetching and load more functionality)
       cy.reload();
       cy.wait("@getPopularMovies");
 
@@ -71,17 +79,29 @@ describe("Movie App E2E Tests", () => {
     });
 
     it("shows loadMore button if there are more movies to load", () => {
+<<<<<<< HEAD
       cy.viewport(...VIEWPORT_DESKTOP);
+=======
+      cy.viewport(1024, 768);
+>>>>>>> e3613d7 (test: Add tests for data fetching and load more functionality)
       cy.wait("@getPopularMovies");
       cy.get("#load-more-btn").should("be.visible");
     });
 
     it("dynamically loads additional movies until all movies are displayed and then hides the load more button", () => {
+<<<<<<< HEAD
       cy.viewport(...VIEWPORT_DESKTOP);
       cy.wait("@getPopularMovies");
 
       cy.fixture("popularMovies.json").then((data) => {
         const totalMovies = data.results.length;
+=======
+      cy.viewport(1024, 768);
+      cy.wait("@getPopularMovies");
+
+      cy.fixture("popularMovies.json").then((data) => {
+        const totalMovies = data.result.length;
+>>>>>>> e3613d7 (test: Add tests for data fetching and load more functionality)
 
         cy.get(".movie-grid .movie-item").should("have.length", 9);
         cy.get("#load-more-btn").click();
@@ -98,6 +118,7 @@ describe("Movie App E2E Tests", () => {
       });
     });
   });
+<<<<<<< HEAD
 
   describe("Error Handling Tests", () => {
     it("displays error message when the fetch fails", () => {
@@ -132,4 +153,6 @@ describe("Movie App E2E Tests", () => {
       });
     });
   });
+=======
+>>>>>>> e3613d7 (test: Add tests for data fetching and load more functionality)
 });
