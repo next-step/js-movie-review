@@ -4,13 +4,13 @@ import {
   createLoadMoreButton,
   removeLoadMoreButton,
 } from "./components/Button.js";
-import { LoadHeader } from "./components/Headers.js";
+import { LoadBaseHeader, updateHeaderMovie } from "./components/Headers.js";
 import { showErrorUI } from "../utils/error.js";
 import { debounce } from "../utils/helper.js";
 
 export function createMovieController(containerId) {
   const movieContainer = document.getElementById(containerId);
-  const service = createMovieService(); // 내부적으로 상태 추적
+  const service = createMovieService();
 
   function initResizeListener() {
     window.addEventListener(
@@ -27,6 +27,9 @@ export function createMovieController(containerId) {
   async function init(category = "popular") {
     if (!movieContainer) return;
 
+    LoadBaseHeader();
+    attachSearchFormListener();
+
     showSkeletonUI(movieContainer);
 
     try {
@@ -42,7 +45,7 @@ export function createMovieController(containerId) {
 
       const first = service.getFirstMovie();
       if (first) {
-        LoadHeader({
+        updateHeaderMovie({
           title: first.title,
           rating: first.getFormattedVote(),
           backdrop: first.getBackdropUrl(),
@@ -63,6 +66,49 @@ export function createMovieController(containerId) {
 
     if (!service.hasMore()) {
       removeLoadMoreButton();
+    }
+  }
+
+  function attachSearchFormListener() {
+    const form = document.querySelector(".search-bar");
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const inputElement = form.querySelector(".search-input");
+      if (!inputElement) return;
+
+      const query = inputElement.value.trim();
+      if (query) {
+        await handleSearch(query);
+      }
+    });
+  }
+
+  async function handleSearch(query) {
+    if (!movieContainer) return;
+
+    showSkeletonUI(movieContainer);
+
+    try {
+      await service.searchMovies(query);
+      movieContainer.innerHTML = "";
+      renderNextBatch();
+
+      if (service.hasMore()) {
+        createLoadMoreButton(movieContainer, renderNextBatch);
+      } else {
+        removeLoadMoreButton();
+      }
+
+      if (!service.getFirstMovie()) {
+        movieContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
+      }
+
+      history.pushState({ query }, "", `?search=${encodeURIComponent(query)}`);
+    } catch (error) {
+      console.error(error);
+      showErrorUI(movieContainer, "검색 중 문제가 발생했습니다.");
     }
   }
 

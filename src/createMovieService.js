@@ -1,4 +1,4 @@
-import { fetchMovies } from "./api.js";
+import { fetchMovies, fetchSearchMovies } from "./api.js";
 import { createMovie } from "./createMovie.js";
 
 export function createMovieService() {
@@ -12,6 +12,12 @@ export function createMovieService() {
 
   async function loadMovies(category) {
     const rawData = await fetchMovies(category);
+    allMovies = rawData.map((item) => createMovie(item));
+    displayedCount = 0;
+  }
+
+  async function searchMovies(query) {
+    const rawData = await fetchSearchMovies(query);
     allMovies = rawData.map((item) => createMovie(item));
     displayedCount = 0;
   }
@@ -34,6 +40,7 @@ export function createMovieService() {
 
   return {
     loadMovies,
+    searchMovies,
     getNextBatch,
     hasMore,
     getFirstMovie,
