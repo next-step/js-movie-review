@@ -1,12 +1,16 @@
 import { createTabs } from "./components/Tab.js";
 import { createMovieController } from "./createMovieController.js";
+import { LoadBaseHeader } from "./components/Headers.js";
 
 function initializeApp() {
+  LoadBaseHeader();
+
   const movieCtrl = createMovieController("movie-list-container");
-  movieCtrl.initResizeListener();
+
+  movieCtrl.init();
 
   const tabs = createTabs(async (selectedTab) => {
-    await movieCtrl.init(selectedTab);
+    await movieCtrl.switchTab(selectedTab);
   });
   tabs.init();
 }
