@@ -3,7 +3,7 @@ import { showSkeletonUI, renderMovies } from "./movieRenderer.js";
 import {
   createLoadMoreButton,
   removeLoadMoreButton,
-} from "./components/loadMoreButton.js";
+} from "./components/Button.js";
 import { LoadHeader } from "./components/Headers.js";
 import { showErrorUI } from "../utils/error.js";
 import { debounce } from "../utils/helper.js";
