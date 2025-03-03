@@ -15,6 +15,10 @@ export function createMovieController(containerId) {
   const service = createMovieService();
   let loadMoreButtonComponent = null;
 
+  let currentMode = "category";
+  let currentCategory = "popular";
+  let searchFormAttached = false;
+
   function initResizeListener() {
     window.addEventListener(
       "resize",
@@ -39,8 +43,48 @@ export function createMovieController(containerId) {
       return;
     }
 
-    LoadBaseHeader();
     attachSearchFormListener();
+    window.addEventListener("popstate", onPopState);
+    initResizeListener();
+
+    const params = new URLSearchParams(location.search);
+    const query = params.get("search");
+
+    if (query) {
+      currentMode = "search";
+      setMode("search");
+      await handleSearch(query);
+    } else {
+      setMode("category");
+      await loadCategory(currentCategory);
+    }
+  }
+
+  function setMode(mode) {
+    currentMode = mode;
+
+    const tabContainer = document.getElementById("tab-container");
+    if (mode === "search") {
+      if (tabContainer) {
+        tabContainer.style.display = "none";
+      }
+    } else if (mode === "category") {
+      if (tabContainer) {
+        tabContainer.style.display = "block";
+      }
+      const inputEl = document.querySelector(".search-input");
+      if (inputEl) inputEl.value = "";
+    }
+  }
+
+  async function switchTab(newCategory) {
+    currentCategory = newCategory;
+    setMode("category");
+    await loadCategory(newCategory);
+  }
+
+  async function loadCategory(category) {
+    if (!movieContainer) return;
 
     showSkeletonUI(movieContainer);
 
@@ -48,7 +92,6 @@ export function createMovieController(containerId) {
       await service.loadMovies(category);
 
       movieContainer.innerHTML = "";
-
       renderNextBatch();
 
       if (service.hasMore()) {
@@ -71,6 +114,8 @@ export function createMovieController(containerId) {
           headerComponent.render();
         }
       }
+
+      history.pushState({}, "", location.pathname);
     } catch (error) {
       console.error("컨트롤러 초기화 중 오류가 발생했습니다:", error);
       showErrorUI(
@@ -108,10 +153,14 @@ export function createMovieController(containerId) {
   async function handleSearch(query) {
     if (!movieContainer) return;
 
+    currentMode = "search";
+    setMode("search");
+
     showSkeletonUI(movieContainer);
 
     try {
       await service.searchMovies(query);
+
       movieContainer.innerHTML = "";
       renderNextBatch();
 
@@ -125,15 +174,67 @@ export function createMovieController(containerId) {
         movieContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
       }
 
-      history.pushState({ query }, "", `?search=${encodeURIComponent(query)}`);
+      history.replaceState(
+        { query },
+        "",
+        `?search=${encodeURIComponent(query)}`
+      );
     } catch (error) {
       console.error(error);
       showErrorUI(movieContainer, "검색 중 문제가 발생했습니다.");
     }
   }
 
+  function renderNextBatch() {
+    const batch = service.getNextBatch();
+    renderMovies(movieContainer, batch);
+
+    if (!service.hasMore()) {
+      removeLoadMoreButton();
+    }
+  }
+
+  function attachSearchFormListener() {
+    if (searchFormAttached) return;
+    const form = document.querySelector(".search-bar");
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const inputEl = form.querySelector(".search-input");
+      if (!inputEl) return;
+
+      const query = inputEl.value.trim();
+      if (query) {
+        await handleSearch(query);
+      }
+    });
+    searchFormAttached = true;
+  }
+
+  async function onPopState(event) {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("search");
+
+    if (query) {
+      currentMode = "search";
+      setMode("search");
+
+      const inputEl = document.querySelector(".search-input");
+      if (inputEl) {
+        inputEl.value = query;
+      }
+
+      await handleSearch(query);
+    } else {
+      setMode("category");
+
+      await loadCategory(currentCategory);
+    }
+  }
+
   return {
     init,
-    initResizeListener,
+    switchTab,
   };
 }

@@ -1,9 +1,13 @@
 import { Tabs } from "./components/Tabs.js";
 import { createMovieController } from "./createMovieController.js";
+import { LoadBaseHeader } from "./components/Headers.js";
 
 function initializeApp() {
+  LoadBaseHeader();
+
   const movieCtrl = createMovieController("movie-list-container");
-  movieCtrl.initResizeListener();
+
+  movieCtrl.init();
 
   const tabs = Tabs(async (selectedTab) => {
     await movieCtrl.init(selectedTab);
