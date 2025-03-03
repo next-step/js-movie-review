@@ -17,6 +17,12 @@ export function createMovieService() {
     displayedCount = 0;
   }
 
+  async function searchMovies(query) {
+    const rawData = await fetchSearchMovies(query);
+    allMovies = rawData.map((item) => createMovie(item));
+    displayedCount = 0;
+  }
+
   function getNextBatch() {
     const remaining = allMovies.length - displayedCount;
     const itemsToLoad = Math.min(remaining, moviesPerLoad);
@@ -35,6 +41,7 @@ export function createMovieService() {
 
   return {
     loadMovies,
+    searchMovies,
     getNextBatch,
     hasMore,
     getFirstMovie,

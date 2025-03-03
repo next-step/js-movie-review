@@ -14,7 +14,7 @@ function fetchWithTimeout(url, options, timeout = 5_000) {
 }
 
 export async function fetchMovies(category, page = 1) {
-  const url = `${BASE_URL}/${category}?language=ko-KR&page=${page}`;
+  const url = `${BASE_URL}/movie/${category}?language=ko-KR&page=${page}`;
   const options = {
     method: "GET",
     headers: {
@@ -31,4 +31,21 @@ export async function fetchMovies(category, page = 1) {
   } catch (error) {
     throw error;
   }
+}
+
+export async function fetchSearchMovies(query, page = 1) {
+  const url = `${BASE_URL}/search/movie?language=ko-KR&page=${page}&query=${encodeURIComponent(
+    query
+  )}`;
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${API_KEY}`,
+    },
+  };
+  const response = await fetchWithTimeout(url, options, 10000);
+  if (!response.ok) throw new Error(`HTTP error status: ${response.status}`);
+  const data = await response.json();
+  return data.results;
 }

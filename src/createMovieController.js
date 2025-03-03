@@ -39,6 +39,9 @@ export function createMovieController(containerId) {
       return;
     }
 
+    LoadBaseHeader();
+    attachSearchFormListener();
+
     showSkeletonUI(movieContainer);
 
     try {
@@ -83,6 +86,49 @@ export function createMovieController(containerId) {
 
     if (!service.hasMore() && loadMoreButtonComponent) {
       loadMoreButtonComponent.remove();
+    }
+  }
+
+  function attachSearchFormListener() {
+    const form = document.querySelector(".search-bar");
+    if (!form) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const inputElement = form.querySelector(".search-input");
+      if (!inputElement) return;
+
+      const query = inputElement.value.trim();
+      if (query) {
+        await handleSearch(query);
+      }
+    });
+  }
+
+  async function handleSearch(query) {
+    if (!movieContainer) return;
+
+    showSkeletonUI(movieContainer);
+
+    try {
+      await service.searchMovies(query);
+      movieContainer.innerHTML = "";
+      renderNextBatch();
+
+      if (service.hasMore()) {
+        createLoadMoreButton(movieContainer, renderNextBatch);
+      } else {
+        removeLoadMoreButton();
+      }
+
+      if (!service.getFirstMovie()) {
+        movieContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
+      }
+
+      history.pushState({ query }, "", `?search=${encodeURIComponent(query)}`);
+    } catch (error) {
+      console.error(error);
+      showErrorUI(movieContainer, "검색 중 문제가 발생했습니다.");
     }
   }
 
