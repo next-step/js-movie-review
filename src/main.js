@@ -1,33 +1,43 @@
 import { createHeader } from "src/shared/ui/header";
 import { createFooter } from "src/shared/ui/footer";
-import { createMovieListSection } from "src/pages/movie-list";
+import {
+  createMovieListSection,
+  updateMovieList,
+  hiddenMovieListLoadButton,
+} from "src/pages/movie-list";
 
-async function fetchPopularMovies() {
-  try {
-    const url =
-      "https://api.themoviedb.org/3/movie/popular?language=ko-KO&page=1";
-    const headers = {
-      Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
-      "Content-Type": "application/json",
-    };
+import { fetchApiWithPagination } from "src/shared/apis/api";
 
-    const response = await fetch(url, { headers });
-    const result = await response.json();
+// API 에러 메시지: "Invalid page: Pages start at 1 and max at 500. They are expected to be an integer."
+const MAX_PAGE = 500;
 
-    return result;
-  } catch (error) {
-    console.error("영화 목록을 불러오는데 실패했습니다.", error);
+const fetchPopularMovies = async () => {
+  return await fetchApiWithPagination("/movie/popular?language=ko-KO", {
+    getItems: (response) => response.results,
+  });
+};
+
+const handleLoadMore = async (fetchNextPage) => {
+  const { totalItems, data } = await fetchNextPage();
+  updateMovieList(totalItems);
+
+  if (data.page === MAX_PAGE) {
+    hiddenMovieListLoadButton();
   }
-}
+};
 
 addEventListener("load", async () => {
   const app = document.querySelector("#app");
 
-  const data = await fetchPopularMovies();
+  const { initialData, fetchNextPage } = await fetchPopularMovies();
 
   const header = createHeader();
   const footer = createFooter();
-  const movieList = createMovieListSection(data.results);
+
+  const movieList = createMovieListSection({
+    movies: initialData.results,
+    onLoadMore: () => handleLoadMore(fetchNextPage),
+  });
 
   app.append(header, movieList, footer);
 });

@@ -31,6 +31,21 @@ const createMovieList = (movies) => {
   return movieList;
 };
 
+const createMovieListLoadButton = (onClick) => {
+  const button = document.createElement("button");
+  button.classList.add("load-button");
+  button.textContent = "더보기";
+
+  button.addEventListener("click", onClick);
+
+  return button;
+};
+
+export const hiddenMovieListLoadButton = () => {
+  const loadButton = document.querySelector(".load-button");
+  if (loadButton) loadButton.style.display = "none";
+};
+
 const createMovieLayout = () => {
   const layoutContainer = document.createElement("main");
   const layoutSection = document.createElement("section");
@@ -51,13 +66,25 @@ const createMovieContainer = () => {
   return container;
 };
 
-export const createMovieListSection = (movies) => {
+export const updateMovieList = (movies) => {
+  const movieList = document.querySelector(".thumbnail-list");
+
+  movieList.replaceChildren();
+
+  movies.forEach((movie) => {
+    movieList.appendChild(createMovieListItem(movie));
+  });
+};
+
+export const createMovieListSection = ({ movies, onLoadMore }) => {
   const container = createMovieContainer();
   const layout = createMovieLayout();
   const movieList = createMovieList(movies);
+  const loadButton = createMovieListLoadButton(onLoadMore);
 
   container.appendChild(layout);
   layout.appendChild(movieList);
+  layout.appendChild(loadButton);
 
   return container;
 };

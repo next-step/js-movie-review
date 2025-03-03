@@ -38,3 +38,9 @@ p.rate > span {
   width: 16px;
   top: 1px;
 }
+
+.load-button {
+  width: 100%;
+  background-color: var(--color-lightblue-90);
+  color: var(--color-white);
+}
