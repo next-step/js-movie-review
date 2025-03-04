@@ -1,22 +1,25 @@
-import { createMovieService } from "./createMovieService.js";
-import { showSkeletonUI, renderMovies } from "./movieRenderer.js";
+import { createMovieService } from "../services/createMovieService";
+import { showSkeletonUI, renderMovies } from "../components/MovieRenderer";
 import {
   createLoadMoreButton,
   removeLoadMoreButton,
-} from "./components/Button.js";
-import { updateHeaderMovie } from "./components/Headers.js";
-import { showErrorUI } from "../utils/error.js";
-import { debounce } from "../utils/helper.js";
+} from "../components/Button";
+import { updateHeaderMovie } from "../components/Headers";
+import { showErrorUI } from "../utils/error";
+import { debounce } from "../utils/helper";
+import { Category, MovieService } from "../types/type";
 
-export function createMovieController(containerId) {
-  const movieContainer = document.getElementById(containerId);
-  const service = createMovieService();
+export function createMovieController(containerId: string) {
+  const movieContainer = document.getElementById(
+    containerId
+  ) as HTMLElement | null;
+  const service: MovieService = createMovieService();
 
-  let currentMode = "category";
-  let currentCategory = "popular";
+  let currentMode: "category" | "search" = "category";
+  let currentCategory: Category = "popular";
   let searchFormAttached = false;
 
-  function initResizeListener() {
+  function initResizeListener(): void {
     window.addEventListener(
       "resize",
       debounce(() => {
@@ -28,7 +31,7 @@ export function createMovieController(containerId) {
     service.setMoviesPerLoad(initialPerLoad);
   }
 
-  async function init() {
+  async function init(): Promise<void> {
     if (!movieContainer) return;
 
     attachSearchFormListener();
@@ -48,30 +51,33 @@ export function createMovieController(containerId) {
     }
   }
 
-  function setMode(mode) {
+  function setMode(mode: "category" | "search"): void {
     currentMode = mode;
-
-    const tabContainer = document.getElementById("tab-container");
+    const tabContainer = document.getElementById(
+      "tab-container"
+    ) as HTMLElement | null;
     if (mode === "search") {
       if (tabContainer) {
         tabContainer.style.display = "none";
       }
-    } else if (mode === "category") {
+    } else {
       if (tabContainer) {
         tabContainer.style.display = "block";
       }
-      const inputEl = document.querySelector(".search-input");
+      const inputEl = document.querySelector(
+        ".search-input"
+      ) as HTMLInputElement | null;
       if (inputEl) inputEl.value = "";
     }
   }
 
-  async function switchTab(newCategory) {
+  async function switchTab(newCategory: Category): Promise<void> {
     currentCategory = newCategory;
     setMode("category");
     await loadCategory(newCategory);
   }
 
-  async function loadCategory(category) {
+  async function loadCategory(category: Category): Promise<void> {
     if (!movieContainer) return;
 
     showSkeletonUI(movieContainer);
@@ -100,11 +106,11 @@ export function createMovieController(containerId) {
       history.pushState({}, "", location.pathname);
     } catch (error) {
       console.error(error);
-      showErrorUI(movieContainer, "영화를 불러오는 중 오류가 발생했습니다.");
+      showErrorUI("영화를 불러오는 중 오류가 발생했습니다.");
     }
   }
 
-  async function handleSearch(query) {
+  async function handleSearch(query: string): Promise<void> {
     if (!movieContainer) return;
 
     currentMode = "search";
@@ -135,11 +141,11 @@ export function createMovieController(containerId) {
       );
     } catch (error) {
       console.error(error);
-      showErrorUI(movieContainer, "검색 중 문제가 발생했습니다.");
+      showErrorUI("검색 중 문제가 발생했습니다.");
     }
   }
 
-  function renderNextBatch() {
+  function renderNextBatch(): void {
     const batch = service.getNextBatch();
     renderMovies(movieContainer, batch);
 
@@ -148,14 +154,18 @@ export function createMovieController(containerId) {
     }
   }
 
-  function attachSearchFormListener() {
+  function attachSearchFormListener(): void {
     if (searchFormAttached) return;
-    const form = document.querySelector(".search-bar");
+    const form = document.querySelector(
+      ".search-bar"
+    ) as HTMLFormElement | null;
     if (!form) return;
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async (e: Event) => {
       e.preventDefault();
-      const inputEl = form.querySelector(".search-input");
+      const inputEl = form.querySelector(
+        ".search-input"
+      ) as HTMLInputElement | null;
       if (!inputEl) return;
 
       const query = inputEl.value.trim();
@@ -166,7 +176,7 @@ export function createMovieController(containerId) {
     searchFormAttached = true;
   }
 
-  async function onPopState(event) {
+  async function onPopState(event: PopStateEvent): Promise<void> {
     const params = new URLSearchParams(location.search);
     const query = params.get("search");
 
@@ -174,7 +184,9 @@ export function createMovieController(containerId) {
       currentMode = "search";
       setMode("search");
 
-      const inputEl = document.querySelector(".search-input");
+      const inputEl = document.querySelector(
+        ".search-input"
+      ) as HTMLInputElement | null;
       if (inputEl) {
         inputEl.value = query;
       }
@@ -182,7 +194,6 @@ export function createMovieController(containerId) {
       await handleSearch(query);
     } else {
       setMode("category");
-
       await loadCategory(currentCategory);
     }
   }

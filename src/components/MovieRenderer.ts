@@ -1,4 +1,6 @@
-export function showSkeletonUI(movieContainer) {
+import { Movie } from "../types/type";
+
+export function showSkeletonUI(movieContainer: HTMLElement | null): void {
   if (!movieContainer) return;
 
   movieContainer.innerHTML = "";
@@ -34,7 +36,10 @@ export function showSkeletonUI(movieContainer) {
   movieContainer.appendChild(skeletonGrid);
 }
 
-export function renderMovies(movieContainer, movies) {
+export function renderMovies(
+  movieContainer: HTMLElement | null,
+  movies: Movie[]
+): void {
   if (!movieContainer) return;
 
   movieContainer.innerHTML = "";
