@@ -4,7 +4,7 @@ describe("API 테스트를 생성한다", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "3/movie/popular?language=en-US&page=1",
+        url: "3/movie/popular?language=ko-KR&page=1",
         hostname: "api.themoviedb.org",
       },
       {
@@ -14,7 +14,7 @@ describe("API 테스트를 생성한다", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "3/movie/popular?language=en-US&page=2",
+        url: "3/movie/popular?language=ko-KR&page=2",
         hostname: "api.themoviedb.org",
       },
       {
@@ -24,13 +24,24 @@ describe("API 테스트를 생성한다", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "3/movie/popular?language=en-US&page=3",
+        url: "3/movie/popular?language=ko-KR&page=3",
         hostname: "api.themoviedb.org",
       },
       {
         fixture: "movie-popular-3-page.json",
       },
     ).as("mockedGETPage3");
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: "3/movie/top_rated?language=ko-KR&page=1",
+        hostname: "api.themoviedb.org",
+      },
+      {
+        fixture: "movie-top-rated.json",
+      },
+    ).as("mockedGETTopRatedPage");
   });
   it("API GET 테스트", () => {
     cy.visit("http://localhost:5173");
