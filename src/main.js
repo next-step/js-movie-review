@@ -12,9 +12,13 @@ import { fetchApiWithPagination } from "src/shared/apis/api";
 const MAX_PAGE = 500;
 
 const fetchPopularMovies = async () => {
-  return await fetchApiWithPagination("/movie/popular?language=ko-KO", {
-    getItems: (response) => response.results,
-  });
+  try {
+    return await fetchApiWithPagination("/movie/popular?language=ko-KO", {
+      getItems: (response) => response.results,
+    });
+  } catch (error) {
+    return null;
+  }
 };
 
 const handleLoadMore = async (fetchNextPage) => {
@@ -29,14 +33,14 @@ const handleLoadMore = async (fetchNextPage) => {
 addEventListener("load", async () => {
   const app = document.querySelector("#app");
 
-  const { initialData, fetchNextPage } = await fetchPopularMovies();
-
   const header = createHeader();
   const footer = createFooter();
 
+  const response = await fetchPopularMovies();
+
   const movieList = createMovieListSection({
-    movies: initialData.results,
-    onLoadMore: () => handleLoadMore(fetchNextPage),
+    movies: response?.initialData?.results,
+    onLoadMore: () => handleLoadMore(response?.fetchNextPage),
   });
 
   app.append(header, movieList, footer);

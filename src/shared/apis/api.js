@@ -1,3 +1,12 @@
+class CustomFetchError extends Error {
+  constructor(errorMessage, status) {
+    super("데이터를 불러오는데 실패했습니다.");
+
+    this.errorMessage = errorMessage;
+    this.status = status;
+  }
+}
+
 const defaultHeaders = {
   Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
   "Content-Type": "application/json",
@@ -12,8 +21,8 @@ export const fetchApi = async (url, headers = defaultHeaders) => {
     const data = await response.json();
 
     return data;
-  } catch (error) {
-    console.error(error);
+  } catch ({ message, status }) {
+    throw new CustomFetchError(message, status);
   }
 };
 
@@ -46,5 +55,3 @@ export const fetchApiWithPagination = async (
     fetchNextPage,
   };
 };
-
-// 단, 페이지 끝에 도달한 경우에는 더보기 버튼을 화면에 출력하지 않는다.
