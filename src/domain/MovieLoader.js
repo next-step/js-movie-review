@@ -1,4 +1,5 @@
 import { fetchPopularMovies } from "../api";
+import { Headers } from "../components/Headers";
 import { LoadMoreButton } from "../components/LoadMoreButton";
 import { MovieList, renderMovieItems } from "../components/MovieList";
 
@@ -10,12 +11,9 @@ export const initializeMovieSection = async () => {
   const initialMovies = await fetchPopularMovies();
   allMovies = initialMovies.results;
 
-  const movieSection = document.querySelector(".movie-section");
-  movieSection.innerHTML = await MovieList({ movies: allMovies });
+  renderHeaders(allMovies[0]);
 
-  const initHasMoreMovies = allMovies.length > 0;
-  const loadMoreButtonHTML = LoadMoreButton(initHasMoreMovies);
-  movieSection.insertAdjacentHTML("beforeend", loadMoreButtonHTML);
+  renderMovieSection(allMovies);
 
   addLoadMoreButtonEvent();
 };
@@ -47,4 +45,18 @@ const loadMoreMovies = async () => {
 const addLoadMoreButtonEvent = () => {
   const loadMoreButton = document.getElementById("load-more-button");
   loadMoreButton?.addEventListener("click", loadMoreMovies);
+};
+
+const renderMovieSection = (movies) => {
+  const movieSection = document.querySelector(".movie-section");
+  movieSection.innerHTML = MovieList({ movies });
+
+  const initHasMoreMovies = movies.length > 0;
+  const loadMoreButtonHTML = LoadMoreButton(initHasMoreMovies);
+  movieSection.insertAdjacentHTML("beforeend", loadMoreButtonHTML);
+};
+
+const renderHeaders = (movie) => {
+  const wrap = document.querySelector("#wrap");
+  wrap.insertAdjacentHTML("afterbegin", Headers(movie));
 };

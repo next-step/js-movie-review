@@ -1,6 +1,7 @@
-export const Headers = () => {
-  const backdrop =
-    "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg";
+export const Headers = (movie) => {
+  const { title, backdrop_path, vote_average } = movie;
+  const backdrop = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${backdrop_path}`;
+  const rate = vote_average.toFixed(1);
 
   return /*html*/ `<header>
     <div class="background-container">
@@ -12,9 +13,9 @@ export const Headers = () => {
         <div class="top-rated-movie">
           <div class="rate">
             <img src="./images/star_empty.png" class="star" />
-            <span class="rate-value">9.5</span>
+            <span class="rate-value">${rate}</span>
           </div>
-          <div class="title">인사이드 아웃2</div>
+          <div class="title">${title}</div>
           <button class="primary detail">자세히 보기</button>
         </div>
       </div>
