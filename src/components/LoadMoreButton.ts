@@ -10,12 +10,13 @@ export function LoadMoreButton(
       existingButton.remove();
     }
 
-    loadMoreBtn = document.createElement("button");
-    loadMoreBtn.id = "load-more-btn";
-    loadMoreBtn.classList.add("primary");
-    loadMoreBtn.textContent = "더보기";
+    const buttonHTML = `
+    <button id="load-more-btn" class="primary">더보기</button>
+    `;
+    movieContainer.insertAdjacentHTML("afterend", buttonHTML);
+
+    loadMoreBtn = document.getElementById("load-more-btn") as HTMLButtonElement;
     loadMoreBtn.addEventListener("click", onClick);
-    movieContainer.after(loadMoreBtn);
   }
 
   function remove(): void {
