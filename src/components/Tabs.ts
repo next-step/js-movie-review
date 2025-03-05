@@ -36,21 +36,25 @@ export function Tabs(onTabChange: (selectedCategory: Category) => void) {
       { category: "top_rated", label: "평점순" },
       { category: "upcoming", label: "상영 예정" },
     ];
+    const tabHTML = `
+    <ul class="tab">
+      ${tabItems
+        .map(
+          ({ category, label }) => `
+        <li data-category="${category}">
+          <a href="#">
+            <div class="tab-item">
+              <h3>${label}</h3>
+            </div>
+          </a>
+        </li>
+      `
+        )
+        .join("")}
+    </ul>
+  `;
 
-    tabItems.forEach(({ category, label }) => {
-      const li = document.createElement("li");
-      li.setAttribute("data-category", category);
-      const a = document.createElement("a");
-      a.href = "#";
-      const div = document.createElement("div");
-      div.classList.add("tab-item");
-      div.innerHTML = `<h3>${label}</h3>`;
-      a.appendChild(div);
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
-
-    tabContainer.appendChild(ul);
+    tabContainer.innerHTML = tabHTML;
     updateTabSelection();
   }
 
