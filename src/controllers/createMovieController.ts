@@ -43,14 +43,14 @@ export function createMovieController(containerId: string) {
       currentMode = "search";
       setMode("search");
 
-      await handleSearch(query);
+      await fetchMoviesBySearch(query);
       const inputEl = document.querySelector(
         ".search-input"
       ) as HTMLInputElement | null;
       if (inputEl) inputEl.value = query;
     } else {
       setMode("category");
-      await loadCategory(currentCategory);
+      await fetchMoviesByCategory(currentCategory);
     }
   }
 
@@ -77,10 +77,10 @@ export function createMovieController(containerId: string) {
   async function switchTab(newCategory: Category): Promise<void> {
     currentCategory = newCategory;
     setMode("category");
-    await loadCategory(newCategory);
+    await fetchMoviesByCategory(newCategory);
   }
 
-  async function loadCategory(category: Category): Promise<void> {
+  async function fetchMoviesByCategory(category: Category): Promise<void> {
     if (!movieContainer) return;
 
     showSkeletonUI(movieContainer);
@@ -127,7 +127,7 @@ export function createMovieController(containerId: string) {
     }
   }
 
-  async function handleSearch(query: string): Promise<void> {
+  async function fetchMoviesBySearch(query: string): Promise<void> {
     if (!movieContainer) return;
 
     currentMode = "search";
@@ -193,7 +193,7 @@ export function createMovieController(containerId: string) {
 
       const query = inputEl.value.trim();
       if (query) {
-        await handleSearch(query);
+        await fetchMoviesBySearch(query);
       }
     });
     searchFormAttached = true;
@@ -214,10 +214,10 @@ export function createMovieController(containerId: string) {
         inputEl.value = query;
       }
 
-      await handleSearch(query);
+      await fetchMoviesBySearch(query);
     } else {
       setMode("category");
-      await loadCategory(currentCategory);
+      await fetchMoviesByCategory(currentCategory);
     }
   }
 
