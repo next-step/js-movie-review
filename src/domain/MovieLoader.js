@@ -13,6 +13,10 @@ export const initializeMovieSection = async () => {
   const initialMovies = await fetchPopularMovies();
   allMovies = initialMovies.results;
 
+  if(allMovies.length === 0) {
+    throw Error("영화 정보가 로드되지 않았습니다.")
+  }
+
   renderHeaders(allMovies[0]);
 
   renderMovieSection(allMovies);
