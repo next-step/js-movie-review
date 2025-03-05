@@ -1,6 +1,6 @@
 import { SESSION_KEYS } from "../constants";
 
-export function createTabs(onTabChange = null) {
+export function Tabs(onTabChange = null) {
   const tabContainer = document.getElementById("tab-container");
   if (!tabContainer) {
     console.error("document에서 tab-container id를 찾을 수 없습니다.");
@@ -41,7 +41,7 @@ export function createTabs(onTabChange = null) {
   `;
 
     tabContainer.innerHTML = tabHTML;
-    updateSelectedTab();
+    updateTabSelection();
   }
 
   function handleTabSelection(e) {
@@ -51,14 +51,14 @@ export function createTabs(onTabChange = null) {
 
     selectedTab = target.getAttribute("data-category");
     sessionStorage.setItem(SESSION_KEYS.SELECTED_TAB, selectedTab);
-    updateSelectedTab();
+    updateTabSelection();
 
     if (onTabChange) {
       onTabChange(selectedTab);
     }
   }
 
-  function updateSelectedTab() {
+  function updateTabSelection() {
     tabContainer.querySelectorAll("li[data-category]").forEach((li) => {
       const tabItem = li.querySelector(".tab-item");
       tabItem.classList.toggle("selected", li.dataset.category === selectedTab);

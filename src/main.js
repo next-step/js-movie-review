@@ -1,11 +1,11 @@
-import { createTabs } from "./components/Tab.js";
+import { Tabs } from "./components/Tabs.js";
 import { createMovieController } from "./createMovieController.js";
 
 function initializeApp() {
   const movieCtrl = createMovieController("movie-list-container");
   movieCtrl.initResizeListener();
 
-  const tabs = createTabs(async (selectedTab) => {
+  const tabs = Tabs(async (selectedTab) => {
     await movieCtrl.init(selectedTab);
   });
   tabs.init();

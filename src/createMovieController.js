@@ -1,10 +1,7 @@
 import { createMovieService } from "./createMovieService.js";
 import { showSkeletonUI, renderMovies } from "./movieRenderer.js";
-import {
-  createLoadMoreButton,
-  removeLoadMoreButton,
-} from "./components/Button.js";
-import { LoadHeader } from "./components/Headers.js";
+import { LoadMoreButton } from "./components/LoadMoreButton.js";
+import { Header } from "./components/Header.js";
 import { showErrorUI } from "../utils/error.js";
 import { debounce } from "../utils/helper.js";
 import {
@@ -16,6 +13,7 @@ import {
 export function createMovieController(containerId) {
   const movieContainer = document.getElementById(containerId);
   const service = createMovieService();
+  let loadMoreButtonComponent = null;
 
   function initResizeListener() {
     window.addEventListener(
@@ -51,16 +49,24 @@ export function createMovieController(containerId) {
       renderNextBatch();
 
       if (service.hasMore()) {
-        createLoadMoreButton(movieContainer, renderNextBatch);
+        loadMoreButtonComponent = LoadMoreButton(
+          movieContainer,
+          renderNextBatch
+        );
+        loadMoreButtonComponent.render();
       }
 
       const first = service.getFirstMovie();
       if (first) {
-        LoadHeader({
+        const headerComponent = Header({
           title: first.title,
           rating: first.getFormattedVote(),
           backdrop: first.getBackdropUrl(),
         });
+
+        if (headerComponent) {
+          headerComponent.render();
+        }
       }
     } catch (error) {
       console.error("컨트롤러 초기화 중 오류가 발생했습니다:", error);
@@ -75,8 +81,8 @@ export function createMovieController(containerId) {
     const batch = service.getNextBatch();
     renderMovies(movieContainer, batch);
 
-    if (!service.hasMore()) {
-      removeLoadMoreButton();
+    if (!service.hasMore() && loadMoreButtonComponent) {
+      loadMoreButtonComponent.remove();
     }
   }
 
