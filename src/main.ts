@@ -1,22 +1,21 @@
 import { Category } from "./types/type";
-import { LoadBaseHeader } from "./components/Headers";
-import { createTabs } from "./components/Tab";
+import { Header } from "./components/Header";
+import { Tabs } from "./components/Tabs";
 import { createMovieController } from "./controllers/createMovieController";
 
 function initializeApp(): void {
-  LoadBaseHeader();
+  const headerComponent = Header();
+  if (headerComponent) {
+    headerComponent.render();
+  }
 
   const movieCtrl = createMovieController("movie-list-container");
   movieCtrl.init();
 
-  try {
-    const tabs = createTabs(async (selectedCategory: Category) => {
-      await movieCtrl.switchTab(selectedCategory);
-    });
-    tabs.init();
-  } catch (error) {
-    console.error(error);
-  }
+  const tabsComponent = Tabs(async (selectedCategory: Category) => {
+    await movieCtrl.switchTab(selectedCategory);
+  });
+  tabsComponent.init();
 }
 
 if (document.readyState === "loading") {

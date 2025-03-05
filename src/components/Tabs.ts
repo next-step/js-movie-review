@@ -1,3 +1,4 @@
+import { SESSION_KEYS } from "../constants";
 import { Category } from "../types/type";
 
 const validCategories: Category[] = [
@@ -8,23 +9,23 @@ const validCategories: Category[] = [
 ];
 
 function getInitialCategory(): Category {
-  const stored = sessionStorage.getItem("selectedCategory");
+  const stored = sessionStorage.getItem(SESSION_KEYS.SELECTED_CATEGORY);
   if (stored && validCategories.includes(stored as Category)) {
     return stored as Category;
   }
   return "popular";
 }
 
-export function createTabs(onTabChange: (selectedCategory: Category) => void) {
-  const container = document.getElementById("tab-container");
-  if (!container) {
-    throw new Error("탭 컨테이너가 없습니다.");
-  }
-  const tabContainer: HTMLElement = container;
+export function Tabs(onTabChange: (selectedCategory: Category) => void) {
+  const tabContainer = document.getElementById("tab-container");
 
   let selectedCategory: Category = getInitialCategory();
 
   function renderTabs(): void {
+    if (!tabContainer) {
+      return;
+    }
+
     tabContainer.innerHTML = "";
     const ul = document.createElement("ul");
     ul.classList.add("tab");
@@ -50,10 +51,10 @@ export function createTabs(onTabChange: (selectedCategory: Category) => void) {
     });
 
     tabContainer.appendChild(ul);
-    updateSelectedTab();
+    updateTabSelection();
   }
 
-  function handleTabClick(e: Event): void {
+  function handleTabSelection(e: Event): void {
     e.preventDefault();
     const target = (e.target as HTMLElement).closest("li[data-category]");
     if (!target) return;
@@ -64,13 +65,17 @@ export function createTabs(onTabChange: (selectedCategory: Category) => void) {
       validCategories.includes(newSelectedCategory as Category)
     ) {
       selectedCategory = newSelectedCategory as Category;
-      sessionStorage.setItem("selectedCategory", selectedCategory);
-      updateSelectedTab();
+      sessionStorage.setItem(SESSION_KEYS.SELECTED_CATEGORY, selectedCategory);
+      updateTabSelection();
       onTabChange(selectedCategory);
     }
   }
 
-  function updateSelectedTab(): void {
+  function updateTabSelection(): void {
+    if (!tabContainer) {
+      return;
+    }
+
     tabContainer.querySelectorAll("li[data-category]").forEach((li) => {
       const tabItem = li.querySelector(".tab-item");
       if (tabItem) {
@@ -83,8 +88,11 @@ export function createTabs(onTabChange: (selectedCategory: Category) => void) {
   }
 
   function init(): void {
+    if (!tabContainer) {
+      return;
+    }
     renderTabs();
-    tabContainer.addEventListener("click", handleTabClick);
+    tabContainer.addEventListener("click", handleTabSelection);
     onTabChange(selectedCategory);
   }
 
