@@ -1,11 +1,8 @@
 import { createMovieService } from "../services/createMovieService";
 import { showSkeletonUI, renderMovies } from "../components/MovieRenderer";
-import {
-  createLoadMoreButton,
-  removeLoadMoreButton,
-} from "../components/Button";
-import { updateHeaderMovie } from "../components/Headers";
-import { showErrorUI } from "../utils/error";
+import { LoadMoreButton } from "../components/LoadMoreButton";
+import { Header } from "../components/Header";
+import { showErrorMessage } from "../utils/error";
 import { debounce } from "../utils/helper";
 import { Category, MovieService } from "../types/type";
 
@@ -18,6 +15,7 @@ export function createMovieController(containerId: string) {
   let currentMode: "category" | "search" = "category";
   let currentCategory: Category = "popular";
   let searchFormAttached = false;
+  let loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null = null;
 
   function initResizeListener(): void {
     window.addEventListener(
@@ -89,24 +87,38 @@ export function createMovieController(containerId: string) {
       renderNextBatch();
 
       if (service.hasMore()) {
-        createLoadMoreButton(movieContainer, renderNextBatch);
+        if (!loadMoreButtonComponent) {
+          loadMoreButtonComponent = LoadMoreButton(
+            movieContainer,
+            renderNextBatch
+          );
+        }
+        loadMoreButtonComponent.render();
+      } else if (loadMoreButtonComponent) {
+        loadMoreButtonComponent.remove();
       }
 
       const first = service.getFirstMovie();
       if (first) {
-        updateHeaderMovie({
-          title: first.title,
-          rating: first.getFormattedVote(),
-          backdrop: first.getBackdropUrl(),
-        });
+        const headerComponent = Header();
+        if (headerComponent) {
+          headerComponent.update({
+            title: first.title,
+            rating: first.getFormattedVote(),
+            backdrop: first.getBackdropUrl(),
+          });
+        }
       } else {
         movieContainer.innerHTML = "<p>영화 데이터가 없습니다.</p>";
       }
 
       history.pushState({}, "", location.pathname);
     } catch (error) {
-      console.error(error);
-      showErrorUI("영화를 불러오는 중 오류가 발생했습니다.");
+      console.error(
+        "createMovieController 초기화 중 오류가 발생했습니다:",
+        error
+      );
+      showErrorMessage("영화를 불러오는 중 오류가 발생했습니다.");
     }
   }
 
@@ -125,9 +137,15 @@ export function createMovieController(containerId: string) {
       renderNextBatch();
 
       if (service.hasMore()) {
-        createLoadMoreButton(movieContainer, renderNextBatch);
-      } else {
-        removeLoadMoreButton();
+        if (!loadMoreButtonComponent) {
+          loadMoreButtonComponent = LoadMoreButton(
+            movieContainer,
+            renderNextBatch
+          );
+        }
+        loadMoreButtonComponent.render();
+      } else if (loadMoreButtonComponent) {
+        loadMoreButtonComponent.remove();
       }
 
       if (!service.getFirstMovie()) {
@@ -140,8 +158,8 @@ export function createMovieController(containerId: string) {
         `?search=${encodeURIComponent(query)}`
       );
     } catch (error) {
-      console.error(error);
-      showErrorUI("검색 중 문제가 발생했습니다.");
+      console.error("영화 검색 중 오류가 발생했습니다", error);
+      showErrorMessage("검색 중 오류가 발생했습니다.");
     }
   }
 
@@ -150,7 +168,7 @@ export function createMovieController(containerId: string) {
     renderMovies(movieContainer, batch);
 
     if (!service.hasMore()) {
-      removeLoadMoreButton();
+      loadMoreButtonComponent?.remove();
     }
   }
 

@@ -1,3 +1,3 @@
-export function showErrorUI(message: string): void {
+export function showErrorMessage(message: string): void {
   alert(message);
 }

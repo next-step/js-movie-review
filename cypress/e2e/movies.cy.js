@@ -1,3 +1,10 @@
+import {
+  DESKTOP_MOVIES_PER_LOAD,
+  MOBILE_MOVIES_PER_LOAD,
+  VIEWPORT_DESKTOP,
+  VIEWPORT_MOBILE,
+} from "../support/constants";
+
 describe("Movie App E2E Tests", () => {
   beforeEach(() => {
     cy.intercept("GET", "**/popular?*", {
@@ -54,28 +61,34 @@ describe("Movie App E2E Tests", () => {
 
   describe("Movie List & Load More Tests", () => {
     it("loads initial 9 movies on desktop", () => {
-      cy.viewport(1024, 768);
+      cy.viewport(...VIEWPORT_DESKTOP);
       cy.wait("@getPopularMovies");
 
-      cy.get(".movie-grid .movie-item").should("have.length", 9);
+      cy.get(".movie-grid .movie-item").should(
+        "have.length",
+        DESKTOP_MOVIES_PER_LOAD
+      );
     });
 
     it("loads initial 3 movies on mobile", () => {
-      cy.viewport(375, 667);
+      cy.viewport(...VIEWPORT_MOBILE);
       cy.reload();
       cy.wait("@getPopularMovies");
 
-      cy.get(".movie-grid .movie-item").should("have.length", 3);
+      cy.get(".movie-grid .movie-item").should(
+        "have.length",
+        MOBILE_MOVIES_PER_LOAD
+      );
     });
 
     it("shows loadMore button if there are more movies to load", () => {
-      cy.viewport(1024, 768);
+      cy.viewport(...VIEWPORT_DESKTOP);
       cy.wait("@getPopularMovies");
       cy.get("#load-more-btn").should("be.visible");
     });
 
     it("dynamically loads additional movies until all movies are displayed and then hides the load more button", () => {
-      cy.viewport(1024, 768);
+      cy.viewport(...VIEWPORT_DESKTOP);
       cy.wait("@getPopularMovies");
 
       cy.fixture("popularMovies.json").then((data) => {

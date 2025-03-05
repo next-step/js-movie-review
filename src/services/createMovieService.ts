@@ -1,3 +1,4 @@
+import { DESKTOP_MOVIES_PER_LOAD } from "../constants";
 import { ApiMovie, Category, Movie, MovieService } from "../types/type";
 import { fetchMovies, fetchSearchMovies } from "./api";
 import { createMovie } from "./createMovie";
@@ -5,7 +6,7 @@ import { createMovie } from "./createMovie";
 export function createMovieService(): MovieService {
   let allMovies: Movie[] = [];
   let displayedCount = 0;
-  let moviesPerLoad = 9;
+  let moviesPerLoad = DESKTOP_MOVIES_PER_LOAD;
 
   function setMoviesPerLoad(num: number): void {
     moviesPerLoad = num;

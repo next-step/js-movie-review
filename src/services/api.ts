@@ -6,7 +6,7 @@ const API_KEY: string = import.meta.env.VITE_API_KEY;
 function fetchWithTimeout(
   url: string,
   options?: RequestInit,
-  timeout: number = 5000
+  timeout: number = 5_000
 ): Promise<Response> {
   return Promise.race([
     fetch(url, options),
@@ -33,7 +33,7 @@ export async function fetchMovies(
   };
 
   try {
-    const response = await fetchWithTimeout(url, options, 10000);
+    const response = await fetchWithTimeout(url, options, 10_000);
     if (!response.ok) {
       throw new Error(`HTTP error status: ${response.status}`);
     }
@@ -59,7 +59,7 @@ export async function fetchSearchMovies(
     },
   };
 
-  const response = await fetchWithTimeout(url, options, 10000);
+  const response = await fetchWithTimeout(url, options, 10_000);
   if (!response.ok) {
     throw new Error(`HTTP error status: ${response.status}`);
   }
