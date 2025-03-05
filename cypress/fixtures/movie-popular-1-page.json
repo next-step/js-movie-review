@@ -1,0 +1,406 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/9nhjGaFLKtddDPtPaX5EmKqsWdH.jpg",
+      "genre_ids": [
+        10749,
+        878,
+        53
+      ],
+      "id": 950396,
+      "original_language": "en",
+      "original_title": "The Gorge",
+      "overview": "고도의 훈련을 받은 두 요원는 비밀스러운 협곡의 양쪽을 지키는 임무를 받은 후 멀리서 서로와 서서히 친해진다. 도사리고 있던 악이 드러나자, 둘은 협곡 안의 위험으로부터 살아남기 위해 협력해야만 한다.",
+      "popularity": 3876.006,
+      "poster_path": "/fhPj5pWbCoVoz8sehfaCeIWWFxc.jpg",
+      "release_date": "2025-02-13",
+      "title": "'더 캐니언' - The Gorge",
+      "video": false,
+      "vote_average": 7.791,
+      "vote_count": 1555
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/gFFqWsjLjRfipKzlzaYPD097FNC.jpg",
+      "genre_ids": [
+        28,
+        53,
+        80
+      ],
+      "id": 1126166,
+      "original_language": "en",
+      "original_title": "Flight Risk",
+      "overview": "미셸 도커리가 연기하는 부지런한 미국 연방보호관 매들린 해리스는 마피아 조직의 회계사였던 윈스턴(토퍼 그레이스)을 증인 보호 프로그램으로 이송하는 임무를 맡게 된다. 그들은 알래스카의 황량한 설원을 가로지르는 작은 비행기에 탑승하며, 이 비행기의 조종사는 다릴 부스(마크 월버그)다. 그러나 비행 도중, 이들이 탑승한 비행기는 예상치 못한 위험에 직면하게 되고, 매들린은 조종사와 승객들의 숨겨진 의도를 의심하게 된다. 한정된 공간에서 긴장감이 고조되는 가운데, 매들린은 비행기의 조종을 직접 맡아야 하는 상황에 이르게 되는데...",
+      "popularity": 3320.616,
+      "poster_path": "/zstC9sgsPaV98TaZtHL6aTtBUtB.jpg",
+      "release_date": "2025-01-22",
+      "title": "플라이트 리스크",
+      "video": false,
+      "vote_average": 6.067,
+      "vote_count": 341
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/oHPoF0Gzu8xwK4CtdXDaWdcuZxZ.jpg",
+      "genre_ids": [
+        12,
+        10751,
+        16
+      ],
+      "id": 762509,
+      "original_language": "en",
+      "original_title": "Mufasa: The Lion King",
+      "overview": "길을 잃고 혼자가 된 새끼 사자 무파사는 광활한 야생을 떠돌던 중 왕의 혈통이자 예정된 후계자 타카와 우연히 만나게 된다. 마치 친형제처럼 끈끈한 우애를 나누며 함께 자란 무파사와 타카는 운명을 개척하기 위해 거대한 여정을 함께 떠난다. 한 치 앞을 알 수 없는 적들의 위협 속에서 두 형제의 끈끈했던 유대에 금이 가기 시작하고 예상치 못한 위기까지 맞닥뜨리게 되는데…",
+      "popularity": 2643.627,
+      "poster_path": "/1VUExee8iFohFTwYVi4IOArYyaM.jpg",
+      "release_date": "2024-12-18",
+      "title": "무파사: 라이온 킹",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 1491
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zOpe0eHsq0A2NvNyBbtT6sj53qV.jpg",
+      "genre_ids": [
+        28,
+        878,
+        35,
+        10751
+      ],
+      "id": 939243,
+      "original_language": "en",
+      "original_title": "Sonic the Hedgehog 3",
+      "overview": "너클즈, 테일즈와 함께 평화로운 일상을 보내던 초특급 히어로 소닉. 연구 시설에 50년간 잠들어 있던 사상 최강의 비밀 병기 \"섀도우\"가 탈주하자, 세계 수호 통합 부대(약칭 세.수.통)에 의해 극비 소집된다. 소중한 것을 잃은 분노와 복수심에 불타는 섀도우는 소닉의 초고속 스피드와 너클즈의 최강 펀치를 단 단숨에 제압해버린다. 세상을 지배하려는 닥터 로보트닉과 그의 할아버지 제럴드 박사는 섀도우의 엄청난 힘 카오스 에너지를 이용해 인류를 정복하려고 하는데…",
+      "popularity": 2402.503,
+      "poster_path": "/5ZoI48Puf5i5FwI6HOpunDuJOw0.jpg",
+      "release_date": "2024-12-19",
+      "title": "수퍼 소닉 3",
+      "video": false,
+      "vote_average": 7.7,
+      "vote_count": 2041
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/zo8CIjJ2nfNOevqNajwMRO6Hwka.jpg",
+      "genre_ids": [
+        16,
+        12,
+        10751,
+        35
+      ],
+      "id": 1241982,
+      "original_language": "en",
+      "original_title": "Moana 2",
+      "overview": "바다를 누볐던 선조들에게서 예기치 못한 부름을 받은 모아나가 마우이와 다시 만나 새로운 선원들과 함께 오랫동안 잊혀진 멀고 위험한 바다 너머로 떠나는 특별한 모험을 담은 이야기",
+      "popularity": 2347.007,
+      "poster_path": "/hwmwTFtMbzxAWbIOp1RyyiOCyx0.jpg",
+      "release_date": "2024-11-21",
+      "title": "모아나 2",
+      "video": false,
+      "vote_average": 7.1,
+      "vote_count": 1756
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7cNE2qydew1c8fqnlhWjkE3DHc2.jpg",
+      "genre_ids": [
+        28,
+        18,
+        12,
+        10752
+      ],
+      "id": 927342,
+      "original_language": "ta",
+      "original_title": "அமரன்",
+      "overview": "",
+      "popularity": 1780.289,
+      "poster_path": "/eCB06m1KUGilEOlIzb40nkQhVY0.jpg",
+      "release_date": "2024-10-31",
+      "title": "அமரன்",
+      "video": false,
+      "vote_average": 7.4,
+      "vote_count": 174
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qfAfE5auxsuxhxPpnETRAyTP5ff.jpg",
+      "genre_ids": [
+        28,
+        53,
+        878
+      ],
+      "id": 822119,
+      "original_language": "en",
+      "original_title": "Captain America: Brave New World",
+      "overview": "대통령이 된 새디우스 로스와 재회 후, 국제적인 사건의 중심에 서게 된 샘이 전 세계를 붉게 장악하려는 사악한 음모 뒤에 숨겨진 존재와 이유를 파헤쳐 나가는 액션 블록버스터",
+      "popularity": 1495.724,
+      "poster_path": "/2MQdtfioyYSqgwkK07PSrBidOBC.jpg",
+      "release_date": "2025-02-12",
+      "title": "캡틴 아메리카: 브레이브 뉴 월드",
+      "video": false,
+      "vote_average": 6.2,
+      "vote_count": 829
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/sc1abgWNXc29wSBaerrjGBih06l.jpg",
+      "genre_ids": [
+        27,
+        878,
+        53
+      ],
+      "id": 1084199,
+      "original_language": "en",
+      "original_title": "Companion",
+      "overview": "서로에게 딱 맞는 커플 ‘아이리스’와 ‘조시’는 친구들과 함께 호숫가의 별장으로 호화로운 휴가를 떠난다. 하지만 그곳에는 충격적인 사건이 기다리고 있는데…",
+      "popularity": 1283.362,
+      "poster_path": "/dq7CEYFCvQPfYIpAXOvJr3w6VLY.jpg",
+      "release_date": "2025-01-22",
+      "title": "컴패니언",
+      "video": false,
+      "vote_average": 7.056,
+      "vote_count": 604
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/u7AZ5CdT2af8buRjmYCPXNyJssd.jpg",
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 1160956,
+      "original_language": "zh",
+      "original_title": "熊猫计划",
+      "overview": "액션 스타 재키가 우연히 전 세계적인 인기를 한 몸에 받고 있는 ‘후후’라는 아기 판다 구출 작전에 합류하게 되면서 벌어지는 이야기",
+      "popularity": 1214.508,
+      "poster_path": "/zNU7A18Py3jHArZFLH2d4WUTbMS.jpg",
+      "release_date": "2024-10-01",
+      "title": "판다 플랜",
+      "video": false,
+      "vote_average": 7.1,
+      "vote_count": 145
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/v9Du2HC3hlknAvGlWhquRbeifwW.jpg",
+      "genre_ids": [
+        28,
+        12,
+        53
+      ],
+      "id": 539972,
+      "original_language": "en",
+      "original_title": "Kraven the Hunter",
+      "overview": "죽음의 문턱에서 맹수의 초인적인 힘을 얻고 살아 돌아온 크레이븐이 무자비한 복수의 길을 택하며 거침없는 사냥을 펼치는 액션 블록버스터",
+      "popularity": 1195.885,
+      "poster_path": "/bA45ooXcp2B2qnMePfZ9QDL4wR5.jpg",
+      "release_date": "2024-12-11",
+      "title": "크레이븐 더 헌터",
+      "video": false,
+      "vote_average": 6.7,
+      "vote_count": 1330
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iXU87IdtNsYt7n6OigPJBDdbFf1.jpg",
+      "genre_ids": [
+        10751,
+        16,
+        35,
+        28
+      ],
+      "id": 774370,
+      "original_language": "en",
+      "original_title": "Dog Man",
+      "overview": "\"반쪽은 개, 반쪽은 인간, 그야말로 영웅의 탄생!\"\r 한 경찰견과 그의 파트너인 경찰관이 함께 부상당한 후, 기적 같은 수술로 하나가 되어 '도그맨'이 탄생한다. 이제 도그맨은 그의 새로운 정체성을 받아들이며, 도시를 지키기 위해 애쓴다. 하지만 도시를 위협하는 악당, 페티 더 캣과의 싸움에서 도그맨의 진정한 힘이 시험받게 되는데...",
+      "popularity": 977.456,
+      "poster_path": "/89wNiexZdvLQ41OQWIsQy4O6jAQ.jpg",
+      "release_date": "2025-01-24",
+      "title": "도그맨",
+      "video": false,
+      "vote_average": 7.7,
+      "vote_count": 130
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/vZG7PrX9HmdgL5qfZRjhJsFYEIA.jpg",
+      "genre_ids": [
+        28,
+        878,
+        12
+      ],
+      "id": 912649,
+      "original_language": "en",
+      "original_title": "Venom: The Last Dance",
+      "overview": "환상의 케미스트리의 에디 브록과 그의 심비오트 베놈은 그들을 노리는 정체불명 존재의 추격을 피해 같이 도망을 다니게 된다. 한편 베놈의 창조자 널은 고향 행성에서부터 그들을 찾아내기 위해 지구를 침략하고 에디와 베놈은 그동안 겪어보지 못한 최악의 위기를 맞이하게 되는데…",
+      "popularity": 931.677,
+      "poster_path": "/ptfoRD0MmL8Ry0iBVccYbqoN9Xc.jpg",
+      "release_date": "2024-10-22",
+      "title": "베놈: 라스트 댄스",
+      "video": false,
+      "vote_average": 6.789,
+      "vote_count": 2942
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bHeUgZKqduubnNl8GshjrpHS9lF.jpg",
+      "genre_ids": [
+        28,
+        12,
+        18
+      ],
+      "id": 558449,
+      "original_language": "en",
+      "original_title": "Gladiator II",
+      "overview": "로마의 영웅이자 최고의 검투사였던 막시무스가 콜로세움에서 죽음을 맞이한 뒤 20여 년이 흐른 후. 쌍둥이 황제 게타와 카라칼라의 폭압 아래 시민을 위한 자유로운 나라 로마의 꿈은 잊힌 지 오래다. 한편 아카시우스 장군이 이끄는 로마군에 대패한 후 모든 것을 잃고 노예로 전락한 루시우스는 강한 권력욕을 지닌 마크리누스의 눈에 띄어 검투사로 발탁된다. 로마를 향한 걷잡을 수 없는 분노, 타고난 투사의 기질로 콜로세움에 입성하게 된 루시우스는 결투를 거듭하며 자신이 진짜 누구인지 알게 되고 마침내 로마의 운명을 건 결전을 준비하게 되는데...!",
+      "popularity": 875.346,
+      "poster_path": "/b5UXjzW5cLZhprMnlAmsVAA3G4t.jpg",
+      "release_date": "2024-11-13",
+      "title": "글래디에이터 II",
+      "video": false,
+      "vote_average": 6.768,
+      "vote_count": 2933
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iKXXPYBWQ0B6BMRHAFbg3wKafWb.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 549509,
+      "original_language": "en",
+      "original_title": "The Brutalist",
+      "overview": "전쟁의 상흔을 뒤로하고 미국에 정착한 건축가 라즐로 토스. 미국 이민자의 냉혹한 현실 속에 전쟁의 트라우마를 견뎌내던 어느 날. 라즐로의 천재성을 알아본 부유한 사업가 해리슨이 기념비적인 건축물 설계를 제안한다. 하지만, 시대와 공간, 빛의 경계를 넘어 대담하고 혁신적인 그의 건축 설계는 사람들의 공감을 얻지 못하고 반대에 부딪히게 된다. 후원자 해리슨의 감시와 압박, 주변의 비난이 거세질수록 오히려 더 자신의 설계에 집착하던 라즐로. 혁신적인 브루탈리즘 건축에 자신을 투영하던 라즐로는 결국 공사가 중단될 위기에 처하는데...",
+      "popularity": 760.893,
+      "poster_path": "/dKFjxIZ6tPAUQInMKZCE3BfcrO2.jpg",
+      "release_date": "2024-12-20",
+      "title": "브루탈리스트",
+      "video": false,
+      "vote_average": 7.07,
+      "vote_count": 674
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/bVSOgrxasVJF6V71T7v2KfBRSzu.jpg",
+      "genre_ids": [
+        27,
+        878
+      ],
+      "id": 933260,
+      "original_language": "en",
+      "original_title": "The Substance",
+      "overview": "한때 아카데미상을 수상하고 명예의 거리까지 입성한 대스타였지만 지금은 TV 에어로빅 쇼 진행자로 전락한 엘리자베스. 50살이 되던 날, 프로듀서에게서 어리고 섹시하지 않다는 이유로 해고를 당한다. 돌아가던 길에 차 사고로 병원에 실려간 엘리자베스는 매력적인 남성 간호사로부터 서브스턴스라는 약물을 권유받는다. 한 번의 주사로 젊고 아름답고 완벽한 수가 탄생하는데...",
+      "popularity": 755.912,
+      "poster_path": "/5TPPefBI1OzWnSQfBkOrv1OFGq5.jpg",
+      "release_date": "2024-09-07",
+      "title": "서브스턴스",
+      "video": false,
+      "vote_average": 7.13,
+      "vote_count": 4008
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/qSOMdbZ6AOdHR999HWwVAh6ALFI.jpg",
+      "genre_ids": [
+        28,
+        80,
+        53
+      ],
+      "id": 1249289,
+      "original_language": "en",
+      "original_title": "Alarum",
+      "overview": "조(스콧 이스트우드)와 로라(윌라 피츠제럴드)는 임무 중 만나 사랑에 빠진 정부 스파이 커플이다. 그들은 각자의 기관을 떠나 결혼한다.  영화는 이들의 첫 만남 5년 후, 폴란드의 한 리조트에서 휴가를 보내던 중 시작된다. 근처 숲에서 비행기 추락 사고가 발생하고, 조는 사고 현장을 조사하다 미스터리한 플래시 드라이브를 발견한다. 이 플래시 드라이브를 둘러싸고 여러 집단이 조를 공격하기 시작한다. 한 집단은 오린(마이크 콜터)이 이끄는 용병들이고, 다른 한 집단은 조의 전 소속 기관이다. 그들은 조가 글로벌 정보망을 무너뜨리려는 비밀 조직 'Alarum'에 가입했다고 의심한다. 조와 로라는 서로 헤어지게 되고, 로라가 실제로 Alarum의 일원임이 밝혀진다. 두 사람은 수많은 킬러들과 싸우며 재회를 시도합니다. 이 과정에서 체스터(실베스터 스탤론)라는 옛 동료가 등장하여 조를 제거하려 하지만, 결국 그와 함께 행동하며 폭발적인 액션을 펼치게 되는데... https://justwatch.pro/movie/1249289/alarum",
+      "popularity": 731.784,
+      "poster_path": "/z6A7WqyKJI9COZkxKLI1hyiAhPK.jpg",
+      "release_date": "2025-01-16",
+      "title": "알라룸",
+      "video": false,
+      "vote_average": 5.792,
+      "vote_count": 216
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/kEYWal656zP5Q2Tohm91aw6orlT.jpg",
+      "genre_ids": [
+        18,
+        35,
+        10749
+      ],
+      "id": 1064213,
+      "original_language": "en",
+      "original_title": "Anora",
+      "overview": "뉴욕의 스트리퍼 아노라는 자신의 바를 찾은 철부지 러시아 재벌2세 이반을 만나게 되고 충동적인 사랑을 믿고 허황된 신분 상승을 꿈꾸며 결혼식을 올리게 된다. 그러나 신데렐라 스토리를 꿈꿨던 것도 잠시, 한 번도 본 적 없는 이반의 부모님이 아들의 결혼 사실을 알게 되자 길길이 날뛰며 미국에 있는 하수인 3인방에게 둘을 잡아 혼인무효소송을 진행할 것을 지시한다. 하수인 3인이 들이닥치자 부모님이 무서워 겁에 질린 남편 이반은 아노라를 버린채 홀로 도망친다. 이반을 찾아 결혼 생활을 유지하고 싶은 아노라와 어떻게든 이반을 찾아 혼인무효소송을 시켜야만 하는 하수인 3인방의 대환장 발악이 시작된다.",
+      "popularity": 726.2,
+      "poster_path": "/mwguqSMRCA3NgpPoRsXdFhid25m.jpg",
+      "release_date": "2024-10-14",
+      "title": "아노라",
+      "video": false,
+      "vote_average": 7.104,
+      "vote_count": 1247
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/jl2YIADk391yc6Qjy9JhgCRkHJk.jpg",
+      "genre_ids": [
+        16,
+        18,
+        35
+      ],
+      "id": 1064486,
+      "original_language": "en",
+      "original_title": "Memoir of a Snail",
+      "overview": "쌍둥이 동생 길버트와 함께 태어나 입양된 그레이스는 옷장 속 달팽이로 위로를 삼는다.",
+      "popularity": 719.126,
+      "poster_path": "/lWh5OlerPR1c1cfn1ZLq0lpqFds.jpg",
+      "release_date": "2024-10-17",
+      "title": "달팽이의 회고록",
+      "video": false,
+      "vote_average": 7.798,
+      "vote_count": 220
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/l2QSVFR5aLcW1Vl4cGKrQkEp6fY.jpg",
+      "genre_ids": [
+        35,
+        10749,
+        28
+      ],
+      "id": 1201012,
+      "original_language": "hi",
+      "original_title": "धूम धाम",
+      "overview": "도무지 어울릴 것 같지 않은 커플의 결혼식 날 밤. 예상치 못한 사건이 발생하면서 두 사람은 깡패들과 경찰들을 피해 '찰리'라는 미스터리한 인물을 찾아야 하는 혼돈의 추격전에 휘말린다.",
+      "popularity": 712.026,
+      "poster_path": "/2E7me3rPi8HqaeheuD86YlpNX6k.jpg",
+      "release_date": "2025-02-13",
+      "title": "둠 담",
+      "video": false,
+      "vote_average": 6.4,
+      "vote_count": 20
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/uJK0jjJ8QDOQw5lcNBwu059ht4D.jpg",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "id": 1294203,
+      "original_language": "en",
+      "original_title": "My Fault: London",
+      "overview": "영국의 부유한 사업가 윌리엄과 최근 사랑에 빠진 엄마를 따라 미국에서 영국으로 거처를 옮긴 18세 노아는 윌리엄의 불량한 아들 닉을 만나게 되고 둘은 서로에게 거부할 수 없는 매력을 느낀다. 여름 내내 노아는 새로운 생활에 적응하며 처음으로 사랑에 빠지지만 과거의 괴로운 기억이 노아의 발목을 잡는다.",
+      "popularity": 687.967,
+      "poster_path": "/h7H6Kd9kX1dvN8FZjUy6FcNdXxQ.jpg",
+      "release_date": "2025-02-12",
+      "title": "나의 잘못: 런던",
+      "video": false,
+      "vote_average": 7.5,
+      "vote_count": 271
+    }
+  ],
+  "total_pages": 48968,
+  "total_results": 979349
+}

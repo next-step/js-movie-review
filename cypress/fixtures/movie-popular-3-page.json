@@ -1,0 +1,399 @@
+{
+  "page": 3,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/pqulyfkug9A7TmmRn5zrbRA8TAY.jpg",
+      "genre_ids": [
+        28,
+        35
+      ],
+      "id": 1255788,
+      "original_language": "fr",
+      "original_title": "Le Jardinier",
+      "overview": "",
+      "popularity": 441.909,
+      "poster_path": "/qxqwLXgd4vjouSsxKXbGhQyjwoa.jpg",
+      "release_date": "2025-01-30",
+      "title": "Le Jardinier",
+      "video": false,
+      "vote_average": 6.3,
+      "vote_count": 85
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/p5ozvmdgsmbWe0H8Xk7Rc8SCwAB.jpg",
+      "genre_ids": [
+        16,
+        12,
+        35,
+        10751
+      ],
+      "id": 1022789,
+      "original_language": "en",
+      "original_title": "Inside Out 2",
+      "overview": "13살이 된 라일리의 행복을 위해 매일 바쁘게 머릿속 감정 컨트롤 본부를 운영하는 ‘기쁨’, ‘슬픔’, ‘버럭’, ‘까칠’, ‘소심’. 그러던 어느 날, 낯선 감정인 ‘불안’, ‘당황’, ‘따분’, ‘부럽’이가 본부에 등장하고, 언제나 최악의 상황을 대비하며 제멋대로인 ‘불안’이와 기존 감정들은 계속 충돌한다. 결국 새로운 감정들에 의해 본부에서 쫓겨나게 된 기존 감정들은 다시 본부로 돌아가기 위해 위험천만한 모험을 시작하는데…",
+      "popularity": 437.374,
+      "poster_path": "/x2BHx02jMbvpKjMvbf8XxJkYwHJ.jpg",
+      "release_date": "2024-06-11",
+      "title": "인사이드 아웃 2",
+      "video": false,
+      "vote_average": 7.6,
+      "vote_count": 5600
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/7bIWKyWdT04HTY3PqLETT8CH7jo.jpg",
+      "genre_ids": [
+        28,
+        80,
+        53,
+        9648
+      ],
+      "id": 974453,
+      "original_language": "en",
+      "original_title": "Absolution",
+      "overview": "",
+      "popularity": 434.123,
+      "poster_path": "/gt70JOD9xsPlpJnuBJAWdOT4yRg.jpg",
+      "release_date": "2024-10-31",
+      "title": "앱솔루션",
+      "video": false,
+      "vote_average": 5.896,
+      "vote_count": 352
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ik0BMq1s9qGDKEQW1jh7C6Aycbk.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1249013,
+      "original_language": "es",
+      "original_title": "Jugaremos en el bosque",
+      "overview": "",
+      "popularity": 404.884,
+      "poster_path": "/eBSl9nGymidAyEBdJGADnnm7JKt.jpg",
+      "release_date": "2024-05-01",
+      "title": "Jugaremos en el bosque",
+      "video": false,
+      "vote_average": 7.014,
+      "vote_count": 36
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lntyt4OVDbcxA1l7LtwITbrD3FI.jpg",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "id": 1010581,
+      "original_language": "es",
+      "original_title": "Culpa mía",
+      "overview": "노아는 남자 친구와 친구들이 있는 동네를 뒤로하고 엄마의 새 부자 남편 저택으로 이사를 가게 된다. 의붓오빠 닉과는 첫 만남부터 삐걱댔지만 곧 서로에게 이끌려 금지된 관계를 맺는다. 반항심과 고뇌로 가득 찬 그들의 인생은 송두리째 흔들리고 둘은 결국 뜨거운 사랑에 빠진다.",
+      "popularity": 374.566,
+      "poster_path": "/duT8Vks5FXwDkpxoR84xb2a6VB6.jpg",
+      "release_date": "2023-06-08",
+      "title": "나의 잘못",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 3581
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/cA88pwGnHa64BBcU3R1oCcJH9Qc.jpg",
+      "genre_ids": [
+        28,
+        27,
+        53
+      ],
+      "id": 970450,
+      "original_language": "en",
+      "original_title": "Werewolves",
+      "overview": "초달(supermoon)의 빛이 잠들어 있던 유전자를 활성화시키면서 인간들을 피에 굶주린 늑대인간으로 변하게 하고, 약 10억 명이 사망한 지 1년이 지났다. 그러나 초달이 다시 떠오르며 그 악몽이 되살아난다. 두 명의 과학자가 돌연변이를 막으려 하지만 실패하고, 달빛에 노출된 사람들은 다시 야생의 늑대인간으로 변한다. 거리에는 혼란이 휩싸이고, 과학자들은 맹수로 변한 존재들에게 포위된 가족의 집으로 향하기 위해 고군분투한다.",
+      "popularity": 371.106,
+      "poster_path": "/cRTctVlwvMdXVsaYbX5qfkittDP.jpg",
+      "release_date": "2024-12-04",
+      "title": "웨어울브즈",
+      "video": false,
+      "vote_average": 6.238,
+      "vote_count": 319
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dWkdmxIkH9y23s9v1PjQFhTGIwo.jpg",
+      "genre_ids": [
+        28,
+        18,
+        53,
+        10752
+      ],
+      "id": 1043905,
+      "original_language": "en",
+      "original_title": "Dirty Angels",
+      "overview": "2021년 미국의 아프가니스탄 철군 당시, 의료 구호 팀으로 위장한 여성 군인들이 납치된 십대 소년·소녀들을 구출하기 위해 다시 투입된다. 이들은 ISIS와 탈레반 사이에 갇힌 피해자들을 구출하는 임무를 맡는다.",
+      "popularity": 362.017,
+      "poster_path": "/3O3qSGmjRGc10hMwFul8WDxKE5t.jpg",
+      "release_date": "2024-12-11",
+      "title": "더티 엔젤스",
+      "video": false,
+      "vote_average": 6.193,
+      "vote_count": 207
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3SOunz2Z0qcOVlrkYFj20HquziB.jpg",
+      "genre_ids": [
+        878,
+        12,
+        28
+      ],
+      "id": 1114894,
+      "original_language": "en",
+      "original_title": "Star Trek: Section 31",
+      "overview": "\"그녀가 돌아왔다, 은밀하고 강렬한 임무를 위해\"  거울 우주에서 온 필리파 조지우 황제는 스타플릿의 비밀 조직인 섹션 31에 합류하여 연합을 위협하는 어둠 속의 적들과 맞서게 된다. 그녀는 과거의 죄악과 현재의 임무 사이에서 갈등하며, 새로운 팀원들과 함께 은밀한 작전을 수행한다. 그러나 임무가 진행될수록 예상치 못한 진실들이 드러나고, 그녀는 자신의 신념과 충돌하는 선택의 기로에 서게 되는데...",
+      "popularity": 347.369,
+      "poster_path": "/sqiCinCzUGlzQiFytS30N1nO3Pt.jpg",
+      "release_date": "2025-01-15",
+      "title": "스타 트렉: 섹션 31",
+      "video": false,
+      "vote_average": 4.8,
+      "vote_count": 202
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ag66gJCiZ06q1GSJuQlhGLi3Udx.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1138194,
+      "original_language": "en",
+      "original_title": "Heretic",
+      "overview": "요청을 받고 선교를 위해 낯선 남자의 집을 방문한 두 명의 젊은 여성 선교사가 이상함을 느끼고 그 집에서 벗어나려고 하면서 일어나는 일들을 그린 극영화",
+      "popularity": 342.098,
+      "poster_path": "/fr96XzlzsONrQrGfdLMiwtQjott.jpg",
+      "release_date": "2024-10-31",
+      "title": "헤레틱",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 1213
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/cBTwQKMd7Vn6rGTGBtoFLIfj7uM.jpg",
+      "genre_ids": [
+        16,
+        12,
+        28,
+        14
+      ],
+      "id": 1147416,
+      "original_language": "fr",
+      "original_title": "Miraculous World : Londres, la course contre le temps",
+      "overview": "끔찍한 운명을 맞이할 미래를 구하고자, 마리네뜨는 크로노버그가 되어 버닉스와 함께 시간을 여행하는 의문의 적을 물리치려 한다. 이 새로운 슈퍼 악당은 누구이며, 왜 이들은 마리네뜨의 은밀한 슈퍼히어로 정체성을 폭로하는 데 집착하는 걸까? 새로운 상대를 물리치고 레이디버그와 시간이 끝나는 걸 막는 것만이 마리네뜨의 유일한 희망이다!",
+      "popularity": 337.881,
+      "poster_path": "/vKLi7Q2Rw4Q4ppZGWWhMEwcyDdA.jpg",
+      "release_date": "2024-11-14",
+      "title": "미라클 월드 런던: 시간의 끝에서",
+      "video": false,
+      "vote_average": 7.322,
+      "vote_count": 216
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/Eeuq1qmv8UEsd4sX6BSrGNYR19.jpg",
+      "genre_ids": [
+        53,
+        28
+      ],
+      "id": 1001274,
+      "original_language": "fr",
+      "original_title": "La Nuit se traîne",
+      "overview": "브뤼셀의 밤, 열쇠 수리공 '매디'가 잘못된 문을 열었다. 조직의 표적이 된 '매디'는 이제 하룻밤 안에 자신의 결백을 증명해야만 한다. 경찰에 의한 흑인 사망을 항의하는 시위가 밤새 이어지는 가운데, ‘매디’는 ‘클레어’라는 여자의 전화를 받고 그녀가 자기집이라고 주장하는 아파트의 문을 열어준다. 사라진 ‘클레어’, 그리고 그 곳에서 정당방위 살인을 저지른 ‘매디’는 조직 보스 ‘야닉’에게 붙잡혀 자신의 목숨을 건 밤의 추격전을 시작한다.",
+      "popularity": 337.053,
+      "poster_path": "/ndCalgIHVeLVgafhWGQxEytgIT3.jpg",
+      "release_date": "2024-08-28",
+      "title": "나이트콜",
+      "video": false,
+      "vote_average": 6.899,
+      "vote_count": 74
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/k24eZq5I3jyz4htPkZCRpnUmBzE.jpg",
+      "genre_ids": [
+        10749,
+        18
+      ],
+      "id": 1156593,
+      "original_language": "es",
+      "original_title": "Culpa tuya",
+      "overview": "전 세계적인 히트작 '나의 잘못'의 속편. 노아와 닉의 사랑은 둘을 떼어놓으려는 부모님의 노력에도 불구하고 흔들림이 없어 보인다. 하지만 닉의 직업과 노아의 대학 진학은 두 사람의 관계와 레이스테르 가족의 근간을 흔들 새로운 관계로 그들의 삶을 안내한다. 많은 사람이 두 사람 사이를 파괴하려는 가운데 이 둘은 결국 행복을 맞이할 수 있을까?",
+      "popularity": 337.01,
+      "poster_path": "/zuctS3p8Bs9IeYv5ScKeOKp5Na5.jpg",
+      "release_date": "2024-12-26",
+      "title": "네 잘못이야",
+      "video": false,
+      "vote_average": 7.1,
+      "vote_count": 1111
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/dljPigvNMFEPkUeT0tQLwSd0w4w.jpg",
+      "genre_ids": [
+        18
+      ],
+      "id": 1028196,
+      "original_language": "en",
+      "original_title": "Nickel Boys",
+      "overview": "\"그들의 눈으로 본 세상, 침묵 속에 숨겨진 진실\"  1960년대 플로리다, 인종 차별이 만연한 시대에 엘우드 커티스(에단 헤리스 분)는 정의로운 꿈을 품은 청년이다. 그러나 작은 오해로 인해 '니클 아카데미'라는 소년원에 수감되며, 그곳에서 잭 터너(브랜든 윌슨 분)와 우정을 쌓는다. 두 소년은 부당한 폭력과 억압 속에서도 희망을 잃지 않으려 애쓰지만, 그들의 앞길은 점점 더 어두워져만 간다. 서로에게 의지하며 탈출을 꿈꾸던 그들은 운명적인 선택의 기로에 서게 되는데...",
+      "popularity": 330.497,
+      "poster_path": "/lu2vmmtStmTNMmSZl2LgrrQpLZo.jpg",
+      "release_date": "2024-12-13",
+      "title": "니클의 소년들",
+      "video": false,
+      "vote_average": 6.491,
+      "vote_count": 163
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iJaSpQNZ8GsqVDWfbCXmyZQXZ5l.jpg",
+      "genre_ids": [
+        27,
+        878
+      ],
+      "id": 945961,
+      "original_language": "en",
+      "original_title": "Alien: Romulus",
+      "overview": "2142년, 부모 세대가 맞닥뜨렸던 암울한 미래를 피하려는 청년들이 더 나은 삶을 찾기 위해 식민지를 떠날 계획을 세운다. 하지만 버려진 우주 기지 로물루스에 도착한 이들은 악몽과도 같은 에이리언의 무자비한 공격에 쫓기기 시작한다. 그 누구도 그들의 절규를 들을 수 없는 우주 한가운데, 생존을 위한 치열한 사투를 벌여야 하는데...",
+      "popularity": 328.825,
+      "poster_path": "/AmWTYg3RCMv7fbQxwCqrxiaUhkc.jpg",
+      "release_date": "2024-08-13",
+      "title": "에이리언: 로물루스",
+      "video": false,
+      "vote_average": 7.2,
+      "vote_count": 3388
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/lTYGtgDRygku7iiFLWyiEc4wLzz.jpg",
+      "genre_ids": [
+        18,
+        28,
+        27
+      ],
+      "id": 1118031,
+      "original_language": "es",
+      "original_title": "Apocalipsis Z: el principio del fin",
+      "overview": "광견병과 유사한 질병이 지구 전역에 퍼져 사람들이 공격적인 생명체로 변한다. 마넬은 고양이와 함께 집에 숨어서 재치를 발휘해 살아남는다. 곧 둘은 식량을 구하고 육지와 바다의 안전한 곳을 찾기 위해 떠나야 한다.",
+      "popularity": 328.82,
+      "poster_path": "/hofZ9t2zQEYjQWNZ8cPjMByVHci.jpg",
+      "release_date": "2024-10-04",
+      "title": "아포칼립스 Z: 종말의 시작",
+      "video": false,
+      "vote_average": 6.715,
+      "vote_count": 982
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/3q01ACG0MWm0DekhvkPFCXyPZSu.jpg",
+      "genre_ids": [
+        28,
+        35,
+        80,
+        53,
+        12
+      ],
+      "id": 573435,
+      "original_language": "en",
+      "original_title": "Bad Boys: Ride or Die",
+      "overview": "마이애미 강력반 최고의 콤비 마이크와 마커스. 가족 같은 하워드 반장이 사망 전 마약 카르텔 조직의 비리에 연루되었다는 뉴스 속보를 접하게 된다. 하지만 아무도 믿지 말라는 하워드 반장의 비밀 메시지를 받은 마이크와 마커스 형사는 사건의 진실을 밝히기 위해 위험한 수사를 시작한다. 서서히 드러나는 거대한 음모와 마주하게 된 나쁜 녀석들. 그러나 이들 역시 함정에 빠져 사건의 용의자로 지목되며 동료 경찰들은 물론 마약 카르텔 조직에게도 쫓기는 신세가 되고 마는데…",
+      "popularity": 319.366,
+      "poster_path": "/wIrhEUBWjRmZuL1Ix41cF2LhJrW.jpg",
+      "release_date": "2024-06-05",
+      "title": "나쁜 녀석들: 라이드 오어 다이",
+      "video": false,
+      "vote_average": 7.384,
+      "vote_count": 2783
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/iR79ciqhtaZ9BE7YFA1HpCHQgX4.jpg",
+      "genre_ids": [
+        27,
+        9648
+      ],
+      "id": 1100782,
+      "original_language": "en",
+      "original_title": "Smile 2",
+      "overview": "월드투어를 앞두고 자신의 눈 앞에서 기괴한 미소와 함께 끔찍한 죽음을 맞은 친구를 목격한 팝스타 ‘스카이’. 그 날 이후 공연 리허설과 팬 미팅 행사 등 그녀의 삶 곳곳에서 끔찍한 일들이 잇따라 발생한다. 화려한 스타의 삶을 뒤덮은 공포에서 벗어나기 위해 몸부림치던 ‘스카이’는 자신이 죽어야만 전염처럼 번지는 저주가 끝난다는 사실을 듣게 되는데…",
+      "popularity": 314.013,
+      "poster_path": "/4nQk1OgbtdnKYMEQiOwwMB4yGxn.jpg",
+      "release_date": "2024-10-16",
+      "title": "스마일 2",
+      "video": false,
+      "vote_average": 6.586,
+      "vote_count": 1331
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/ka28iazibT3HDqp8V6ST2dGWXZZ.jpg",
+      "genre_ids": [
+        27
+      ],
+      "id": 1299372,
+      "original_language": "es",
+      "original_title": "El llanto",
+      "overview": "",
+      "popularity": 312.054,
+      "poster_path": "/sO8kPwslPK5iXWDS1RKZvXkO95T.jpg",
+      "release_date": "2024-10-25",
+      "title": "El llanto",
+      "video": false,
+      "vote_average": 6.243,
+      "vote_count": 35
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/2P0PUkQ1tNHNYTEmtbBmM8MfXBG.jpg",
+      "genre_ids": [
+        878,
+        35,
+        18
+      ],
+      "id": 696506,
+      "original_language": "en",
+      "original_title": "Mickey 17",
+      "overview": "친구 티모와 함께 차린 마카롱 가게가 쫄딱 망해 거액의 빚을 지고 못 갚으면 죽이겠다는 사채업자를 피해 지구를 떠나야 하는 미키. 기술이 없는 그는, 정치인 마셜의 얼음행성 개척단에서 위험한 일을 도맡고, 죽으면 다시 프린트되는 익스펜더블로 지원한다. 4년의 항해와 얼음행성 니플하임에 도착한 뒤에도 늘 미키를 지켜준 여자친구 나샤. 그와 함께, 미키는 반복되는 죽음과 출력의 사이클에도 익숙해진다. 그러나 미키 17이 얼음행성의 생명체인 크리퍼와 만난 후 죽을 위기에서 돌아와 보니 이미 미키 18이 프린트되어 있다. 행성 당 1명만 허용된 익스펜더블이 둘이 된 멀티플 상황. 둘 중 하나는 죽어야 하는 현실 속에 걷잡을 수 없는 사건이 기다리고 있었으니…",
+      "popularity": 311.237,
+      "poster_path": "/7KghOYtsxFquUuw4THbARsSEo6g.jpg",
+      "release_date": "2025-02-28",
+      "title": "미키 17",
+      "video": false,
+      "vote_average": 7.6,
+      "vote_count": 15
+    },
+    {
+      "adult": false,
+      "backdrop_path": "/5o4iH2N4jX3HmNCBbC6rJqxtWj2.jpg",
+      "genre_ids": [
+        27,
+        53
+      ],
+      "id": 1222064,
+      "original_language": "en",
+      "original_title": "River of Blood",
+      "overview": "",
+      "popularity": 310.373,
+      "poster_path": "/7lkm4eAvHy1uCs48GEwMxgwNdgd.jpg",
+      "release_date": "2024-08-29",
+      "title": "River of Blood",
+      "video": false,
+      "vote_average": 6.3,
+      "vote_count": 35
+    }
+  ],
+  "total_pages": 48969,
+  "total_results": 979380
+}
