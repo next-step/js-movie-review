@@ -1,4 +1,5 @@
 @import "./colors.css";
+@import url("./skeleton.css");
 
 * {
   box-sizing: border-box;
@@ -44,7 +45,6 @@ button.primary {
 }
 
 #wrap {
-  min-width: 1440px;
   background-color: var(--color-bluegray-100);
 }
 
@@ -131,4 +131,36 @@ footer.footer {
 
 footer.footer p:not(:last-child) {
   margin-bottom: 8px;
+}
+
+.movie-grid {
+  display: grid;
+  gap: 16px;
+  justify-content: center;
+  padding: 20px;
+}
+
+@media screen and (max-width: 480px) {
+  .movie-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .movie-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .movie-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+#movie-list-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
