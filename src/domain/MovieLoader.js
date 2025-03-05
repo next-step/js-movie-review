@@ -2,6 +2,7 @@ import { fetchPopularMovies } from "../api";
 import { Headers } from "../components/Headers";
 import { LoadMoreButton } from "../components/LoadMoreButton";
 import { MovieList, renderMovieItems } from "../components/MovieList";
+import { SkeletonItems } from "../components/SkeletonItems";
 
 let currentPage = 1;
 let allMovies = [];
@@ -13,8 +14,8 @@ export const initializeMovieSection = async () => {
   const initialMovies = await fetchPopularMovies();
   allMovies = initialMovies.results;
 
-  if(allMovies.length === 0) {
-    throw Error("영화 정보가 로드되지 않았습니다.")
+  if (allMovies.length === 0) {
+    throw Error("영화 정보가 로드되지 않았습니다.");
   }
 
   renderHeaders(allMovies[0]);
@@ -41,12 +42,16 @@ const renderMovieSection = (movies) => {
 const loadMoreMovies = async () => {
   if (!hasMoreMovies) return;
 
+  addSkeleton();
+
   const newMovies = await fetchPopularMovies(currentPage + 1);
 
   allMovies = [...allMovies, ...newMovies.results];
   currentPage++;
 
   addMovieItems(newMovies.results);
+
+  removeSkeleton();
 
   updateLoadMoreButtonDisplay(newMovies.results.length);
 };
@@ -55,6 +60,19 @@ const addLoadMoreButtonEvent = () => {
   const loadMoreButton = document.getElementById("load-more-button");
   loadMoreButton?.addEventListener("click", loadMoreMovies);
 };
+
+const addSkeleton = () => {
+  const movieSection = document.querySelector(".thumbnail-list");
+  movieSection.insertAdjacentHTML("beforeend", SkeletonItems());
+};
+
+const removeSkeleton = () => {
+  const skeletonLists = document.querySelectorAll(".skeleton-list");
+  skeletonLists.forEach(skeletonList => {
+    skeletonList.remove();
+  });
+};
+
 
 const addMovieItems = (movies) => {
   const movieSection = document.querySelector(".thumbnail-list");
