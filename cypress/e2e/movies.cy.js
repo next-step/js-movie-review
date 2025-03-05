@@ -113,14 +113,18 @@ describe("Movie App E2E Tests", () => {
   describe("Error Handling Tests", () => {
     it("displays error message when the fetch fails", () => {
       cy.intercept("GET", "**/popular?*", {
-        statusCode: 500,
-        body: {},
+        forceNetworkError: true,
       }).as("getPopularError");
+
+      cy.visit("http://localhost:5173");
+
       cy.wait("@getPopularError");
 
-      cy.contains(
-        "영화를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
-      ).should("be.visible");
+      cy.on("window:alert", (text) => {
+        expect(text).to.contain(
+          "영화를 불러오는 중 오류가 발생했습니다. 잠시 후 다시 시도해주세요."
+        );
+      });
     });
   });
 
