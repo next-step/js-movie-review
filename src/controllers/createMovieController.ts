@@ -42,7 +42,12 @@ export function createMovieController(containerId: string) {
     if (query) {
       currentMode = "search";
       setMode("search");
+
       await handleSearch(query);
+      const inputEl = document.querySelector(
+        ".search-input"
+      ) as HTMLInputElement | null;
+      if (inputEl) inputEl.value = query;
     } else {
       setMode("category");
       await loadCategory(currentCategory);
@@ -109,7 +114,7 @@ export function createMovieController(containerId: string) {
           });
         }
       } else {
-        movieContainer.innerHTML = "<p>영화 데이터가 없습니다.</p>";
+        movieContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
       }
 
       history.pushState({}, "", location.pathname);
