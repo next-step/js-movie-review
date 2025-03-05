@@ -1,10 +1,11 @@
 import { fetchMovies } from "./api.js";
+import { DESKTOP_MOVIES_PER_LOAD } from "./constants.js";
 import { createMovie } from "./createMovie.js";
 
 export function createMovieService() {
   let allMovies = [];
   let displayedCount = 0;
-  let moviesPerLoad = 9;
+  let moviesPerLoad = DESKTOP_MOVIES_PER_LOAD;
 
   function setMoviesPerLoad(num) {
     moviesPerLoad = num;

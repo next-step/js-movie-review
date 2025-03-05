@@ -5,7 +5,7 @@ export function showErrorUI(container, message) {
       : container;
 
   if (!targetContainer) {
-    console.error(`'${container}' 요소를 찾을 수 없음`);
+    console.error(`'${container}' 요소를 찾을 수 없습니다`);
     return;
   }
 

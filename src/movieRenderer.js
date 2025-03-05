@@ -1,5 +1,8 @@
 export function showSkeletonUI(movieContainer) {
-  if (!movieContainer) return;
+  if (!movieContainer) {
+    console.error("movieContainer가 없습니다");
+    return;
+  }
 
   movieContainer.innerHTML = "";
 
@@ -35,8 +38,10 @@ export function showSkeletonUI(movieContainer) {
 }
 
 export function renderMovies(movieContainer, movies) {
-  if (!movieContainer) return;
-
+  if (!movieContainer) {
+    console.error("movieContainer가 없습니다");
+    return;
+  }
   movieContainer.innerHTML = "";
 
   const movieGrid = document.createElement("div");

@@ -4,10 +4,16 @@ export function LoadHeader({
   backdrop = "https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/stKGOm8UyhuLPR9sZLjs5AkmncA.jpg",
 }) {
   const headerContainer = document.getElementById("header-container");
-  if (!headerContainer) return;
+  if (!headerContainer) {
+    console.error("document에서 header-container id를 찾을 수 없습니다.");
+    return;
+  }
 
   const template = document.getElementById("header-template");
-  if (!template) return;
+  if (!template) {
+    console.error("document에서 header-template id를 찾을 수 없습니다.");
+    return;
+  }
 
   const headerElement = template.content.cloneNode(true);
 

@@ -1,11 +1,14 @@
+import { SESSION_KEYS } from "../constants";
+
 export function createTabs(onTabChange = null) {
   const tabContainer = document.getElementById("tab-container");
   if (!tabContainer) {
-    console.error("탭 컨테이너가 없습니다.");
+    console.error("document에서 tab-container id를 찾을 수 없습니다.");
     return;
   }
 
-  let selectedTab = sessionStorage.getItem("selectedTab") || "popular";
+  let selectedTab =
+    sessionStorage.getItem(SESSION_KEYS.SELECTED_TAB) || "popular";
 
   function renderTabs() {
     tabContainer.innerHTML = "";
@@ -19,30 +22,35 @@ export function createTabs(onTabChange = null) {
       { category: "upcoming", label: "상영 예정" },
     ];
 
-    tabItems.forEach(({ category, label }) => {
-      const li = document.createElement("li");
-      li.setAttribute("data-category", category);
-      const a = document.createElement("a");
-      a.href = "#";
-      const div = document.createElement("div");
-      div.classList.add("tab-item");
-      div.innerHTML = `<h3>${label}</h3>`;
-      a.appendChild(div);
-      li.appendChild(a);
-      ul.appendChild(li);
-    });
+    const tabHTML = `
+    <ul class="tab">
+      ${tabItems
+        .map(
+          ({ category, label }) => `
+        <li data-category="${category}">
+          <a href="#">
+            <div class="tab-item">
+              <h3>${label}</h3>
+            </div>
+          </a>
+        </li>
+      `
+        )
+        .join("")}
+    </ul>
+  `;
 
-    tabContainer.appendChild(ul);
+    tabContainer.innerHTML = tabHTML;
     updateSelectedTab();
   }
 
-  function handleTabClick(e) {
+  function handleTabSelection(e) {
     e.preventDefault();
     const target = e.target.closest("li[data-category]");
     if (!target) return;
 
     selectedTab = target.getAttribute("data-category");
-    sessionStorage.setItem("selectedTab", selectedTab);
+    sessionStorage.setItem(SESSION_KEYS.SELECTED_TAB, selectedTab);
     updateSelectedTab();
 
     if (onTabChange) {
@@ -59,7 +67,7 @@ export function createTabs(onTabChange = null) {
 
   function init() {
     renderTabs();
-    tabContainer.addEventListener("click", handleTabClick);
+    tabContainer.addEventListener("click", handleTabSelection);
 
     if (onTabChange) {
       onTabChange(selectedTab);
