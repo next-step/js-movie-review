@@ -1,6 +1,7 @@
-import { fetchMovies } from "./api.js";
-import { DESKTOP_MOVIES_PER_LOAD } from "./constants.js";
+import { fetchMovies, fetchSearchMovies } from "./api.js";
+import { DESKTOP_MOVIES_PER_LOAD } from "../constants.js";
 import { createMovie } from "./createMovie.js";
+import { ApiMovie, Category, Movie, MovieService } from "../types/type.js";
 
 export function createMovieService(): MovieService {
   let allMovies: Movie[] = [];
