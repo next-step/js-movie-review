@@ -12,7 +12,6 @@ export function createMovieController(containerId: string) {
   ) as HTMLElement | null;
   const service: MovieService = createMovieService();
 
-  let currentMode: "category" | "search" = "category";
   let currentCategory: Category = "popular";
   let searchFormAttached = false;
   let loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null = null;
@@ -40,7 +39,6 @@ export function createMovieController(containerId: string) {
     const query = params.get("search");
 
     if (query) {
-      currentMode = "search";
       setMode("search");
 
       await fetchMoviesBySearch(query);
@@ -55,7 +53,6 @@ export function createMovieController(containerId: string) {
   }
 
   function setMode(mode: "category" | "search"): void {
-    currentMode = mode;
     const tabContainer = document.getElementById(
       "tab-container"
     ) as HTMLElement | null;
@@ -130,7 +127,6 @@ export function createMovieController(containerId: string) {
   async function fetchMoviesBySearch(query: string): Promise<void> {
     if (!movieContainer) return;
 
-    currentMode = "search";
     setMode("search");
 
     showSkeletonUI(movieContainer);
@@ -204,7 +200,6 @@ export function createMovieController(containerId: string) {
     const query = params.get("search");
 
     if (query) {
-      currentMode = "search";
       setMode("search");
 
       const inputEl = document.querySelector(
