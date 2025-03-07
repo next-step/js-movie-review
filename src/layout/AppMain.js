@@ -18,6 +18,7 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
             mainState,
           })}
       </section>
+      <button class="add-more">더보기</button>
     </main>
   `;
 
@@ -33,10 +34,7 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
     mainState.value = [...mainState.value, ...data];
   };
 
-  const button = document.createElement("button");
-  button.addEventListener("click", handleClick);
-  button.innerHTML = "더 보기";
-  div.querySelector("section").insertAdjacentElement("afterend", button);
+  div.querySelector(".add-more").addEventListener("click", handleClick);
 
   container.appendChild(div);
 
@@ -47,9 +45,6 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
   })();
 
   const render = async () => {
-    if (pageState.value >= 2 && div.querySelector("button")) {
-      div.querySelector("main").removeChild(button);
-    }
     div.querySelector("section").innerHTML = /* html */ `
         ${ThumbnailList({
           mainState,

@@ -105,6 +105,13 @@ button.primary {
   color: gray;
 }
 
+.add-more {
+  width: 100%;
+  border-radius: 10px;
+  background: skyblue;
+  color: white
+}
+
 .search-icon-box {
   position: relative;
 }
