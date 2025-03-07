@@ -85,6 +85,26 @@ button.primary {
   margin: 0 auto;
 }
 
+.top-rated-container .logo-and-searchbox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.top-rated-container .logo-and-searchbox input{
+  background: transparent;
+  border: 2px solid gray;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  padding: 1rem 1rem;
+  font-size: 20px;
+}
+
+.top-rated-container .logo-and-searchbox input::placeholder{
+  color: gray;
+}
+
 .top-rated-movie {
   margin-top: 64px;
 }

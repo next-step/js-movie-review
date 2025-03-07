@@ -1,7 +1,7 @@
 import { getTopRatedMovies } from "../shared/api/get";
 import { state } from "../shared/state";
 
-export const AppHeader = () => {
+export const AppHeader = ({ inputState }) => {
   const { value: headerState, subscribe } = state([]);
 
   const getResponse = async () => {
@@ -18,12 +18,17 @@ export const AppHeader = () => {
 
   const container = document.createDocumentFragment();
   const header = document.createElement("header");
-  // header.addEventListener("click", handleClick);
   container.appendChild(header);
 
-  const render = () => {
-    console.log(headerState.value);
+  const handleKeyDown = (e) => {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      // eslint-disable-next-line no-param-reassign
+      inputState.value = e.target.value;
+    }
+  };
 
+  const render = () => {
     header.innerHTML = /* html */ `
     <div class="background-container">
     ${headerState.value
@@ -37,10 +42,14 @@ export const AppHeader = () => {
       .join("")}
 
       <div class="top-rated-container">
-        <h1 class="logo">
-          <img src="logo.png" alt="MovieList" />
-        </h1>
-        <div class="top-rated-movie">
+        <div class="logo-and-searchbox">
+          <h1 class="logo">
+            <img src="logo.png" alt="MovieList" />
+          </h1>
+          <input class="search" type="text"/>
+          <div></div>
+        </div>
+          <div class="top-rated-movie">
           
         ${headerState.value
           ?.slice(0, 1)
@@ -58,14 +67,15 @@ export const AppHeader = () => {
       </div>
     </div>
     `;
+
+    const inputElement = header.querySelector(".search");
+    inputElement.addEventListener("keydown", handleKeyDown);
   };
 
   // 초기 렌더
   render();
 
-  // value내 값이 변할 떄, render를 다시!
   subscribe(() => {
-    // console.log(`🔔 Observer 패턴: ${key} 변경됨 -> ${value}`);
     render();
   });
 
