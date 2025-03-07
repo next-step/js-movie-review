@@ -97,13 +97,25 @@ button.primary {
   border-radius: 20px;
   color: white;
   font-weight: bold;
-  padding: 1rem 1rem;
+  padding: 1rem 3rem 1rem 1rem;
   font-size: 20px;
 }
 
 .top-rated-container .logo-and-searchbox input::placeholder{
   color: gray;
 }
+
+.search-icon-box {
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+
+
 
 .top-rated-movie {
   margin-top: 64px;
