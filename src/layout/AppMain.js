@@ -1,9 +1,8 @@
 import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
 import { getFavoriteMovies } from "../shared/api/get";
-import { MainTabs } from "../widget/MainTabs";
 
-export const AppMain = () => {
+export const AppMain = ({ inputState, inputStateSubscribe }) => {
   const { value: mainState, subscribe } = state([]);
   const { value: pageState } = state(1);
 
@@ -12,7 +11,6 @@ export const AppMain = () => {
   div.classList.add("container");
 
   div.innerHTML = /* html */ `
-    ${MainTabs()}
     <main>
       <h2>지금 인기 있는 영화</h2>  
       <section>
@@ -24,15 +22,15 @@ export const AppMain = () => {
   `;
 
   const getResponse = async (index) => {
-    const response = await getFavoriteMovies(index);
-    return response;
+    const data = await getFavoriteMovies(index);
+    const { results } = data;
+    return results;
   };
 
   const handleClick = async () => {
     pageState.value += 1;
     const data = await getResponse(pageState.value);
-    const { results } = data;
-    mainState.value = [...mainState.value, ...results];
+    mainState.value = [...mainState.value, ...data];
   };
 
   const button = document.createElement("button");
@@ -45,8 +43,7 @@ export const AppMain = () => {
   // 초기 비동기 렌더링
   (async () => {
     const data = await getResponse(pageState.value);
-    const { results } = data;
-    mainState.value = results;
+    mainState.value = data;
   })();
 
   const render = async () => {
@@ -60,7 +57,14 @@ export const AppMain = () => {
   `;
   };
 
-  // value내 값이 변할 떄, render를 다시!
+  inputStateSubscribe(async () => {
+    const data = await getResponse(1);
+    mainState.value = [...data].filter((movieData) => {
+      const { title } = movieData;
+      return title.includes(inputState.value);
+    });
+  });
+
   subscribe(() => {
     render();
   });
