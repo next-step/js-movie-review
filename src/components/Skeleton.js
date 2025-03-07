@@ -1,6 +1,8 @@
 export const Skeleton = (props) => {
-  const _width = props?.width ? `${props.width}px` : '100%';
-  const _height = props?.height ? `${props.height}px` : '100%';
+  const { width, height } = props;
+
+  const _width = width ? `${width}px` : '100%';
+  const _height = height ? `${height}px` : '100%';
 
   return `
     <div 

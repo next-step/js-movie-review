@@ -1,25 +1,33 @@
 import { Button } from '../components/Button';
 import { thumbnailStore } from '../domains/movie/stores';
+import { searchStore } from '../domains/search/stores';
 import { SearchHeader } from './SearchHeader';
 
 export const ThumbnailHeader = () => {
   const { thumbnailTitle, thumbnailSrc, thumbnailVoteAverage } =
     thumbnailStore.get();
+  const { hasSearchValue } = searchStore.get();
 
   const rate = thumbnailVoteAverage.toFixed(1);
-  const backgroundImage = thumbnailSrc
-    ? `url('https://image.tmdb.org/t/p/w1280${thumbnailSrc}');`
-    : '';
+  const backgroundImage = hasSearchValue
+    ? 'none'
+    : thumbnailSrc
+      ? `url('https://image.tmdb.org/t/p/w1280${thumbnailSrc}');`
+      : '';
+
+  const backgroundContainerClass = `background-container${hasSearchValue ? '__close' : ''}`;
+  const topRatedMovieClass = `top-rated-movie${hasSearchValue ? '__close' : ''}`;
 
   return `
     <header id="header-container">
-      <div class="background-container">
+      <div class="${backgroundContainerClass}">
         <div class="overlay" aria-hidden="true" style="background: no-repeat ${backgroundImage} background-size: cover;">
         </div>
+
         <div class="top-rated-container">
           ${SearchHeader()}
           
-          <div class="top-rated-movie">
+          <div class="${topRatedMovieClass}">
             <div class="rate">
               <img
                 src="${import.meta.env.BASE_URL}assets/star_empty.png"
@@ -48,3 +56,4 @@ const render = () => {
 };
 
 thumbnailStore.subscribe(render);
+searchStore.subscribe(render);

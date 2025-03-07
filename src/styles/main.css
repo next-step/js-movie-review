@@ -67,6 +67,12 @@ button.primary {
   padding: 48px;
 }
 
+.background-container__close {
+  position: relative;
+  height: 124px;
+  padding: 48px;
+}
+
 .overlay {
   position: absolute;
   top: 0;
@@ -87,6 +93,10 @@ button.primary {
 
 .top-rated-movie {
   margin-top: 64px;
+}
+
+.top-rated-movie__close {
+  display: none;
 }
 
 .top-rated-movie > *:not(:last-child) {
