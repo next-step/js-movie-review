@@ -1,20 +1,13 @@
-import { getTopRatedMovies } from "../shared/api/get";
+import { getTopRatedMovies } from "../api/movieApiClient";
 import { state } from "../shared/state";
 
 export const AppHeader = ({ inputState }) => {
   const { value: headerState, subscribe } = state([]);
 
-  const getResponse = async () => {
-    const response = await getTopRatedMovies();
-    return response;
+  const fetchData = async () => {
+    const data = await getTopRatedMovies();
+    headerState.value = data;
   };
-
-  // 초기 비동기 렌더링
-  (async () => {
-    const data = await getResponse();
-    const { results } = data;
-    headerState.value = results;
-  })();
 
   const container = document.createDocumentFragment();
   const header = document.createElement("header");
@@ -77,6 +70,7 @@ export const AppHeader = ({ inputState }) => {
     inputElement.addEventListener("keydown", handleKeyDown);
   };
 
+  fetchData();
   // 초기 렌더
   render();
 

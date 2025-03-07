@@ -1,6 +1,7 @@
 import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
-import { getFavoriteMovies } from "../shared/api/get";
+import { getFavoriteMovies } from "../api/movieApiClient";
+import { MainTabs } from "../widget/MainTabs";
 
 export const AppMain = ({ inputState, inputStateSubscribe }) => {
   const { value: mainState, subscribe } = state([]);
@@ -12,6 +13,8 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
 
   div.innerHTML = /* html */ `
     <main>
+      <div class="main-tabs">
+      </div>
       <h2>지금 인기 있는 영화</h2>  
       <section>
           ${ThumbnailList({
@@ -22,27 +25,24 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
     </main>
   `;
 
-  const getResponse = async (index) => {
-    const data = await getFavoriteMovies(index);
-    const { results } = data;
-    return results;
-  };
-
-  const handleClick = async () => {
+  const fetchNextPage = async () => {
     pageState.value += 1;
-    const data = await getResponse(pageState.value);
+    const data = await getFavoriteMovies(pageState.value);
     mainState.value = [...mainState.value, ...data];
   };
 
-  div.querySelector(".add-more").addEventListener("click", handleClick);
+  div.querySelector(".main-tabs").appendChild(MainTabs());
+  div.querySelector(".add-more").addEventListener("click", fetchNextPage);
 
   container.appendChild(div);
 
   // 초기 비동기 렌더링
-  (async () => {
-    const data = await getResponse(pageState.value);
+  const fetchData = async () => {
+    const data = await getFavoriteMovies(pageState.value);
     mainState.value = data;
-  })();
+  };
+
+  fetchData();
 
   const render = async () => {
     div.querySelector("section").innerHTML = /* html */ `
@@ -53,7 +53,7 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
   };
 
   inputStateSubscribe(async () => {
-    const data = await getResponse(1);
+    const data = await getFavoriteMovies(1);
     mainState.value = [...data].filter((movieData) => {
       const { title } = movieData;
       return title.includes(inputState.value);
