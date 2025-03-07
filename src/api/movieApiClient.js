@@ -6,9 +6,9 @@ export const getFavoriteMovies = async (index = 1) => {
       Authorization: `Bearer ${import.meta.env.VITE_MOVIE_TMDB_KEY}`,
     },
   });
-  const data = await response.json();
+  const { results } = await response.json();
 
-  return data;
+  return results;
 };
 
 export const getTopRatedMovies = async () => {
@@ -19,7 +19,7 @@ export const getTopRatedMovies = async () => {
       Authorization: `Bearer ${import.meta.env.VITE_MOVIE_TMDB_KEY}`,
     },
   });
-  const data = await response.json();
+  const { results } = await response.json();
 
-  return data;
+  return results;
 };
