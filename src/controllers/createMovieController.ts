@@ -1,7 +1,6 @@
 import { createMovieService } from "../services/createMovieService";
 import { showSkeletonUI, renderMovies } from "../components/MovieRenderer";
 import { LoadMoreButton } from "../components/LoadMoreButton";
-import { Header } from "../components/Header";
 import { showErrorMessage } from "../utils/error";
 import { debounce } from "../utils/helper";
 import { MovieCategory, IMovieService, MovieModel } from "../types/type";
@@ -17,6 +16,7 @@ import {
   MOBILE_BREAKPOINT,
   MOBILE_MOVIES_PER_LOAD,
 } from "../constants";
+import { getCurrentMode } from "../utils/state";
 export function createMovieController(containerId: string) {
   const containerElement = document.getElementById(containerId);
   if (!containerElement) {
@@ -55,12 +55,11 @@ export function createMovieController(containerId: string) {
     const params = new URLSearchParams(location.search);
     const searchQuery = params.get("search");
 
-    if (searchQuery) {
-      currentMode = "search";
-      searchMovies(searchQuery, false);
+    currentMode = getCurrentMode(searchQuery ?? "");
+
+    if (currentMode === "search") {
+      searchMovies(searchQuery!, false);
     } else {
-      currentMode = "category";
-      resetSearchInput();
       fetchMoviesByCategory(currentCategory, true);
     }
   }
@@ -82,7 +81,7 @@ export function createMovieController(containerId: string) {
     isInitial?: boolean;
     pushState?: boolean;
   }) {
-    setCurrentMode(query);
+    currentMode = getCurrentMode(query);
 
     showSkeletonUI(movieContainer);
 
@@ -97,19 +96,6 @@ export function createMovieController(containerId: string) {
       displayFetchErrorMessage();
     } finally {
       updateHistory(query, isInitial, pushState);
-    }
-  }
-
-  function setCurrentMode(query?: string) {
-    if (query) {
-      currentMode = "search";
-      updateTabContainer("search");
-      setSearchInput(query);
-    } else {
-      if (currentMode === "search") return;
-      currentMode = "category";
-      resetSearchInput();
-      updateTabContainer("category");
     }
   }
 
@@ -130,7 +116,7 @@ export function createMovieController(containerId: string) {
     if (movies.length === 0) {
       movieContainer.innerHTML = query
         ? `<p>${query} 검색 결과가 없습니다.</p>`
-        : `<p>영화를 찾을 수 없습니다.</p>`;
+        : `<p>영화가 없습니다.</p>`;
       return;
     }
 
