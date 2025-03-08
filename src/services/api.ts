@@ -11,20 +11,34 @@ function fetchWithTimeout(
   return Promise.race([
     fetch(url, options),
     new Promise<Response>((_, reject) =>
-      setTimeout(
-        () => reject(new Error("요청 시간이 초과되었습니다.")),
-        timeout
-      )
+      setTimeout(() => {
+        reject(new Error("요청 시간이 초과되었습니다."));
+      }, timeout)
     ),
   ]);
 }
 
-export async function fetchMovies(
-  category: string,
-  page: number = 1
-): Promise<ApiMovie[]> {
-  const url: string = `${BASE_URL}/movie/${category}?language=ko-KR&page=${page}`;
-  const options: RequestInit = {
+type FetchDataOptions = {
+  endpoint: string;
+  params?: Record<string, string | number | undefined>;
+  timeout?: number;
+  init?: RequestInit;
+};
+
+async function fetchData<T>({
+  endpoint,
+  params = {},
+  timeout = 10_000,
+  init,
+}: FetchDataOptions): Promise<T> {
+  const url = new URL(`${BASE_URL}/${endpoint}`);
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined) {
+      url.searchParams.set(key, String(value));
+    }
+  });
+
+  const defaultOptions: RequestInit = {
     method: "GET",
     headers: {
       accept: "application/json",
@@ -32,37 +46,45 @@ export async function fetchMovies(
     },
   };
 
-  try {
-    const response = await fetchWithTimeout(url, options, 10_000);
-    if (!response.ok) {
-      throw new Error(`HTTP error status: ${response.status}`);
+  const options = { ...defaultOptions, ...init };
+
+  const response = await fetchWithTimeout(url.toString(), options, timeout);
+
+  if (!response.ok) {
+    let errorMessage = `HTTP 요청중 에러가 발생했습니다: ${response.status}`;
+
+    if (response.status === 404) {
+      errorMessage = "리소스를 찾을 수 없습니다. (404)";
+    } else if (response.status >= 500) {
+      errorMessage =
+        "서버 에러가 발생했습니다. 잠시 후 다시 시도해주세요. (5xx)";
     }
-    const data = await response.json();
-    return data.results;
-  } catch (error) {
-    throw error;
+
+    throw new Error(errorMessage);
   }
+
+  return response.json();
 }
 
-export async function fetchSearchMovies(
-  query: string,
-  page: number = 1
-): Promise<ApiMovie[]> {
-  const url: string = `${BASE_URL}/search/movie?language=ko-KR&page=${page}&query=${encodeURIComponent(
-    query
-  )}`;
-  const options: RequestInit = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${API_KEY}`,
+export async function fetchMovies(category: string, page: number = 1) {
+  const data = await fetchData<{ results: ApiMovie[] }>({
+    endpoint: `movie/${category}`,
+    params: {
+      language: "ko-KR",
+      page,
     },
-  };
+  });
+  return data.results;
+}
 
-  const response = await fetchWithTimeout(url, options, 10_000);
-  if (!response.ok) {
-    throw new Error(`HTTP error status: ${response.status}`);
-  }
-  const data = await response.json();
+export async function fetchSearchMovies(query: string, page: number = 1) {
+  const data = await fetchData<{ results: ApiMovie[] }>({
+    endpoint: "search/movie",
+    params: {
+      language: "ko-KR",
+      page,
+      query: encodeURIComponent(query),
+    },
+  });
   return data.results;
 }
