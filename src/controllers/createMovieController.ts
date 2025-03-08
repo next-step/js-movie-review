@@ -4,157 +4,187 @@ import { LoadMoreButton } from "../components/LoadMoreButton";
 import { Header } from "../components/Header";
 import { showErrorMessage } from "../utils/error";
 import { debounce } from "../utils/helper";
-import { MovieCategory, IMovieService } from "../types/type";
-
+import { MovieCategory, IMovieService, MovieModel } from "../types/type";
+import {
+  resetSearchInput,
+  setSearchInput,
+  addLoadMoreButton,
+  updateTabContainer,
+  updateHeader,
+} from "../utils/ui";
+import {
+  DESKTOP_MOVIES_PER_LOAD,
+  MOBILE_BREAKPOINT,
+  MOBILE_MOVIES_PER_LOAD,
+} from "../constants";
 export function createMovieController(containerId: string) {
-  const containerElement = document.getElementById(
-    containerId
-  ) as HTMLElement | null;
+  const containerElement = document.getElementById(containerId);
   if (!containerElement) {
     console.error(`document에서 ${containerId} id를 찾을 수 없습니다`);
     return;
   }
 
   const movieContainer: HTMLElement = containerElement;
-
   const service: IMovieService = createMovieService();
-
   let currentCategory: MovieCategory = "popular";
-  let searchFormAttached = false;
   let loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null = null;
+  let currentMode: "search" | "category" = "category";
 
-  function initResizeListener(): void {
-    window.addEventListener(
-      "resize",
-      debounce(() => {
-        const perLoad = window.innerWidth <= 768 ? 3 : 9;
-        service.setMoviesPerLoad(perLoad);
-      }, 300)
+  function updatePerLoad(): void {
+    service.setMoviesPerLoad(
+      window.innerWidth <= MOBILE_BREAKPOINT
+        ? MOBILE_MOVIES_PER_LOAD
+        : DESKTOP_MOVIES_PER_LOAD
     );
-    const initialPerLoad = window.innerWidth <= 768 ? 3 : 9;
-    service.setMoviesPerLoad(initialPerLoad);
   }
 
-  async function init(): Promise<void> {
-    attachSearchFormListener();
-    window.addEventListener("popstate", onPopState);
+  function initResizeListener(): void {
+    const debouncedUpdate = debounce(updatePerLoad, 300);
+    window.addEventListener("resize", debouncedUpdate);
+    updatePerLoad();
+  }
+
+  function init() {
+    attachSearchListener();
+    handleInitialState();
     initResizeListener();
+    window.addEventListener("popstate", handleInitialState);
+  }
 
+  function handleInitialState() {
     const params = new URLSearchParams(location.search);
-    const query = params.get("search");
+    const searchQuery = params.get("search");
 
-    if (query) {
-      updateTabContainer("search");
-      await fetchMoviesBySearch(query);
-      const inputEl = document.querySelector(
-        ".search-input"
-      ) as HTMLInputElement | null;
-      if (inputEl) inputEl.value = query;
+    if (searchQuery) {
+      currentMode = "search";
+      searchMovies(searchQuery, false);
     } else {
-      updateTabContainer("category");
+      currentMode = "category";
       resetSearchInput();
-      await fetchMoviesByCategory(currentCategory);
+      fetchMoviesByCategory(currentCategory, true);
     }
   }
 
   async function switchTab(newCategory: MovieCategory): Promise<void> {
+    if (currentMode === "search") return;
     currentCategory = newCategory;
     await fetchMoviesByCategory(newCategory);
   }
 
-  async function fetchMoviesByCategory(category: MovieCategory): Promise<void> {
+  async function fetchMovies({
+    category,
+    query,
+    isInitial = false,
+    pushState = true,
+  }: {
+    category?: MovieCategory;
+    query?: string;
+    isInitial?: boolean;
+    pushState?: boolean;
+  }) {
+    setCurrentMode(query);
+
     showSkeletonUI(movieContainer);
 
     try {
+      const movies = query
+        ? await fetchMoviesBySearchQuery(query)
+        : await fetchMoviesByCategoryName(category);
+
+      renderMovieResults(movies, query);
+      updateHeader(service);
+    } catch (error) {
+      displayFetchErrorMessage();
+    } finally {
+      updateHistory(query, isInitial, pushState);
+    }
+  }
+
+  function setCurrentMode(query?: string) {
+    if (query) {
+      currentMode = "search";
+      updateTabContainer("search");
+      setSearchInput(query);
+    } else {
+      if (currentMode === "search") return;
+      currentMode = "category";
+      resetSearchInput();
+      updateTabContainer("category");
+    }
+  }
+
+  async function fetchMoviesBySearchQuery(query: string) {
+    await service.searchMovies(query);
+    return service.getNextBatch();
+  }
+
+  async function fetchMoviesByCategoryName(category?: MovieCategory) {
+    if (category) {
       await service.loadMovies(category);
+      currentCategory = category;
+    }
+    return service.getNextBatch();
+  }
 
-      renderNextBatch();
+  function renderMovieResults(movies: MovieModel[], query?: string) {
+    if (movies.length === 0) {
+      movieContainer.innerHTML = query
+        ? `<p>${query} 검색 결과가 없습니다.</p>`
+        : `<p>영화를 찾을 수 없습니다.</p>`;
+      return;
+    }
 
-      if (service.hasMore()) {
-        if (!loadMoreButtonComponent) {
-          loadMoreButtonComponent = LoadMoreButton(
-            movieContainer,
-            renderNextBatch
-          );
-        }
-        loadMoreButtonComponent.render();
-      } else if (loadMoreButtonComponent) {
-        loadMoreButtonComponent.remove();
-      }
+    renderMovies(movieContainer, movies);
 
-      const first = service.getFirstMovie();
-      if (first) {
-        const headerComponent = Header();
-        if (headerComponent) {
-          headerComponent.update({
-            title: first.title,
-            rating: first.getFormattedVote(),
-            backdrop: first.getBackdropUrl(),
-          });
-        }
-      } else {
-        movieContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
-      }
-
-      history.pushState({}, "", location.pathname);
-    } catch (error) {
-      console.error(
-        "createMovieController 초기화 중 오류가 발생했습니다:",
-        error
-      );
-      showErrorMessage("영화를 불러오는 중 오류가 발생했습니다.");
+    if (service.hasMore()) {
+      loadMoreButtonComponent = addLoadMoreButton({
+        hasMore: true,
+        movieContainer,
+        renderNextBatch,
+        loadMoreButtonComponent,
+      });
     }
   }
 
-  async function fetchMoviesBySearch(query: string): Promise<void> {
-    updateTabContainer("search");
+  function displayFetchErrorMessage() {
+    showErrorMessage(
+      currentMode === "search"
+        ? "검색 중 오류가 발생했습니다."
+        : "영화를 불러오는 중 오류가 발생했습니다."
+    );
+  }
 
-    showSkeletonUI(movieContainer);
-
-    try {
-      await service.searchMovies(query);
-
-      movieContainer.innerHTML = "";
-      renderNextBatch();
-
-      if (service.hasMore()) {
-        if (!loadMoreButtonComponent) {
-          loadMoreButtonComponent = LoadMoreButton(
-            movieContainer,
-            renderNextBatch
-          );
-        }
-        loadMoreButtonComponent.render();
-      } else if (loadMoreButtonComponent) {
-        loadMoreButtonComponent.remove();
-      }
-
-      if (!service.getFirstMovie()) {
-        movieContainer.innerHTML = "<p>검색 결과가 없습니다.</p>";
-      }
-
-      history.replaceState(
-        { query },
+  function updateHistory(query?: string, isInitial = false, pushState = true) {
+    if (!isInitial && pushState) {
+      history.pushState(
+        {},
         "",
-        `?search=${encodeURIComponent(query)}`
+        query ? `?search=${encodeURIComponent(query)}` : location.pathname
       );
-    } catch (error) {
-      console.error("영화 검색 중 오류가 발생했습니다", error);
-      showErrorMessage("검색 중 오류가 발생했습니다.");
     }
   }
 
-  function renderNextBatch(): void {
-    const batch = service.getNextBatch();
-    renderMovies(movieContainer, batch);
+  async function fetchMoviesByCategory(
+    category: MovieCategory,
+    isInitial = false
+  ) {
+    await fetchMovies({ category, isInitial });
+  }
+
+  async function searchMovies(query: string, pushState = true) {
+    if (!query.trim()) return;
+    await fetchMovies({ query, pushState });
+  }
+
+  function renderNextBatch() {
+    renderMovies(movieContainer, service.getNextBatch());
 
     if (!service.hasMore()) {
       loadMoreButtonComponent?.remove();
     }
   }
 
-  function attachSearchFormListener(): void {
-    if (searchFormAttached) return;
+  function attachSearchListener() {
     const form = document.querySelector(
       ".search-bar"
     ) as HTMLFormElement | null;
@@ -168,47 +198,10 @@ export function createMovieController(containerId: string) {
       if (!inputEl) return;
 
       const query = inputEl.value.trim();
-      if (query) {
-        await fetchMoviesBySearch(query);
-      }
+      if (!query) return;
+
+      await searchMovies(query);
     });
-    searchFormAttached = true;
-  }
-
-  function updateTabContainer(mode: "category" | "search"): void {
-    const tabContainer = document.getElementById("tab-container");
-    if (!tabContainer) return;
-    tabContainer.style.display = mode === "search" ? "none" : "block";
-  }
-
-  function resetSearchInput(): void {
-    const inputEl = document.querySelector(
-      ".search-input"
-    ) as HTMLInputElement | null;
-    if (inputEl) {
-      inputEl.value = "";
-    }
-  }
-
-  async function onPopState(): Promise<void> {
-    const params = new URLSearchParams(location.search);
-    const query = params.get("search");
-
-    if (query) {
-      updateTabContainer("search");
-      const inputEl = document.querySelector(
-        ".search-input"
-      ) as HTMLInputElement | null;
-      if (inputEl) {
-        inputEl.value = query;
-      }
-
-      await fetchMoviesBySearch(query);
-    } else {
-      resetSearchInput();
-      updateTabContainer("category");
-      await fetchMoviesByCategory(currentCategory);
-    }
   }
 
   return {

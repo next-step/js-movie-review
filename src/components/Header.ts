@@ -59,5 +59,20 @@ export function Header() {
     }
   }
 
-  return { render, update };
+  function hideTopRated(): void {
+    if (!headerContainer) return;
+    const headerEl = headerContainer.querySelector(
+      "header"
+    ) as HTMLElement | null;
+    if (!headerEl) return;
+    const topRatedMovieEl = headerEl.querySelector(
+      ".top-rated-movie"
+    ) as HTMLElement | null;
+    if (topRatedMovieEl) {
+      topRatedMovieEl.style.display = "none";
+      console.log(topRatedMovieEl);
+    }
+  }
+
+  return { render, update, hideTopRated };
 }
