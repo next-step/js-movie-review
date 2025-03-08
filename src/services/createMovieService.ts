@@ -1,10 +1,15 @@
 import { fetchMovies, fetchSearchMovies } from "./api.js";
 import { DESKTOP_MOVIES_PER_LOAD } from "../constants.js";
 import { createMovie } from "./createMovie.js";
-import { ApiMovie, Category, Movie, MovieService } from "../types/type.js";
+import {
+  MovieApiDto,
+  MovieCategory,
+  MovieModel,
+  IMovieService,
+} from "../types/type.js";
 
-export function createMovieService(): MovieService {
-  let allMovies: Movie[] = [];
+export function createMovieService(): IMovieService {
+  let allMovies: MovieModel[] = [];
   let displayedCount = 0;
   let moviesPerLoad = DESKTOP_MOVIES_PER_LOAD;
 
@@ -12,19 +17,19 @@ export function createMovieService(): MovieService {
     moviesPerLoad = num;
   }
 
-  async function loadMovies(category: Category): Promise<void> {
+  async function loadMovies(category: MovieCategory): Promise<void> {
     const rawData = await fetchMovies(category);
-    allMovies = rawData.map((item: ApiMovie) => createMovie(item));
+    allMovies = rawData.map((item: MovieApiDto) => createMovie(item));
     displayedCount = 0;
   }
 
   async function searchMovies(query: string): Promise<void> {
     const rawData = await fetchSearchMovies(query);
-    allMovies = rawData.map((item: ApiMovie) => createMovie(item));
+    allMovies = rawData.map((item: MovieApiDto) => createMovie(item));
     displayedCount = 0;
   }
 
-  function getNextBatch(): Movie[] {
+  function getNextBatch(): MovieModel[] {
     const remaining = allMovies.length - displayedCount;
     const itemsToLoad = Math.min(remaining, moviesPerLoad);
     const batch = allMovies.slice(0, displayedCount + itemsToLoad);
@@ -36,7 +41,7 @@ export function createMovieService(): MovieService {
     return displayedCount < allMovies.length;
   }
 
-  function getFirstMovie(): Movie | null {
+  function getFirstMovie(): MovieModel | null {
     return allMovies.length > 0 ? allMovies[0] : null;
   }
 

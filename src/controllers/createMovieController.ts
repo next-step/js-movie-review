@@ -4,15 +4,15 @@ import { LoadMoreButton } from "../components/LoadMoreButton";
 import { Header } from "../components/Header";
 import { showErrorMessage } from "../utils/error";
 import { debounce } from "../utils/helper";
-import { Category, MovieService } from "../types/type";
+import { MovieCategory, IMovieService } from "../types/type";
 
 export function createMovieController(containerId: string) {
   const movieContainer = document.getElementById(
     containerId
   ) as HTMLElement | null;
-  const service: MovieService = createMovieService();
+  const service: IMovieService = createMovieService();
 
-  let currentCategory: Category = "popular";
+  let currentCategory: MovieCategory = "popular";
   let searchFormAttached = false;
   let loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null = null;
 
@@ -71,13 +71,13 @@ export function createMovieController(containerId: string) {
     }
   }
 
-  async function switchTab(newCategory: Category): Promise<void> {
+  async function switchTab(newCategory: MovieCategory): Promise<void> {
     currentCategory = newCategory;
     setMode("category");
     await fetchMoviesByCategory(newCategory);
   }
 
-  async function fetchMoviesByCategory(category: Category): Promise<void> {
+  async function fetchMoviesByCategory(category: MovieCategory): Promise<void> {
     if (!movieContainer) return;
 
     showSkeletonUI(movieContainer);

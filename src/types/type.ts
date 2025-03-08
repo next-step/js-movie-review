@@ -1,6 +1,10 @@
-export type Category = "now_playing" | "popular" | "top_rated" | "upcoming";
+export type MovieCategory =
+  | "now_playing"
+  | "popular"
+  | "top_rated"
+  | "upcoming";
 
-export interface ApiMovie {
+export interface MovieApiDto {
   id: number;
   title: string;
   poster_path: string;
@@ -8,7 +12,7 @@ export interface ApiMovie {
   backdrop_path: string;
 }
 
-export interface Movie {
+export interface MovieModel {
   id: number;
   title: string;
   poster_path: string;
@@ -19,11 +23,11 @@ export interface Movie {
   getFormattedVote: () => string;
 }
 
-export interface MovieService {
-  loadMovies: (category: Category) => Promise<void>;
+export interface IMovieService {
+  loadMovies: (category: MovieCategory) => Promise<void>;
   searchMovies: (query: string) => Promise<void>;
-  getNextBatch: () => Movie[];
+  getNextBatch: () => MovieModel[];
   hasMore: () => boolean;
-  getFirstMovie: () => Movie | null;
+  getFirstMovie: () => MovieModel | null;
   setMoviesPerLoad: (num: number) => void;
 }

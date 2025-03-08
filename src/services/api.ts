@@ -1,4 +1,4 @@
-import { ApiMovie } from "../types/type";
+import { MovieApiDto } from "../types/type";
 
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 const API_KEY: string = import.meta.env.VITE_API_KEY;
@@ -67,7 +67,7 @@ async function fetchData<T>({
 }
 
 export async function fetchMovies(category: string, page: number = 1) {
-  const data = await fetchData<{ results: ApiMovie[] }>({
+  const data = await fetchData<{ results: MovieApiDto[] }>({
     endpoint: `movie/${category}`,
     params: {
       language: "ko-KR",
@@ -78,7 +78,7 @@ export async function fetchMovies(category: string, page: number = 1) {
 }
 
 export async function fetchSearchMovies(query: string, page: number = 1) {
-  const data = await fetchData<{ results: ApiMovie[] }>({
+  const data = await fetchData<{ results: MovieApiDto[] }>({
     endpoint: "search/movie",
     params: {
       language: "ko-KR",
