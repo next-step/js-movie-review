@@ -4,13 +4,7 @@ import { LoadMoreButton } from "../components/LoadMoreButton";
 import { showErrorMessage } from "../utils/error";
 import { debounce } from "../utils/helper";
 import { MovieCategory, IMovieService, MovieModel } from "../types/type";
-import {
-  resetSearchInput,
-  setSearchInput,
-  addLoadMoreButton,
-  updateTabContainer,
-  updateHeader,
-} from "../utils/ui";
+import { addLoadMoreButton, updateHeader } from "../utils/ui";
 import {
   DESKTOP_MOVIES_PER_LOAD,
   MOBILE_BREAKPOINT,
@@ -21,7 +15,7 @@ export function createMovieController(containerId: string) {
   const containerElement = document.getElementById(containerId);
   if (!containerElement) {
     console.error(`document에서 ${containerId} id를 찾을 수 없습니다`);
-    return;
+    return null;
   }
 
   const movieContainer: HTMLElement = containerElement;

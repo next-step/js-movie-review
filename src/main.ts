@@ -1,4 +1,4 @@
-import { Category } from "./types/type";
+import { MovieCategory } from "./types/type";
 import { Header } from "./components/Header";
 import { Tabs } from "./components/Tabs";
 import { createMovieController } from "./controllers/createMovieController";
@@ -9,11 +9,15 @@ function initializeApp(): void {
     headerComponent.render();
   }
 
-  const movieCtrl = createMovieController("movie-list-container");
-  movieCtrl.init();
+  const movieController = createMovieController("movie-list-container");
+  if (!movieController) {
+    console.error("movie controller를 초기화하지 못했습니다.");
+    return;
+  }
+  movieController.init();
 
-  const tabsComponent = Tabs(async (selectedCategory: Category) => {
-    await movieCtrl.switchTab(selectedCategory);
+  const tabsComponent = Tabs(async (selectedCategory: MovieCategory) => {
+    await movieController.switchTab(selectedCategory);
   });
   tabsComponent.init();
 }
