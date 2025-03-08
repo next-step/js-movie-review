@@ -7,9 +7,16 @@ import { debounce } from "../utils/helper";
 import { MovieCategory, IMovieService } from "../types/type";
 
 export function createMovieController(containerId: string) {
-  const movieContainer = document.getElementById(
+  const containerElement = document.getElementById(
     containerId
   ) as HTMLElement | null;
+  if (!containerElement) {
+    console.error(`document에서 ${containerId} id를 찾을 수 없습니다`);
+    return;
+  }
+
+  const movieContainer: HTMLElement = containerElement;
+
   const service: IMovieService = createMovieService();
 
   let currentCategory: MovieCategory = "popular";
@@ -29,8 +36,6 @@ export function createMovieController(containerId: string) {
   }
 
   async function init(): Promise<void> {
-    if (!movieContainer) return;
-
     attachSearchFormListener();
     window.addEventListener("popstate", onPopState);
     initResizeListener();
@@ -56,18 +61,18 @@ export function createMovieController(containerId: string) {
     const tabContainer = document.getElementById(
       "tab-container"
     ) as HTMLElement | null;
-    if (mode === "search") {
-      if (tabContainer) {
-        tabContainer.style.display = "none";
-      }
-    } else {
-      if (tabContainer) {
-        tabContainer.style.display = "block";
-      }
+
+    if (tabContainer) {
+      tabContainer.style.display = mode === "search" ? "none" : "block";
+    }
+
+    if (mode === "category") {
       const inputEl = document.querySelector(
         ".search-input"
       ) as HTMLInputElement | null;
-      if (inputEl) inputEl.value = "";
+      if (inputEl) {
+        inputEl.value = "";
+      }
     }
   }
 
@@ -78,14 +83,11 @@ export function createMovieController(containerId: string) {
   }
 
   async function fetchMoviesByCategory(category: MovieCategory): Promise<void> {
-    if (!movieContainer) return;
-
     showSkeletonUI(movieContainer);
 
     try {
       await service.loadMovies(category);
 
-      movieContainer.innerHTML = "";
       renderNextBatch();
 
       if (service.hasMore()) {
@@ -125,8 +127,6 @@ export function createMovieController(containerId: string) {
   }
 
   async function fetchMoviesBySearch(query: string): Promise<void> {
-    if (!movieContainer) return;
-
     setMode("search");
 
     showSkeletonUI(movieContainer);
@@ -195,7 +195,7 @@ export function createMovieController(containerId: string) {
     searchFormAttached = true;
   }
 
-  async function onPopState(event: PopStateEvent): Promise<void> {
+  async function onPopState(): Promise<void> {
     const params = new URLSearchParams(location.search);
     const query = params.get("search");
 

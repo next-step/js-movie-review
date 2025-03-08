@@ -1,9 +1,6 @@
-export function showSkeletonUI(movieContainer) {
-  if (!movieContainer) {
-    console.error("movieContainer가 없습니다");
-    return;
-  }
+import { MovieModel } from "../types/type";
 
+export function showSkeletonUI(movieContainer: HTMLElement) {
   movieContainer.innerHTML = "";
 
   const skeletonItems = Array.from({ length: 8 })
@@ -30,11 +27,10 @@ export function showSkeletonUI(movieContainer) {
   movieContainer.innerHTML = `<div class="movie-grid">${skeletonItems}</div>`;
 }
 
-export function renderMovies(movieContainer, movies) {
-  if (!movieContainer) {
-    console.error("movieContainer가 없습니다");
-    return;
-  }
+export function renderMovies(
+  movieContainer: HTMLElement,
+  movies: MovieModel[]
+) {
   movieContainer.innerHTML = "";
 
   const movieGrid = document.createElement("div");
