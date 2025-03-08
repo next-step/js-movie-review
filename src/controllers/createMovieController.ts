@@ -6,6 +6,7 @@ import { debounce } from "../utils/helper";
 import { MovieCategory, IMovieService, MovieModel } from "../types/type";
 import { addLoadMoreButton, updateHeader } from "../utils/ui";
 import {
+  DEFAULT_CATEGORY,
   DESKTOP_MOVIES_PER_LOAD,
   MOBILE_BREAKPOINT,
   MOBILE_MOVIES_PER_LOAD,
@@ -57,7 +58,7 @@ export function createMovieController(containerId: string) {
       searchMovies(searchQuery!, false);
     } else {
       fetchMoviesByCategory(
-        tabComponent?.getSelectedCategory() || "popular",
+        tabComponent?.getSelectedCategory() || DEFAULT_CATEGORY,
         true
       );
     }

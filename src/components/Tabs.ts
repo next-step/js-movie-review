@@ -1,19 +1,17 @@
-import { SESSION_KEYS } from "../constants";
+import {
+  DEFAULT_CATEGORY,
+  SESSION_KEYS,
+  TAB_ITEMS,
+  VALID_CATEGORIES,
+} from "../constants";
 import { MovieCategory } from "../types/type";
-
-const validCategories: MovieCategory[] = [
-  "now_playing",
-  "popular",
-  "top_rated",
-  "upcoming",
-];
 
 function getInitialCategory(): MovieCategory {
   const stored = sessionStorage.getItem(SESSION_KEYS.SELECTED_CATEGORY);
-  if (stored && validCategories.includes(stored as MovieCategory)) {
+  if (stored && VALID_CATEGORIES.includes(stored as MovieCategory)) {
     return stored as MovieCategory;
   }
-  return "popular";
+  return DEFAULT_CATEGORY;
 }
 
 export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
@@ -30,17 +28,10 @@ export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
     const ul = document.createElement("ul");
     ul.classList.add("tab");
 
-    const tabItems: { category: MovieCategory; label: string }[] = [
-      { category: "now_playing", label: "상영 중" },
-      { category: "popular", label: "인기순" },
-      { category: "top_rated", label: "평점순" },
-      { category: "upcoming", label: "상영 예정" },
-    ];
     const tabHTML = `
     <ul class="tab">
-      ${tabItems
-        .map(
-          ({ category, label }) => `
+      ${TAB_ITEMS.map(
+        ({ category, label }) => `
         <li data-category="${category}">
           <a href="#">
             <div class="tab-item">
@@ -49,8 +40,7 @@ export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
           </a>
         </li>
       `
-        )
-        .join("")}
+      ).join("")}
     </ul>
   `;
 
@@ -66,7 +56,7 @@ export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
     const newSelectedCategory = target.getAttribute("data-category");
     if (
       newSelectedCategory &&
-      validCategories.includes(newSelectedCategory as MovieCategory)
+      VALID_CATEGORIES.includes(newSelectedCategory as MovieCategory)
     ) {
       selectedCategory = newSelectedCategory as MovieCategory;
       sessionStorage.setItem(SESSION_KEYS.SELECTED_CATEGORY, selectedCategory);
