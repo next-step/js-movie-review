@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-describe("API 테스트를 생성한다", () => {
+
+describe("UI 컴포넌트를 테스트한다.", () => {
   beforeEach("TEST 별, GET 호출", () => {
     cy.intercept(
       {
@@ -35,28 +36,43 @@ describe("API 테스트를 생성한다", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "3/movie/top_rated?language=ko-KR&page=1",
+        url: "3/movie/top_rated*",
         hostname: "api.themoviedb.org",
       },
       {
         fixture: "movie-top-rated.json",
       },
     ).as("mockedGETTopRatedPage");
-  });
-  it("API GET 테스트", () => {
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: "3/search/movie*",
+        hostname: "api.themoviedb.org",
+      },
+      {
+        fixture: "movie-search-1-page.json",
+      },
+    ).as("mockedSearchPage");
+
     cy.visit("http://localhost:5173");
-    // cy.wait("@mockedGET");
-    cy.wait("@mockedGETPage1").then((interception) => {
-      // cy.get("thing").should("have.length");
-      console.log(interception.response.body);
-    });
-    cy.wait("@mockedGETPage2").then((interception) => {
-      // cy.get("thing").should("have.length");
-      console.log(interception.response.body);
-    });
-    cy.wait("@mockedGETPage3").then((interception) => {
-      // cy.get("thing").should("have.length");
-      console.log(interception.response.body);
-    });
+  });
+
+  it("Header 컴포넌트를 테스트한다", () => {
+    cy.get("header").should("contains.text", "자세히 보기");
+  });
+
+  it("Main - Thumbnail list 컴포넌트를 테스트한다", () => {
+    cy.get(".thumbnail-list").find("li").should("have.length", 20);
+  });
+
+  it("Main - 더보기 버튼 컴포넌트를 테스트한다", () => {
+    cy.get(".add-more").click();
+    cy.get(".thumbnail-list").find("li").should("have.length", 40);
+  });
+
+  it("Search - 검색 결과를 출력한다", () => {
+    cy.get(".search").type("더{enter}");
+    cy.get(".thumbnail-list").find("li").should("have.length", 20);
   });
 });

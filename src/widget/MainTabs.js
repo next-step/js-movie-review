@@ -1,34 +1,18 @@
-export const MainTabs = () => {
-  const container = document.createDocumentFragment();
-  const div = document.createElement("div");
-  container.appendChild(div);
+import { toElement } from "../shared/ui";
 
-  const render = () => {
-    div.innerHTML = /* html */ `<ul class="tab">
-      <li>
-        <a href="#">
-          <div class="tab-item selected"><h3>상영 중</h3></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <div class="tab-item"><h3>인기순</h3></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <div class="tab-item"><h3>평점순</h3></div>
-        </a>
-      </li>
-      <li>
-        <a href="#">
-          <div class="tab-item"><h3>상영 예정</h3></div>
-        </a>
-      </li>
-    </ul>`;
-  };
+const tabs = ["상영 중", "인기순", "평점순", "상영 예정"];
 
-  render();
-
-  return container.querySelector("div").innerHTML;
-};
+export const MainTabs = () =>
+  toElement({
+    domString: `<ul class="tab">
+    ${tabs
+      .map(
+        (tab, index) => `<li>
+         <a href="#">
+          <div class="tab-item ${index === 0 ? "selected" : ""}"><h3>${tab}</h3></div>
+        </a>
+      </li>`,
+      )
+      .join("")}
+    </ul>`,
+  });

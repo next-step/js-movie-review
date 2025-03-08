@@ -1,29 +1,27 @@
-import { getTopRatedMovies } from "../shared/api/get";
+import { getTopRatedMovies } from "../api/movieApiClient";
 import { state } from "../shared/state";
 
-export const AppHeader = () => {
+export const AppHeader = ({ inputState }) => {
   const { value: headerState, subscribe } = state([]);
 
-  const getResponse = async () => {
-    const response = await getTopRatedMovies();
-    return response;
+  const fetchData = async () => {
+    const data = await getTopRatedMovies();
+    headerState.value = data;
   };
-
-  // 초기 비동기 렌더링
-  (async () => {
-    const data = await getResponse();
-    const { results } = data;
-    headerState.value = results;
-  })();
 
   const container = document.createDocumentFragment();
   const header = document.createElement("header");
-  // header.addEventListener("click", handleClick);
   container.appendChild(header);
 
-  const render = () => {
-    console.log(headerState.value);
+  const handleKeyDown = (e) => {
+    if (e.code === "Enter") {
+      e.preventDefault();
+      // eslint-disable-next-line no-param-reassign
+      inputState.value = e.target.value;
+    }
+  };
 
+  const render = () => {
     header.innerHTML = /* html */ `
     <div class="background-container">
     ${headerState.value
@@ -37,10 +35,19 @@ export const AppHeader = () => {
       .join("")}
 
       <div class="top-rated-container">
-        <h1 class="logo">
-          <img src="logo.png" alt="MovieList" />
-        </h1>
-        <div class="top-rated-movie">
+        <div class="logo-and-searchbox">
+          <h1 class="logo">
+            <img src="logo.png" alt="MovieList" />
+            </h1>
+            <div class="search-icon-box">
+              <input class="search" type="text"/>
+              <svg 
+                class="search-icon" 
+              xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <div></div>
+        </div>
+          <div class="top-rated-movie">
           
         ${headerState.value
           ?.slice(0, 1)
@@ -58,14 +65,16 @@ export const AppHeader = () => {
       </div>
     </div>
     `;
+
+    const inputElement = header.querySelector(".search");
+    inputElement.addEventListener("keydown", handleKeyDown);
   };
 
+  fetchData();
   // 초기 렌더
   render();
 
-  // value내 값이 변할 떄, render를 다시!
   subscribe(() => {
-    // console.log(`🔔 Observer 패턴: ${key} 변경됨 -> ${value}`);
     render();
   });
 

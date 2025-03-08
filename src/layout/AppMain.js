@@ -1,9 +1,9 @@
 import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
-import { getFavoriteMovies } from "../shared/api/get";
+import { getFavoriteMovies, getSearchMovie } from "../api/movieApiClient";
 import { MainTabs } from "../widget/MainTabs";
 
-export const AppMain = () => {
+export const AppMain = ({ inputState, inputStateSubscribe }) => {
   const { value: mainState, subscribe } = state([]);
   const { value: pageState } = state(1);
 
@@ -12,55 +12,51 @@ export const AppMain = () => {
   div.classList.add("container");
 
   div.innerHTML = /* html */ `
-    ${MainTabs()}
     <main>
+      <div class="main-tabs">
+      </div>
       <h2>지금 인기 있는 영화</h2>  
       <section>
-          ${ThumbnailList({
-            mainState,
-          })}
       </section>
+      <button class="add-more">더보기</button>
     </main>
   `;
 
-  const getResponse = async (index) => {
-    const response = await getFavoriteMovies(index);
-    return response;
-  };
-
-  const handleClick = async () => {
+  const fetchNextPage = async () => {
     pageState.value += 1;
-    const data = await getResponse(pageState.value);
-    const { results } = data;
-    mainState.value = [...mainState.value, ...results];
+    const data = await getFavoriteMovies(pageState.value);
+    mainState.value = [...mainState.value, ...data];
   };
 
-  const button = document.createElement("button");
-  button.addEventListener("click", handleClick);
-  button.innerHTML = "더 보기";
-  div.querySelector("section").insertAdjacentElement("afterend", button);
-
+  div.querySelector(".main-tabs").appendChild(MainTabs());
+  div.querySelector(".add-more").addEventListener("click", fetchNextPage);
   container.appendChild(div);
 
   // 초기 비동기 렌더링
-  (async () => {
-    const data = await getResponse(pageState.value);
-    const { results } = data;
-    mainState.value = results;
-  })();
-
-  const render = async () => {
-    if (pageState.value >= 2 && div.querySelector("button")) {
-      div.querySelector("main").removeChild(button);
-    }
-    div.querySelector("section").innerHTML = /* html */ `
-        ${ThumbnailList({
-          mainState,
-        })}
-  `;
+  const fetchData = async () => {
+    const data = await getFavoriteMovies(pageState.value);
+    mainState.value = data;
   };
 
-  // value내 값이 변할 떄, render를 다시!
+  fetchData();
+
+  const render = async () => {
+    div.querySelector("section").innerHTML = "";
+
+    div.querySelector("section").appendChild(
+      ThumbnailList({
+        mainState,
+      }),
+    );
+  };
+
+  render();
+
+  inputStateSubscribe(async () => {
+    const data = await getSearchMovie(inputState.value);
+    mainState.value = data;
+  });
+
   subscribe(() => {
     render();
   });
