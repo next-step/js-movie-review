@@ -5,7 +5,7 @@ const getHandler = () => {
   const handler = {
     listeners: [],
     set(target, key, value) {
-      if (key in target) {
+      if (key in target && !Object.is(target[key], value)) {
         // eslint-disable-next-line no-param-reassign
         target[key] = value;
         handler.notify(key, value);
@@ -31,6 +31,7 @@ const getHandler = () => {
 
 // 1. 상태를 정의할 수 있는 함수가 필요
 export const state = (initialState) => {
+  console.log()
   const handler = getHandler();
   const innerState = new Proxy(
     {

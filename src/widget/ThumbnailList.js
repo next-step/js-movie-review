@@ -2,8 +2,7 @@ import Movie from "../entity/Movie";
 import { toElement } from "../shared/ui";
 
 export const ThumbnailList = ({ mainState }) =>
-  toElement({
-    domString: `<ul class="thumbnail-list">
+  toElement(`<ul class="thumbnail-list">
     ${mainState.value
       ?.map((result) => {
         const {
@@ -17,5 +16,4 @@ export const ThumbnailList = ({ mainState }) =>
           voteAverage,
         }).render();
       })
-      .join("")}</ul>`,
-  });
+      .join("")}</ul>`);

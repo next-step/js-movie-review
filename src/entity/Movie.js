@@ -1,26 +1,26 @@
 class Movie {
-  title;
+  #title;
 
-  posterPath;
+  #posterPath;
 
-  voteAverage;
+  #voteAverage;
 
   constructor({ title, posterPath, voteAverage }) {
-    this.title = title;
-    this.posterPath = posterPath;
-    this.voteAverage = voteAverage;
+    this.#title = title;
+    this.#posterPath = posterPath;
+    this.#voteAverage = voteAverage;
   }
 
   get getTitle() {
-    return this.title;
+    return this.#title;
   }
 
   get getPosterPath() {
-    return this.posterPath;
+    return this.#posterPath;
   }
 
   get getVoteAverage() {
-    return this.voteAverage;
+    return this.#voteAverage;
   }
 
   render() {
