@@ -44,41 +44,21 @@ export function createMovieController(containerId: string) {
     const query = params.get("search");
 
     if (query) {
-      setMode("search");
-
+      updateTabContainer("search");
       await fetchMoviesBySearch(query);
       const inputEl = document.querySelector(
         ".search-input"
       ) as HTMLInputElement | null;
       if (inputEl) inputEl.value = query;
     } else {
-      setMode("category");
+      updateTabContainer("category");
+      resetSearchInput();
       await fetchMoviesByCategory(currentCategory);
-    }
-  }
-
-  function setMode(mode: "category" | "search"): void {
-    const tabContainer = document.getElementById(
-      "tab-container"
-    ) as HTMLElement | null;
-
-    if (tabContainer) {
-      tabContainer.style.display = mode === "search" ? "none" : "block";
-    }
-
-    if (mode === "category") {
-      const inputEl = document.querySelector(
-        ".search-input"
-      ) as HTMLInputElement | null;
-      if (inputEl) {
-        inputEl.value = "";
-      }
     }
   }
 
   async function switchTab(newCategory: MovieCategory): Promise<void> {
     currentCategory = newCategory;
-    setMode("category");
     await fetchMoviesByCategory(newCategory);
   }
 
@@ -127,7 +107,7 @@ export function createMovieController(containerId: string) {
   }
 
   async function fetchMoviesBySearch(query: string): Promise<void> {
-    setMode("search");
+    updateTabContainer("search");
 
     showSkeletonUI(movieContainer);
 
@@ -195,13 +175,27 @@ export function createMovieController(containerId: string) {
     searchFormAttached = true;
   }
 
+  function updateTabContainer(mode: "category" | "search"): void {
+    const tabContainer = document.getElementById("tab-container");
+    if (!tabContainer) return;
+    tabContainer.style.display = mode === "search" ? "none" : "block";
+  }
+
+  function resetSearchInput(): void {
+    const inputEl = document.querySelector(
+      ".search-input"
+    ) as HTMLInputElement | null;
+    if (inputEl) {
+      inputEl.value = "";
+    }
+  }
+
   async function onPopState(): Promise<void> {
     const params = new URLSearchParams(location.search);
     const query = params.get("search");
 
     if (query) {
-      setMode("search");
-
+      updateTabContainer("search");
       const inputEl = document.querySelector(
         ".search-input"
       ) as HTMLInputElement | null;
@@ -211,7 +205,8 @@ export function createMovieController(containerId: string) {
 
       await fetchMoviesBySearch(query);
     } else {
-      setMode("category");
+      resetSearchInput();
+      updateTabContainer("category");
       await fetchMoviesByCategory(currentCategory);
     }
   }
