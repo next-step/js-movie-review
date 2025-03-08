@@ -11,6 +11,7 @@ import {
   MOBILE_MOVIES_PER_LOAD,
 } from "../constants";
 import { getCurrentMode } from "../utils/state";
+import { Tabs } from "../components/Tabs";
 export function createMovieController(containerId: string) {
   const containerElement = document.getElementById(containerId);
   if (!containerElement) {
@@ -20,9 +21,9 @@ export function createMovieController(containerId: string) {
 
   const movieContainer: HTMLElement = containerElement;
   const service: IMovieService = createMovieService();
-  let currentCategory: MovieCategory = "popular";
   let loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null = null;
   let currentMode: "search" | "category" = "category";
+  let tabComponent: ReturnType<typeof Tabs> | null = null;
 
   function updatePerLoad(): void {
     service.setMoviesPerLoad(
@@ -38,7 +39,8 @@ export function createMovieController(containerId: string) {
     updatePerLoad();
   }
 
-  function init() {
+  function init(tabs: ReturnType<typeof Tabs>) {
+    tabComponent = tabs;
     attachSearchListener();
     handleInitialState();
     initResizeListener();
@@ -54,13 +56,15 @@ export function createMovieController(containerId: string) {
     if (currentMode === "search") {
       searchMovies(searchQuery!, false);
     } else {
-      fetchMoviesByCategory(currentCategory, true);
+      fetchMoviesByCategory(
+        tabComponent?.getSelectedCategory() || "popular",
+        true
+      );
     }
   }
 
   async function switchTab(newCategory: MovieCategory): Promise<void> {
     if (currentMode === "search") return;
-    currentCategory = newCategory;
     await fetchMoviesByCategory(newCategory);
   }
 
@@ -101,7 +105,6 @@ export function createMovieController(containerId: string) {
   async function fetchMoviesByCategoryName(category?: MovieCategory) {
     if (category) {
       await service.loadMovies(category);
-      currentCategory = category;
     }
     return service.getNextBatch();
   }

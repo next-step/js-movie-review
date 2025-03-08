@@ -1,25 +1,25 @@
 import { SESSION_KEYS } from "../constants";
-import { Category } from "../types/type";
+import { MovieCategory } from "../types/type";
 
-const validCategories: Category[] = [
+const validCategories: MovieCategory[] = [
   "now_playing",
   "popular",
   "top_rated",
   "upcoming",
 ];
 
-function getInitialCategory(): Category {
+function getInitialCategory(): MovieCategory {
   const stored = sessionStorage.getItem(SESSION_KEYS.SELECTED_CATEGORY);
-  if (stored && validCategories.includes(stored as Category)) {
-    return stored as Category;
+  if (stored && validCategories.includes(stored as MovieCategory)) {
+    return stored as MovieCategory;
   }
   return "popular";
 }
 
-export function Tabs(onTabChange: (selectedCategory: Category) => void) {
+export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
   const tabContainer = document.getElementById("tab-container");
 
-  let selectedCategory: Category = getInitialCategory();
+  let selectedCategory: MovieCategory = getInitialCategory();
 
   function renderTabs(): void {
     if (!tabContainer) {
@@ -30,7 +30,7 @@ export function Tabs(onTabChange: (selectedCategory: Category) => void) {
     const ul = document.createElement("ul");
     ul.classList.add("tab");
 
-    const tabItems: { category: Category; label: string }[] = [
+    const tabItems: { category: MovieCategory; label: string }[] = [
       { category: "now_playing", label: "상영 중" },
       { category: "popular", label: "인기순" },
       { category: "top_rated", label: "평점순" },
@@ -66,9 +66,9 @@ export function Tabs(onTabChange: (selectedCategory: Category) => void) {
     const newSelectedCategory = target.getAttribute("data-category");
     if (
       newSelectedCategory &&
-      validCategories.includes(newSelectedCategory as Category)
+      validCategories.includes(newSelectedCategory as MovieCategory)
     ) {
-      selectedCategory = newSelectedCategory as Category;
+      selectedCategory = newSelectedCategory as MovieCategory;
       sessionStorage.setItem(SESSION_KEYS.SELECTED_CATEGORY, selectedCategory);
       updateTabSelection();
       onTabChange(selectedCategory);
@@ -100,5 +100,5 @@ export function Tabs(onTabChange: (selectedCategory: Category) => void) {
     onTabChange(selectedCategory);
   }
 
-  return { init, getSelectedCategory: (): Category => selectedCategory };
+  return { init, getSelectedCategory: (): MovieCategory => selectedCategory };
 }

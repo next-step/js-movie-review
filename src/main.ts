@@ -14,12 +14,13 @@ function initializeApp(): void {
     console.error("movie controller를 초기화하지 못했습니다.");
     return;
   }
-  movieController.init();
 
   const tabsComponent = Tabs(async (selectedCategory: MovieCategory) => {
     await movieController.switchTab(selectedCategory);
   });
   tabsComponent.init();
+
+  movieController.init(tabsComponent);
 }
 
 if (document.readyState === "loading") {
