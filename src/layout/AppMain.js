@@ -1,6 +1,6 @@
 import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
-import { getFavoriteMovies } from "../api/movieApiClient";
+import { getFavoriteMovies, getSearchMovie } from "../api/movieApiClient";
 import { MainTabs } from "../widget/MainTabs";
 
 export const AppMain = ({ inputState, inputStateSubscribe }) => {
@@ -53,11 +53,8 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
   };
 
   inputStateSubscribe(async () => {
-    const data = await getFavoriteMovies(1);
-    mainState.value = [...data].filter((movieData) => {
-      const { title } = movieData;
-      return title.includes(inputState.value);
-    });
+    const data = await getSearchMovie(inputState.value);
+    mainState.value = data;
   });
 
   subscribe(() => {

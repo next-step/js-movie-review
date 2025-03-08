@@ -36,13 +36,24 @@ describe("UI 컴포넌트를 테스트한다.", () => {
     cy.intercept(
       {
         method: "GET",
-        url: "3/movie/top_rated?language=ko-KR&page=1",
+        url: "3/movie/top_rated*",
         hostname: "api.themoviedb.org",
       },
       {
         fixture: "movie-top-rated.json",
       },
     ).as("mockedGETTopRatedPage");
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: "3/search/movie*",
+        hostname: "api.themoviedb.org",
+      },
+      {
+        fixture: "movie-search-1-page.json",
+      },
+    ).as("mockedSearchPage");
 
     cy.visit("http://localhost:5173");
   });
@@ -62,6 +73,6 @@ describe("UI 컴포넌트를 테스트한다.", () => {
 
   it("Search - 검색 결과를 출력한다", () => {
     cy.get(".search").type("더{enter}");
-    cy.get(".thumbnail-list").find("li").should("have.length", 2);
+    cy.get(".thumbnail-list").find("li").should("have.length", 20);
   });
 });
