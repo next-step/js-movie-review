@@ -17,9 +17,6 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
       </div>
       <h2>지금 인기 있는 영화</h2>  
       <section>
-          ${ThumbnailList({
-            mainState,
-          })}
       </section>
       <button class="add-more">더보기</button>
     </main>
@@ -33,7 +30,6 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
 
   div.querySelector(".main-tabs").appendChild(MainTabs());
   div.querySelector(".add-more").addEventListener("click", fetchNextPage);
-
   container.appendChild(div);
 
   // 초기 비동기 렌더링
@@ -45,12 +41,16 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
   fetchData();
 
   const render = async () => {
-    div.querySelector("section").innerHTML = /* html */ `
-        ${ThumbnailList({
-          mainState,
-        })}
-  `;
+    div.querySelector("section").innerHTML = "";
+
+    div.querySelector("section").appendChild(
+      ThumbnailList({
+        mainState,
+      }),
+    );
   };
+
+  render();
 
   inputStateSubscribe(async () => {
     const data = await getSearchMovie(inputState.value);

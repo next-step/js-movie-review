@@ -3,7 +3,7 @@ export const getFavoriteMovies = async (index = 1) => {
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.MOVIE_TMDB_KEY}`,
+      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_TMDB_KEY}`,
     },
   });
   const { results } = await response.json();
@@ -16,7 +16,7 @@ export const getTopRatedMovies = async () => {
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.MOVIE_TMDB_KEY}`,
+      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_TMDB_KEY}`,
     },
   });
   const { results } = await response.json();
@@ -29,7 +29,7 @@ export const getSearchMovie = async (query = "") => {
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${import.meta.env.MOVIE_TMDB_KEY}`,
+      Authorization: `Bearer ${import.meta.env.VITE_MOVIE_TMDB_KEY}`,
     },
   });
   const { results } = await response.json();
