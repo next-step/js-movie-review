@@ -3,7 +3,19 @@ import { state } from "../shared/state";
 import { toElement } from "../shared/ui";
 
 export const AppHeader = ({ inputState }) => {
-  const { value: headerState } = state([]);
+  const { value: headerState, renderComponents } = state([], [
+    toElement(`${headerState.value
+      ?.slice(0, 1)
+      .map((result) => {
+        const { poster_path: posterPath } = result;
+        return /* html */ `<div class="overlay" aria-hidden="true"
+          style="background-image:url('https://media.themoviedb.org/t/p/w1920_and_h1080_face${posterPath}')"
+        ></div>`;
+      })
+      .join("")}`)
+  ]);
+
+  console.log(renderComponents)
 
   const fetchData = async () => {
     const data = await getTopRatedMovies();
@@ -23,7 +35,7 @@ export const AppHeader = ({ inputState }) => {
   const render = () => {
     const element = toElement(`
       <div class="background-container">
-      ${headerState.value
+    ${toElement(`${headerState.value
         ?.slice(0, 1)
         .map((result) => {
           const { poster_path: posterPath } = result;
@@ -31,7 +43,7 @@ export const AppHeader = ({ inputState }) => {
             style="background-image:url('https://media.themoviedb.org/t/p/w1920_and_h1080_face${posterPath}')"
           ></div>`;
         })
-        .join("")}
+        .join("")}`)}
   
         <div class="top-rated-container">
           <div class="logo-and-searchbox">
