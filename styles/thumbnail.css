@@ -38,3 +38,47 @@ p.rate > span {
   width: 16px;
   top: 1px;
 }
+
+.load-button {
+  width: 100%;
+  background-color: var(--color-lightblue-90);
+  color: var(--color-white);
+}
+
+.skeleton .thumbnail {
+  background-color: #2f3844;
+}
+
+.skeleton .rate {
+  height: 16px;
+  width: 60px;
+  margin-top: 8px;
+  background-color: #2f3844;
+}
+
+.skeleton .title {
+  height: 20px;
+  width: 150px;
+  margin-top: 8px;
+  background-color: #2f3844;
+}
+
+.fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 50px;
+}
+
+.fallback-button {
+  background-color: transparent;
+}
+
+.fallback-message {
+  font-weight: 500;
+  color: var(--color-white);
+}
