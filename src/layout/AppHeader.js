@@ -4,20 +4,21 @@ import { toElement } from "../shared/ui";
 
 export const AppHeader = ({ inputState }) => {
   const { value: headerState } = state([]);
-  
+
   const fetchData = async () => {
     const data = await getTopRatedMovies();
     headerState.value = data;
   };
-  // fetchData();
+  fetchData();
 
-  // const handleKeyDown = (e) => {
-  //   if (e.code === "Enter") {
-  //     e.preventDefault();
-  //     // eslint-disable-next-line no-param-reassign
-  //     inputState.value = e.target.value;
-  //   }
-  // };
+  const handleKeyDown = (e) => {
+    console.log("test");
+    if (e.code === "Enter") {
+      e.preventDefault();
+      // eslint-disable-next-line no-param-reassign
+      inputState.value = e.target.value;
+    }
+  };
 
   const render = () => {
     const element = toElement(`
@@ -63,6 +64,13 @@ export const AppHeader = ({ inputState }) => {
         </div>
       </div>
       `);
+
+    // const parser = new DOMParser();
+    // const doc = parser.parseFromString(element, "text/html");
+
+    // doc.querySelector(".search").addEventListener("keydown", handleKeyDown);
+
+    // return doc.documentElement.innerHTML; // <html> 요소 반환
     return element;
   };
 

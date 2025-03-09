@@ -1,7 +1,7 @@
 // 상태
 
 // 핸들러
-const getHandler = () => {
+const getHandler = (caller) => {
   const handler = {
     listeners: [],
     set(target, key, value) {
@@ -9,6 +9,12 @@ const getHandler = () => {
         // eslint-disable-next-line no-param-reassign
         target[key] = value;
         handler.notify(key, value);
+        console.log(typeof caller, caller.render);
+        if (caller && caller.render) {
+          console.log(typeof caller);
+          caller.render();
+        }
+
         return true;
       }
       return false;
@@ -30,9 +36,9 @@ const getHandler = () => {
 };
 
 // 1. 상태를 정의할 수 있는 함수가 필요
-export const state = (initialState) => {
-  console.log()
-  const handler = getHandler();
+export const state = (initialState, caller) => {
+  const handler = getHandler(caller);
+
   const innerState = new Proxy(
     {
       value: initialState,
