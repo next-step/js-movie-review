@@ -13,9 +13,7 @@ const MAX_PAGE = 500;
 
 const fetchPopularMovies = async () => {
   try {
-    return await fetchApiWithPagination("/movie/popular?language=ko-KO", {
-      getItems: (response) => response.results,
-    });
+    return await fetchApiWithPagination("/movie/popular?language=ko-KO", {});
   } catch (error) {
     return null;
   }

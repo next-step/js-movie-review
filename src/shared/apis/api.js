@@ -28,24 +28,16 @@ export const fetchApi = async (url, headers = defaultHeaders) => {
 
 export const fetchApiWithPagination = async (
   url,
-  {
-    headers = defaultHeaders,
-    defaultPage = 1,
-    getItems = (response) => response,
-  } = {}
+  { headers = defaultHeaders, defaultPage = 1 } = {}
 ) => {
   let currentPage = defaultPage;
-  let totalItems = [];
 
   const fetchNextPage = async () => {
     const response = await fetchApi(`${url}&page=${currentPage}`, headers);
 
     currentPage += 1;
 
-    const newItems = getItems(response);
-    totalItems = [...totalItems, ...newItems];
-
-    return { data: response, totalItems };
+    return { data: response };
   };
 
   const { data: initialData } = await fetchNextPage();
