@@ -1,11 +1,10 @@
-import { createRefreshIcon } from "src/shared/ui/icon";
+import { refreshIcon } from "src/shared/icons/refreshIcon";
 
 const createFallbackButton = (onRetry) => {
   const fallbackButton = document.createElement("button");
   fallbackButton.classList.add("fallback-button");
 
-  const refreshIcon = createRefreshIcon(40, 40);
-  fallbackButton.appendChild(refreshIcon);
+  fallbackButton.appendChild(refreshIcon(40, 40));
 
   fallbackButton.addEventListener("click", onRetry);
 
