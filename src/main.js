@@ -4,7 +4,7 @@ import {
   createMovieListSection,
   updateMovieList,
   hiddenMovieListLoadButton,
-} from "src/pages/movie-list";
+} from "src/features/movie-list";
 
 import { fetchApiWithPagination } from "src/shared/apis/api";
 
