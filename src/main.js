@@ -33,7 +33,7 @@ const handleLoadMore = async (fetchNextPage) => {
 addEventListener("load", async () => {
   const app = document.querySelector("#app");
 
-  const header = createHeader();
+  const header = createHeader({ title: "인사이드 아웃2", rate: 9.5 });
   const footer = createFooter();
 
   const response = await fetchPopularMovies();

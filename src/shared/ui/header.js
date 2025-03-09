@@ -1,4 +1,4 @@
-export const createHeader = () => {
+export const createHeader = ({ title, rate, onclick = () => {} }) => {
   const header = document.createElement("header");
 
   header.innerHTML = /*html*/ `
@@ -11,14 +11,16 @@ export const createHeader = () => {
       <div class="top-rated-movie">
         <div class="rate">
           <img src="./images/star_empty.png" class="star" />
-          <span class="rate-value">9.5</span>
+          <span class="rate-value">${rate}</span>
         </div>
-        <div class="title">인사이드 아웃2</div>
+        <div class="title">${title}</div>
           <button class="primary detail">자세히 보기</button>
         </div>
       </div>
     </div>
   `;
+
+  header.querySelector("button.detail").addEventListener("click", onclick);
 
   return header;
 };
