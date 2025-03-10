@@ -1,6 +1,6 @@
 import { createSvgIcon } from "./lib";
 
-export const refreshIconTemplate = (width = 24, height = 24) => {
+const refreshIconTemplate = (width = 24, height = 24) => {
   return /*html*/ `
   <svg
     xmlns="http://www.w3.org/2000/svg"

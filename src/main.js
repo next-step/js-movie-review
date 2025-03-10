@@ -1,4 +1,5 @@
-import { createHeader } from "src/shared/ui/header";
+import { createHeader, addTopBar } from "src/shared/ui/header";
+import { createSearchBar } from "src/shared/ui/search-bar";
 import { createFooter } from "src/shared/ui/footer";
 import {
   createMovieListSection,
@@ -33,6 +34,8 @@ addEventListener("load", async () => {
   const app = document.querySelector("#app");
 
   const header = createHeader({ title: "인사이드 아웃2", rate: 9.5 });
+  const searchBar = createSearchBar();
+  addTopBar(header, searchBar);
   const footer = createFooter();
 
   const response = await fetchPopularMovies();
