@@ -13,7 +13,7 @@
     "deploy": "vite build --base=/js-movie-review/ --minify=false && npx gh-pages -d dist"
   },
   "license": "ISC",
-  "homepage": "https://{username}.github.io/js-movie-review",
+  "homepage": "https://sangkihan.github.io/js-movie-review",
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/preset-env": "^7.20.2",
