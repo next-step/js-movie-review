@@ -19,7 +19,7 @@ class Main {
 
       const movieListInstance = await movieApiCall(this.#movieApiQuery);
       this.#page = movieListInstance.page;
-      initMovieRender(movieListInstance, "지금 인기있는 영화");
+      initMovieRender(movieListInstance, "지금 인기있는 영화 ");
     });
   }
 
