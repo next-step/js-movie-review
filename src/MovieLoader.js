@@ -1,13 +1,11 @@
 import { fetchPopularMovies } from "./api";
-import { Headers } from "./components/Headers";
-import { LoadMoreButton } from "./components/LoadMoreButton";
-import { MovieList, renderMovieItems } from "./components/MovieList";
-import { SkeletonItems } from "./components/SkeletonItems";
+import { DEFAULT_MOVIE_RENDER_COUNT } from './constants';
+import { addSkeleton, removeSkeleton } from "./domain/skeleton";
+import { appendMovieItems, renderHeaders, renderMovieSection } from "./render";
 
 let currentPage = 1;
 let allMovies = [];
 let hasMoreMovies = true;
-const DEFAULT_MOVIE_RENDER_COUNT = 20;
 const MAX_PAGE = 500;
 
 export const initializeMovieSection = async () => {
@@ -25,20 +23,6 @@ export const initializeMovieSection = async () => {
   addLoadMoreButtonEvent();
 };
 
-const renderHeaders = (movie) => {
-  const wrap = document.querySelector("#wrap");
-  wrap.insertAdjacentHTML("afterbegin", Headers(movie));
-};
-
-const renderMovieSection = (movies) => {
-  const movieSection = document.querySelector(".movie-section");
-  movieSection.innerHTML = MovieList({ movies });
-
-  const initHasMoreMovies = movies.length === DEFAULT_MOVIE_RENDER_COUNT;
-  const loadMoreButtonHTML = LoadMoreButton(initHasMoreMovies);
-  movieSection.insertAdjacentHTML("beforeend", loadMoreButtonHTML);
-};
-
 const loadMoreMovies = async () => {
   if (!hasMoreMovies) return;
 
@@ -49,7 +33,7 @@ const loadMoreMovies = async () => {
   allMovies = [...allMovies, ...newMovies.results];
   currentPage++;
 
-  addMovieItems(newMovies.results);
+  appendMovieItems(newMovies.results);
 
   removeSkeleton();
 
@@ -61,25 +45,11 @@ const addLoadMoreButtonEvent = () => {
   loadMoreButton?.addEventListener("click", loadMoreMovies);
 };
 
-const addSkeleton = () => {
-  const movieSection = document.querySelector(".thumbnail-list");
-  movieSection.insertAdjacentHTML("beforeend", SkeletonItems());
-};
-
-const removeSkeleton = () => {
-  const skeletonLists = document.querySelectorAll(".skeleton-list");
-  skeletonLists.forEach(skeletonList => {
-    skeletonList.remove();
-  });
-};
-
-const addMovieItems = (movies) => {
-  const movieSection = document.querySelector(".thumbnail-list");
-  movieSection.insertAdjacentHTML("beforeend", renderMovieItems(movies));
-};
-
-const updateLoadMoreButtonDisplay = (loadedMovieCount) => {
-  if (loadedMovieCount === 0 || currentPage === MAX_PAGE) {
+export const updateLoadMoreButtonDisplay = (loadedMovieCount, currentPage) => {
+  if (
+    loadedMovieCount < DEFAULT_MOVIE_RENDER_COUNT ||
+    currentPage === MAX_PAGE
+  ) {
     hasMoreMovies = false;
 
     const loadMoreButton = document.getElementById("load-more-button");

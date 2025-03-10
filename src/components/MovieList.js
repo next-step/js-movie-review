@@ -1,4 +1,4 @@
-import { MovieItem } from "./MovieItem";
+import { renderMovieItems } from '../render';
 
 export const MovieList = (props) => {
   const { movies } = props;
@@ -9,8 +9,4 @@ export const MovieList = (props) => {
         ${renderMovieItems(movies)}
     </ul>
     `;
-};
-
-export const renderMovieItems = (movies) => {
-  return movies.map((movie) => MovieItem(movie)).join("");
 };
