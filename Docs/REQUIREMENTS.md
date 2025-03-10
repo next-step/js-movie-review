@@ -1,6 +1,6 @@
 ### 1. 🎬 영화 목록 조회 (인기순)
 
-- [ ] [영화 목록](https://developers.themoviedb.org/3/movies/get-popular-movies)의 1페이지를 불러오며 **`더보기`** 버튼을 누르면 그 다음의 영화 목록을 불러 올 수 있다.
+- [X] [영화 목록](https://developers.themoviedb.org/3/movies/get-popular-movies)의 1페이지를 불러오며 **`더보기`** 버튼을 누르면 그 다음의 영화 목록을 불러 올 수 있다.
     - [X] 단, 페이지 끝에 도달한 경우에는 **`더보기`** 버튼을 화면에 출력하지 않는다.
-- [ ] 영화 목록 아이템에 대한 Skeleton UI를 구현한다.
-    - [ ] Skeleton UI는 템플릿으로 제공되는 파일 이외로 자유롭게 구현할 수 있다.
+- [X] 영화 목록 아이템에 대한 Skeleton UI를 구현한다.
+    - [X] Skeleton UI는 템플릿으로 제공되는 파일 이외로 자유롭게 구현할 수 있다.
