@@ -6,20 +6,10 @@ import {
   updateMovieList,
   hiddenMovieListLoadButton,
 } from "src/features/movies/ui/movie-list";
-
-import { fetchApiWithPagination } from "src/shared/apis/api";
-
-// API 제한사항: 페이지는 1부터 시작하며 최대 500까지만 가능합니다.
-// 500을 초과하는 페이지 요청 시 API 에러 발생: "Invalid page: Pages start at 1 and max at 500. They are expected to be an integer."
-const MAX_PAGE = 500;
-
-const fetchPopularMovies = async () => {
-  try {
-    return await fetchApiWithPagination("/movie/popular?language=ko-KO", {});
-  } catch (error) {
-    return null;
-  }
-};
+import {
+  fetchPopularMovies,
+  MAX_PAGE,
+} from "src/features/movies/api/fetchPopularMovies";
 
 const handleLoadMore = async (fetchNextPage) => {
   const { data } = await fetchNextPage();
