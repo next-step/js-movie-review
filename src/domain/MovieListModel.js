@@ -1,4 +1,4 @@
-import MovieModel from "./MovieModel";
+import MovieModel from "./MovieModel.js";
 
 class MovieListModel {
   #total_pages;

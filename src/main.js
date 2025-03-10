@@ -1,5 +1,5 @@
-import { movieApiCall } from "./api/MovieApiCall";
-import { initMovieRender, addMovieRender } from "./component/Movie";
+import { movieApiCall } from "./api/MovieApiCall.js";
+import { initMovieRender, addMovieRender } from "./component/Movie.js";
 import MovieApiQuery from "./api/MovieApiQuery.js";
 
 class Main {

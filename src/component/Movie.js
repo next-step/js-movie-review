@@ -1,4 +1,4 @@
-import { starImage } from "../Image";
+import { starImage } from "../Image.js";
 
 export function initMovieRender(movieListInstance, title) {
   const movieSection = document.querySelector(".movie-list");
