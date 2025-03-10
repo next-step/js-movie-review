@@ -1,7 +1,7 @@
 import MovieListModel from "../domain/MovieListModel.js";
 
 const BASE_URL = "https://api.themoviedb.org/3/discover/movie";
-const API_KEY = process.env.API_KEY;
+const API_KEY = import.meta.env.API_KEY;
 
 export async function movieApiCall(movieApiQuery) {
   const apiUrl = `${BASE_URL}?${movieApiQuery.toQueryString()}`;
