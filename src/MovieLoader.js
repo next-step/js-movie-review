@@ -1,8 +1,8 @@
-import { fetchPopularMovies } from "../api";
-import { Headers } from "../components/Headers";
-import { LoadMoreButton } from "../components/LoadMoreButton";
-import { MovieList, renderMovieItems } from "../components/MovieList";
-import { SkeletonItems } from "../components/SkeletonItems";
+import { fetchPopularMovies } from "./api";
+import { Headers } from "./components/Headers";
+import { LoadMoreButton } from "./components/LoadMoreButton";
+import { MovieList, renderMovieItems } from "./components/MovieList";
+import { SkeletonItems } from "./components/SkeletonItems";
 
 let currentPage = 1;
 let allMovies = [];
@@ -72,7 +72,6 @@ const removeSkeleton = () => {
     skeletonList.remove();
   });
 };
-
 
 const addMovieItems = (movies) => {
   const movieSection = document.querySelector(".thumbnail-list");

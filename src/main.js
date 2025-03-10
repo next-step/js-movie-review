@@ -1,4 +1,4 @@
-import { initializeMovieSection } from "./domain/MovieLoader";
+import { initializeMovieSection } from "./MovieLoader";
 
 addEventListener("load", async () => {
   await initializeMovieSection();
