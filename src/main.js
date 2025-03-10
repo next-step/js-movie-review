@@ -1,35 +1,46 @@
-import image from "../templates/images/star_filled.png";
+import { createHeader } from "src/shared/ui/header";
+import { createFooter } from "src/shared/ui/footer";
+import {
+  createMovieListSection,
+  updateMovieList,
+  hiddenMovieListLoadButton,
+} from "src/features/movie-list";
 
-console.log("npm run dev 명령어를 통해 영화 리뷰 미션을 시작하세요");
+import { fetchApiWithPagination } from "src/shared/apis/api";
 
-console.log(
-  "%c" +
-    " _____ ______   ________  ___      ___ ___  _______                \n" +
-    "|\\   _ \\  _   \\|\\   __  \\|\\  \\    /  /|\\  \\|\\  ___ \\               \n" +
-    "\\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\  /  / | \\  \\ \\   __/|              \n" +
-    " \\ \\  \\\\|__| \\  \\ \\  \\\\\\  \\ \\  \\/  / / \\ \\  \\ \\  \\_|/__            \n" +
-    "  \\ \\  \\    \\ \\  \\ \\  \\\\\\  \\ \\    / /   \\ \\  \\ \\  \\_|\\ \\           \n" +
-    "   \\ \\__\\    \\ \\__\\ \\_______\\ \\__/ /     \\ \\__\\ \\_______\\          \n" +
-    "    \\|__|     \\|__|\\|_______|\\|__|/       \\|__|\\|_______|          \n" +
-    "                                                                   \n" +
-    "                                                                   \n" +
-    "                                                                   \n" +
-    " ________  _______   ___      ___ ___  _______   ___       __      \n" +
-    "|\\   __  \\|\\  ___ \\ |\\  \\    /  /|\\  \\|\\  ___ \\ |\\  \\     |\\  \\    \n" +
-    "\\ \\  \\|\\  \\ \\   __/|\\ \\  \\  /  / | \\  \\ \\   __/|\\ \\  \\    \\ \\  \\   \n" +
-    " \\ \\   _  _\\ \\  \\_|/_\\ \\  \\/  / / \\ \\  \\ \\  \\_|/_\\ \\  \\  __\\ \\  \\  \n" +
-    "  \\ \\  \\\\  \\\\ \\  \\_|\\ \\ \\    / /   \\ \\  \\ \\  \\_|\\ \\ \\  \\|\\__\\_\\  \\ \n" +
-    "   \\ \\__\\\\ _\\\\ \\_______\\ \\__/ /     \\ \\__\\ \\_______\\ \\____________\\\n" +
-    "    \\|__|\\|__|\\|_______|\\|__|/       \\|__|\\|_______|\\|____________|",
-  "color: #d81b60; font-size: 14px; font-weight: bold;"
-);
+// API 제한사항: 페이지는 1부터 시작하며 최대 500까지만 가능합니다.
+// 500을 초과하는 페이지 요청 시 API 에러 발생: "Invalid page: Pages start at 1 and max at 500. They are expected to be an integer."
+const MAX_PAGE = 500;
 
-addEventListener("load", () => {
-  const app = document.querySelector("#app");
-  const buttonImage = document.createElement("img");
-  buttonImage.src = image;
-
-  if (app) {
-    app.appendChild(buttonImage);
+const fetchPopularMovies = async () => {
+  try {
+    return await fetchApiWithPagination("/movie/popular?language=ko-KO", {});
+  } catch (error) {
+    return null;
   }
+};
+
+const handleLoadMore = async (fetchNextPage) => {
+  const { data } = await fetchNextPage();
+  updateMovieList(data.results);
+
+  if (data.page === MAX_PAGE) {
+    hiddenMovieListLoadButton();
+  }
+};
+
+addEventListener("load", async () => {
+  const app = document.querySelector("#app");
+
+  const header = createHeader({ title: "인사이드 아웃2", rate: 9.5 });
+  const footer = createFooter();
+
+  const response = await fetchPopularMovies();
+
+  const movieList = createMovieListSection({
+    movies: response?.initialData?.results,
+    onLoadMore: () => handleLoadMore(response?.fetchNextPage),
+  });
+
+  app.append(header, movieList, footer);
 });
