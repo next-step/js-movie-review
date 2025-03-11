@@ -1,4 +1,4 @@
-export const SkeletonItems = (count = 4) => {
+export const SkeletonItems = (count = 5) => {
   return Array.from(
     { length: count },
     () => `
@@ -16,4 +16,16 @@ export const SkeletonItems = (count = 4) => {
       </li>
     `,
   ).join("");
+};
+
+export const addSkeleton = () => {
+  const movieSection = document.querySelector(".thumbnail-list");
+  movieSection.insertAdjacentHTML("beforeend", SkeletonItems());
+};
+
+export const removeSkeleton = () => {
+  const skeletonLists = document.querySelectorAll(".skeleton-list");
+  skeletonLists.forEach((skeletonList) => {
+    skeletonList.remove();
+  });
 };

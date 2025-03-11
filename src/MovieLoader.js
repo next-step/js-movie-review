@@ -1,7 +1,10 @@
 import { fetchPopularMovies } from "./api";
-import { DEFAULT_MOVIE_RENDER_COUNT } from './constants';
-import { addSkeleton, removeSkeleton } from "./domain/skeleton";
-import { appendMovieItems, renderHeaders, renderMovieSection } from "./render";
+import { insertMovieHeaders } from './components/Headers';
+import { LoadMoreButton } from "./components/LoadMoreButton";
+import { MovieList, insertMovieItems } from "./components/MovieList";
+import { addSkeleton, removeSkeleton } from "./components/SkeletonItems";
+import { DEFAULT_MOVIE_RENDER_COUNT } from "./constants";
+
 
 let currentPage = 1;
 let allMovies = [];
@@ -16,7 +19,7 @@ export const initializeMovieSection = async () => {
     throw Error("영화 정보가 로드되지 않았습니다.");
   }
 
-  renderHeaders(allMovies[0]);
+  insertMovieHeaders(allMovies[0]);
 
   renderMovieSection(allMovies);
 
@@ -33,7 +36,7 @@ const loadMoreMovies = async () => {
   allMovies = [...allMovies, ...newMovies.results];
   currentPage++;
 
-  appendMovieItems(newMovies.results);
+  insertMovieItems(newMovies.results);
 
   removeSkeleton();
 
@@ -45,7 +48,7 @@ const addLoadMoreButtonEvent = () => {
   loadMoreButton?.addEventListener("click", loadMoreMovies);
 };
 
-export const updateLoadMoreButtonDisplay = (loadedMovieCount, currentPage) => {
+const updateLoadMoreButtonDisplay = (loadedMovieCount, currentPage) => {
   if (
     loadedMovieCount < DEFAULT_MOVIE_RENDER_COUNT ||
     currentPage === MAX_PAGE
@@ -58,4 +61,13 @@ export const updateLoadMoreButtonDisplay = (loadedMovieCount, currentPage) => {
     }
     return;
   }
+};
+
+const renderMovieSection = (movies) => {
+  const movieSection = document.querySelector(".movie-section");
+  movieSection.innerHTML = MovieList({ movies });
+
+  const initHasMoreMovies = movies.length === DEFAULT_MOVIE_RENDER_COUNT;
+  const loadMoreButtonHTML = LoadMoreButton(initHasMoreMovies);
+  movieSection.insertAdjacentHTML("beforeend", loadMoreButtonHTML);
 };

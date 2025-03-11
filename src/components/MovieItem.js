@@ -1,4 +1,4 @@
-export const MovieItem = (props) => {
+const MovieItem = (props) => {
   const { title, poster_path, vote_average } = props;
 
   const rate = vote_average.toFixed(1);
@@ -20,4 +20,8 @@ export const MovieItem = (props) => {
             </div>
         </div>
     </li>`;
+};
+
+export const renderMovieItems = (movies) => {
+  return movies.map((movie) => MovieItem(movie)).join("");
 };

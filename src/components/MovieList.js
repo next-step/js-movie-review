@@ -1,4 +1,4 @@
-import { renderMovieItems } from '../render';
+import { renderMovieItems } from './MovieItem';
 
 export const MovieList = (props) => {
   const { movies } = props;
@@ -9,4 +9,9 @@ export const MovieList = (props) => {
         ${renderMovieItems(movies)}
     </ul>
     `;
+};
+
+export const insertMovieItems = (movies) => {
+  const movieSection = document.querySelector(".thumbnail-list");
+  movieSection.insertAdjacentHTML("beforeend", renderMovieItems(movies));
 };

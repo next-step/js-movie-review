@@ -1,4 +1,4 @@
-export const Headers = (movie) => {
+const Headers = (movie) => {
   const { title, backdrop_path, vote_average } = movie;
   const backdrop = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${backdrop_path}`;
   const rate = vote_average.toFixed(1);
@@ -21,4 +21,9 @@ export const Headers = (movie) => {
       </div>
     </div>
   </header>`;
+};
+
+export const insertMovieHeaders = (movie) => {
+  const wrap = document.querySelector("#wrap");
+  wrap.insertAdjacentHTML("afterbegin", Headers(movie));
 };
