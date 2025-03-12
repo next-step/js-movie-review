@@ -4,7 +4,9 @@ import {
   hiddenMovieListLoadButton,
 } from "src/features/movies/ui/movie-list";
 
-import { fetchSearchMovies } from "src/features/movies/api/fetchSearchMovies";
+import { fetchSearchMovies } from "src/features/search/api/fetchSearchMovies";
+
+import { searchParamsManager } from "src/features/search/models/params";
 
 const handleLoadMore = async (fetchNextPage) => {
   const { data } = await fetchNextPage();
@@ -15,7 +17,9 @@ const handleLoadMore = async (fetchNextPage) => {
   }
 };
 
-export const searchResults = async ({ query }) => {
+export const searchResults = async () => {
+  const query = searchParamsManager.getKeyword();
+
   const response = await fetchSearchMovies({ query });
 
   const movieList = createMovieListSection({

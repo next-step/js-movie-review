@@ -2,13 +2,16 @@ import { createHeader, addTopBar } from "src/shared/ui/header";
 import { createSearchBar } from "src/shared/ui/search-bar";
 import { createFooter } from "src/shared/ui/footer";
 
+import { searchParamsManager } from "src/features/search/models/params";
+
 export const createLayout = ({ onSearch }) => {
   const header = createHeader({ title: "인사이드 아웃2", rate: 9.5 });
 
   const searchBar = createSearchBar({
     onSubmit: (event) => {
       const query = event.target.querySelector("input").value;
-      onSearch(query);
+      searchParamsManager.setKeyword(query);
+      onSearch();
     },
   });
 
