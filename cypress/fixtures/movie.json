@@ -1,0 +1,23 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/9nhjGaFLKtddDPtPaX5EmKqsWdH.jpg",
+      "genre_ids": [10749, 878, 53],
+      "id": 950396,
+      "original_language": "en",
+      "original_title": "The Gorge",
+      "overview": "NEXTSTEP 고도의 훈련을 받은 두 요원는 비밀스러운 협곡의 양쪽을 지키는 임무를 받은 후 멀리서 서로와 서서히 친해진다. 도사리고 있던 악이 드러나자, 둘은 협곡 안의 위험으로부터 살아남기 위해 협력해야만 한다.",
+      "popularity": 3876.006,
+      "poster_path": "/3s0jkMh0YUhIeIeioH3kt2X4st4.jpg",
+      "release_date": "2025-02-13",
+      "title": "NEXTSTEP '더 캐니언' - The Gorge",
+      "video": false,
+      "vote_average": 7.8,
+      "vote_count": 1539
+    }
+  ],
+  "total_pages": 1,
+  "total_results": 1
+}

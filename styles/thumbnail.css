@@ -38,3 +38,52 @@ p.rate > span {
   width: 16px;
   top: 1px;
 }
+
+.skeleton-item {
+  user-select: none;
+  cursor: pointer;
+}
+
+.skeleton-thumbnail {
+  width: 200px;
+  height: 300px;
+  border-radius: 8px;
+  background-color: #ddd; 
+}
+
+.skeleton-item-desc {
+  flex: 1;
+}
+
+.skeleton-rate {
+  display: flex;
+  align-items: baseline;
+}
+
+.skeleton-star {
+  width: 16px;
+  height: 16px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.skeleton-rate-value {
+  margin-left: 4px;
+  width: 30px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.skeleton-title {
+  width: 150px;
+  height: 20px;
+  background-color: #ddd;
+  border-radius: 5px;
+}
+
+.skeleton-item-desc > *:not(:last-child) {
+  position: relative;
+  margin-bottom: 4px;
+  line-height: 1.2rem;
+}

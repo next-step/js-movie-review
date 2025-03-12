@@ -1,0 +1,1 @@
+export const DEFAULT_MOVIE_RENDER_COUNT = 20;
