@@ -1,4 +1,4 @@
-import { fetchApiWithPagination } from "src/shared/apis/api";
+import { safeFetchWithPagination } from "src/shared/apis/lib";
 
 /**
  * API 제한사항: 페이지는 1부터 시작하며 최대 500까지만 가능합니다.
@@ -7,9 +7,5 @@ import { fetchApiWithPagination } from "src/shared/apis/api";
 export const MAX_PAGE = 500;
 
 export const fetchPopularMovies = async () => {
-  try {
-    return await fetchApiWithPagination("/movie/popular?language=ko-KO", {});
-  } catch (error) {
-    return null;
-  }
+  return await safeFetchWithPagination("/movie/popular?language=ko-KO", {});
 };

@@ -1,11 +1,7 @@
-import { fetchApiWithPagination } from "src/shared/apis/api";
+import { safeFetchWithPagination } from "src/shared/apis/lib";
 
 export const fetchSearchMovies = async ({ query = "" }) => {
-  try {
-    return await fetchApiWithPagination(
-      `/search/movie?language=ko-KO&query=${query}`
-    );
-  } catch (error) {
-    return null;
-  }
+  return await safeFetchWithPagination(
+    `/search/movie?language=ko-KO&query=${query}`
+  );
 };
