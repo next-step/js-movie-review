@@ -9,7 +9,7 @@ export async function movieApiCall(movieApiQuery) {
     const response = await fetch(apiUrl, {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + API_KEY,
+        Authorization: `Bearer ${import.meta.env.VITE_API_KEY}`,
       },
     });
 
