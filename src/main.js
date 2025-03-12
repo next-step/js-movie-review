@@ -1,4 +1,4 @@
-import { movieApiCall } from "./api/MovieApiCall.js";
+import { getMovie } from "./api/MovieApiCall.js";
 import { initMovieRender, addMovieRender } from "./component/Movie.js";
 import MovieApiQuery from "./api/MovieApiQuery.js";
 
@@ -10,14 +10,14 @@ class Main {
     addEventListener("load", async () => {
       this.#enrollClickEvent();
 
-      this.#movieApiQuery = new MovieApiQuery(
-        false,
-        false,
-        1,
-        "popularity.desc"
-      );
+      this.#movieApiQuery = new MovieApiQuery({
+        includeAdult: false,
+        includeVideo: false,
+        page: 1,
+        sortBy: "popularity.desc",
+      });
 
-      const movieListInstance = await movieApiCall(this.#movieApiQuery);
+      const movieListInstance = await getMovie(this.#movieApiQuery);
       this.#page = movieListInstance.page;
       initMovieRender(movieListInstance, "지금 인기있는 영화 ");
     });
@@ -31,7 +31,7 @@ class Main {
     document.querySelector(".more-btn").addEventListener("click", async () => {
       this.#movieApiQuery.nextPage();
 
-      const movieListInstance = await movieApiCall(this.#movieApiQuery);
+      const movieListInstance = await getMovie(this.#movieApiQuery);
       this.#page = movieListInstance.page;
       addMovieRender(movieListInstance);
 

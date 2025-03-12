@@ -4,11 +4,11 @@ class MovieApiQuery {
   #page;
   #sortBy;
 
-  constructor(includeAdult, includeVideo, page, sortBy) {
-    this.#includeAdult = includeAdult;
-    this.#includeVideo = includeVideo;
-    this.#page = page;
-    this.#sortBy = sortBy;
+  constructor(request) {
+    this.#includeAdult = request.includeAdult;
+    this.#includeVideo = request.includeVideo;
+    this.#page = request.page;
+    this.#sortBy = request.sortBy;
   }
 
   toQueryString() {
