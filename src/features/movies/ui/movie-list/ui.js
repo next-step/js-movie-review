@@ -47,12 +47,12 @@ export const hiddenMovieListLoadButton = () => {
   if (loadButton) loadButton.style.display = "none";
 };
 
-export const createMovieLayout = () => {
+export const createMovieLayout = (title) => {
   const layoutContainer = document.createElement("main");
   const layoutSection = document.createElement("section");
 
   const layoutTitle = document.createElement("h2");
-  layoutTitle.textContent = "지금 인기 있는 영화";
+  layoutTitle.textContent = title;
 
   layoutSection.appendChild(layoutTitle);
   layoutContainer.appendChild(layoutSection);

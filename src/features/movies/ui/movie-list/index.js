@@ -44,9 +44,10 @@ export const createMovieListSection = ({
   movies = [],
   showLoadButton = true,
   onLoadMore,
+  title = "",
 }) => {
   const container = createMovieContainer();
-  const layout = createMovieLayout();
+  const layout = createMovieLayout(title);
   const movieList = createMovieList(movies);
 
   const loadButton = showLoadButton

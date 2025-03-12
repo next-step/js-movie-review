@@ -24,6 +24,7 @@ export const popularMovies = async () => {
   const movieList = createMovieListSection({
     movies: response?.initialData?.results,
     onLoadMore: () => handleLoadMore(response?.fetchNextPage),
+    title: "지금 인기 있는 영화",
   });
 
   return movieList;

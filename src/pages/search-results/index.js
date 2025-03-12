@@ -23,6 +23,7 @@ export const searchResults = async ({ query }) => {
     showLoadButton:
       response?.initialData?.page !== response?.initialData?.total_pages,
     onLoadMore: () => handleLoadMore(response?.fetchNextPage),
+    title: `"${query}" 검색 결과`,
   });
 
   return movieList;
