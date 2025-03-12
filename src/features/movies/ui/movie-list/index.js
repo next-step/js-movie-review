@@ -4,6 +4,7 @@ import {
   createMovieListLoadButton,
   createMovieLayout,
   createMovieContainer,
+  createEmptyMovieList,
   hiddenMovieListLoadButton,
 } from "./ui.js";
 import {
@@ -45,17 +46,21 @@ export const createMovieListSection = ({
   showLoadButton = true,
   onLoadMore,
   title = "",
+  showEmptyMovieList = false,
+  emptyMovieListMessage = "검색 결과가 없습니다 🥲",
 }) => {
   const container = createMovieContainer();
   const layout = createMovieLayout(title);
+
   const movieList = createMovieList(movies);
+  const emptyMovieList = createEmptyMovieList(emptyMovieListMessage);
 
   const loadButton = showLoadButton
     ? createMovieListLoadButton(() => onClickLoadButton(onLoadMore))
     : null;
 
   container.appendChild(layout);
-  layout.appendChild(movieList);
+  layout.appendChild(showEmptyMovieList ? emptyMovieList : movieList);
   if (loadButton) layout.appendChild(loadButton);
 
   return container;

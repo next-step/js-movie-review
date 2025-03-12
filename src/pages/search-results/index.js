@@ -24,6 +24,7 @@ export const searchResults = async ({ query }) => {
       response?.initialData?.page !== response?.initialData?.total_pages,
     onLoadMore: () => handleLoadMore(response?.fetchNextPage),
     title: `"${query}" 검색 결과`,
+    showEmptyMovieList: response && response?.initialData?.results.length === 0,
   });
 
   return movieList;

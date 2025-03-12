@@ -66,3 +66,13 @@ export const createMovieContainer = () => {
 
   return container;
 };
+
+export const createEmptyMovieList = (message) => {
+  const emptyMovieList = document.createElement("div");
+  emptyMovieList.classList.add("empty-movie-list");
+  emptyMovieList.innerHTML = /*html*/ `
+    <p>${message}</p>
+  `;
+
+  return emptyMovieList;
+};
