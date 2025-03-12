@@ -40,18 +40,22 @@ const onClickLoadButton = async (onLoadMore) => {
   }
 };
 
-export const createMovieListSection = ({ movies = [], onLoadMore }) => {
+export const createMovieListSection = ({
+  movies = [],
+  showLoadButton = true,
+  onLoadMore,
+}) => {
   const container = createMovieContainer();
   const layout = createMovieLayout();
   const movieList = createMovieList(movies);
 
-  const loadButton = createMovieListLoadButton(() =>
-    onClickLoadButton(onLoadMore)
-  );
+  const loadButton = showLoadButton
+    ? createMovieListLoadButton(() => onClickLoadButton(onLoadMore))
+    : null;
 
   container.appendChild(layout);
   layout.appendChild(movieList);
-  layout.appendChild(loadButton);
+  if (loadButton) layout.appendChild(loadButton);
 
   return container;
 };

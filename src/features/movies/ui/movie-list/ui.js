@@ -43,6 +43,7 @@ export const createMovieListLoadButton = (onClick) => {
 
 export const hiddenMovieListLoadButton = () => {
   const loadButton = document.querySelector(".load-button");
+
   if (loadButton) loadButton.style.display = "none";
 };
 
