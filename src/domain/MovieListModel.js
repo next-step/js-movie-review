@@ -1,24 +1,23 @@
 import MovieModel from "./MovieModel.js";
 
 class MovieListModel {
-  #total_pages;
-  #total_results;
+  #totalPages;
+  #totalResults;
   #page;
   #movieModels;
 
   constructor(response) {
-    console.log(response);
     this.#page = response.page;
-    this.#total_results = response.total_results;
-    this.#total_pages = response.total_pages;
+    this.#totalPages = response.total_results;
+    this.#totalPages = response.total_pages;
     this.#movieModels = [];
     response.results.forEach((result) => {
       this.#movieModels.push(new MovieModel(result));
     });
   }
 
-  get total_results() {
-    return this.#total_results;
+  get totalResults() {
+    return this.#totalResults;
   }
 
   get movieModels() {
@@ -30,7 +29,7 @@ class MovieListModel {
   }
 
   isLastPage() {
-    return this.#total_pages === this.#page;
+    return this.#totalResults === this.#page;
   }
 }
 

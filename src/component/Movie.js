@@ -42,7 +42,7 @@ function createMovie(movieInstance) {
   const item = document.createElement("li");
 
   const starImagePath =
-    movieInstance.vote_average === "0.0"
+    movieInstance.voteAverage === "0.0"
       ? starImage["empty"]
       : starImage["filled"];
 
@@ -50,13 +50,13 @@ function createMovie(movieInstance) {
     <div class="item">
         <img
             class="thumbnail"
-            src=${movieInstance.poster_path}
+            src=${movieInstance.posterPath}
             alt=${movieInstance.title}
         />
         <div class="item-desc">
             <p class="rate">
             <img src="${starImagePath}" class="star" /><span
-                >${movieInstance.vote_average}</span
+                >${movieInstance.voteAverage}</span
             >
             </p>
             <strong>${movieInstance.title}</strong>

@@ -2,35 +2,35 @@ class MovieModel {
   static IMAGE_URL = "https://image.tmdb.org/t/p/w440_and_h660_face";
 
   #id;
-  #poster_path;
+  #posterPath;
   #title;
-  #vote_average;
+  #voteAverage;
 
   constructor(result) {
     this.#id = result.id;
-    this.#poster_path = MovieModel.IMAGE_URL + result.poster_path;
+    this.#posterPath = MovieModel.IMAGE_URL + result.poster_path;
     this.#title = result.title;
-    this.#vote_average = this.#cal_vote_average(result.vote_average);
+    this.#voteAverage = this.#formatToTwoDecimals(result.vote_average);
   }
 
   get id() {
     return this.#id;
   }
 
-  get poster_path() {
-    return this.#poster_path;
+  get posterPath() {
+    return this.#posterPath;
   }
 
   get title() {
     return this.#title;
   }
 
-  get vote_average() {
-    return this.#vote_average;
+  get voteAverage() {
+    return this.#voteAverage;
   }
 
-  #cal_vote_average(vote_average) {
-    return Number(vote_average).toFixed(1);
+  #formatToTwoDecimals(voteAverage) {
+    return Number(voteAverage).toFixed(1);
   }
 }
 
