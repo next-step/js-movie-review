@@ -11,9 +11,9 @@ class MovieListModel {
     this.#totalPages = response.total_results;
     this.#totalPages = response.total_pages;
     this.#movieModels = [];
-    response.results.forEach((result) => {
-      this.#movieModels.push(new MovieModel(result));
-    });
+    this.#movieModels = response.results.map(
+      (result) => new MovieModel(result)
+    );
   }
 
   get totalResults() {
