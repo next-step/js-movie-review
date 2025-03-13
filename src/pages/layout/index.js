@@ -9,9 +9,9 @@ export const createLayout = ({ onSearch }) => {
 
   const searchBar = createSearchBar({
     onSubmit: (event) => {
+      onSearch();
       const query = event.target.querySelector("input").value;
       searchParamsManager.setKeyword(query);
-      onSearch();
     },
   });
 
