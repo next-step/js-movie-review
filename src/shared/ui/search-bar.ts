@@ -3,8 +3,10 @@ import { searchIcon } from "src/shared/icons/searchIcon";
 export const createSearchBar = ({
   placeholder = "검색어를 입력하세요",
   onSubmit = () => {},
-  onChange = () => {},
-} = {}) => {
+}: {
+  placeholder?: string;
+  onSubmit?: (event: SubmitEvent) => void;
+}) => {
   const searchBar = document.createElement("div");
   searchBar.classList.add("search");
 
@@ -15,13 +17,12 @@ export const createSearchBar = ({
     </form>
   `;
 
-  searchBar.querySelector("input").addEventListener("input", onChange);
-  searchBar.querySelector("form").addEventListener("submit", (event) => {
+  searchBar.querySelector("form")?.addEventListener("submit", (event) => {
     event.preventDefault();
     onSubmit(event);
   });
 
-  searchBar.querySelector(".search-button").appendChild(searchIcon(16, 16));
+  searchBar.querySelector(".search-button")?.appendChild(searchIcon(16, 16));
 
   return searchBar;
 };

@@ -4,14 +4,18 @@ import { createFooter } from "src/shared/ui/footer";
 
 import { searchParamsManager } from "src/features/search/models/params";
 
-export const createLayout = ({ onSearch }) => {
+export const createLayout = ({ onSearch }: { onSearch: () => {} }) => {
   const header = createHeader({ title: "인사이드 아웃2", rate: 9.5 });
 
   const searchBar = createSearchBar({
     onSubmit: (event) => {
       onSearch();
-      const query = event.target.querySelector("input").value;
-      searchParamsManager.setKeyword(query);
+
+      if (event.target instanceof HTMLFormElement) {
+        const input = event.target.querySelector("input");
+        const query = input ? input.value : "";
+        searchParamsManager.setKeyword(query);
+      }
     },
   });
 

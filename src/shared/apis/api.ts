@@ -1,16 +1,18 @@
-class CustomFetchError extends Error {
-  constructor(errorMessage, status) {
-    super(errorMessage);
-    this.status = status;
-  }
-}
+import {
+  CustomFetchError,
+  FetchApiOptions,
+  FetchApiWithPaginationOptions,
+} from "./model";
 
 const defaultHeaders = {
   Authorization: `Bearer ${import.meta.env.VITE_API_TOKEN}`,
   "Content-Type": "application/json",
 };
 
-export const fetchApi = async (url, headers = defaultHeaders) => {
+export const fetchApi = async <T>({
+  url,
+  headers = defaultHeaders,
+}: FetchApiOptions): Promise<T> => {
   try {
     const response = await fetch(
       `${import.meta.env.VITE_TMDB_API_BASE_URL}${url}`,
@@ -33,14 +35,21 @@ export const fetchApi = async (url, headers = defaultHeaders) => {
   }
 };
 
-export const fetchApiWithPagination = async (
+export const fetchApiWithPagination = async <T>({
   url,
-  { headers = defaultHeaders, defaultPage = 1 } = {}
-) => {
-  let currentPage = defaultPage;
+  headers,
+  options = { defaultPage: 1, fn: fetchApi },
+}: FetchApiWithPaginationOptions<T>): Promise<{
+  initialData: T;
+  fetchNextPage: () => Promise<{ data: T }>;
+}> => {
+  let currentPage = options.defaultPage;
 
   const fetchNextPage = async () => {
-    const response = await fetchApi(`${url}&page=${currentPage}`, headers);
+    const response = await options.fn({
+      url: `${url}&page=${currentPage}`,
+      headers,
+    });
 
     currentPage += 1;
 

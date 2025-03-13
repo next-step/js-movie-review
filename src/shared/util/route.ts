@@ -1,4 +1,11 @@
-export const ROUTES = {
+interface Route {
+  path: string;
+  component: () => Promise<HTMLElement>;
+}
+
+export const ROUTES: {
+  [key: string]: Route;
+} = {
   "/": {
     path: "/",
     component: async () => {
@@ -23,7 +30,7 @@ export const matchRoute = async () => {
     : await ROUTES["/"].component();
 };
 
-export const navigate = async (path) => {
+export const navigate = async (path: string) => {
   window.history.pushState(null, "", path);
   return await matchRoute();
 };

@@ -9,7 +9,7 @@ class SearchParamsManager extends AbstractParamsManager {
     super("search");
   }
 
-  setKeyword(keyword) {
+  setKeyword(keyword: string) {
     this.setParams({
       [this.PARAMS.KEYWORD]: keyword,
     });
@@ -20,4 +20,4 @@ class SearchParamsManager extends AbstractParamsManager {
   }
 }
 
-export const searchParamsManager = new SearchParamsManager("search");
+export const searchParamsManager = new SearchParamsManager();

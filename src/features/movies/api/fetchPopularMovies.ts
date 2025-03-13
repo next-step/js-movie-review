@@ -7,5 +7,7 @@ import { safeFetchWithPagination } from "src/shared/apis/lib";
 export const MAX_PAGE = 500;
 
 export const fetchPopularMovies = async () => {
-  return await safeFetchWithPagination("/movie/popular?language=ko-KO", {});
+  return await safeFetchWithPagination({
+    url: "/movie/popular?language=ko-KO",
+  });
 };

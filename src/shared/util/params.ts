@@ -1,20 +1,20 @@
 export default class AbstractParamsManager {
   namespace;
 
-  constructor(namespace) {
+  constructor(namespace: string) {
     this.namespace = namespace;
   }
 
-  getNamespacedKey(key) {
+  getNamespacedKey(key: string) {
     return `${this.namespace}_${key}`;
   }
 
-  getParam(key) {
+  getParam(key: string) {
     const url = new URL(window.location.href);
     return url.searchParams.get(this.getNamespacedKey(key));
   }
 
-  setParams(params) {
+  setParams(params: Record<string, string>) {
     const url = new URL(window.location.href);
 
     Object.entries(params).forEach(([key, value]) => {
