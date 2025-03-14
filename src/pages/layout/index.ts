@@ -29,8 +29,8 @@ export const createLayout = ({ onSearch }: { onSearch: () => {} }) => {
   return [header, content, footer];
 };
 
-export const updateLayoutContent = (page) => {
+export const updateLayoutContent = (page: HTMLElement) => {
   const content = document.querySelector(".layout-content");
-  content.replaceChildren();
-  content.append(page);
+  content?.replaceChildren();
+  content?.append(page);
 };
