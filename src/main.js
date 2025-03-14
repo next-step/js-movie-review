@@ -1,6 +1,9 @@
 import { getMovie } from "./api/MovieApiCall.js";
 import { initMovieRender, addMovieRender } from "./component/Movie.js";
 import MovieApiQuery from "./api/MovieApiQuery.js";
+import { initHeader } from "./component/Header.js";
+import { initTab } from "./component/Nav.js";
+import { initFooter } from "./component/Footer.js";
 
 class Main {
   #page;
@@ -19,7 +22,10 @@ class Main {
 
       const movieListInstance = await getMovie(this.#movieApiQuery);
       this.#page = movieListInstance.page;
+      initHeader();
+      initTab();
       initMovieRender(movieListInstance, "지금 인기있는 영화 ");
+      initFooter();
     });
   }
 
