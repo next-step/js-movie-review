@@ -1,35 +1,46 @@
-import image from "../templates/images/star_filled.png";
+import { getMovie } from "./api/MovieApiCall.js";
+import { initMovieRender, addMovieRender } from "./component/Movie.js";
+import MovieApiQuery from "./api/MovieApiQuery.js";
 
-console.log("npm run dev 명령어를 통해 영화 리뷰 미션을 시작하세요");
+class Main {
+  #page;
+  #movieApiQuery;
 
-console.log(
-  "%c" +
-    " _____ ______   ________  ___      ___ ___  _______                \n" +
-    "|\\   _ \\  _   \\|\\   __  \\|\\  \\    /  /|\\  \\|\\  ___ \\               \n" +
-    "\\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\  /  / | \\  \\ \\   __/|              \n" +
-    " \\ \\  \\\\|__| \\  \\ \\  \\\\\\  \\ \\  \\/  / / \\ \\  \\ \\  \\_|/__            \n" +
-    "  \\ \\  \\    \\ \\  \\ \\  \\\\\\  \\ \\    / /   \\ \\  \\ \\  \\_|\\ \\           \n" +
-    "   \\ \\__\\    \\ \\__\\ \\_______\\ \\__/ /     \\ \\__\\ \\_______\\          \n" +
-    "    \\|__|     \\|__|\\|_______|\\|__|/       \\|__|\\|_______|          \n" +
-    "                                                                   \n" +
-    "                                                                   \n" +
-    "                                                                   \n" +
-    " ________  _______   ___      ___ ___  _______   ___       __      \n" +
-    "|\\   __  \\|\\  ___ \\ |\\  \\    /  /|\\  \\|\\  ___ \\ |\\  \\     |\\  \\    \n" +
-    "\\ \\  \\|\\  \\ \\   __/|\\ \\  \\  /  / | \\  \\ \\   __/|\\ \\  \\    \\ \\  \\   \n" +
-    " \\ \\   _  _\\ \\  \\_|/_\\ \\  \\/  / / \\ \\  \\ \\  \\_|/_\\ \\  \\  __\\ \\  \\  \n" +
-    "  \\ \\  \\\\  \\\\ \\  \\_|\\ \\ \\    / /   \\ \\  \\ \\  \\_|\\ \\ \\  \\|\\__\\_\\  \\ \n" +
-    "   \\ \\__\\\\ _\\\\ \\_______\\ \\__/ /     \\ \\__\\ \\_______\\ \\____________\\\n" +
-    "    \\|__|\\|__|\\|_______|\\|__|/       \\|__|\\|_______|\\|____________|",
-  "color: #d81b60; font-size: 14px; font-weight: bold;"
-);
+  async init() {
+    addEventListener("load", async () => {
+      this.#enrollClickEvent();
 
-addEventListener("load", () => {
-  const app = document.querySelector("#app");
-  const buttonImage = document.createElement("img");
-  buttonImage.src = image;
+      this.#movieApiQuery = new MovieApiQuery({
+        includeAdult: false,
+        includeVideo: false,
+        page: 1,
+        sortBy: "popularity.desc",
+      });
 
-  if (app) {
-    app.appendChild(buttonImage);
+      const movieListInstance = await getMovie(this.#movieApiQuery);
+      this.#page = movieListInstance.page;
+      initMovieRender(movieListInstance, "지금 인기있는 영화 ");
+    });
   }
-});
+
+  #enrollClickEvent() {
+    this.#clickMoreButton();
+  }
+
+  #clickMoreButton() {
+    document.querySelector(".more-btn").addEventListener("click", async () => {
+      this.#movieApiQuery.nextPage();
+
+      const movieListInstance = await getMovie(this.#movieApiQuery);
+      this.#page = movieListInstance.page;
+      addMovieRender(movieListInstance);
+
+      if (movieListInstance.isLastPage()) {
+        document.querySelector(".more-btn").classList.add("none");
+      }
+    });
+  }
+}
+
+const main = new Main();
+main.init();
