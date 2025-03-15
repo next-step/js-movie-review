@@ -164,12 +164,12 @@ footer.footer p:not(:last-child) {
 .search-input {
   height: 36px;
   width: 523px;
-  padding: 10px 40px 10px 10px; /* 왼쪽 패딩을 더해 돋보기가 겹치지 않도록 함 */
+  padding: 10px 40px 10px 10px;
   border-radius: 52px;
   border: 2px solid var(--color-gray-300);
   font-size: 16px;
   line-height: 24px;
-  background: transparent; /* 배경 투명 설정 */
+  background: transparent;
   color: var(--color-gray-300);
 }
 
@@ -179,11 +179,13 @@ footer.footer p:not(:last-child) {
 
 .search-icon {
   position: absolute;
-  right: 10px; /* 아이콘을 입력란의 왼쪽에 배치 */
-  top: 50%; /* 세로 가운데 정렬 */
-  transform: translateY(-50%); /* 아이콘을 정확히 중앙에 위치 */
-  width: 16px; /* 아이콘 크기 */
-  height: 16px; /* 아이콘 크기 */
-  pointer-events: none; /* 클릭 이벤트 비활성화 */
-  fill: var(--color-gray-300); /* 색상 (필요시 변경 가능) */
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  pointer-events: none;
+  fill: var(--color-gray-300);
+  pointer-events: auto;
+  cursor: pointer;
 }
