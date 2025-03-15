@@ -43,15 +43,16 @@ export const createMovieListLoadButton = (onClick) => {
 
 export const hiddenMovieListLoadButton = () => {
   const loadButton = document.querySelector(".load-button");
+
   if (loadButton) loadButton.style.display = "none";
 };
 
-export const createMovieLayout = () => {
+export const createMovieLayout = (title) => {
   const layoutContainer = document.createElement("main");
   const layoutSection = document.createElement("section");
 
   const layoutTitle = document.createElement("h2");
-  layoutTitle.textContent = "지금 인기 있는 영화";
+  layoutTitle.textContent = title;
 
   layoutSection.appendChild(layoutTitle);
   layoutContainer.appendChild(layoutSection);
@@ -64,4 +65,14 @@ export const createMovieContainer = () => {
   container.classList.add("container");
 
   return container;
+};
+
+export const createEmptyMovieList = (message) => {
+  const emptyMovieList = document.createElement("div");
+  emptyMovieList.classList.add("empty-movie-list");
+  emptyMovieList.innerHTML = /*html*/ `
+    <p>${message}</p>
+  `;
+
+  return emptyMovieList;
 };
