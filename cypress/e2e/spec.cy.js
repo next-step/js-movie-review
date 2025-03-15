@@ -22,3 +22,15 @@ describe("영화목록", () => {
     cy.get(".thumbnail-list li").should("have.length", 40);
   });
 });
+
+describe("영화검색", () => {
+  beforeEach(() => {
+    cy.visit("http://localhost:5173/");
+  });
+
+  it("소닉 검색 시 영화 목록에 li가 8개 있는지 확인", () => {
+    cy.get(".search-input").type("소닉");
+    cy.get(".search-icon").click();
+    cy.get(".thumbnail-list li").should("have.length", 8);
+  });
+});
