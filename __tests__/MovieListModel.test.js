@@ -28,6 +28,6 @@ describe("MovieListModel Class 테스트", () => {
     ]);
     expect(movieListModel.page).toEqual(1);
     expect(movieListModel.isLastPage()).toEqual(false);
-    expect(movieListModel.total_results).toEqual(20000);
+    expect(movieListModel.totalResults).toEqual(20000);
   });
 });
