@@ -7,16 +7,18 @@ import { initFooter } from "./component/Footer.js";
 import MovieSearchApiQuery from "./api/MovieSearchApiQuery.js";
 
 const NEXTPAGE_NUM = 1;
+const FIRST_PAGE = 1;
 class Main {
   #page;
   #movieApiQuery;
 
   async init() {
     addEventListener("load", async () => {
+      this.#initPage();
       this.#movieApiQuery = new MoviePopularApiQuery({
         includeAdult: false,
         includeVideo: false,
-        page: 1,
+        page: this.#page,
         sortBy: "popularity.desc",
       });
 
@@ -52,6 +54,7 @@ class Main {
   }
 
   #clickSearchButton() {
+    this.#initPage();
     const searchInput = document.querySelector(".search-input");
 
     document
@@ -72,7 +75,7 @@ class Main {
     this.#movieApiQuery = new MovieSearchApiQuery({
       includeAdult: false,
       keyword: inputValue,
-      page: 1,
+      page: this.#page,
     });
     const movieListInstance = await getMovie(this.#movieApiQuery);
     initMovieRender(movieListInstance, inputValue + " 검색결과");
@@ -80,6 +83,10 @@ class Main {
 
   #nextPage() {
     this.#page += NEXTPAGE_NUM;
+  }
+
+  #initPage() {
+    this.#page = FIRST_PAGE;
   }
 }
 
