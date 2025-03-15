@@ -56,10 +56,12 @@ class Main {
   #clickSearchButton() {
     const searchInput = document.querySelector(".search-input");
 
-    searchInput.addEventListener("click", async () => {
-      this.#initPage();
-      await this.#searchMovie(searchInput.value);
-    });
+    document
+      .querySelector(".search-icon")
+      .addEventListener("click", async () => {
+        this.#initPage();
+        await this.#searchMovie(searchInput.value);
+      });
 
     searchInput.addEventListener("keydown", async (event) => {
       if (event.key === "Enter") {
