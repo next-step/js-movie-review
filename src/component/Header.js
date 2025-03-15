@@ -14,7 +14,7 @@ export function initHeader(movieInstance) {
             <div class="top-rated-container">
                 <div class="top-bar">
                     <h1 class="logo">
-                        <img src="./images/logo.png" alt="MovieList" />
+                        <img src="logo.png" alt="MovieList" />
                     </h1>
                     <div class="search-container">
                     <input
