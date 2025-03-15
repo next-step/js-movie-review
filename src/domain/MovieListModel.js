@@ -28,6 +28,10 @@ class MovieListModel {
     return this.#page;
   }
 
+  get firstMovie() {
+    return this.#movieModels[0];
+  }
+
   isLastPage() {
     return this.#totalResults === this.#page;
   }

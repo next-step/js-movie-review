@@ -22,7 +22,7 @@ class Main {
 
       const movieListInstance = await getMovie(this.#movieApiQuery);
       this.#page = movieListInstance.page;
-      initHeader();
+      initHeader(movieListInstance.firstMovie);
       initTab();
       initMovieRender(movieListInstance, "지금 인기있는 영화 ");
       initFooter();

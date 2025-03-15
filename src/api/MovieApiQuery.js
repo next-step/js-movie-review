@@ -14,7 +14,7 @@ class MovieApiQuery {
   toQueryString() {
     return `include_adult=${this.#includeAdult}&include_video=${
       this.#includeVideo
-    }&page=${this.#page}&sort_by=${this.#sortBy}`;
+    }&language=ko-KR&page=${this.#page}&sort_by=${this.#sortBy}`;
   }
 
   nextPage() {
