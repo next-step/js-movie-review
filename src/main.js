@@ -79,6 +79,8 @@ class Main {
     });
     const movieListInstance = await getMovie(this.#movieApiQuery);
     initMovieRender(movieListInstance, inputValue + " 검색결과");
+
+    this.#enrollClickEvent();
   }
 
   #nextPage() {
