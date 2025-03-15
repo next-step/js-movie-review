@@ -1,24 +1,39 @@
 class MovieApiQuery {
+  #apiUrl;
   #includeAdult;
-  #includeVideo;
   #page;
-  #sortBy;
 
   constructor(request) {
+    console.log(request);
+    this.#apiUrl = this.getApiUrl();
     this.#includeAdult = request.includeAdult;
-    this.#includeVideo = request.includeVideo;
     this.#page = request.page;
-    this.#sortBy = request.sortBy;
+  }
+
+  get apiUrl() {
+    return this.#apiUrl;
+  }
+
+  get page() {
+    return this.#page;
+  }
+
+  get includeAdult() {
+    return this.#includeAdult;
+  }
+
+  updatePage(page) {
+    this.#page = page;
   }
 
   toQueryString() {
-    return `include_adult=${this.#includeAdult}&include_video=${
-      this.#includeVideo
-    }&language=ko-KR&page=${this.#page}&sort_by=${this.#sortBy}`;
+    throw new Error(
+      "toQueryString() 메소드는 자식 클래스에서 구현되어야 합니다."
+    );
   }
 
-  nextPage() {
-    this.#page += 1;
+  getApiUrl() {
+    throw new Error("getApiUrl() 메소드는 자식 클래스에서 구현되어야 합니다.");
   }
 }
 
