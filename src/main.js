@@ -7,13 +7,18 @@ addEventListener("load", async () => {
 
   const layout = createLayout({
     onSearch: async () => {
-      const page = await navigate("/search");
+      const page = await navigate("search");
       updateLayoutContent(page);
     },
   });
 
   app.append(...layout);
 
+  const page = await matchRoute();
+  updateLayoutContent(page);
+});
+
+window.addEventListener("popstate", async () => {
   const page = await matchRoute();
   updateLayoutContent(page);
 });

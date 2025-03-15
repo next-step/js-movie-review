@@ -6,15 +6,15 @@ interface Route {
 export const ROUTES: {
   [key: string]: Route;
 } = {
-  "/": {
-    path: "/",
+  "": {
+    path: "",
     component: async () => {
       const module = await import("src/pages/popular-movies");
       return await module.popularMovies();
     },
   },
-  "/search": {
-    path: "/search",
+  search: {
+    path: "search",
     component: async () => {
       const module = await import("src/pages/search-results");
       return await module.searchResults();
@@ -23,14 +23,15 @@ export const ROUTES: {
 };
 
 export const matchRoute = async () => {
-  const pathname = window.location.pathname;
+  const hash = window.location.hash.slice(1); // '#' 제거
+  const pathname = hash.split("?")[0];
+
   const route = Object.keys(ROUTES).find((route) => route === pathname);
-  return route
-    ? await ROUTES[route].component()
-    : await ROUTES["/"].component();
+  return route ? await ROUTES[route].component() : await ROUTES[""].component();
 };
 
 export const navigate = async (path: string) => {
-  window.history.pushState(null, "", path);
+  const normalizedPath = path.startsWith("#") ? path.slice(1) : path;
+  window.location.hash = normalizedPath;
   return await matchRoute();
 };

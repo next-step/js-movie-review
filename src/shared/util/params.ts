@@ -11,20 +11,27 @@ export default class AbstractParamsManager {
 
   getParam(key: string) {
     const url = new URL(window.location.href);
-    return url.searchParams.get(this.getNamespacedKey(key));
+
+    const hashQuery = url.hash.includes("?") ? url.hash.split("?")[1] : "";
+    const hashParams = new URLSearchParams(hashQuery);
+
+    const value = hashParams.get(this.getNamespacedKey(key));
+    return value ? decodeURIComponent(value) : null;
   }
 
   setParams(params: Record<string, string>) {
     const url = new URL(window.location.href);
+    const [hashPath, hashQuery] = url.hash.split("?");
+    const hashParams = new URLSearchParams(hashQuery || "");
 
     Object.entries(params).forEach(([key, value]) => {
       const namespacedKey = this.getNamespacedKey(key);
-
       if (value) {
-        url.searchParams.set(namespacedKey, value);
+        hashParams.set(namespacedKey, value);
       }
     });
 
-    window.history.pushState({}, "", url);
+    url.hash = hashPath + "?" + hashParams.toString();
+    window.history.replaceState({}, "", url);
   }
 }
