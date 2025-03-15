@@ -4,7 +4,6 @@ class MovieApiQuery {
   #page;
 
   constructor(request) {
-    console.log(request);
     this.#apiUrl = this.getApiUrl();
     this.#includeAdult = request.includeAdult;
     this.#page = request.page;

@@ -54,24 +54,22 @@ class Main {
   }
 
   #clickSearchButton() {
-    this.#initPage();
     const searchInput = document.querySelector(".search-input");
 
-    document
-      .querySelector(".search-icon")
-      .addEventListener("click", async () => {
-        await this.#searchMovie(searchInput.value);
-      });
+    searchInput.addEventListener("click", async () => {
+      this.#initPage();
+      await this.#searchMovie(searchInput.value);
+    });
 
     searchInput.addEventListener("keydown", async (event) => {
       if (event.key === "Enter") {
+        this.#initPage();
         await this.#searchMovie(searchInput.value);
       }
     });
   }
 
   async #searchMovie(inputValue) {
-    this.#nextPage();
     this.#movieApiQuery = new MovieSearchApiQuery({
       includeAdult: false,
       keyword: inputValue,
