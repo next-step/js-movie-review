@@ -1,5 +1,6 @@
 import MovieModel from "./MovieModel.js";
 
+const FIRST_INDEX = 0;
 class MovieListModel {
   #totalPages;
   #totalResults;
@@ -8,7 +9,7 @@ class MovieListModel {
 
   constructor(response) {
     this.#page = response.page;
-    this.#totalPages = response.total_results;
+    this.#totalResults = response.total_results;
     this.#totalPages = response.total_pages;
     this.#movieModels = [];
     this.#movieModels = response.results.map(
@@ -28,8 +29,12 @@ class MovieListModel {
     return this.#page;
   }
 
+  get firstMovie() {
+    return this.#movieModels[FIRST_INDEX];
+  }
+
   isLastPage() {
-    return this.#totalResults === this.#page;
+    return this.#totalPages === this.#page;
   }
 }
 

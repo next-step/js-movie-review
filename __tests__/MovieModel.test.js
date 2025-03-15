@@ -11,10 +11,10 @@ describe("MovieModel Class 테스트", () => {
     const movieModel = new MovieModel(result);
 
     expect(movieModel.id).toEqual(1);
-    expect(movieModel.poster_path).toEqual(
+    expect(movieModel.posterPath).toEqual(
       "https://image.tmdb.org/t/p/w440_and_h660_face/test.png"
     );
     expect(movieModel.title).toEqual("테스트");
-    expect(movieModel.vote_average).toEqual("4.2");
+    expect(movieModel.voteAverage).toEqual("4.2");
   });
 });
