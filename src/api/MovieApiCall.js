@@ -1,8 +1,9 @@
 import MovieListModel from "../domain/MovieListModel.js";
-import { movieApiUrl, movieApiKey } from "./MovieApiInfomation.js";
+import { movieApiKey } from "./MovieApiInfomation.js";
 
 export async function getMovie(movieApiQuery) {
-  const apiUrl = `${movieApiUrl}?${movieApiQuery.toQueryString()}`;
+  const apiUrl = `${movieApiQuery.apiUrl}?${movieApiQuery.toQueryString()}`;
+  console.log(apiUrl);
   try {
     const response = await fetch(apiUrl, {
       method: "GET",
@@ -19,3 +20,4 @@ export async function getMovie(movieApiQuery) {
     console.error("There was a problem with the fetch operation:", error);
   }
 }
+// https://api.themoviedb.org/3/search/keyword?page=1
