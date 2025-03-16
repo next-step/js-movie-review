@@ -55,6 +55,8 @@ export const AppMain = ({ inputState, inputStateSubscribe }) => {
   inputStateSubscribe(async () => {
     const data = await getSearchMovie(inputState.value);
     mainState.value = data;
+
+    div.querySelector(".add-more").removeEventListener('click', fetchNextPage)
   });
 
   subscribe(() => {
