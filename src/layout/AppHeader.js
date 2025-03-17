@@ -1,90 +1,92 @@
 import { getTopRatedMovies } from "../api/movieApiClient";
-import { state } from "../shared/state";
+import { renderer } from "../main";
+// import { state } from "../shared/state";
 import { toElement } from "../shared/ui";
 
-export const AppHeader = ({ inputState }) => {
-  const { value: headerState, renderComponents } = state([], [
-    toElement(`${headerState.value
-      ?.slice(0, 1)
-      .map((result) => {
-        const { poster_path: posterPath } = result;
-        return /* html */ `<div class="overlay" aria-hidden="true"
-          style="background-image:url('https://media.themoviedb.org/t/p/w1920_and_h1080_face${posterPath}')"
-        ></div>`;
-      })
-      .join("")}`)
-  ]);
+const TopRatedMoviePoster = (topRatedMovie) => {
+  return (topRatedMovie
+    ?.slice(0, 1)
+    .map((result) => {
+      const { poster_path: posterPath } = result;
+      return /* html */ `<div class="overlay" aria-hidden="true"
+        style="background-image:url('https://media.themoviedb.org/t/p/w1920_and_h1080_face${posterPath}')"
+      ></div>`;
+    })
+    .join(""))
+}
 
-  console.log(renderComponents)
+const TopRatedMovieInfo = (topRatedMovie) => {
+  return (topRatedMovie
+    ?.slice(0, 1)
+    .map((result) => {
+      const { title, vote_average: voteAverage } = result;
+      return /* html */ `<div class="rate">
+    <img src="star_empty.png" class="star" />
+    <span class="rate-value">${voteAverage}</span>
+  </div>
+  <div class="title">${title}</div>
+  <button class="primary detail">자세히 보기</button>`;
+    })
+    .join(""))
+}
+
+// header State가 변하면 변화되는 코드만 리렌더링 시킨다 
+export const AppHeader = ({ inputState }) => {
+  const { value: headerState, setState } = renderer.state([]);
 
   const fetchData = async () => {
     const data = await getTopRatedMovies();
-    headerState.value = data;
+    setState(data);
+    console.log(data, headerState)
   };
+
   fetchData();
 
-  const handleKeyDown = (e) => {
-    console.log("test");
-    if (e.code === "Enter") {
-      e.preventDefault();
-      // eslint-disable-next-line no-param-reassign
-      inputState.value = e.target.value;
-    }
-  };
-
   const render = () => {
-    const element = toElement(`
-      <div class="background-container">
-    ${toElement(`${headerState.value
-        ?.slice(0, 1)
-        .map((result) => {
-          const { poster_path: posterPath } = result;
-          return /* html */ `<div class="overlay" aria-hidden="true"
-            style="background-image:url('https://media.themoviedb.org/t/p/w1920_and_h1080_face${posterPath}')"
-          ></div>`;
-        })
-        .join("")}`)}
-  
-        <div class="top-rated-container">
-          <div class="logo-and-searchbox">
-            <h1 class="logo">
-              <img src="logo.png" alt="MovieList" />
-              </h1>
-              <div class="search-icon-box">
-                <input class="search" type="text"/>
-                <svg 
-                  class="search-icon" 
-                xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+
+    const container = toElement(
+      `<header>
+          <div class="background-container">
+              ${TopRatedMoviePoster(headerState.value)}
+              <div class="top-rated-container">
+                <div class="logo-and-searchbox">
+                  <h1 class="logo">
+                    <img src="logo.png" alt="MovieList" />
+                    </h1>
+                    <div class="search-icon-box">
+                      <input class="search" type="text"/>
+                      <svg 
+                        class="search-icon" 
+                      xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </div>
+                    <div></div>
+                </div>
+                  <div class="top-rated-movie">
+                ${TopRatedMovieInfo(headerState.value)}
+                </div>
               </div>
-              <div></div>
-          </div>
-            <div class="top-rated-movie">
-            
-          ${headerState.value
-            ?.slice(0, 1)
-            .map((result) => {
-              const { title, vote_average: voteAverage } = result;
-              return /* html */ `<div class="rate">
-            <img src="star_empty.png" class="star" />
-            <span class="rate-value">${voteAverage}</span>
-          </div>
-          <div class="title">${title}</div>
-          <button class="primary detail">자세히 보기</button>`;
-            })
-            .join("")}
-          </div>
-        </div>
-      </div>
-      `);
+            </div>
+        </header>`
+    );
 
-    // const parser = new DOMParser();
-    // const doc = parser.parseFromString(element, "text/html");
+    const handleKeyDown = (e) => {
+      if (e.code === "Enter") {
+        e.preventDefault();
+        // eslint-disable-next-line no-param-reassign
+        inputState.value = e.target.value;
+      }
+    };
 
-    // doc.querySelector(".search").addEventListener("keydown", handleKeyDown);
+    const inputElement = container.querySelector(".search");
+    inputElement.addEventListener("keydown", handleKeyDown);
 
-    // return doc.documentElement.innerHTML; // <html> 요소 반환
-    return element;
+    return container;
+
   };
 
-  return render();
+  return {
+    states: [headerState],
+    props: [inputState], 
+    render: render,
+  };
 };

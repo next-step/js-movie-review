@@ -1,4 +1,4 @@
-import { state } from "../shared/state";
+// import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
 import { getSearchMovie } from "../api/movieApiClient";
 import { MainTabs } from "../widget/MainTabs";
