@@ -12,14 +12,14 @@ describe("영화 검색 테스트", () => {
       cy.get("header .search").find("input").type("호빗");
       cy.get("header .search").find(".search-button").click();
 
-      cy.url().should("include", "/search");
+      cy.url().should("include", "#search");
     });
 
     it("검색창에 키워드 입력 후 엔터 버튼을 누르면 검색 결과 페이지로 이동한다.", () => {
       cy.get("header .search").find("input").type("호빗");
       cy.get("header .search").find("input").type("{enter}");
 
-      cy.url().should("include", "/search");
+      cy.url().should("include", "#search");
     });
   });
 
@@ -28,7 +28,7 @@ describe("영화 검색 테스트", () => {
       cy.get("header .search").find("input").type("해리포터");
       cy.get("header .search").find(".search-button").click();
 
-      cy.url().should("include", "/search");
+      cy.url().should("include", "#search");
 
       cy.contains("해리포터").should("exist");
     });
@@ -37,7 +37,7 @@ describe("영화 검색 테스트", () => {
       cy.get("header .search").find("input").type("훼리풔퉈");
       cy.get("header .search").find(".search-button").click();
 
-      cy.url().should("include", "/search");
+      cy.url().should("include", "#search");
 
       cy.contains("검색 결과가 없습니다").should("exist");
     });
