@@ -1,19 +1,33 @@
-import { ApiMovie, Movie } from "../types/type";
+import { MovieApiDto, MovieModel } from "../types/type";
+import { getUserRating } from "./userRating";
 
-export function createMovie(data: ApiMovie): Movie {
-  const { id, title, poster_path, vote_average, backdrop_path } = data;
+export const createMovie = (data: MovieApiDto): MovieModel => {
+  const {
+    id,
+    title,
+    poster_path,
+    vote_average,
+    backdrop_path,
+    release_date,
+    genres,
+    overview,
+  } = data;
 
-  function getThumbnailUrl(): string {
-    return `https://image.tmdb.org/t/p/w500${poster_path}`;
-  }
+  const getThumbnailUrl = (): string =>
+    `https://image.tmdb.org/t/p/w500${poster_path}`;
 
-  function getBackdropUrl(): string {
-    return `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${backdrop_path}`;
-  }
+  const getBackdropUrl = (): string =>
+    `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces/${backdrop_path}`;
 
-  function getFormattedVote(): string {
-    return vote_average.toFixed(1);
-  }
+  const getFormattedVote = (): string => vote_average.toFixed(1);
+
+  const getYear = (): string =>
+    release_date ? release_date.split("-")[0] : "Unknown";
+
+  const getGenres = (): string =>
+    genres?.map((genre) => genre.name).join(", ") || "";
+
+  const getOverview = (): string => overview || "상세 정보 없음.";
 
   return {
     id,
@@ -21,8 +35,15 @@ export function createMovie(data: ApiMovie): Movie {
     poster_path,
     vote_average,
     backdrop_path,
+    release_date,
+    genres,
+    overview,
     getThumbnailUrl,
     getBackdropUrl,
     getFormattedVote,
+    getYear,
+    getGenres,
+    getOverview,
+    userRating: getUserRating(id),
   };
-}
+};

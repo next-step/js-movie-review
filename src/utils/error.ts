@@ -1,3 +1,1 @@
-export function showErrorMessage(message: string): void {
-  alert(message);
-}
+export const showErrorMessage = (message: string): void => alert(message);

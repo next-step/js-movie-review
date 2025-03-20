@@ -3,20 +3,20 @@ import { MovieApiDto } from "../types/type";
 const BASE_URL: string = import.meta.env.VITE_BASE_URL;
 const API_KEY: string = import.meta.env.VITE_API_KEY;
 
-function fetchWithTimeout(
+const fetchWithTimeout = (
   url: string,
   options?: RequestInit,
   timeout: number = 5_000
-): Promise<Response> {
-  return Promise.race([
+): Promise<Response> =>
+  Promise.race([
     fetch(url, options),
     new Promise<Response>((_, reject) =>
-      setTimeout(() => {
-        reject(new Error("요청 시간이 초과되었습니다."));
-      }, timeout)
+      setTimeout(
+        () => reject(new Error("요청 시간이 초과되었습니다.")),
+        timeout
+      )
     ),
   ]);
-}
 
 type FetchDataOptions = {
   endpoint: string;
@@ -25,12 +25,12 @@ type FetchDataOptions = {
   init?: RequestInit;
 };
 
-async function fetchData<T>({
+const fetchData = async <T>({
   endpoint,
   params = {},
   timeout = 10_000,
   init,
-}: FetchDataOptions): Promise<T> {
+}: FetchDataOptions): Promise<T> => {
   const url = new URL(`${BASE_URL}/${endpoint}`);
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined) {
@@ -51,7 +51,7 @@ async function fetchData<T>({
   const response = await fetchWithTimeout(url.toString(), options, timeout);
 
   if (!response.ok) {
-    let errorMessage = `HTTP 요청중 에러가 발생했습니다: ${response.status}`;
+    let errorMessage = `HTTP 요청 중 에러가 발생했습니다: ${response.status}`;
 
     if (response.status === 404) {
       errorMessage = "리소스를 찾을 수 없습니다. (404)";
@@ -64,27 +64,26 @@ async function fetchData<T>({
   }
 
   return response.json();
-}
+};
 
-export async function fetchMovies(category: string, page: number = 1) {
+export const fetchMovies = async (category: string, page: number = 1) => {
   const data = await fetchData<{ results: MovieApiDto[] }>({
     endpoint: `movie/${category}`,
-    params: {
-      language: "ko-KR",
-      page,
-    },
+    params: { language: "ko-KR", page },
   });
   return data.results;
-}
+};
 
-export async function fetchSearchMovies(query: string, page: number = 1) {
+export const fetchSearchMovies = async (query: string, page: number = 1) => {
   const data = await fetchData<{ results: MovieApiDto[] }>({
     endpoint: "search/movie",
-    params: {
-      language: "ko-KR",
-      page,
-      query: encodeURIComponent(query),
-    },
+    params: { language: "ko-KR", page, query: encodeURIComponent(query) },
   });
   return data.results;
-}
+};
+
+export const fetchMovieDetails = async (movieId: number) =>
+  fetchData<MovieApiDto>({
+    endpoint: `movie/${movieId}`,
+    params: { language: "ko-KR" },
+  });

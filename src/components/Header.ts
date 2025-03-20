@@ -4,33 +4,24 @@ interface HeaderMovieParams {
   backdrop: string;
 }
 
-export function Header() {
+export const Header = () => {
   const headerContainer = document.getElementById("header-container");
-  if (!headerContainer) {
-    return null;
-  }
+  if (!headerContainer) return null;
 
   const template = document.getElementById(
     "header-template"
   ) as HTMLTemplateElement | null;
-  if (!template) {
-    return null;
-  }
+  if (!template) return null;
 
-  function render(): void {
-    if (!headerContainer || !template) {
-      return;
-    }
-
+  const render = (): void => {
+    if (!headerContainer || !template) return;
     const headerElement = template.content.cloneNode(true);
     headerContainer.innerHTML = "";
     headerContainer.appendChild(headerElement);
-  }
+  };
 
-  function update({ title, rating, backdrop }: HeaderMovieParams): void {
-    if (!headerContainer) {
-      return;
-    }
+  const update = ({ title, rating, backdrop }: HeaderMovieParams): void => {
+    if (!headerContainer) return;
 
     const headerEl = headerContainer.querySelector(
       "header"
@@ -48,31 +39,27 @@ export function Header() {
     const rateValueEl = topRatedMovieEl.querySelector(
       ".rate-value"
     ) as HTMLElement | null;
-    if (rateValueEl) {
-      rateValueEl.textContent = rating;
-    }
+    if (rateValueEl) rateValueEl.textContent = rating;
+
     const titleEl = topRatedMovieEl.querySelector(
       ".title"
     ) as HTMLElement | null;
-    if (titleEl) {
-      titleEl.textContent = title;
-    }
-  }
+    if (titleEl) titleEl.textContent = title;
+  };
 
-  function hideTopRated(): void {
+  const hideTopRated = (): void => {
     if (!headerContainer) return;
+
     const headerEl = headerContainer.querySelector(
       "header"
     ) as HTMLElement | null;
     if (!headerEl) return;
+
     const topRatedMovieEl = headerEl.querySelector(
       ".top-rated-movie"
     ) as HTMLElement | null;
-    if (topRatedMovieEl) {
-      topRatedMovieEl.style.display = "none";
-      console.log(topRatedMovieEl);
-    }
-  }
+    if (topRatedMovieEl) topRatedMovieEl.style.display = "none";
+  };
 
   return { render, update, hideTopRated };
-}
+};

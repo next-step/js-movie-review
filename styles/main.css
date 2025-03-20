@@ -1,6 +1,7 @@
 @import "./colors.css";
 @import url("./skeleton.css");
 @import url("./search.css");
+@import url("./modal.css");
 
 * {
   box-sizing: border-box;

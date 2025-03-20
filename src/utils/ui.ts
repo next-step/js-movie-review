@@ -1,57 +1,28 @@
 import { Header } from "../components/Header";
-import { LoadMoreButton } from "../components/LoadMoreButton";
+import { TAB_ITEMS } from "../constants";
 import { IMovieService } from "../types/type";
 
-export function updateTabContainer(mode: "category" | "search"): void {
+export const updateTabContainer = (mode: "category" | "search"): void => {
   const tabContainer = document.getElementById("tab-container");
   if (!tabContainer) return;
   tabContainer.style.display = mode === "search" ? "none" : "block";
-}
+};
 
-export function resetSearchInput(): void {
+export const resetSearchInput = (): void => {
   const inputEl = document.querySelector(
     ".search-input"
   ) as HTMLInputElement | null;
-  if (inputEl) {
-    inputEl.value = "";
-  }
-}
+  if (inputEl) inputEl.value = "";
+};
 
-export function setSearchInput(query: string) {
+export const setSearchInput = (query: string): void => {
   const inputEl = document.querySelector(
     ".search-input"
   ) as HTMLInputElement | null;
-  if (inputEl) {
-    inputEl.value = query;
-  }
-}
+  if (inputEl) inputEl.value = query;
+};
 
-export interface LoadMoreOptions {
-  hasMore: boolean;
-  movieContainer: HTMLElement;
-  renderNextBatch: () => void;
-  loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null;
-}
-
-export function addLoadMoreButton({
-  hasMore,
-  movieContainer,
-  renderNextBatch,
-  loadMoreButtonComponent,
-}: LoadMoreOptions): ReturnType<typeof LoadMoreButton> | null {
-  if (loadMoreButtonComponent) {
-    return null;
-  }
-
-  if (hasMore) {
-    loadMoreButtonComponent = LoadMoreButton(movieContainer, renderNextBatch);
-    loadMoreButtonComponent.render();
-  }
-
-  return loadMoreButtonComponent;
-}
-
-export function updateHeader(service: IMovieService) {
+export const updateHeader = (service: IMovieService): void => {
   const firstMovie = service.getFirstMovie();
   if (firstMovie) {
     Header()?.update({
@@ -59,5 +30,25 @@ export function updateHeader(service: IMovieService) {
       rating: firstMovie.getFormattedVote(),
       backdrop: firstMovie.getBackdropUrl(),
     });
+  }
+};
+
+export function updateSectionTitle(
+  mode: "search" | "category",
+  queryOrCategory?: string
+): void {
+  const headerTitleEl = document.querySelector(".section-title");
+  if (!headerTitleEl) return;
+
+  if (mode === "search") {
+    headerTitleEl.textContent =
+      queryOrCategory && queryOrCategory.trim()
+        ? `${queryOrCategory} 검색 결과`
+        : "검색 결과";
+  } else {
+    const category = queryOrCategory as string | undefined;
+    const tabItem = TAB_ITEMS.find((item) => item.category === category);
+    const label = tabItem ? tabItem.label : "영화";
+    headerTitleEl.textContent = `${label} 영화`;
   }
 }

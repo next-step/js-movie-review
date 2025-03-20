@@ -6,49 +6,42 @@ import {
 } from "../constants";
 import { MovieCategory } from "../types/type";
 
-function getInitialCategory(): MovieCategory {
+const getInitialCategory = (): MovieCategory => {
   const stored = sessionStorage.getItem(SESSION_KEYS.SELECTED_CATEGORY);
-  if (stored && VALID_CATEGORIES.includes(stored as MovieCategory)) {
-    return stored as MovieCategory;
-  }
-  return DEFAULT_CATEGORY;
-}
+  return stored && VALID_CATEGORIES.includes(stored as MovieCategory)
+    ? (stored as MovieCategory)
+    : DEFAULT_CATEGORY;
+};
 
-export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
+export const Tabs = (
+  onTabChange: (selectedCategory: MovieCategory) => void
+) => {
   const tabContainer = document.getElementById("tab-container");
-
   let selectedCategory: MovieCategory = getInitialCategory();
 
-  function renderTabs(): void {
-    if (!tabContainer) {
-      return;
-    }
+  const renderTabs = (): void => {
+    if (!tabContainer) return;
 
-    tabContainer.innerHTML = "";
-    const ul = document.createElement("ul");
-    ul.classList.add("tab");
+    tabContainer.innerHTML = `
+      <ul class="tab">
+        ${TAB_ITEMS.map(
+          ({ category, label }) => `
+          <li data-category="${category}">
+            <a href="#">
+              <div class="tab-item">
+                <h3>${label}</h3>
+              </div>
+            </a>
+          </li>
+        `
+        ).join("")}
+      </ul>
+    `;
 
-    const tabHTML = `
-    <ul class="tab">
-      ${TAB_ITEMS.map(
-        ({ category, label }) => `
-        <li data-category="${category}">
-          <a href="#">
-            <div class="tab-item">
-              <h3>${label}</h3>
-            </div>
-          </a>
-        </li>
-      `
-      ).join("")}
-    </ul>
-  `;
-
-    tabContainer.innerHTML = tabHTML;
     updateTabSelection();
-  }
+  };
 
-  function handleTabSelection(e: Event): void {
+  const handleTabSelection = (e: Event): void => {
     e.preventDefault();
     const target = (e.target as HTMLElement).closest("li[data-category]");
     if (!target) return;
@@ -63,12 +56,10 @@ export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
       updateTabSelection();
       onTabChange(selectedCategory);
     }
-  }
+  };
 
-  function updateTabSelection(): void {
-    if (!tabContainer) {
-      return;
-    }
+  const updateTabSelection = (): void => {
+    if (!tabContainer) return;
 
     tabContainer.querySelectorAll("li[data-category]").forEach((li) => {
       const tabItem = li.querySelector(".tab-item");
@@ -79,16 +70,14 @@ export function Tabs(onTabChange: (selectedCategory: MovieCategory) => void) {
         );
       }
     });
-  }
+  };
 
-  function init(): void {
-    if (!tabContainer) {
-      return;
-    }
+  const init = (): void => {
+    if (!tabContainer) return;
     renderTabs();
     tabContainer.addEventListener("click", handleTabSelection);
     onTabChange(selectedCategory);
-  }
+  };
 
   return { init, getSelectedCategory: (): MovieCategory => selectedCategory };
-}
+};

@@ -1,10 +1,13 @@
+import initInfiniteScroll from "./../utils/infiniteScroll";
 import { createMovieService } from "../services/createMovieService";
-import { showSkeletonUI, renderMovies } from "../components/MovieRenderer";
-import { LoadMoreButton } from "../components/LoadMoreButton";
 import { showErrorMessage } from "../utils/error";
 import { debounce } from "../utils/helper";
 import { MovieCategory, IMovieService, MovieModel } from "../types/type";
-import { addLoadMoreButton, updateHeader } from "../utils/ui";
+import {
+  updateHeader,
+  updateSectionTitle,
+  updateTabContainer,
+} from "../utils/ui";
 import {
   DEFAULT_CATEGORY,
   DESKTOP_MOVIES_PER_LOAD,
@@ -13,6 +16,13 @@ import {
 } from "../constants";
 import { getCurrentMode } from "../utils/state";
 import { Tabs } from "../components/Tabs";
+import {
+  appendMovies,
+  removeSkeletonUI,
+  renderMoviesInitial,
+  showSkeletonUI,
+} from "../components/MovieRenderer";
+import { Modal } from "../components/Modal";
 export function createMovieController(containerId: string) {
   const containerElement = document.getElementById(containerId);
   if (!containerElement) {
@@ -22,7 +32,14 @@ export function createMovieController(containerId: string) {
 
   const movieContainer: HTMLElement = containerElement;
   const service: IMovieService = createMovieService();
-  let loadMoreButtonComponent: ReturnType<typeof LoadMoreButton> | null = null;
+  const modal = Modal();
+
+  const infiniteScroll = initInfiniteScroll({
+    container: movieContainer,
+    onLoadMore: renderNextBatch,
+    hasMore: () => service.hasMore(),
+  });
+
   let currentMode: "search" | "category" = "category";
   let tabComponent: ReturnType<typeof Tabs> | null = null;
 
@@ -41,38 +58,64 @@ export function createMovieController(containerId: string) {
   }
 
   function init(tabs: ReturnType<typeof Tabs>) {
+    modal.render();
     tabComponent = tabs;
     attachSearchListener();
-    handleInitialState();
+    initializeMovies();
     initResizeListener();
-    window.addEventListener("popstate", handleInitialState);
+
+    window.addEventListener("popstate", initializeMovies);
+    movieContainer.addEventListener("click", fetchAndShowMovieDetails);
   }
 
-  function handleInitialState() {
+  async function fetchAndShowMovieDetails(event: Event) {
+    const target = event.target as HTMLElement;
+    const movieItem = target.closest(".item") as HTMLElement | null;
+    if (!movieItem) return;
+
+    const { movieId } = movieItem.dataset;
+    if (!movieId) return;
+
+    try {
+      const movieDetails = await service.getMovieDetails(Number(movieId));
+      modal.open(movieDetails);
+    } catch (error) {
+      console.error(
+        `영화 상세 정보를 불러오는 데 실패했습니다. (MovieID: ${movieId})`
+      );
+    }
+  }
+
+  function initializeMovies() {
     const params = new URLSearchParams(location.search);
     const searchQuery = params.get("search");
 
     currentMode = getCurrentMode(searchQuery ?? "");
+    updateSectionTitle(
+      currentMode,
+      searchQuery ?? (tabComponent?.getSelectedCategory() || DEFAULT_CATEGORY)
+    );
 
     if (currentMode === "search") {
       searchMovies(searchQuery!, false);
+      return;
     } else {
       fetchMoviesByCategory(
-        tabComponent?.getSelectedCategory() || DEFAULT_CATEGORY,
-        true
+        tabComponent?.getSelectedCategory() || DEFAULT_CATEGORY
       );
     }
   }
 
   async function switchTab(newCategory: MovieCategory): Promise<void> {
     if (currentMode === "search") return;
+    updateSectionTitle("category", newCategory);
     await fetchMoviesByCategory(newCategory);
   }
 
   async function fetchMovies({
     category,
     query,
-    isInitial = false,
+    isInitial = true,
     pushState = true,
   }: {
     category?: MovieCategory;
@@ -80,25 +123,56 @@ export function createMovieController(containerId: string) {
     isInitial?: boolean;
     pushState?: boolean;
   }) {
-    currentMode = getCurrentMode(query);
-
     showSkeletonUI(movieContainer);
 
-    try {
-      const movies = query
-        ? await fetchMoviesBySearchQuery(query)
-        : await fetchMoviesByCategoryName(category);
+    if (query) {
+      updateSectionTitle("search", query);
+    }
 
-      renderMovieResults(movies, query);
+    try {
+      const movies = await getMovies({ category, query, isInitial });
+
+      if (!movies.length) {
+        displayNoResultsMessage(query);
+        return;
+      }
+
+      removeSkeletonUI(movieContainer);
+
+      renderMovies(movies, isInitial);
+
+      if (service.hasMore()) {
+        infiniteScroll.observeLastItem();
+      } else {
+        infiniteScroll.disconnect();
+      }
+
       updateHeader(service);
     } catch (error) {
       displayFetchErrorMessage();
     } finally {
-      updateHistory(query, isInitial, pushState);
+      updateHistory(query, pushState);
     }
   }
 
+  async function getMovies({
+    category,
+    query,
+    isInitial,
+  }: {
+    category?: MovieCategory;
+    query?: string;
+    isInitial: boolean;
+  }) {
+    return isInitial
+      ? query
+        ? await fetchMoviesBySearchQuery(query)
+        : await fetchMoviesByCategoryName(category)
+      : service.getNextBatch();
+  }
+
   async function fetchMoviesBySearchQuery(query: string) {
+    updateTabContainer("search");
     await service.searchMovies(query);
     return service.getNextBatch();
   }
@@ -110,24 +184,16 @@ export function createMovieController(containerId: string) {
     return service.getNextBatch();
   }
 
-  function renderMovieResults(movies: MovieModel[], query?: string) {
-    if (movies.length === 0) {
-      movieContainer.innerHTML = query
-        ? `<p>${query} 검색 결과가 없습니다.</p>`
-        : `<p>영화가 없습니다.</p>`;
-      return;
-    }
+  function displayNoResultsMessage(query?: string) {
+    movieContainer.innerHTML = query
+      ? `<p>${query} 검색 결과가 없습니다.</p>`
+      : `<p>영화가 없습니다.</p>`;
+  }
 
-    renderMovies(movieContainer, movies);
-
-    if (service.hasMore()) {
-      loadMoreButtonComponent = addLoadMoreButton({
-        hasMore: true,
-        movieContainer,
-        renderNextBatch,
-        loadMoreButtonComponent,
-      });
-    }
+  function renderMovies(movies: MovieModel[], isInitial: boolean) {
+    isInitial
+      ? renderMoviesInitial(movieContainer, movies)
+      : appendMovies(movieContainer, movies);
   }
 
   function displayFetchErrorMessage() {
@@ -138,21 +204,18 @@ export function createMovieController(containerId: string) {
     );
   }
 
-  function updateHistory(query?: string, isInitial = false, pushState = true) {
-    if (!isInitial && pushState) {
-      history.pushState(
-        {},
-        "",
-        query ? `?search=${encodeURIComponent(query)}` : location.pathname
-      );
+  function updateHistory(query?: string, pushState = true) {
+    const newUrl = query
+      ? `?search=${encodeURIComponent(query)}`
+      : location.pathname;
+
+    if (pushState && location.search !== newUrl) {
+      history.pushState({}, "", newUrl);
     }
   }
 
-  async function fetchMoviesByCategory(
-    category: MovieCategory,
-    isInitial = false
-  ) {
-    await fetchMovies({ category, isInitial });
+  async function fetchMoviesByCategory(category: MovieCategory) {
+    await fetchMovies({ category });
   }
 
   async function searchMovies(query: string, pushState = true) {
@@ -161,11 +224,9 @@ export function createMovieController(containerId: string) {
   }
 
   function renderNextBatch() {
-    renderMovies(movieContainer, service.getNextBatch());
+    infiniteScroll.disconnect();
 
-    if (!service.hasMore()) {
-      loadMoreButtonComponent?.remove();
-    }
+    fetchMovies({ isInitial: false, pushState: false });
   }
 
   function attachSearchListener() {
@@ -187,6 +248,10 @@ export function createMovieController(containerId: string) {
       await searchMovies(query);
     });
   }
+
+  window.addEventListener("beforeunload", () => {
+    infiniteScroll.disconnect();
+  });
 
   return {
     init,

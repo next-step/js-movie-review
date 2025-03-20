@@ -1,6 +1,6 @@
 import { resetSearchInput, setSearchInput, updateTabContainer } from "./ui";
 
-export function getCurrentMode(query?: string): "search" | "category" {
+export const getCurrentMode = (query?: string): "search" | "category" => {
   if (query) {
     updateTabContainer("search");
     setSearchInput(query);
@@ -10,4 +10,4 @@ export function getCurrentMode(query?: string): "search" | "category" {
     resetSearchInput();
     return "category";
   }
-}
+};

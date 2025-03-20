@@ -1,8 +1,8 @@
-export function updateHistory(
+export const updateHistory = (
   query?: string,
   isInitial = false,
   pushState = true
-) {
+): void => {
   if (!isInitial && pushState) {
     history.pushState(
       {},
@@ -10,4 +10,4 @@ export function updateHistory(
       query ? `?search=${encodeURIComponent(query)}` : location.pathname
     );
   }
-}
+};
