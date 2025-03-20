@@ -1,4 +1,5 @@
 import { safeFetchWithPagination } from "src/shared/apis/lib";
+import { LANGUAGE } from "src/shared/config/language";
 
 import { GetPopularMoviesResponse } from "./model";
 /**
@@ -7,8 +8,8 @@ import { GetPopularMoviesResponse } from "./model";
  */
 export const MAX_PAGE = 500;
 
-export const fetchPopularMovies = async () => {
+export const fetchPopularMovies = async ({ language = LANGUAGE } = {}) => {
   return await safeFetchWithPagination<GetPopularMoviesResponse>({
-    url: "/movie/popular?language=ko-KO",
+    url: `/movie/popular?language=${language}`,
   });
 };
