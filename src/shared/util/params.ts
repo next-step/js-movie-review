@@ -1,12 +1,12 @@
 export default class AbstractParamsManager {
-  namespace;
+  paramsStore;
 
-  constructor(namespace: string) {
-    this.namespace = namespace;
+  constructor(paramsStore: string) {
+    this.paramsStore = paramsStore;
   }
 
-  getNamespacedKey(key: string) {
-    return `${this.namespace}_${key}`;
+  getParamsStoreKey(key: string) {
+    return `${this.paramsStore}_${key}`;
   }
 
   getParam(key: string) {
@@ -15,7 +15,7 @@ export default class AbstractParamsManager {
     const hashQuery = url.hash.includes("?") ? url.hash.split("?")[1] : "";
     const hashParams = new URLSearchParams(hashQuery);
 
-    const value = hashParams.get(this.getNamespacedKey(key));
+    const value = hashParams.get(this.getParamsStoreKey(key));
     return value ? decodeURIComponent(value) : null;
   }
 
@@ -25,9 +25,9 @@ export default class AbstractParamsManager {
     const hashParams = new URLSearchParams(hashQuery || "");
 
     Object.entries(params).forEach(([key, value]) => {
-      const namespacedKey = this.getNamespacedKey(key);
+      const paramsStoreKey = this.getParamsStoreKey(key);
       if (value) {
-        hashParams.set(namespacedKey, value);
+        hashParams.set(paramsStoreKey, value);
       }
     });
 
