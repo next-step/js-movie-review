@@ -22,7 +22,7 @@ export const createFallbackView = (
   return fallback;
 };
 
-export const hiddenFallbackView = () => {
+export const hideFallbackView = () => {
   const fallback = document.querySelector(".fallback");
   fallback?.remove();
 };

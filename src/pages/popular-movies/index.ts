@@ -1,7 +1,7 @@
 import {
   createMovieListSection,
   updateMovieList,
-  hiddenMovieListLoadButton,
+  hideMovieListLoadButton,
 } from "src/features/movies/ui/movie-list";
 
 import {
@@ -18,7 +18,7 @@ const handleLoadMore = async (
   updateMovieList(data.results);
 
   if (data.page === MAX_PAGE) {
-    hiddenMovieListLoadButton();
+    hideMovieListLoadButton();
   }
 };
 

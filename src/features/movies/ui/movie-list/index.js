@@ -5,15 +5,15 @@ import {
   createMovieLayout,
   createMovieContainer,
   createEmptyMovieList,
-  hiddenMovieListLoadButton,
+  hideMovieListLoadButton,
 } from "./ui.js";
 import {
   createSkeletonMovieList,
-  hiddenSkeletonMovieListItem,
+  hideSkeletonMovieListItem,
 } from "./skeleton-ui.js";
-import { createFallbackView, hiddenFallbackView } from "./fallback-ui.js";
+import { createFallbackView, hideFallbackView } from "./fallback-ui.js";
 
-export { hiddenMovieListLoadButton };
+export { hideMovieListLoadButton };
 
 export const updateMovieList = (movies) => {
   const movieList = document.querySelector(".thumbnail-list");
@@ -25,7 +25,7 @@ export const updateMovieList = (movies) => {
 
 const onClickLoadButton = async (onLoadMore) => {
   const movieList = document.querySelector(".thumbnail-list");
-  hiddenFallbackView();
+  hideFallbackView();
 
   try {
     const skeletonMovieListItem = createSkeletonMovieList();
@@ -35,7 +35,7 @@ const onClickLoadButton = async (onLoadMore) => {
     const fallback = createFallbackView();
     movieList.parentNode.insertBefore(fallback, movieList.nextSibling);
   } finally {
-    hiddenSkeletonMovieListItem();
+    hideSkeletonMovieListItem();
   }
 };
 

@@ -1,7 +1,7 @@
 import {
   createMovieListSection,
   updateMovieList,
-  hiddenMovieListLoadButton,
+  hideMovieListLoadButton,
 } from "src/features/movies/ui/movie-list";
 
 import { searchParamsManager } from "src/features/search/models/params";
@@ -16,7 +16,7 @@ const handleLoadMore = async (
   updateMovieList(data.results);
 
   if (data.page === data.total_pages) {
-    hiddenMovieListLoadButton();
+    hideMovieListLoadButton();
   }
 };
 
