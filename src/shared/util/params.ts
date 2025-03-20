@@ -1,4 +1,4 @@
-export default class AbstractParamsManager {
+export default class URLParamsManager {
   paramsStore;
 
   constructor(paramsStore: string) {

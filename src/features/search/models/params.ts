@@ -1,6 +1,6 @@
-import AbstractParamsManager from "src/shared/util/params";
+import URLParamsManager from "src/shared/util/params";
 
-class SearchParamsManager extends AbstractParamsManager {
+class SearchParamsManager extends URLParamsManager {
   PARAMS = {
     KEYWORD: "keyword",
   };
