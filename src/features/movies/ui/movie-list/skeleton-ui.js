@@ -17,7 +17,7 @@ export const createSkeletonMovieList = (length = 20) => {
   return Array.from({ length }, () => createSkeletonMovieListItem());
 };
 
-export const hiddenSkeletonMovieListItem = () => {
+export const hideSkeletonMovieListItem = () => {
   const movieListItem = document.querySelectorAll(".skeleton");
   if (movieListItem) movieListItem.forEach((item) => item.remove());
 };

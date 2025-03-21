@@ -5,9 +5,11 @@ export const createHeader = ({ title, rate, onclick = () => {} }) => {
     <div class="background-container">
     <div class="overlay" aria-hidden="true"></div>
     <div class="top-rated-container">
-      <h1 class="logo">
-        <img src="./images/logo.png" alt="MovieList" />
-      </h1>
+      <div class="top-bar">
+        <h1 class="logo">
+          <img src="./images/logo.png" alt="MovieList" />
+        </h1>
+      </div>
       <div class="top-rated-movie">
         <div class="rate">
           <img src="./images/star_empty.png" class="star" />
@@ -23,4 +25,9 @@ export const createHeader = ({ title, rate, onclick = () => {} }) => {
   header.querySelector("button.detail").addEventListener("click", onclick);
 
   return header;
+};
+
+export const addTopBar = (header, component) => {
+  const topBarContainer = header.querySelector(".top-bar");
+  topBarContainer.appendChild(component);
 };

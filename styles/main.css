@@ -93,6 +93,10 @@ button.primary {
   margin-bottom: 8px;
 }
 
+.top-bar {
+  position: relative;
+}
+
 h1.logo {
   font-size: 2rem;
 }

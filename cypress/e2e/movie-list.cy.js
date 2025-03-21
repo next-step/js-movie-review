@@ -76,15 +76,27 @@ describe("영화 목록 더보기 데이터 로드 실패 상황 테스트", () 
     cy.get(".thumbnail-list > li").should("have.length", 20);
     cy.get(".fallback-message").should(
       "have.text",
-      "데이터를 불러오는데 실패했습니다."
+      "데이터를 불러오지 못했습니다. 다시 시도해 주세요."
     );
   });
 
-  it("폴백 버튼 클릭 시 영화 목록을 다시 로드한다.", () => {
+  it("영화 목록이 다시 로드되면 폴백 UI가 사라진다.", () => {
     cy.callMoviePopularList({ statusCode: 200 });
-    cy.get(".fallback-button").click();
+    cy.get(".load-button").click();
     cy.wait("@getPopularMovies");
 
     cy.get(".thumbnail-list > li").should("have.length", 40);
+
+    cy.get(".fallback-message").should("not.exist");
+  });
+
+  it("영화 목록이 다시 로드되지 않는다면 폴백 UI가 사라지지 않는다.", () => {
+    cy.callMoviePopularList({ statusCode: 400 });
+    cy.get(".load-button").click();
+    cy.wait("@getPopularMovies");
+
+    cy.get(".thumbnail-list > li").should("have.length", 20);
+
+    cy.get(".fallback-message").should("exist");
   });
 });
