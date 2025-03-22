@@ -1,32 +1,74 @@
 // import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
-import { getSearchMovie } from "../api/movieApiClient";
-import { MainTabs } from "../widget/MainTabs";
+import {
+  getFavoriteMovies,
+  getSearchMovie,
+  getTopRatedMovies,
+} from "../api/movieApiClient";
 import { toElement } from "../shared/ui";
+import { eventEmitter, renderer } from "../shared/renderer";
 
-export const AppMain = ({ inputState, inputStateSubscribe }) => {
-  const { value: mainState } = state([]);
-  // const { value: pageState } = state(1);
+export const AppMain = ({ inputState }) => {
+  const [mainState, setState] = renderer.state("app-main", []);
+  const [pageState, setPageState] = renderer.state("---", 1);
 
-  // fetchData();
+  const fetchData = async (page) => {
+    const data = await getFavoriteMovies(page);
+    setState([...data]);
+  };
 
-  const render = () =>
-    toElement(`
-      <main>
-        ${MainTabs()}
-        <h2>지금 인기 있는 영화</h2>  
-        <section>
-        ${ThumbnailList({
-          mainState,
-        })}
-        </section>
-        <button class="add-more">더보기</button>
+  fetchData(pageState.value);
+
+  const render = () => {
+    const container = toElement(`
+      <main >
+        <div class="container">
+          <h2>지금 인기 있는 영화</h2>  
+          <section>
+          ${ThumbnailList(mainState.value)}
+          </section>
+          ${inputState.value === "" ? '<button class="add-more">더보기</button>' : ""}
+        </div>
       </main>`);
 
-  inputStateSubscribe(async () => {
-    const data = await getSearchMovie(inputState.value);
-    mainState.value = data;
+    const handleClick = () => {
+      if (pageState.value >= 3) {
+        return;
+      }
+      setPageState(pageState.value + 1);
+      fetchData(pageState.value);
+    };
+
+    const inputElement = container.querySelector(".add-more");
+    inputElement?.addEventListener("click", handleClick);
+
+    return container;
+  };
+
+  let rootContainer = render();
+
+  eventEmitter.addEventListener("app-main", () => {
+    console.log(mainState.value);
+    const newContainer = render();
+    rootContainer.replaceWith(newContainer);
+    rootContainer = newContainer;
   });
 
-  return render();
+  async function handleInputAsync() {
+    await fetchData(1);
+
+    const movies = [...mainState.value].filter((movie) =>
+      movie.title.includes(inputState.value),
+    );
+    console.log("INPUT STATE : ", inputState.value, mainState.value, movies);
+
+    setState([...movies]);
+  }
+
+  eventEmitter.addEventListener("app-input", () => {
+    // const inputData = event.detail;
+    handleInputAsync();
+  });
+
+  return rootContainer;
 };

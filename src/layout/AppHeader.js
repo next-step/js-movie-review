@@ -1,10 +1,10 @@
 import { getTopRatedMovies } from "../api/movieApiClient";
-import { renderer } from "../main";
+import { eventEmitter, renderer } from "../shared/renderer";
 // import { state } from "../shared/state";
 import { toElement } from "../shared/ui";
 
-const TopRatedMoviePoster = (topRatedMovie) => {
-  return (topRatedMovie
+const TopRatedMoviePoster = (topRatedMovie) =>
+  topRatedMovie
     ?.slice(0, 1)
     .map((result) => {
       const { poster_path: posterPath } = result;
@@ -12,11 +12,10 @@ const TopRatedMoviePoster = (topRatedMovie) => {
         style="background-image:url('https://media.themoviedb.org/t/p/w1920_and_h1080_face${posterPath}')"
       ></div>`;
     })
-    .join(""))
-}
+    .join("");
 
-const TopRatedMovieInfo = (topRatedMovie) => {
-  return (topRatedMovie
+const TopRatedMovieInfo = (topRatedMovie) =>
+  topRatedMovie
     ?.slice(0, 1)
     .map((result) => {
       const { title, vote_average: voteAverage } = result;
@@ -27,23 +26,19 @@ const TopRatedMovieInfo = (topRatedMovie) => {
   <div class="title">${title}</div>
   <button class="primary detail">자세히 보기</button>`;
     })
-    .join(""))
-}
+    .join("");
 
-// header State가 변하면 변화되는 코드만 리렌더링 시킨다 
-export const AppHeader = ({ inputState }) => {
-  const { value: headerState, setState } = renderer.state([]);
+export const AppHeader = ({ setInputState }) => {
+  const [headerState, setState] = renderer.state("app-header", []);
 
   const fetchData = async () => {
     const data = await getTopRatedMovies();
     setState(data);
-    console.log(data, headerState)
   };
 
   fetchData();
 
   const render = () => {
-
     const container = toElement(
       `<header>
           <div class="background-container">
@@ -66,14 +61,15 @@ export const AppHeader = ({ inputState }) => {
                 </div>
               </div>
             </div>
-        </header>`
+        </header>`,
     );
 
     const handleKeyDown = (e) => {
       if (e.code === "Enter") {
         e.preventDefault();
         // eslint-disable-next-line no-param-reassign
-        inputState.value = e.target.value;
+        setInputState(e.target.value);
+        console.log(e.target.value);
       }
     };
 
@@ -81,12 +77,15 @@ export const AppHeader = ({ inputState }) => {
     inputElement.addEventListener("keydown", handleKeyDown);
 
     return container;
-
   };
 
-  return {
-    states: [headerState],
-    props: [inputState], 
-    render: render,
-  };
+  let rootContainer = render();
+
+  eventEmitter.addEventListener("app-header", () => {
+    const newContainer = render();
+    rootContainer.replaceWith(newContainer); // 기존 <header>를 새로운 <header>로 교체
+    rootContainer = newContainer;
+  });
+
+  return rootContainer;
 };

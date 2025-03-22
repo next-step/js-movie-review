@@ -1,61 +1,32 @@
-class Renderer {
+export const eventEmitter = new EventTarget();
 
-    components;
-    
-    constructor() {
-        console.log(this)
-        this.components = new Map();
-    }
+const createRenderer = () => {
+  const globalState = [];
 
-    state(initialState) {
+  return {
+    state(key, initialState) {
+      const initState = {
+        value: initialState,
+      };
 
-        const init = { value: initialState, setState: (newState) => {
-            this.notify(initialState, newState);
+      const handler = {
+        set(target, prop, value) {
+          target[prop] = value;
+          eventEmitter.dispatchEvent(new CustomEvent(key));
+          console.log(key);
+          return true;
+        },
+      };
 
-            console.log("INIT : ", init)
-            init.value = newState;
-        }};
-        
-        return init;
-    }
-    
-    // this.components[init] = {
-    //     states: [init],
-    //     props: [],
-    //     render: null
-    // };
-   
+      const proxyState = new Proxy(initState, handler);
 
-    notify(initState, newState) {
-      
-        const targets = this.components.get(initState);
+      const setState = (newValue) => {
+        proxyState.value = newValue;
+      };
 
-        targets.forEach(target => {
-            const { render, states, props } = target
-            console.log("STATES : ", states, newState)
-            render();
-        })
-    }
-    
-    add(component) {
+      return [proxyState, setState];
+    },
+  };
+};
 
-        const { render, states, props } = component;
-
-        console.log(states)
-
-        states.forEach(state => {
-            if(!this.components.has(state)){
-                this.components.set(state, [component]); 
-            }
-            else {
-                this.components[state].push(component);
-            }
-        })
-
-        console.log("ADD : ", this.components)
-        return render().outerHTML;
-    }
-
-}
-
-export default Renderer;
+export const renderer = createRenderer();

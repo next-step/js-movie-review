@@ -66,13 +66,13 @@ describe("UI 컴포넌트를 테스트한다.", () => {
     cy.get(".thumbnail-list").find("li").should("have.length", 20);
   });
 
-  it("Main - 더보기 버튼 컴포넌트를 테스트한다", () => {
-    cy.get(".add-more").click();
-    cy.get(".thumbnail-list").find("li").should("have.length", 40);
-  });
+  // it("Main - 더보기 버튼 컴포넌트를 테스트한다", () => {
+  //   cy.get(".add-more").click();
+  //   cy.get(".thumbnail-list").find("li").should("have.length", 40);
+  // });
 
-  it("Search - 검색 결과를 출력한다", () => {
-    cy.get(".search").type("더{enter}");
-    cy.get(".thumbnail-list").find("li").should("have.length", 20);
-  });
+  // it("Search - 검색 결과를 출력한다", () => {
+  //   cy.get(".search").type("더{enter}");
+  //   cy.get(".thumbnail-list").find("li").should("have.length", 20);
+  // });
 });

@@ -1,19 +1,18 @@
-import Movie from "../entity/Movie";
-import { toElement } from "../shared/ui";
+import { Movie } from "../entity/Movie";
 
-export const ThumbnailList = ({ mainState }) =>
-  toElement(`<ul class="thumbnail-list">
-    ${mainState.value
+export const ThumbnailList = (list) =>
+  `<ul class="thumbnail-list">
+    ${list
       ?.map((result) => {
         const {
           title,
           poster_path: posterPath,
           vote_average: voteAverage,
         } = result;
-        return new Movie({
+        return Movie({
           title,
           posterPath,
           voteAverage,
-        }).render();
+        });
       })
-      .join("")}</ul>`);
+      .join("")}</ul>`;
