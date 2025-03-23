@@ -44,6 +44,18 @@ describe("UI 컴포넌트를 테스트한다.", () => {
       },
     ).as("mockedGETTopRatedPage");
 
+
+    cy.intercept(
+      {
+        method: "GET",
+        url: /3\/movie\/\d+/,
+        hostname: "api.themoviedb.org",
+      },
+      {
+        fixture: "movie-detail.json",
+      },
+    ).as("mockedGetMovieDetail");
+
     cy.intercept(
       {
         method: "GET",

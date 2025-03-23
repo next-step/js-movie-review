@@ -25,7 +25,6 @@ export const AppMain = ({ inputState }) => {
         <div class="container">
           <h2>지금 인기 있는 영화</h2>  
           <section>
-          ${ThumbnailList(mainState.value)}
           </section>
           ${inputState.value === "" ? '<button class="add-more">더보기</button>' : ""}
         </div>
@@ -41,6 +40,9 @@ export const AppMain = ({ inputState }) => {
 
     const inputElement = container.querySelector(".add-more");
     inputElement?.addEventListener("click", handleClick);
+
+    const sectionElement = container.querySelector("section");
+    sectionElement.firstChild.replaceWith(ThumbnailList(mainState.value))    
 
     return container;
   };

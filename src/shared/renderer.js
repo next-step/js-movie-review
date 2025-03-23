@@ -13,7 +13,6 @@ const createRenderer = () => {
         set(target, prop, value) {
           target[prop] = value;
           eventEmitter.dispatchEvent(new CustomEvent(key));
-          console.log(key);
           return true;
         },
       };

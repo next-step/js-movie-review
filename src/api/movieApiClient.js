@@ -37,13 +37,13 @@ export const getSearchMovie = async (query = "") => {
 };
 
 export const getMovieDetail = async (movieId = "") => {
-  const url = `https://api.themoviedb.org/3/search/movie/${movieId}`;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}`;
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${import.meta.env.VITE_MOVIE_TMDB_KEY}`,
     },
   });
-  const { results } = await response.json();
-  return results;
+  const data = await response.json();
+  return data;
 };

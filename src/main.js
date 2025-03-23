@@ -1,3 +1,4 @@
+import { AppDetail } from "./layout/AppDetail";
 import { AppFooter } from "./layout/AppFooter";
 import { AppHeader } from "./layout/AppHeader";
 import { AppMain } from "./layout/AppMain";
@@ -18,9 +19,12 @@ window.addEventListener("load", () => {
     inputState,
   });
 
+  const AppDetailComponent = AppDetail();
+
   if (app) {
     app.appendChild(AppHeaderComponent);
     app.appendChild(AppMainComponent);
+    app.appendChild(AppDetailComponent);
   }
 });
 
