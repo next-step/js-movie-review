@@ -66,7 +66,6 @@ export const AppMain = ({ inputState }) => {
     const observer = new IntersectionObserver(callback, options)
     observer.observe(container.querySelector('.more'));
 
-
     return container;
   };
 
