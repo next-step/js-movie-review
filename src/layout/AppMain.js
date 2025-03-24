@@ -1,67 +1,93 @@
-import { state } from "../shared/state";
+// import { state } from "../shared/state";
 import { ThumbnailList } from "../widget/ThumbnailList";
-import { getFavoriteMovies, getSearchMovie } from "../api/movieApiClient";
-import { MainTabs } from "../widget/MainTabs";
+import {
+  getFavoriteMovies,
+  getSearchMovie,
+  getTopRatedMovies,
+} from "../api/movieApiClient";
+import { toElement } from "../shared/ui";
+import { eventEmitter, renderer } from "../shared/renderer";
+import { options } from "../shared/intersection-observer";
 
-export const AppMain = ({ inputState, inputStateSubscribe }) => {
-  const { value: mainState, subscribe } = state([]);
-  const { value: pageState } = state(1);
+export const AppMain = ({ inputState }) => {
+  const [mainState, setState] = renderer.state("app-main", []);
+  const [pageState, setPageState] = renderer.state("---", 1);
 
-  const container = document.createDocumentFragment();
-  const div = document.createElement("div");
-  div.classList.add("container");
-
-  div.innerHTML = /* html */ `
-    <main>
-      <div class="main-tabs">
-      </div>
-      <h2>지금 인기 있는 영화</h2>  
-      <section>
-      </section>
-      <button class="add-more">더보기</button>
-    </main>
-  `;
-
-  const fetchNextPage = async () => {
-    pageState.value += 1;
-    const data = await getFavoriteMovies(pageState.value);
-    mainState.value = [...mainState.value, ...data];
+  const fetchData = async (page) => {
+    const data = await getFavoriteMovies(page);
+    setState([...mainState.value, ...data]);
   };
 
-  div.querySelector(".main-tabs").appendChild(MainTabs());
-  div.querySelector(".add-more").addEventListener("click", fetchNextPage);
-  container.appendChild(div);
+  fetchData(pageState.value);
 
-  // 초기 비동기 렌더링
-  const fetchData = async () => {
-    const data = await getFavoriteMovies(pageState.value);
-    mainState.value = data;
+  const render = () => {
+    const container = toElement(`
+      <main >
+        <div class="container">
+          <h2>지금 인기 있는 영화</h2>  
+          <section>
+          </section>
+          <div class="more"></div>
+        </div>
+      </main>`);
+
+
+    const handleClick = () => {
+      if (pageState.value >= 3) {
+        return;
+      }
+      setPageState(pageState.value + 1);
+      fetchData(pageState.value);
+    };
+
+    const inputElement = container.querySelector(".add-more");
+    inputElement?.addEventListener("click", handleClick);
+
+    const sectionElement = container.querySelector("section");
+    sectionElement.firstChild.replaceWith(ThumbnailList(mainState.value))    
+  
+    const callback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+          if (inputState.value !== "" || pageState.value >= 3) {
+            return;
+          }
+          setPageState(pageState.value + 1);
+          fetchData(pageState.value);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options)
+    observer.observe(container.querySelector('.more'));
+
+    return container;
   };
 
-  fetchData();
+  let rootContainer = render();
 
-  const render = async () => {
-    div.querySelector("section").innerHTML = "";
+  eventEmitter.addEventListener("app-main", () => {
+    console.log(mainState.value);
+    const newContainer = render();
+    rootContainer.replaceWith(newContainer);
+    rootContainer = newContainer;
+  });
 
-    div.querySelector("section").appendChild(
-      ThumbnailList({
-        mainState,
-      }),
+  async function handleInputAsync() {
+    const data = await getFavoriteMovies(1);
+
+    const movies = [...data].filter((movie) =>
+      movie.title.includes(inputState.value),
     );
-  };
+    console.log("INPUT STATE : ", inputState.value, mainState.value, movies);
 
-  render();
+    setState([...movies]);
+  }
 
-  inputStateSubscribe(async () => {
-    const data = await getSearchMovie(inputState.value);
-    mainState.value = data;
-
-    div.querySelector(".add-more").removeEventListener('click', fetchNextPage)
+  eventEmitter.addEventListener("app-input", () => {
+    // const inputData = event.detail;
+    handleInputAsync();
   });
 
-  subscribe(() => {
-    render();
-  });
-
-  return container;
+  return rootContainer;
 };

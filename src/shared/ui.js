@@ -1,14 +1,5 @@
-export const toElement = ({ rootElementName = "div", domString }) => {
-  const container = document.createDocumentFragment();
-  const rootElement = document.createElement(rootElementName);
-  container.appendChild(rootElement);
-
-  const render = () => {
-    rootElement.innerHTML = /* html */ domString;
-  };
-
-  // 초기 렌더
-  render();
-
-  return container;
+export const toElement = (htmlString) => {
+  const div = document.createElement("div");
+  div.innerHTML = htmlString.trim();
+  return div.firstChild; // 첫 번째 자식 요소 반환
 };

@@ -1,46 +1,30 @@
-class Movie {
-  title;
+import { toElement } from "../shared/ui";
 
-  posterPath;
+export const Movie = ({ id, title, posterPath, voteAverage }) => {
 
-  voteAverage;
-
-  constructor({ title, posterPath, voteAverage }) {
-    this.title = title;
-    this.posterPath = posterPath;
-    this.voteAverage = voteAverage;
-  }
-
-  get getTitle() {
-    return this.title;
-  }
-
-  get getPosterPath() {
-    return this.posterPath;
-  }
-
-  get getVoteAverage() {
-    return this.voteAverage;
-  }
-
-  render() {
-    return `<li>
-              <div class="item">
+  const render = () => {
+    const container = toElement(`<li>
+              <div class="item" id=${id}>
                 <img
                   class="thumbnail"
                   src="
-https://media.themoviedb.org/t/p/w440_and_h660_face${this.posterPath}"
+https://media.themoviedb.org/t/p/w440_and_h660_face${posterPath}"
                   alt="인사이드 아웃 2"
                 />
                 <div class="item-desc">
                   <p class="rate">
                     <img src="star_empty.png" class="star" />
-                    <span>${this.voteAverage}</span>
+                    <span>${voteAverage}</span>
                   </p>
-                  <strong>${this.title}</strong>
+                  <strong>${title}</strong>
                 </div>
               </div>
-            </li>`;
+            </li>`)
+          
+      return container;
   }
+
+  let rootContainer = render()
+
+  return rootContainer;
 }
-export default Movie;

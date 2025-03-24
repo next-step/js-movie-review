@@ -3,8 +3,7 @@ import { toElement } from "../shared/ui";
 const tabs = ["상영 중", "인기순", "평점순", "상영 예정"];
 
 export const MainTabs = () =>
-  toElement({
-    domString: `<ul class="tab">
+  toElement(`<ul class="tab">
     ${tabs
       .map(
         (tab, index) => `<li>
@@ -14,5 +13,4 @@ export const MainTabs = () =>
       </li>`,
       )
       .join("")}
-    </ul>`,
-  });
+    </ul>`);
