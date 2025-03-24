@@ -27,7 +27,6 @@ export const ThumbnailList = (list) => {
       `)
 
     const handleDetail = (e) => {
-      console.log('Thumbnail CLICKED!!!', e.target.closest(".item").id )
       const detailEvent = new CustomEvent("app-detail-info", {
         detail: {
           id: e.target.closest(".item").id

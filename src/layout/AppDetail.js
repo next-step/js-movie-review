@@ -2,6 +2,67 @@ import { getFavoriteMovies, getMovieDetail } from "../api/movieApiClient";
 import { eventEmitter, renderer } from "../shared/renderer";
 import { toElement } from "../shared/ui";
 
+const setMovieStarScore = (movieId, number) => {
+    localStorage.setItem(movieId, number);
+}
+
+const getMovieStarScore = (movieId) => {
+    const value = localStorage.getItem(movieId)
+    if (value) {
+        return value;
+    }
+    else {
+        setMovieStarScore(movieId, 0)
+        const value = localStorage.getItem(movieId)
+        return value
+    }
+}
+
+const MyStarScoreComponent = (movieId) => {
+
+    const [scoreState, setScoreState] = renderer.state("my-star-score",  getMovieStarScore(movieId) ?? 0);
+
+    const render = () => {
+        
+        const container = toElement(
+            `<div>
+                <div class="starScores">
+                    ${Array.from({ length: 5}).fill(0).map((val, index)=> {
+
+                        const starScore = (index+1)*2;
+                        return `<img src="${scoreState.value >= starScore ? './images/star_filled.png' : './images/star_empty.png'}" class="star" data-score="${starScore}">`
+                    }).join("")}  ${scoreState.value}
+                </div>
+                
+             </div>
+            `
+        )
+  
+            const starScoreBox = container.querySelector(".starScores");
+
+            starScoreBox.addEventListener('click', (e) => {
+                if (e.target.tagName === 'IMG' ){
+                    console.log(e.target, e.target.dataset.score)
+                    setScoreState(e.target.dataset.score)
+                    setMovieStarScore(movieId, e.target.dataset.score)
+                }
+            })
+   
+            return container
+        }
+
+        let rootContainer = render();
+
+        eventEmitter.addEventListener("my-star-score", () => {
+            const newContainer = render();
+            rootContainer.replaceWith(newContainer);
+            rootContainer = newContainer;
+        });
+
+        return rootContainer;
+
+}
+
 export const AppDetail = () => { 
 
     const [detailState, setDetailState] = renderer.state("app-detail", false);
@@ -12,13 +73,16 @@ export const AppDetail = () => {
         setDetailData({...data});
     };
 
+
+
     const render = () => {
 
         const { 
+            id,
             title,
             genres,
             release_date,
-            belongs_to_collection,
+            backdrop_path,
             vote_average,
             overview
         } = detailData.value
@@ -33,7 +97,7 @@ export const AppDetail = () => {
                         <div class="modal-container">
                             <div class="modal-image">
                                 <img
-                                src="https://image.tmdb.org/t/p/original${belongs_to_collection?.backdrop_path ?? ''}"
+                                src="https://image.tmdb.org/t/p/original${backdrop_path ?? ''}"
                                 />
                             </div>
                             <div class="modal-description">
@@ -46,6 +110,13 @@ export const AppDetail = () => {
                                     >${vote_average}</span
                                 >
                                 </p>
+                                <hr />
+                                <div>
+                                    <div>내 별점</div> 
+                                    <div class="my-score-box">
+                                    </div> 
+                                
+                                </div>
                                 <hr />
                                 <p class="detail">
                                 ${overview}
@@ -60,6 +131,8 @@ export const AppDetail = () => {
         );
 
         const closeButton = container.querySelector(".close-modal"); 
+        const scoreBox = container.querySelector(".my-score-box"); 
+        scoreBox.appendChild(MyStarScoreComponent(id));
 
         closeButton.addEventListener("click", () => {
             console.log("CLOSED!", detailState.value)
@@ -74,7 +147,6 @@ export const AppDetail = () => {
     let rootContainer = render();
 
     eventEmitter.addEventListener("app-detail-info", (event) => {
-        console.log("APP DETAIL : ", event.detail, detailState.value)
         fetchData(event.detail.id);
         setDetailState(!detailState.value)
         const newContainer = render();

@@ -49,16 +49,11 @@ export const AppMain = ({ inputState }) => {
     const callback = (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > 0) {
-          // Element is in view, do something
-          console.log("Element is in view");
           if (inputState.value !== "" || pageState.value >= 3) {
             return;
           }
           setPageState(pageState.value + 1);
           fetchData(pageState.value);
-        } else {
-          // Element is out of view, do something
-          console.log("Element is out of view");
         }
       });
     };
@@ -79,9 +74,9 @@ export const AppMain = ({ inputState }) => {
   });
 
   async function handleInputAsync() {
-    await fetchData(1);
+    const data = await getFavoriteMovies(1);
 
-    const movies = [...mainState.value].filter((movie) =>
+    const movies = [...data].filter((movie) =>
       movie.title.includes(inputState.value),
     );
     console.log("INPUT STATE : ", inputState.value, mainState.value, movies);
