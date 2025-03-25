@@ -37,7 +37,7 @@ export const getSearchMovie = async (query = "") => {
 };
 
 export const getMovieDetail = async (movieId = "") => {
-  const url = `https://api.themoviedb.org/3/movie/${movieId}`;
+  const url = `https://api.themoviedb.org/3/movie/${movieId}?language=ko-KR`;
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",
