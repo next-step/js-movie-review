@@ -31,7 +31,7 @@ const MyStarScoreComponent = (movieId) => {
 
                         const starScore = (index+1)*2;
                         return `<img src="${scoreState.value >= starScore ? './images/star_filled.png' : './images/star_empty.png'}" class="star" data-score="${starScore}">`
-                    }).join("")}  ${scoreState.value}
+                    }).join("")}  <span class="score">${scoreState.value}</span>
                 </div>
                 
              </div>
