@@ -105,7 +105,7 @@ class Main {
       if (!info.dataset.hasClickHandler) {
         info.addEventListener("click", () => {
           const movieItem = info.closest(".movie");
-          const id = movieItem.querySelector("#id").value;
+          const id = movieItem.querySelector("#movie-id").value;
           openModal(this.#getMovieById(id));
         });
         info.dataset.hasClickHandler = true;

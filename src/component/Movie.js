@@ -48,7 +48,7 @@ function createMovie(movieInstance) {
       : starImage["filled"];
 
   item.innerHTML = /*html*/ `
-    <input hidden id="id" value="${movieInstance.id}">
+    <input hidden id="movie-id" value="${movieInstance.id}">
     <div class="item">
         <img
             class="thumbnail"
