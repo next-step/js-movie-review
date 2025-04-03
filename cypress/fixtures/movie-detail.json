@@ -1,0 +1,66 @@
+{
+    "adult": false,
+    "backdrop_path": "/1w8kutrRucTd3wlYyu5QlUDMiG1.jpg",
+    "belongs_to_collection": {
+      "id": 762512,
+      "name": "라이온 킹 (리부트) 시리즈",
+      "poster_path": "/dGpIRn4Nqi63JO1RlKxjcPbQSAw.jpg",
+      "backdrop_path": "/jIgM7YNVft0YGeXsqrh3oG5TWLx.jpg"
+    },
+    "budget": 200000000,
+    "genres": [
+      {
+        "id": 12,
+        "name": "모험"
+      },
+      {
+        "id": 10751,
+        "name": "가족"
+      },
+      {
+        "id": 16,
+        "name": "애니메이션"
+      }
+    ],
+    "homepage": "",
+    "id": 762509,
+    "imdb_id": "tt13186482",
+    "origin_country": [
+      "US"
+    ],
+    "original_language": "en",
+    "original_title": "Mufasa: The Lion King",
+    "overview": "길을 잃고 혼자가 된 새끼 사자 무파사는 광활한 야생을 떠돌던 중 왕의 혈통이자 예정된 후계자 타카와 우연히 만나게 된다. 마치 친형제처럼 끈끈한 우애를 나누며 함께 자란 무파사와 타카는 운명을 개척하기 위해 거대한 여정을 함께 떠난다. 한 치 앞을 알 수 없는 적들의 위협 속에서 두 형제의 끈끈했던 유대에 금이 가기 시작하고 예상치 못한 위기까지 맞닥뜨리게 되는데…",
+    "popularity": 364.235,
+    "poster_path": "/1VUExee8iFohFTwYVi4IOArYyaM.jpg",
+    "production_companies": [
+      {
+        "id": 2,
+        "logo_path": "/wdrCwmRnLFJhEoH8GSfymY85KHT.png",
+        "name": "Walt Disney Pictures",
+        "origin_country": "US"
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "US",
+        "name": "United States of America"
+      }
+    ],
+    "release_date": "2024-12-18",
+    "revenue": 700197856,
+    "runtime": 118,
+    "spoken_languages": [
+      {
+        "english_name": "English",
+        "iso_639_1": "en",
+        "name": "English"
+      }
+    ],
+    "status": "Released",
+    "tagline": "하나의 왕좌, 엇갈린 운명",
+    "title": "무파사: 라이온 킹",
+    "video": false,
+    "vote_average": 7.479,
+    "vote_count": 1684
+  }
