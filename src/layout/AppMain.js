@@ -68,10 +68,7 @@ export const AppMain = ({ inputState }) => {
   let rootContainer = render();
 
   eventEmitter.addEventListener("app-main", () => {
-    console.log(mainState.value);
-    const newContainer = render();
-    rootContainer.replaceWith(newContainer);
-    rootContainer = newContainer;
+    rootContainer = replaceNewContainer(rootContainer, render)
   });
 
   async function handleInputAsync() {

@@ -83,9 +83,7 @@ export const AppHeader = ({ setInputState }) => {
   let rootContainer = render();
 
   eventEmitter.addEventListener("app-header", () => {
-    const newContainer = render();
-    rootContainer.replaceWith(newContainer); // 기존 <header>를 새로운 <header>로 교체
-    rootContainer = newContainer;
+    rootContainer =  replaceNewContainer(rootContainer, render)
   });
 
   return rootContainer;

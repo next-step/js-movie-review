@@ -1,5 +1,6 @@
 import { getFavoriteMovies, getMovieDetail } from "../api/movieApiClient";
 import { eventEmitter, renderer } from "../shared/renderer";
+import { replaceNewContainer } from "../shared/replace-container";
 import { toElement } from "../shared/ui";
 
 const setMovieStarScore = (movieId, number) => {
@@ -11,16 +12,22 @@ const getMovieStarScore = (movieId) => {
     if (value) {
         return value;
     }
-    else {
-        setMovieStarScore(movieId, 0)
-        const value = localStorage.getItem(movieId)
-        return value
-    }
+    setMovieStarScore(movieId, 0)
+    return value
+
 }
 
 const MyStarScoreComponent = (movieId) => {
 
     const [scoreState, setScoreState] = renderer.state("my-star-score",  getMovieStarScore(movieId) ?? 0);
+
+
+    const handleStarScoreBox = (e) => {
+        if (e.target.tagName === 'IMG' ){
+            setScoreState(e.target.dataset.score)
+            setMovieStarScore(movieId, e.target.dataset.score)
+        }
+    }
 
     const render = () => {
         
@@ -40,13 +47,7 @@ const MyStarScoreComponent = (movieId) => {
   
             const starScoreBox = container.querySelector(".starScores");
 
-            starScoreBox.addEventListener('click', (e) => {
-                if (e.target.tagName === 'IMG' ){
-                    console.log(e.target, e.target.dataset.score)
-                    setScoreState(e.target.dataset.score)
-                    setMovieStarScore(movieId, e.target.dataset.score)
-                }
-            })
+            starScoreBox.addEventListener('click', handleStarScoreBox)
    
             return container
         }
@@ -54,9 +55,7 @@ const MyStarScoreComponent = (movieId) => {
         let rootContainer = render();
 
         eventEmitter.addEventListener("my-star-score", () => {
-            const newContainer = render();
-            rootContainer.replaceWith(newContainer);
-            rootContainer = newContainer;
+            rootContainer =  replaceNewContainer(rootContainer, render)
         });
 
         return rootContainer;
@@ -72,8 +71,6 @@ export const AppDetail = () => {
         const data = await getMovieDetail(movieId);
         setDetailData({...data});
     };
-
-
 
     const render = () => {
 
@@ -135,7 +132,6 @@ export const AppDetail = () => {
         scoreBox.appendChild(MyStarScoreComponent(id));
 
         closeButton.addEventListener("click", () => {
-            console.log("CLOSED!", detailState.value)
             setDetailState(false)
             const newContainer = render();
             rootContainer.replaceWith(newContainer); // 기존 <header>를 새로운 <header>로 교체
@@ -149,23 +145,17 @@ export const AppDetail = () => {
     eventEmitter.addEventListener("app-detail-info", (event) => {
         fetchData(event.detail.id);
         setDetailState(!detailState.value)
-        const newContainer = render();
-        rootContainer.replaceWith(newContainer);
-        rootContainer = newContainer;
+        rootContainer =  replaceNewContainer(rootContainer, render)
     });
 
     eventEmitter.addEventListener("app-detail-data", () => {
-        const newContainer = render();
-        rootContainer.replaceWith(newContainer);
-        rootContainer = newContainer;
+        rootContainer =  replaceNewContainer(rootContainer, render)
     });
 
     document.addEventListener('keydown', (e) => {
         if(e.key === 'Escape' && detailState.value) {
             setDetailState(false)
-            const newContainer = render();
-            rootContainer.replaceWith(newContainer);
-            rootContainer = newContainer;
+            rootContainer =  replaceNewContainer(rootContainer, render)
         } 
     })
 
