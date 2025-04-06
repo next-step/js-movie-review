@@ -24,8 +24,8 @@ export const getTopRatedMovies = async () => {
   return results;
 };
 
-export const getSearchMovie = async (query = "") => {
-  const url = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=1&query=${query}`;
+export const getSearchMovie = async (query = "", index = 1) => {
+  const url = `https://api.themoviedb.org/3/search/movie?language=ko-KR&page=1&query=${query}&page=${index}`;
   const response = await fetch(url, {
     headers: {
       "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import { getTopRatedMovies } from "../api/movieApiClient";
 import { eventEmitter, renderer } from "../shared/renderer";
+import { replaceNewContainer } from "../shared/replace-container";
 // import { state } from "../shared/state";
 import { toElement } from "../shared/ui";
 

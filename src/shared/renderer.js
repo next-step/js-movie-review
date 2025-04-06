@@ -1,8 +1,6 @@
 export const eventEmitter = new EventTarget();
 
 const createRenderer = () => {
-  const globalState = [];
-
   return {
     state(key, initialState) {
       const initState = {

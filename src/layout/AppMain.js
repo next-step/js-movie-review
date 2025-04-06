@@ -7,13 +7,19 @@ import {
 } from "../api/movieApiClient";
 import { toElement } from "../shared/ui";
 import { eventEmitter, renderer } from "../shared/renderer";
-import { options } from "../shared/intersection-observer";
+import { callback, options } from "../shared/intersection-observer";
+import { replaceNewContainer } from "../shared/replace-container";
 
 export const AppMain = ({ inputState }) => {
   const [mainState, setState] = renderer.state("app-main", []);
   const [pageState, setPageState] = renderer.state("---", 1);
 
   const fetchData = async (page) => {
+    if (inputState.value !== "") {
+      const movies = await getSearchMovie(inputState.value, page);
+      setState([...mainState.value, ...movies]);
+      return;
+    }
     const data = await getFavoriteMovies(page);
     setState([...mainState.value, ...data]);
   };
@@ -45,20 +51,15 @@ export const AppMain = ({ inputState }) => {
 
     const sectionElement = container.querySelector("section");
     sectionElement.firstChild.replaceWith(ThumbnailList(mainState.value))    
-  
-    const callback = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0) {
-          if (inputState.value !== "" || pageState.value >= 3) {
-            return;
-          }
+
+    const observer = new IntersectionObserver(
+      (entries, observer) => callback(
+        entries, observer,
+        () => {
           setPageState(pageState.value + 1);
           fetchData(pageState.value);
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options)
+        }), 
+        options)
     observer.observe(container.querySelector('.more'));
 
     return container;
@@ -74,18 +75,11 @@ export const AppMain = ({ inputState }) => {
   });
 
   async function handleInputAsync() {
-    const data = await getFavoriteMovies(1);
-
-    const movies = [...data].filter((movie) =>
-      movie.title.includes(inputState.value),
-    );
-    console.log("INPUT STATE : ", inputState.value, mainState.value, movies);
-
-    setState([...movies]);
+    const movies = await getSearchMovie(inputState.value);
+    setState(movies);
   }
 
   eventEmitter.addEventListener("app-input", () => {
-    // const inputData = event.detail;
     handleInputAsync();
   });
 

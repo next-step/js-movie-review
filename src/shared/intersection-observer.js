@@ -1,11 +1,7 @@
-export const callback = (entries, observer) => {
+export const callback = (entries, observer, fn) => {
     entries.forEach(entry => {
       if (entry.isIntersecting && entry.intersectionRatio > 0) {
-        // Element is in view, do something
-        console.log("Element is in view");
-      } else {
-        // Element is out of view, do something
-        console.log("Element is out of view");
+        fn();
       }
     });
   };
@@ -16,5 +12,4 @@ export const options = {
     threshold: 0         // Trigger when 50% of the target is visible
   };
   
-export const observer = new IntersectionObserver(callback, options);
   
