@@ -1,7 +1,6 @@
 import { toElement } from "../shared/ui";
 
 export const Movie = ({ id, title, posterPath, voteAverage }) => {
-
   const render = () => {
     const container = toElement(`<li>
               <div class="item" id=${id}>
@@ -19,12 +18,12 @@ https://media.themoviedb.org/t/p/w440_and_h660_face${posterPath}"
                   <strong>${title}</strong>
                 </div>
               </div>
-            </li>`)
-          
-      return container;
-  }
+            </li>`);
 
-  let rootContainer = render()
+    return container;
+  };
+
+  const rootContainer = render();
 
   return rootContainer;
-}
+};

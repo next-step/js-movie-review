@@ -1,10 +1,7 @@
 import { AppDetail } from "./layout/AppDetail";
-import { AppFooter } from "./layout/AppFooter";
 import { AppHeader } from "./layout/AppHeader";
 import { AppMain } from "./layout/AppMain";
 import { renderer } from "./shared/renderer";
-// import { state } from "./shared/state";
-import { toElement } from "./shared/ui";
 
 window.addEventListener("load", () => {
   const app = document.querySelector("#app");

@@ -1,7 +1,6 @@
 import { getTopRatedMovies } from "../api/movieApiClient";
 import { eventEmitter, renderer } from "../shared/renderer";
 import { replaceNewContainer } from "../shared/replace-container";
-// import { state } from "../shared/state";
 import { toElement } from "../shared/ui";
 
 const TopRatedMoviePoster = (topRatedMovie) =>
@@ -70,7 +69,6 @@ export const AppHeader = ({ setInputState }) => {
         e.preventDefault();
         // eslint-disable-next-line no-param-reassign
         setInputState(e.target.value);
-        console.log(e.target.value);
       }
     };
 
@@ -83,7 +81,7 @@ export const AppHeader = ({ setInputState }) => {
   let rootContainer = render();
 
   eventEmitter.addEventListener("app-header", () => {
-    rootContainer =  replaceNewContainer(rootContainer, render)
+    rootContainer = replaceNewContainer(rootContainer, render);
   });
 
   return rootContainer;

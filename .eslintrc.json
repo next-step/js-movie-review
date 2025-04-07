@@ -23,5 +23,6 @@
     "airbnb-base",
     "prettier"
   ],
-  "plugins": ["jest"]
+  "plugins": ["jest"],
+  "ignorePatterns": ["node_modules", "dist", "cypress.config.js"]
 }

@@ -1,14 +1,9 @@
-// import { state } from "../shared/state";
-import { ThumbnailList } from "../widget/ThumbnailList";
-import {
-  getFavoriteMovies,
-  getSearchMovie,
-  getTopRatedMovies,
-} from "../api/movieApiClient";
-import { toElement } from "../shared/ui";
-import { eventEmitter, renderer } from "../shared/renderer";
+import { getFavoriteMovies, getSearchMovie } from "../api/movieApiClient";
 import { callback, options } from "../shared/intersection-observer";
+import { eventEmitter, renderer } from "../shared/renderer";
 import { replaceNewContainer } from "../shared/replace-container";
+import { toElement } from "../shared/ui";
+import { ThumbnailList } from "../widget/ThumbnailList";
 
 export const AppMain = ({ inputState }) => {
   const [mainState, setState] = renderer.state("app-main", []);
@@ -37,7 +32,6 @@ export const AppMain = ({ inputState }) => {
         </div>
       </main>`);
 
-
     const handleClick = () => {
       if (pageState.value >= 3) {
         return;
@@ -50,17 +44,17 @@ export const AppMain = ({ inputState }) => {
     inputElement?.addEventListener("click", handleClick);
 
     const sectionElement = container.querySelector("section");
-    sectionElement.firstChild.replaceWith(ThumbnailList(mainState.value))    
+    sectionElement.firstChild.replaceWith(ThumbnailList(mainState.value));
 
-    const observer = new IntersectionObserver(
-      (entries, observer) => callback(
-        entries, observer,
-        () => {
+    const observerObject = new IntersectionObserver(
+      (entries, observer) =>
+        callback(entries, observer, () => {
           setPageState(pageState.value + 1);
           fetchData(pageState.value);
-        }), 
-        options)
-    observer.observe(container.querySelector('.more'));
+        }),
+      options,
+    );
+    observerObject.observe(container.querySelector(".more"));
 
     return container;
   };
@@ -68,7 +62,7 @@ export const AppMain = ({ inputState }) => {
   let rootContainer = render();
 
   eventEmitter.addEventListener("app-main", () => {
-    rootContainer = replaceNewContainer(rootContainer, render)
+    rootContainer = replaceNewContainer(rootContainer, render);
   });
 
   async function handleInputAsync() {
