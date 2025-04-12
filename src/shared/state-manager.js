@@ -1,6 +1,6 @@
 export const eventEmitter = new EventTarget();
 
-const createRenderer = () => ({
+const createStateManager = () => ({
   state(key, initialState) {
     const initState = {
       value: initialState,
@@ -25,4 +25,4 @@ const createRenderer = () => ({
   },
 });
 
-export const renderer = createRenderer();
+export const stateManager = createStateManager();

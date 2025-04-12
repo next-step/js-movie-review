@@ -1,5 +1,5 @@
 import { getTopRatedMovies } from "../api/movieApiClient";
-import { eventEmitter, renderer } from "../shared/renderer";
+import { eventEmitter, stateManager } from "../shared/state-manager";
 import { replaceNewContainer } from "../shared/replace-container";
 import { toElement } from "../shared/ui";
 
@@ -29,7 +29,7 @@ const TopRatedMovieInfo = (topRatedMovie) =>
     .join("");
 
 export const AppHeader = ({ setInputState }) => {
-  const [headerState, setState] = renderer.state("app-header", []);
+  const [headerState, setState] = stateManager.state("app-header", []);
 
   const fetchData = async () => {
     const data = await getTopRatedMovies();

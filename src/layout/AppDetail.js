@@ -1,5 +1,5 @@
 import { getMovieDetail } from "../api/movieApiClient";
-import { eventEmitter, renderer } from "../shared/renderer";
+import { eventEmitter, stateManager } from "../shared/state-manager";
 import { replaceNewContainer } from "../shared/replace-container";
 import { toElement } from "../shared/ui";
 
@@ -17,7 +17,7 @@ const getMovieStarScore = (movieId) => {
 };
 
 const MyStarScoreComponent = (movieId) => {
-  const [scoreState, setScoreState] = renderer.state(
+  const [scoreState, setScoreState] = stateManager.state(
     "my-star-score",
     getMovieStarScore(movieId) ?? 0,
   );
@@ -63,8 +63,8 @@ const MyStarScoreComponent = (movieId) => {
 };
 
 export const AppDetail = () => {
-  const [detailState, setDetailState] = renderer.state("app-detail", false);
-  const [detailData, setDetailData] = renderer.state("app-detail-data", {});
+  const [detailState, setDetailState] = stateManager.state("app-detail", false);
+  const [detailData, setDetailData] = stateManager.state("app-detail-data", {});
 
   const fetchData = async (movieId) => {
     const data = await getMovieDetail(movieId);

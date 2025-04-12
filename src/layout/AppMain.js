@@ -1,13 +1,13 @@
 import { getFavoriteMovies, getSearchMovie } from "../api/movieApiClient";
 import { callback, options } from "../shared/intersection-observer";
-import { eventEmitter, renderer } from "../shared/renderer";
+import { eventEmitter, stateManager } from "../shared/state-manager";
 import { replaceNewContainer } from "../shared/replace-container";
 import { toElement } from "../shared/ui";
 import { ThumbnailList } from "../widget/ThumbnailList";
 
 export const AppMain = ({ inputState }) => {
-  const [mainState, setState] = renderer.state("app-main", []);
-  const [pageState, setPageState] = renderer.state("---", 1);
+  const [mainState, setState] = stateManager.state("app-main", []);
+  const [pageState, setPageState] = stateManager.state("---", 1);
 
   const fetchData = async (page) => {
     if (inputState.value !== "") {

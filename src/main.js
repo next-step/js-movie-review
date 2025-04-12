@@ -1,12 +1,12 @@
 import { AppDetail } from "./layout/AppDetail";
 import { AppHeader } from "./layout/AppHeader";
 import { AppMain } from "./layout/AppMain";
-import { renderer } from "./shared/renderer";
+import { stateManager } from "./shared/state-manager";
 
 window.addEventListener("load", () => {
   const app = document.querySelector("#app");
 
-  const [inputState, setInputState] = renderer.state("app-input", "");
+  const [inputState, setInputState] = stateManager.state("app-input", "");
 
   const AppHeaderComponent = AppHeader({
     setInputState,

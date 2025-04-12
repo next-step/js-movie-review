@@ -1,5 +1,5 @@
 import { Movie } from "../entity/Movie";
-import { eventEmitter } from "../shared/renderer";
+import { eventEmitter } from "../shared/state-manager";
 import { toElement } from "../shared/ui";
 
 export const ThumbnailList = (list) => {
