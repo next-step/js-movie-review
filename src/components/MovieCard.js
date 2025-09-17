@@ -1,5 +1,5 @@
-import { formatMovieRate } from "../domain/formatMovieRate";
-import { getImageUrl } from "../domain/getImageUrl";
+import { formatMovieRate } from "../domain/formatMovieRate.js";
+import { getImageUrl } from "../domain/getImageUrl.js";
 
 export function createMovieCard({ title, imageFileName, rate }) {
   const li = document.createElement("li");

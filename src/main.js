@@ -1,10 +1,10 @@
-import { getPopularMovies } from "./apis/getPopularMovies";
-import { createBanner } from "./components/Banner";
+import { getPopularMovies } from "./apis/getPopularMovies.js";
+import { createBanner } from "./components/Banner.js";
 import {
   createMovieCard,
   createMovieCardSkeleton,
-} from "./components/MovieCard";
-import { getImageUrl } from "./domain/getImageUrl";
+} from "./components/MovieCard.js";
+import { getImageUrl } from "./domain/getImageUrl.js";
 
 addEventListener("load", async () => {
   const app = document.querySelector("#app");
