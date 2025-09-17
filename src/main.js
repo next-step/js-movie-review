@@ -58,25 +58,34 @@ addEventListener("load", async () => {
     ul.append(...cardSkeleton);
 
     page = page + 1;
-    const response = await getPopularMovies({
-      language: "ko-KR",
-      page,
-    });
 
-    if (response.total_pages === page) {
-      loadMoreButton.classList.add("hide");
+    try {
+      const response = await getPopularMovies({
+        language: "ko-KR",
+        page,
+      });
+      if (response.total_pages === page) {
+        loadMoreButton.classList.add("hide");
+      }
+
+      const cards = response.results.map(({ title, posterPath, voteAverage }) =>
+        createMovieCard({ title, imageFileName: posterPath, rate: voteAverage })
+      );
+
+      removeSkeleton();
+      ul.append(...cards);
+    } catch (error) {
+      removeSkeleton();
+      // TODO: Toast나 Alert로 표현하기
+      window.alert(error.message);
     }
-
-    const cards = response.results.map(({ title, posterPath, voteAverage }) =>
-      createMovieCard({ title, imageFileName: posterPath, rate: voteAverage })
-    );
-
-    ul.querySelectorAll(".card-skeleton").forEach((el) => el.remove());
-
-    ul.append(...cards);
   });
 
   section.append(loadMoreButton);
 });
+
+function removeSkeleton() {
+  ul.querySelectorAll(".card-skeleton").forEach((el) => el.remove());
+}
 
 const ITEM_PER_PAGE = 20;
