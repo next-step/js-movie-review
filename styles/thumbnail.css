@@ -38,3 +38,24 @@ p.rate > span {
   width: 16px;
   top: 1px;
 }
+
+.thumbnail-skeleton {
+  width: 200px;
+  height: 300px;
+  border-radius: 8px;
+  background-color: grey;
+}
+
+.rate-skeleton {
+  width: 32px;
+  height: 12px;
+  margin-top: 4px;
+  background-color: grey;
+}
+
+.title-skeleton {
+  width: 80px;
+  height: 12px;
+  margin-top: 4px;
+  background-color: grey;
+}
