@@ -7,6 +7,7 @@ export const createMovieItem = (item) => {
   itemDivision.classList.add("item");
 
   const thumbnail = document.createElement("img");
+  thumbnail.className = "thumbnail";
   thumbnail.src = `${THUMBNAIL_URL_PATH}${item.poster_path}`;
 
   const rateDivision = document.createElement("div");
