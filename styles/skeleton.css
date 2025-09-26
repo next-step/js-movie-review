@@ -1,0 +1,22 @@
+.skeleton-item {
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-thumbnail {
+  width: 200px;
+  height: 300px;
+  background-color: var(--color-bluegray-80);
+  border-radius: 8px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
