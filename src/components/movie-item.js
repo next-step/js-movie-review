@@ -1,3 +1,5 @@
+import starImage from "./../../images/star_empty.png";
+
 const THUMBNAIL_URL_PATH = "https://image.tmdb.org/t/p/w200";
 
 export const createMovieItem = (item) => {
@@ -16,7 +18,7 @@ export const createMovieItem = (item) => {
   paragraph.classList.add("rate");
   const starIcon = document.createElement("img");
   starIcon.classList.add("star");
-  starIcon.src = "./images/star_empty.png";
+  starIcon.src = starImage;
   const rateSpan = document.createElement("span");
   rateSpan.textContent = `${item.vote_average}`;
   const title = document.createElement("strong");
