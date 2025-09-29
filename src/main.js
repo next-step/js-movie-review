@@ -43,6 +43,7 @@ addEventListener("load", async () => {
       moreButton.disabled = false;
       return;
     }
+
     removeSkeleton();
     moreButton.disabled = false;
 

@@ -53,6 +53,12 @@ button.more.visible {
   display: block;
 }
 
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-bluegray-30);
+}
+
 #wrap {
   min-width: 1440px;
   background-color: var(--color-bluegray-100);
