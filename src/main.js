@@ -8,7 +8,6 @@ addEventListener("load", async () => {
   thumbnailList.appendChild(createSkeleton());
 
   const popularMovieListData = await getPopularMovies();
-  await new Promise((resolve) => setTimeout(resolve, 500));
   removeSkeleton();
 
   updateBanner(popularMovieListData.results[0]);
@@ -27,7 +26,6 @@ addEventListener("load", async () => {
     thumbnailList.appendChild(createSkeleton());
 
     const moreMovieListData = await getPopularMovies(pager.getNextPage());
-    await new Promise((resolve) => setTimeout(resolve, 500));
     removeSkeleton();
 
     const moreMovieList = createMovieList(moreMovieListData.results);
