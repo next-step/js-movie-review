@@ -17,11 +17,10 @@ addEventListener("load", async () => {
   const popularMovieList = createMovieList(movieList);
 
   const moreButton = document.querySelector("main .more");
-  if (popularMovieListData.total_pages > pager.getPage()) {
-    moreButton.classList.add("visible");
-  } else {
-    moreButton.classList.remove("visible");
-  }
+  moreButton.classList.toggle(
+    "visible",
+    popularMovieListData.total_pages > pager.getPage()
+  );
   moreButton.addEventListener("click", async () => {
     thumbnailList.appendChild(createSkeleton());
 

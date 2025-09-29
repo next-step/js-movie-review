@@ -1,9 +1,9 @@
 export const createSkeletonItem = () => {
   const list = document.createElement("li");
-  list.classList.add("skeleton-item");
+  list.className = "skeleton-item";
 
   const thumbnail = document.createElement("div");
-  thumbnail.classList.add("skeleton-thumbnail");
+  thumbnail.className = "skeleton-thumbnail";
 
   list.appendChild(thumbnail);
 

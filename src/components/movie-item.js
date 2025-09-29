@@ -19,7 +19,7 @@ export const createMovieItem = (item) => {
 
 const createItemContainer = ({ thumbnailPath, voteAverage, title }) => {
   const itemContainer = document.createElement("div");
-  itemContainer.classList.add("item");
+  itemContainer.className = "item";
 
   const thumbnail = document.createElement("img");
   thumbnail.className = "thumbnail";
@@ -37,7 +37,7 @@ const createItemContainer = ({ thumbnailPath, voteAverage, title }) => {
 
 const createInfoItem = ({ voteAverage, title: movieTitle }) => {
   const container = document.createElement("div");
-  container.classList.add("item-desc");
+  container.className = "item-desc";
 
   const rate = createRateItem(voteAverage);
 
@@ -51,9 +51,9 @@ const createInfoItem = ({ voteAverage, title: movieTitle }) => {
 
 const createRateItem = (voteAverage) => {
   const paragraph = document.createElement("p");
-  paragraph.classList.add("rate");
+  paragraph.className = "rate";
   const starIcon = document.createElement("img");
-  starIcon.classList.add("star");
+  starIcon.className = "star";
   starIcon.src = starImage;
   const rateSpan = document.createElement("span");
   rateSpan.textContent = voteAverage;
