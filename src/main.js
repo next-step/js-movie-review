@@ -17,8 +17,8 @@ addEventListener("load", async () => {
   const popularMovieList = createMovieList(movieList);
 
   const moreButton = document.querySelector("main .more");
-  moreButton.classList.toggle(
-    "visible",
+  setVisibililty(
+    moreButton,
     popularMovieListData.total_pages > pager.getPage()
   );
   moreButton.addEventListener("click", async () => {
@@ -26,6 +26,8 @@ addEventListener("load", async () => {
 
     const moreMovieListData = await getPopularMovies(pager.getNextPage());
     removeSkeleton();
+    
+    setVisibililty(moreButton, moreMovieListData.total_pages > pager.getPage());
 
     const moreMovieList = createMovieList(moreMovieListData.results);
 
@@ -42,4 +44,8 @@ const createPager = () => {
     getPage: () => currentPage,
     getNextPage: () => ++currentPage,
   };
+};
+
+const setVisibililty = (element, isVisible) => {
+  element.classList.toggle("visible", isVisible);
 };
