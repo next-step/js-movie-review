@@ -30,6 +30,8 @@ addEventListener("load", async () => {
     popularMovieListData.total_pages > pager.getPage()
   );
   moreButton.addEventListener("click", async () => {
+    moreButton.disabled = true;
+
     thumbnailList.appendChild(createSkeleton());
 
     let moreMovieListData;
@@ -38,10 +40,11 @@ addEventListener("load", async () => {
     } catch (error) {
       removeSkeleton();
       alert(ERROR_API_MESSAGE);
+      moreButton.disabled = false;
       return;
     }
-
     removeSkeleton();
+    moreButton.disabled = false;
 
     setVisibililty(moreButton, moreMovieListData.total_pages > pager.getPage());
 
