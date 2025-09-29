@@ -3,8 +3,6 @@ import { createMovieList } from "./components/movie-list.js";
 import { createSkeleton, removeSkeleton } from "./components/skeleton.js";
 import { getPopularMovies } from "./services/movie-api.js";
 
-let currentPage = 1;
-
 addEventListener("load", async () => {
   const thumbnailList = document.querySelector("main .thumbnail-list");
   thumbnailList.appendChild(createSkeleton());
@@ -16,11 +14,11 @@ addEventListener("load", async () => {
   updateBanner(popularMovieListData.results[0]);
 
   const movieList = popularMovieListData.results;
-  currentPage = popularMovieListData.page;
+  const pager = createPager();
   const popularMovieList = createMovieList(movieList);
 
   const moreButton = document.querySelector("main .more");
-  if (popularMovieListData.total_pages > currentPage) {
+  if (popularMovieListData.total_pages > pager.getPage()) {
     moreButton.classList.add("visible");
   } else {
     moreButton.classList.remove("visible");
@@ -28,16 +26,23 @@ addEventListener("load", async () => {
   moreButton.addEventListener("click", async () => {
     thumbnailList.appendChild(createSkeleton());
 
-    const moreMovieListData = await getPopularMovies(currentPage + 1);
+    const moreMovieListData = await getPopularMovies(pager.getNextPage());
     await new Promise((resolve) => setTimeout(resolve, 500));
     removeSkeleton();
 
-    currentPage = moreMovieListData.page;
     const moreMovieList = createMovieList(moreMovieListData.results);
 
     thumbnailList.appendChild(moreMovieList);
   });
 
-  thumbnailList.classList.add("thumbnail-list");
   thumbnailList.appendChild(popularMovieList);
 });
+
+const createPager = () => {
+  let currentPage = 1;
+
+  return {
+    getPage: () => currentPage,
+    getNextPage: () => ++currentPage,
+  };
+};
