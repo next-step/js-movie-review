@@ -1,3 +1,4 @@
+import { updateBanner } from "./components/banner.js";
 import { createMovieList } from "./components/movie-list.js";
 import { createSkeleton, removeSkeleton } from "./components/skeleton.js";
 import { getPopularMovies } from "./services/movie-api.js";
@@ -11,6 +12,8 @@ addEventListener("load", async () => {
   const popularMovieListData = await getPopularMovies();
   await new Promise((resolve) => setTimeout(resolve, 500));
   removeSkeleton();
+
+  updateBanner(popularMovieListData.results[0]);
 
   const movieList = popularMovieListData.results;
   currentPage = popularMovieListData.page;
