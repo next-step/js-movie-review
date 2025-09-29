@@ -1,6 +1,7 @@
 import starImage from "./../../images/star_empty.png";
 
-const THUMBNAIL_URL_PATH = "https://image.tmdb.org/t/p/w200";
+const THUMBNAIL_URL_PATH =
+  "https://media.themoviedb.org/t/p/w440_and_h660_face/";
 
 export const createMovieItem = (item) => {
   const list = document.createElement("li");
