@@ -12,9 +12,7 @@ export const createSkeletonItem = () => {
 
 export const createSkeleton = (count = 20) => {
   const fragment = document.createDocumentFragment();
-  for (let i = 0; i < count; i++) {
-    fragment.appendChild(createSkeletonItem());
-  }
+  fragment.append(...Array.from({ length: count }, createSkeletonItem));
   return fragment;
 };
 
