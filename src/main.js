@@ -6,55 +6,57 @@ import { getPopularMovies } from "./services/movie-api.js";
 
 addEventListener("load", async () => {
   const thumbnailList = document.querySelector("main .thumbnail-list");
+  const moreButton = document.querySelector("main .more");
+  const pager = createPager();
+
   thumbnailList.appendChild(createSkeleton());
 
-  let popularMovieListData;
   try {
-    popularMovieListData = await getPopularMovies();
+    const popularMovieListData = await getPopularMovies();
+
+    removeSkeleton();
+    updateBanner(popularMovieListData.results[0]);
+
+    const movieList = popularMovieListData.results;
+    const popularMovieList = createMovieList(movieList);
+
+    setVisibililty(
+      moreButton,
+      popularMovieListData.total_pages > pager.getPage()
+    );
+
+    thumbnailList.appendChild(popularMovieList);
   } catch (error) {
     removeSkeleton();
     alert(ERROR_MESSAGES.API);
     return;
   }
 
-  removeSkeleton();
-  updateBanner(popularMovieListData.results[0]);
-
-  const movieList = popularMovieListData.results;
-  const pager = createPager();
-  const popularMovieList = createMovieList(movieList);
-
-  const moreButton = document.querySelector("main .more");
-  setVisibililty(
-    moreButton,
-    popularMovieListData.total_pages > pager.getPage()
-  );
   moreButton.addEventListener("click", async () => {
     moreButton.disabled = true;
 
     thumbnailList.appendChild(createSkeleton());
 
-    let moreMovieListData;
     try {
-      moreMovieListData = await getPopularMovies(pager.getNextPage());
+      const moreMovieListData = await getPopularMovies(pager.getNextPage());
+      removeSkeleton();
+      moreButton.disabled = false;
+
+      setVisibililty(
+        moreButton,
+        moreMovieListData.total_pages > pager.getPage()
+      );
+
+      const moreMovieList = createMovieList(moreMovieListData.results);
+
+      thumbnailList.appendChild(moreMovieList);
     } catch (error) {
       removeSkeleton();
       alert(ERROR_MESSAGES.API);
       moreButton.disabled = false;
       return;
     }
-
-    removeSkeleton();
-    moreButton.disabled = false;
-
-    setVisibililty(moreButton, moreMovieListData.total_pages > pager.getPage());
-
-    const moreMovieList = createMovieList(moreMovieListData.results);
-
-    thumbnailList.appendChild(moreMovieList);
   });
-
-  thumbnailList.appendChild(popularMovieList);
 });
 
 const createPager = () => {
