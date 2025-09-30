@@ -9,53 +9,18 @@ addEventListener("load", async () => {
   const moreButton = document.querySelector("main .more");
   const pager = createPager();
 
-  thumbnailList.appendChild(createSkeleton());
+  loadPopularMovies({
+    container: thumbnailList,
+    page: pager.getPage(),
+    moreButton: moreButton,
+  });
 
-  try {
-    const popularMovieListData = await getPopularMovies();
-
-    removeSkeleton();
-    updateBanner(popularMovieListData.results[0]);
-
-    const movieList = popularMovieListData.results;
-    const popularMovieList = createMovieList(movieList);
-
-    setVisibililty(
-      moreButton,
-      popularMovieListData.total_pages > pager.getPage()
-    );
-
-    thumbnailList.appendChild(popularMovieList);
-  } catch (error) {
-    removeSkeleton();
-    alert(ERROR_MESSAGES.API);
-    return;
-  }
-
-  moreButton.addEventListener("click", async () => {
-    moreButton.disabled = true;
-
-    thumbnailList.appendChild(createSkeleton());
-
-    try {
-      const moreMovieListData = await getPopularMovies(pager.getNextPage());
-      removeSkeleton();
-      moreButton.disabled = false;
-
-      setVisibililty(
-        moreButton,
-        moreMovieListData.total_pages > pager.getPage()
-      );
-
-      const moreMovieList = createMovieList(moreMovieListData.results);
-
-      thumbnailList.appendChild(moreMovieList);
-    } catch (error) {
-      removeSkeleton();
-      alert(ERROR_MESSAGES.API);
-      moreButton.disabled = false;
-      return;
-    }
+  moreButton.addEventListener("click", () => {
+    handleMoreButtonClick({
+      container: thumbnailList,
+      page: pager.getNextPage(),
+      moreButton: moreButton,
+    });
   });
 });
 
@@ -71,3 +36,53 @@ const createPager = () => {
 const setVisibililty = (element, isVisible) => {
   element.classList.toggle("visible", isVisible);
 };
+
+const handleMoreButtonClick = async ({ container, page, moreButton }) => {
+  moreButton.disabled = true;
+
+  showSkeleton(container);
+
+  try {
+    const moreMovieListData = await getPopularMovies(page);
+    hideSkeleton();
+    moreButton.disabled = false;
+
+    setVisibililty(moreButton, moreMovieListData.total_pages > page);
+
+    const moreMovieList = createMovieList(moreMovieListData.results);
+
+    container.appendChild(moreMovieList);
+  } catch (error) {
+    hideSkeleton();
+    alert(ERROR_MESSAGES.API);
+    moreButton.disabled = false;
+    return;
+  }
+};
+
+const loadPopularMovies = async ({ container, page, moreButton }) => {
+  showSkeleton(container);
+
+  try {
+    const popularMovieListData = await getPopularMovies();
+    hideSkeleton();
+
+    updateBanner(popularMovieListData.results[0]);
+
+    setVisibililty(
+      moreButton,
+      popularMovieListData.total_pages > page
+    );
+
+    const popularMovieList = createMovieList(popularMovieListData.results);
+
+    container.appendChild(popularMovieList);
+  } catch (error) {
+    hideSkeleton();
+    alert(ERROR_MESSAGES.API);
+    return;
+  }
+};
+
+const showSkeleton = (container) => container.appendChild(createSkeleton());
+const hideSkeleton = () => removeSkeleton();
