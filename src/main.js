@@ -1,7 +1,7 @@
 import { updateBanner } from "./components/banner.js";
 import { createMovieList } from "./components/movie-list.js";
 import { createSkeleton, removeSkeleton } from "./components/skeleton.js";
-import { ERROR_API_MESSAGE } from "./constants/movie-contants.js";
+import { ERROR_MESSAGES } from "./constants/error.constants.js";
 import { getPopularMovies } from "./services/movie-api.js";
 
 addEventListener("load", async () => {
@@ -13,7 +13,7 @@ addEventListener("load", async () => {
     popularMovieListData = await getPopularMovies();
   } catch (error) {
     removeSkeleton();
-    alert(ERROR_API_MESSAGE);
+    alert(ERROR_MESSAGES.API);
     return;
   }
 
@@ -39,7 +39,7 @@ addEventListener("load", async () => {
       moreMovieListData = await getPopularMovies(pager.getNextPage());
     } catch (error) {
       removeSkeleton();
-      alert(ERROR_API_MESSAGE);
+      alert(ERROR_MESSAGES.API);
       moreButton.disabled = false;
       return;
     }

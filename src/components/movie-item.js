@@ -1,7 +1,5 @@
+import { IMAGE_BASE_URLS } from "../constants/image.constants.js";
 import starImage from "./../../images/star_empty.png";
-
-const THUMBNAIL_URL_PATH =
-  "https://media.themoviedb.org/t/p/w440_and_h660_face/";
 
 export const createMovieItem = (item) => {
   const listItem = document.createElement("li");
@@ -23,7 +21,7 @@ const createItemContainer = ({ thumbnailPath, voteAverage, title }) => {
 
   const thumbnail = document.createElement("img");
   thumbnail.className = "thumbnail";
-  thumbnail.src = `${THUMBNAIL_URL_PATH}${thumbnailPath}`;
+  thumbnail.src = `${IMAGE_BASE_URLS.THUMBNAIL}${thumbnailPath}`;
 
   const infoContainer = createInfoItem({
     voteAverage: voteAverage,
