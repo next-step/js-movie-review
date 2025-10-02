@@ -1,35 +1,88 @@
-import image from "../templates/images/star_filled.png";
+import { updateBanner } from "./components/banner.js";
+import { createMovieList } from "./components/movie-list.js";
+import { createSkeleton, removeSkeleton } from "./components/skeleton.js";
+import { ERROR_MESSAGES } from "./constants/error.constants.js";
+import { getPopularMovies } from "./services/movie-api.js";
 
-console.log("npm run dev 명령어를 통해 영화 리뷰 미션을 시작하세요");
+addEventListener("load", async () => {
+  const thumbnailList = document.querySelector("main .thumbnail-list");
+  const moreButton = document.querySelector("main .more");
+  const pager = createPager();
 
-console.log(
-  "%c" +
-    " _____ ______   ________  ___      ___ ___  _______                \n" +
-    "|\\   _ \\  _   \\|\\   __  \\|\\  \\    /  /|\\  \\|\\  ___ \\               \n" +
-    "\\ \\  \\\\\\__\\ \\  \\ \\  \\|\\  \\ \\  \\  /  / | \\  \\ \\   __/|              \n" +
-    " \\ \\  \\\\|__| \\  \\ \\  \\\\\\  \\ \\  \\/  / / \\ \\  \\ \\  \\_|/__            \n" +
-    "  \\ \\  \\    \\ \\  \\ \\  \\\\\\  \\ \\    / /   \\ \\  \\ \\  \\_|\\ \\           \n" +
-    "   \\ \\__\\    \\ \\__\\ \\_______\\ \\__/ /     \\ \\__\\ \\_______\\          \n" +
-    "    \\|__|     \\|__|\\|_______|\\|__|/       \\|__|\\|_______|          \n" +
-    "                                                                   \n" +
-    "                                                                   \n" +
-    "                                                                   \n" +
-    " ________  _______   ___      ___ ___  _______   ___       __      \n" +
-    "|\\   __  \\|\\  ___ \\ |\\  \\    /  /|\\  \\|\\  ___ \\ |\\  \\     |\\  \\    \n" +
-    "\\ \\  \\|\\  \\ \\   __/|\\ \\  \\  /  / | \\  \\ \\   __/|\\ \\  \\    \\ \\  \\   \n" +
-    " \\ \\   _  _\\ \\  \\_|/_\\ \\  \\/  / / \\ \\  \\ \\  \\_|/_\\ \\  \\  __\\ \\  \\  \n" +
-    "  \\ \\  \\\\  \\\\ \\  \\_|\\ \\ \\    / /   \\ \\  \\ \\  \\_|\\ \\ \\  \\|\\__\\_\\  \\ \n" +
-    "   \\ \\__\\\\ _\\\\ \\_______\\ \\__/ /     \\ \\__\\ \\_______\\ \\____________\\\n" +
-    "    \\|__|\\|__|\\|_______|\\|__|/       \\|__|\\|_______|\\|____________|",
-  "color: #d81b60; font-size: 14px; font-weight: bold;"
-);
+  loadPopularMovies({
+    container: thumbnailList,
+    page: pager.getPage(),
+    moreButton: moreButton,
+  });
 
-addEventListener("load", () => {
-  const app = document.querySelector("#app");
-  const buttonImage = document.createElement("img");
-  buttonImage.src = image;
-
-  if (app) {
-    app.appendChild(buttonImage);
-  }
+  moreButton.addEventListener("click", () => {
+    handleMoreButtonClick({
+      container: thumbnailList,
+      page: pager.getNextPage(),
+      moreButton: moreButton,
+    });
+  });
 });
+
+const createPager = () => {
+  let currentPage = 1;
+
+  return {
+    getPage: () => currentPage,
+    getNextPage: () => ++currentPage,
+  };
+};
+
+const setVisibililty = (element, isVisible) => {
+  element.classList.toggle("visible", isVisible);
+};
+
+const handleMoreButtonClick = async ({ container, page, moreButton }) => {
+  moreButton.disabled = true;
+
+  showSkeleton(container);
+
+  try {
+    const moreMovieListData = await getPopularMovies(page);
+    hideSkeleton();
+    moreButton.disabled = false;
+
+    setVisibililty(moreButton, moreMovieListData.total_pages > page);
+
+    const moreMovieList = createMovieList(moreMovieListData.results);
+
+    container.appendChild(moreMovieList);
+  } catch (error) {
+    hideSkeleton();
+    alert(ERROR_MESSAGES.API);
+    moreButton.disabled = false;
+    return;
+  }
+};
+
+const loadPopularMovies = async ({ container, page, moreButton }) => {
+  showSkeleton(container);
+
+  try {
+    const popularMovieListData = await getPopularMovies();
+    hideSkeleton();
+
+    updateBanner(popularMovieListData.results[0]);
+
+    setVisibililty(
+      moreButton,
+      popularMovieListData.total_pages > page
+    );
+
+    const popularMovieList = createMovieList(popularMovieListData.results);
+
+    container.appendChild(popularMovieList);
+  } catch (error) {
+    hideSkeleton();
+    alert(ERROR_MESSAGES.API);
+    return;
+  }
+};
+
+const showSkeleton = (container) => container.appendChild(createSkeleton());
+const hideSkeleton = () => removeSkeleton();

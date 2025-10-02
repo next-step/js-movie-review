@@ -43,6 +43,22 @@ button.primary {
   border-radius: 4px;
 }
 
+button.more {
+  width: 100%;
+  display: none;
+}
+
+button.more.visible {
+  width: 100%;
+  display: block;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-bluegray-30);
+}
+
 #wrap {
   min-width: 1440px;
   background-color: var(--color-bluegray-100);
